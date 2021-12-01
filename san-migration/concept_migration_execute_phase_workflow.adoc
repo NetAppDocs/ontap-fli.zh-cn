@@ -1,0 +1,17 @@
+---
+permalink: san-migration/concept_migration_execute_phase_workflow.html 
+sidebar: sidebar 
+keywords: execute, phase, workflows 
+summary: 执行阶段侧重于执行 FLI 脱机或联机迁移的 LUN 迁移任务。 
+---
+= 执行阶段工作流
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+执行阶段侧重于执行 FLI 脱机或联机迁移的 LUN 迁移任务。
+
+我们会查看主机事件日志，以发现并更正任何问题并降低风险。主机将重新启动，以确保在进行重大重新配置之前主机不存在任何底层问题。
+
+在目标存储上显示源 LUN 后，可以创建并执行迁移作业。迁移完成（ FLI 脱机）或建立 FLI LUN 关系（ FLI 联机）后，主机将分区到目标存储。映射新的 LUN ，并可开始对驱动程序，多路径软件以及在分析阶段确定的任何其他更新进行主机修复。

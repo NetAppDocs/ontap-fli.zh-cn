@@ -1,0 +1,29 @@
+---
+permalink: san-migration/concept_physical_wiring_requirements_for_fli.html 
+sidebar: sidebar 
+keywords: physical, wiring, requirements, fli 
+summary: FLI 与 NetApp FlexArray 具有相同的布线要求。NetApp 存储启动程序端口连接到源存储目标端口所连接的网络结构。在将源存储连接到 NetApp 存储时，请遵循 FlexArray 最佳实践。 
+---
+= FLI 的物理布线要求
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 与 NetApp FlexArray 具有相同的布线要求。NetApp 存储启动程序端口连接到源存储目标端口所连接的网络结构。在将源存储连接到 NetApp 存储时，请遵循 FlexArray 最佳实践。
+
+迁移期间使用的存储阵列必须具有两个网络结构中每个控制器（正在使用）的主路径。这意味着，要迁移到的源阵列和目标阵列节点必须位于两个网络结构上的一个公共区域中。无需在 NetApp 集群中添加其他控制器，只需添加实际导入 / 迁移 LUN 的控制器即可。虽然可以使用间接路径进行迁移，但最佳实践是在源阵列和目标阵列之间使用主动 / 优化路径。下图显示了在两个网络结构中都存在主（活动）路径的 HDS AMS2100 和 NetApp ONTAP 存储。
+
+此图是双网络结构的存储布线示例。
+
+image::../media/physical_wiring_1.png[物理布线 1.]
+
+请遵循以下布线最佳实践：
+
+* 按照 _NetApp FlexArray 虚拟化安装要求和参考指南 _ 中所述，使用 NetApp FlexArray 最佳实践为源存储和目标存储布线。
+* 要连接到网络结构， ONTAP 存储需要可用的启动程序端口。如果不存在可用端口，请配置启动程序端口。
+
+
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"]

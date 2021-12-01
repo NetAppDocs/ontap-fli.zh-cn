@@ -1,0 +1,15 @@
+---
+permalink: san-migration/concept_prepare_hosts_for_the_transition.html 
+sidebar: sidebar 
+keywords: prepare, hosts, transition 
+summary: 执行阶段包括准备迁移主机。 
+---
+= 准备要过渡的主机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+执行阶段包括准备迁移主机。
+
+在许多情况下，可能会在执行此步骤之前执行修复。如果不是，则可以在此处执行任何主机修复，例如安装主机连接套件或 DSM 。在分析阶段，您将获得一个差距列表，其中列出了需要在每个主机上执行的项目，以便使用 NetApp ONTAP 使该主机采用受支持的配置。根据所执行的迁移类型，主机将进行修复，然后重新启动（ FLI 7- 模式到 ONTAP 联机），或者主机将重新启动，修复并关闭（ FLI 7- 模式到 ONTAP 脱机）。

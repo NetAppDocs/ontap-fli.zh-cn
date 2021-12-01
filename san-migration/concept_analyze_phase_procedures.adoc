@@ -1,0 +1,30 @@
+---
+permalink: san-migration/concept_analyze_phase_procedures.html 
+sidebar: sidebar 
+keywords: analyze, phase, imt, best practices 
+summary: 分析阶段重点关注在继续迁移活动之前必须解决的问题。主机配置信息必须与 NetApp 互操作性表（ IMT ）中记录的受支持配置进行比较。 
+---
+= 分析阶段 IMT 最佳实践
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+分析阶段重点关注在继续迁移活动之前必须解决的问题。主机配置信息必须与 NetApp 互操作性表（ IMT ）中记录的受支持配置进行比较。
+
+IMT 是一款基于 Web 的实用程序，可用于搜索与 NetApp 认证的第三方产品和组件配合使用的 NetApp 产品的配置信息。IMT 既包含受支持的 NetApp 配置，也包含经过认证的 NetApp 配置。支持的配置是 NetApp 认可的配置。认证配置是指经第三方公司认证可与 NetApp 组件配合使用的配置。
+
+
+
+== IMT 最佳实践
+
+* 在规划工作表的交换机和主机部分输入 NetApp IMT 对所需软件和升级的建议。
+* 首先，在 IMT 中输入静态信息，例如 ONTAP 操作系统，协议和 CF 模式。然后，使用站点调查作为筛选指南，输入主机操作系统，卷管理器和 HBA 信息。
+* 请勿太具体，以至于未返回任何结果；最好查看多个返回的结果并选择最适合的结果。
+* 主机 HBA 有时会报告 OEM 部件号，在输入 IMT 之前，需要交叉引用它们。
+* 根据 IMT 检查每个主机的可支持性。
+
+
+* 相关信息 *
+
+https://mysupport.netapp.com/NOW/products/interoperability["NetApp 互操作性"]

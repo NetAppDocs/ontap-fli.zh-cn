@@ -1,0 +1,57 @@
+---
+permalink: san-migration/concept_fli_zoning_requirements.html 
+sidebar: sidebar 
+keywords: fli, zoning, requirements 
+summary: 使用 FLI 的标准迁移方案需要四个不同的分区。您应在每个分区中包含特定端口。 
+---
+= FLI 分区要求
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 FLI 的标准迁移方案需要四个不同的分区。您应在每个分区中包含特定端口。
+
+* 区域 1 ：源存储到目标存储（生产网络结构 A ）
++
+分区 1 应包含所有节点上的所有目标存储启动程序以及网络结构 A 中的所有源存储目标端口区域成员包括：
+
++
+** ONTAP — Node1 — 0a
+** ONTAP — Node2 — 0a
+** AMS2100 — Ctrl0 — 0a
+** AMS2100 — Ctrl1 — 1a
+
+
+* 区域 2 ：源存储到目标存储（生产网络结构 B ）
++
+分区 2 应包含所有节点上的所有目标存储启动程序端口以及网络结构 B 中的所有源存储目标端口区域 2 成员包括：
+
++
+** ONTAP — Node1 — 0b
+** ONTAP — Node2 — 0b
+** AMS2100 — Ctrl0 — 0e
+** AMS2100 — Ctrl1 — 1e
+
+
+* 区域 3 ：主机到目标存储（生产网络结构 A ）
++
+分区 3 应包含主机总线适配器（ HBA ）端口 1 和生产网络结构 A 中的目标控制器端口区域 3 成员包括：
+
++
+** ONTAP — lif1
+** ONTAP — LIF3
+** host — HBA0
+
+
+* 区域 4 ：主机到目标存储（生产网络结构 B ）
++
+分区 4 应包含生产网络结构 B 中的 HBA 端口 2 和目标控制器端口区域 4 成员包括：
+
++
+** ONTAP — LIF2
+** ONTAP — LIF4
+** host — HBA1
+
+
+

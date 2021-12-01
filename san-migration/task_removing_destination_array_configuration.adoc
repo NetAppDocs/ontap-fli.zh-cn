@@ -1,0 +1,28 @@
+---
+permalink: san-migration/task_removing_destination_array_configuration.html 
+sidebar: sidebar 
+keywords: remove, destination, array, configuration 
+summary: 以下步骤说明了如何在 FLI 迁移完成后从源阵列中删除目标阵列配置。 
+---
+= 正在删除目标阵列配置
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+以下步骤说明了如何在 FLI 迁移完成后从源阵列中删除目标阵列配置。
+
+.步骤
+. 以系统身份登录到 Hitachi Storage Navigator 模块化。
+. 选择 * AMS 2100* 阵列，然后单击 * 显示 * 和 * 配置阵列 * 。
+. 使用 root 登录。
+. 展开组并选择 * 主机组 * 。
+. 选择 * cDOT_FLI* 主机组，然后单击 * 删除主机组 * 。
++
+image::../media/remove_destination_array_configuration_from_source_array_1.png[从源阵列 1 中删除目标阵列配置]
+
+. 确认删除主机组。
++
+image::../media/remove_destination_array_configuration_from_source_array_2.png[从源阵列 2 中删除目标阵列配置]
+
+

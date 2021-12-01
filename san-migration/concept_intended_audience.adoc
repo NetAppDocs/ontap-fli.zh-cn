@@ -1,0 +1,25 @@
+---
+permalink: san-migration/concept_intended_audience.html 
+sidebar: sidebar 
+keywords: intended, audience 
+summary: 本指南面向有意将数据从外部阵列迁移到 ONTAP 或有意将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 的 NetApp 客户。 
+---
+= 目标受众
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本指南面向有意将数据从外部阵列迁移到 ONTAP 或有意将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 的 NetApp 客户。
+
+本指南的其他受众如下：
+
+* NetApp 异构存储区域网络（ HeSAN ）迁移服务的客户
+* NetApp 销售工程师（ SE ）
+* 咨询销售工程师（ CSE ）
+* 专业服务工程师（ PSE ）
+* 专业服务顾问（ PSC ）
+* 渠道合作伙伴工程师
+
+
+本指南的读者应熟悉常见的 SAN 概念和过程，包括分区， LUN 屏蔽，需要迁移其 LUN 的主机操作系统， ONTAP 以及源第三方阵列。

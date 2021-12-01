@@ -1,0 +1,24 @@
+---
+permalink: san-migration/concept_wiring_best_practices_for_fli.html 
+sidebar: sidebar 
+keywords: wire, best practices, fli migration 
+summary: 要为 FLI 迁移配置 ONTAP 存储，您应根据规划信息和建议的最佳实践将源存储连接到网络结构。 
+---
+= 为 FLI 迁移布线最佳实践
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要为 FLI 迁移配置 ONTAP 存储，您应根据规划信息和建议的最佳实践将源存储连接到网络结构。
+
+在为 FLI 迁移配置 ONTAP 存储时，建议遵循以下布线最佳实践。
+
+* 使用双网络结构实现冗余。
+* 从每个目标存储至少使用两个启动程序和两个目标端口进行 FLI 迁移。
+* 请勿将目标存储启动程序端口与主机分区。ONTAP 的启动程序端口用于与源存储的目标端口进行分区。
+
+
+以下是在生产网络结构中为源存储和目标存储布线的示例。
+
+image::../media/configure_ontap_storage_for_fli_migration_1.png[为生产中的源存储和目标存储布线]

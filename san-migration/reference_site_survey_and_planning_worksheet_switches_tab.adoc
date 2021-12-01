@@ -1,0 +1,63 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_switches_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, switches tab 
+summary: 在站点调查和规划工作表中，您应设置一个包含迁移交换机信息的选项卡。 
+---
+= 站点调查和规划工作表切换选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在站点调查和规划工作表中，您应设置一个包含迁移交换机信息的选项卡。
+
+以下是如何设置交换机选项卡的示例。
+
+|===
+8+| 交换机 
+
+
+ a| 
+当前
+ a| 
+NetApp 推荐
+
+
+
+ a| 
+主机名
+ a| 
+IP 地址
+ a| 
+供应商
+ a| 
+型号
+ a| 
+网络结构名称
+ a| 
+VSA/ 域
+ a| 
+固件
+ a| 
+固件
+
+
+
+ a| 
+C9506-1-A
+ a| 
+10.x.x.x
+ a| 
+Cisco
+ a| 
+9506
+ a| 
+产品 A
+ a| 
+10
+ a| 
+3.3 （ 5a ）
+ a| 
+
+|===

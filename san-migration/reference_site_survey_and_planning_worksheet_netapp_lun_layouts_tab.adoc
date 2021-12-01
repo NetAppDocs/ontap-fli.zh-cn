@@ -1,0 +1,76 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_netapp_lun_layouts_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, netapp lun layouts tab 
+summary: 在站点调查和规划工作表中，您应设置一个选项卡，其中包含有关 LUN 布局的信息。 
+---
+= 站点调查和规划工作表 NetApp LUN 布局选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在站点调查和规划工作表中，您应设置一个选项卡，其中包含有关 LUN 布局的信息。
+
+以下是如何设置 NetApp LUN 布局选项卡的示例。
+
+|===
+7+| NetApp LUN 信息 
+
+
+ a| 
+存储控制器
+ a| 
+聚合
+ a| 
+卷名称
+ a| 
+卷大小
+ a| 
+卷保证
+ a| 
+快照预留
+ a| 
+LUN 名称
+
+|===
+|===
+7+| NetApp LUN 信息 
+
+
+ a| 
+序列号
+ a| 
+LUN 类型
+ a| 
+自定义前缀
+ a| 
+LUN 问题描述
+ a| 
+GB 大小
+ a| 
+LUN 预留
+ a| 
+预留百分比
+
+|===
+|===
+7+| NetApp LUN 信息 
+
+
+ a| 
+卷自动调整大小
+ a| 
+Snap 自动删除
+ a| 
+igroup
+ a| 
+LUN ID
+ a| 
+主机类型
+ a| 
+驱动器号
+ a| 
+主机
+
+|===

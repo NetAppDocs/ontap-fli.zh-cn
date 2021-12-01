@@ -1,0 +1,110 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_fas_config_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, fas config tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 FAS 配置的信息。' 
+---
+= 站点调查和规划工作表 FAS 配置选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 FAS 配置的信息。
+
+以下是如何设置 FAS 配置选项卡的示例。
+
+|===
+| 集群名称 | 集群管理 IP 地址 | 集群管理凭据可用 2+| ONTAP 系统管理器主机 
+
+
+|  |  |  | * IP 地址 * | * 可用凭据 * 
+
+
+|  |  |  |  |  
+|===
+|===
+6+| 网络端口 
+
+
+| Node | 接口名称 | 端口类型 | 端口速度 | VLAN 名称 /ID | IFGRP 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+|===
+| SVM 名称 | Type | 协议 | 聚合 | SVM 根卷 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+|===
+| SVM | Volume | 聚合 | Size | SAN 
+
+
+|  |  |  | * LUN 名称 * | * LUN 大小 * 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+|===
+6+| SVM 网络接口 
+
+
+| SVM | 接口名称 | 接口角色 | IP 地址 / 网络掩码 | 主节点 / 主端口 | 故障转移组 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+|===
+6+| SVM FCP 目标端口 
+
+
+| SVM | FCP 端口名称 | WWPN | WWNN | 主节点 | 主端口 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+|===
+6+| 节点 FCP 启动程序端口 
+
+
+| 节点名称 | FCP 端口名称 | WWPN | WWN | 主节点 | 主端口 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===

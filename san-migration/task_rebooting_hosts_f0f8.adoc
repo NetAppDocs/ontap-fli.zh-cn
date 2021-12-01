@@ -1,0 +1,21 @@
+---
+permalink: san-migration/task_rebooting_hosts_f0f8.html 
+sidebar: sidebar 
+keywords: reboot, hosts 
+summary: 您可以选择在启动此工作流之前重新启动主机，以验证主机是否处于已知正常状态。 
+---
+= 正在重新启动主机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以选择在启动此工作流之前重新启动主机，以验证主机是否处于已知正常状态。
+
+在重新启动主机之前，最好创建 Snapshot 副本，以便在日后需要时进行还原。要在重新启动后验证服务器配置是否持久且原始，请完成以下步骤：
+
+.步骤
+. 关闭所有打开的应用程序。
+. 重新启动主机。
+. 查看日志以了解错误。
+

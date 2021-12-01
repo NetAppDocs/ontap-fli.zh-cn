@@ -1,0 +1,21 @@
+---
+permalink: san-migration/concept_fli_offline_workflow.html 
+sidebar: sidebar 
+keywords: fli, offline, workflow 
+summary: 本节提供了 FLI 脱机工作流的示例，这是四个 FLI 工作流之一。 
+---
+= FLI 脱机工作流
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本节提供了 FLI 脱机工作流的示例，这是四个 FLI 工作流之一。
+
+此工作流使用 HDS AMS2100 阵列作为源阵列。脱机工作流具有以下任务：
+
+. 转换准备
+. 导入数据
+. 验证迁移结果（可选）
+. FLI 脱机迁移后任务
+

@@ -1,0 +1,296 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_lun_details_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, lun details tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 LUN 详细信息的信息。' 
+---
+= 站点调查和规划工作表 LUN 详细信息选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 LUN 详细信息的信息。
+
+以下是如何设置 LUN 详细信息选项卡的示例。
+
+|===
+5+| LUN 详细信息 
+
+
+ a| 
+源
+
+
+
+ a| 
+主机名
+ a| 
+存储组
+ a| 
+操作系统
+ a| 
+集群模式
+ a| 
+存储控制器
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+DM-rx200s6-21
+ a| 
+Microsoft Windows Server 2012 R2 Datacenter
+ a| 
+否
+ a| 
+AMS2100
+
+
+
+ a| 
+DM-rx200s6-22
+ a| 
+DM-rx200s6-22
+ a| 
+Red Hat Enterprise Linux Server 版本 5.10
+ a| 
+否
+ a| 
+AMS2100
+
+
+
+ a| 
+DM-rx200s6-20
+ a| 
+DM-rx200s6-20
+ a| 
+ESXi 5.5.0 内部版本 -1331820
+ a| 
+否
+ a| 
+AMS2100
+
+
+
+ a| 
+DM-rx200s6-20
+ a| 
+DM-rx200s6-20
+ a| 
+ESXi 5.5.0 内部版本 -1331820
+ a| 
+否
+ a| 
+AMS2100
+
+|===
+|===
+5+| LUN 详细信息 
+
+
+ a| 
+源
+
+
+
+ a| 
+Mount Point
+ a| 
+物理驱动器编号
+ a| 
+Port
+ a| 
+总线
+ a| 
+target
+
+
+
+ a| 
+C ：
+ a| 
+PHYSICALDRIVE0
+ a| 
+2.
+ a| 
+0
+ a| 
+0
+
+
+
+ a| 
+/
+ a| 
+SDA
+ a| 
+0
+ a| 
+0
+ a| 
+0
+
+
+
+ a| 
+BootLUN_Datastore
+ a| 
+nAa.60060e801046b96004f2bf46000014
+ a| 
+0
+ a| 
+0
+ a| 
+0
+
+
+
+ a| 
+VM_Datastore
+ a| 
+na.60060e801046b96004f2bf46000015
+ a| 
+0
+ a| 
+0
+ a| 
+0
+
+|===
+|===
+5+| LUN 详细信息 
+
+
+ a| 
+源
+
+
+
+ a| 
+LUN
+ a| 
+PG80 序列号
+ a| 
+PG83 序列号 / UID
+ a| 
+LUN 大小（ GB ）
+ a| 
+起始偏移
+
+
+
+ a| 
+0
+ a| 
+ a| 
+60060e801046b96004f2bf4600001e
+ a| 
+40
+ a| 
+0
+
+
+
+ a| 
+0
+ a| 
+ a| 
+60060e801046b96004f2bf46000010
+ a| 
+20
+ a| 
+
+
+
+ a| 
+0
+ a| 
+ a| 
+60060e801046b96004f2bf46000014
+ a| 
+20
+ a| 
+
+
+
+ a| 
+1.
+ a| 
+ a| 
+60060e801046b96004f2bf46000015
+ a| 
+40
+ a| 
+
+|===
+|===
+5+| LUN 详细信息 
+
+
+ a| 
+源
+
+
+
+ a| 
+LUN 类型
+ a| 
+已对齐
+ a| 
+自定义前缀（块）
+ a| 
+自定义前缀（字节）
+ a| 
+
+
+
+ a| 
+Windows
+ a| 
+已对齐
+ a| 
+0
+ a| 
+0
+ a| 
+
+
+
+ a| 
+Linux
+ a| 
+已对齐
+ a| 
+0
+ a| 
+0
+ a| 
+
+
+
+ a| 
+VMware
+ a| 
+已对齐
+ a| 
+0
+ a| 
+0
+ a| 
+
+
+
+ a| 
+VMware
+ a| 
+已对齐
+ a| 
+0
+ a| 
+0
+ a| 
+
+|===

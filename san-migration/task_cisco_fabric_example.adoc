@@ -1,0 +1,59 @@
+---
+permalink: san-migration/task_cisco_fabric_example.html 
+sidebar: sidebar 
+keywords: cisco, fabric, example 
+summary: 此操作步骤显示了如何从 Cisco 网络结构区域集删除源存储和主机区域。 
+---
+= Cisco 网络结构示例
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+此操作步骤显示了如何从 Cisco 网络结构区域集删除源存储和主机区域。
+
+[NOTE]
+====
+示例的分区名称为 _rx21_AMS2100_ 。
+
+====
+.步骤
+. 从网络结构 A 的区域集中删除分区
++
+[listing]
+----
+conf t
+zoneset name PROD_LEFT vsan 10
+no member rx21_AMS2100
+no member rx22_AMS2100
+no member rx20_AMS2100
+exit
+----
+. 激活网络结构 A 中的区域集
++
+[listing]
+----
+zoneset activate name PROD_LEFT vsan 10
+end
+copy running-config startup-config
+----
+. 从网络结构 B 的区域集中删除分区
++
+[listing]
+----
+conf t
+zoneset name PROD_RIGHT vsan 10
+no member rx21_AMS2100
+no member rx22_AMS2100
+no member rx20_AMS2100
+exit
+----
+. 激活网络结构 B 中的区域集
++
+[listing]
+----
+zoneset activate name PROD_RIGHT vsan 10
+end
+copy running-config startup-config
+----
+

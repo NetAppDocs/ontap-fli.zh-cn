@@ -1,0 +1,13 @@
+---
+permalink: san-migration/concept_migration_tests.html 
+sidebar: sidebar 
+keywords: migration, tests 
+summary: 您应执行一个或多个测试迁移，以验证阵列，交换机和主机是否已正确配置，同时还应获取可推断的多个示例，以确定迁移持续时间和工作量级别。 
+---
+= 迁移测试
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您应执行一个或多个测试迁移，以验证阵列，交换机和主机是否已正确配置，同时还应获取可推断的多个示例，以确定迁移持续时间和工作量级别。

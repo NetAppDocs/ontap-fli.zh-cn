@@ -1,0 +1,15 @@
+---
+permalink: san-migration/concept_prepare_hosts_for_fli_offline_migration.html 
+sidebar: sidebar 
+keywords: prepare, hosts, fli, offline, migration 
+summary: FLI 脱机执行阶段包括准备迁移主机。 
+---
+= 为 FLI 脱机迁移准备主机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 脱机执行阶段包括准备迁移主机。
+
+在许多情况下，可能会在执行此步骤之前执行此修复。如果不是，则可以在此处执行任何主机修复，例如安装主机连接套件或 DSM 。在分析阶段，您将获得一个间隔列表，其中列出了需要在每个主机上执行的项，以便该主机能够使用 ONTAP 实现受支持的配置。根据所执行的迁移类型，主机将进行修复，然后重新启动（联机 FLI/7- 模式到 ONTAP FLI ），或者在完成迁移过程（脱机 FLI ）之前对其进行修复，然后关闭。

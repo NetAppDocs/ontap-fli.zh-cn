@@ -1,0 +1,35 @@
+---
+permalink: san-migration/task_multipath_verification_for_windows_hosts.html 
+sidebar: sidebar 
+keywords: multipath, verification, windows hosts 
+summary: 在外部 LUN 导入（ Foreign LUN Import ， FLI ）过程中，您应验证主机上是否已配置多路径并正常运行。 
+---
+= Windows 主机的多路径验证
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在外部 LUN 导入（ Foreign LUN Import ， FLI ）过程中，您应验证主机上是否已配置多路径并正常运行。
+
+对于 Windows 主机，请完成以下步骤。
+
+.步骤
+. 打开磁盘管理。
++
+.. 在 Windows 桌面上，单击 * 启动 * 。
+.. 在开始搜索字段中，键入 diskmgmt.msc 。
+.. 在程序列表中，单击 `diskmgmt` 。
+
+
+. 右键单击要验证多个路径的每个磁盘，然后单击 * 属性 * 。
+. 在 MPIO 选项卡上的 Select the MPIO policy 列表中，单击所有活动路径。
++
+image::../media/windows_host_1.png[Windows MPIO 属性]
+
++
+要使用命令行验证多路径，请完成以下步骤：
+
+. 打开 Windows 命令提示符。
+. 运行 mpclaim.exe -v c ： \multipathconfig.txt 以捕获多路径配置。
+

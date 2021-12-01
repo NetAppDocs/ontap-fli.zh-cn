@@ -1,0 +1,29 @@
+---
+permalink: san-migration/reference_host_remediation.html 
+sidebar: sidebar 
+keywords: host remediation 
+summary: 根据迁移类型，主机修复可能会在迁移后实时进行（外部 LUN 导入联机和 7- 模式到 ONTAP ），也可能会在迁移完成后进行（外部 LUN 导入脱机）。 
+---
+= 主机修复
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+根据迁移类型，主机修复可能会在迁移后实时进行（外部 LUN 导入联机和 7- 模式到 ONTAP ），也可能会在迁移完成后进行（外部 LUN 导入脱机）。
+
+对于不同的主机操作系统，请使用执行修复步骤。请参考您的差距分析，在规划和分析阶段进行汇总，并参考相应的 NetApp 和供应商文档，了解特定于您的迁移步骤。
+
+[NOTE]
+====
+FLI 使用与 7MTT 相同的修复过程。因此，利用相同的修复文档是有意义的，而不是在不同位置多次记录这些过程。
+
+====
+[NOTE]
+====
+对于 CAW 修复，请使用 ESXi CAW/ATS 修复过程。
+
+====
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-7mode-transition/san-host/index.html["SAN 主机过渡和修复"]

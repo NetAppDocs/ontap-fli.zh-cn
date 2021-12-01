@@ -1,0 +1,27 @@
+---
+permalink: san-migration/concept_migration_report.html 
+sidebar: sidebar 
+keywords: migration, report 
+summary: 导入日志存储在集群事件日志文件中。您应查看日志中的错误，以验证迁移是否成功。 
+---
+= 迁移报告
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+导入日志存储在集群事件日志文件中。您应查看日志中的错误，以验证迁移是否成功。
+
+迁移报告应如下所示：
+
+[listing]
+----
+DataMig-cmode::*> rows 0; event log show –nodes * –event fli*
+7/7/2014 18:37:21   DataMig-cmode-01 INFORMATIONAL fli.lun.verify.complete: Import verify of foreign LUN 83017542001E of size 42949672960 bytes from array model DF600F belonging to vendor HITACHI  with NetApp LUN QvChd+EUXoiS is successfully completed.
+~~~~~~ Output truncated ~~~~~~~
+----
+[NOTE]
+====
+执行迁移阶段将介绍比较源 LUN 和目标 LUN 的验证步骤。导入和 LUN 验证步骤会在执行迁移阶段进行介绍，因为它们会链接到导入作业和外部 LUN 。
+
+====

@@ -1,0 +1,21 @@
+---
+permalink: san-migration/concept_plan_phase_procedures.html 
+sidebar: sidebar 
+keywords: plan, prepare, phase, procedures 
+summary: FLI 规划阶段侧重于创建详细迁移计划以及为实际迁移准备客户环境所需的任务。在此阶段执行一个或多个测试迁移，以验证外部 LUN 导入的安装和设置。 
+---
+= 规划和准备阶段过程
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 规划阶段侧重于创建详细迁移计划以及为实际迁移准备客户环境所需的任务。在此阶段执行一个或多个测试迁移，以验证外部 LUN 导入的安装和设置。
+
+以下是在规划阶段要完成的任务：
+
+* 通过在 " 站点调查和规划 " 工作表的 "LUN 详细信息 " 部分中输入每个存储阵列的存储映射信息，创建源 LUN 和目标 LUN 的映射。
+* 根据规划信息将源存储连接到网络结构。
+* 配置交换机分区。
+* 执行一个或多个测试迁移以验证安装和设置。
+

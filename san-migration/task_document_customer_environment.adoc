@@ -1,0 +1,25 @@
+---
+permalink: san-migration/task_document_customer_environment.html 
+sidebar: sidebar 
+keywords: document, newly, migrated, environment 
+summary: 您需要使用问题描述命令 AutoSupport 来记录客户环境。 
+---
+= 记录新迁移的环境
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您需要使用问题描述 `AutoSupport` 命令记录客户环境。
+
+要记录客户环境，请完成以下步骤：
+
+.步骤
+. 问题描述 AutoSupport 命令以记录最终配置。
++
+[listing]
+----
+B9CModeCluster::*> autosupport invoke -node DataMig-cmode-01 -type all –message “migration-final”
+----
+. 完整记录新迁移的环境。
+

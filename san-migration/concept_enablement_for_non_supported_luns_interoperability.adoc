@@ -1,0 +1,23 @@
+---
+permalink: san-migration/concept_enablement_for_non_supported_luns_interoperability.html 
+sidebar: sidebar 
+keywords: enablement, non-supported, luns 
+summary: 请务必确认源阵列的主机操作系统， HBA ，交换机和 ONTAP 阵列以及最终配置均在互操作性表中列为受支持。 
+---
+= 支持不受支持的 LUN
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请务必确认源阵列的主机操作系统， HBA ，交换机和 ONTAP 阵列以及最终配置均在互操作性表中列为受支持。
+
+以下各节提供了有关这些使用情形的信息：
+
+* 将 iSCSI LUN 导入为 FC LUN
+* 将迁移的 LUN 移动到 AFF 平台
+
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

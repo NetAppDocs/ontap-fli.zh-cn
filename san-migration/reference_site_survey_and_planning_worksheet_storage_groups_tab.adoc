@@ -1,0 +1,70 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_storage_groups_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, storage groups tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关存储组的信息。' 
+---
+= 站点调查和规划工作表存储组选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关存储组的信息。
+
+以下是如何设置存储组选项卡的示例。
+
+|===
+4+| 存储组 
+
+
+ a| 
+源
+ a| 
+目标
+
+
+
+ a| 
+主机名
+ a| 
+存储组
+ a| 
+WWPN
+ a| 
+igroup 命令
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+DM-rx200s6-21
+ a| 
+21 ： 00 ： 00 ： 24 ： ff ： 30 ： 14 ： C521 ： 00 ： 00 ： 24 ： ff ： 30 ： 14 ： c4
+ a| 
+`igroup create -ostype` windows ` -protocol` fcp ` -vserver` DataMig ` -igroup` dm-rx200s6-21 ` -initiator` 21 ： 00 ： 24 ： ff ： 30 ： 14 ： c4 ， 21 ： 00 ： 00 ： 24 ： ff ： 30 ： 14 ： c5
+
+
+
+ a| 
+DM-rx200s6-22
+ a| 
+DM-rx200s6-22
+ a| 
+21 ： 00 ： 00 ： 24 ： ff ： 30 ： 04 ： 8521 ： 00 ： 00 ： 24 ： ff ： 30 ： 04 ： 84
+ a| 
+`igroup create -ostype` Linux ` 协议` FCP ` -vserver` DataMig ` -igroup` dm-rx200s6-22 ` 启动程序` 21 ： 00 ： 00 ： 24 ： ff ： 30 ： 04 ： 85 ， 21 ： 00 ： 00 ： 24 ： ff ： 30 ： 04 ： 84
+
+
+
+ a| 
+DM-rx200s6-20
+ a| 
+DM-rx200s6-20
+ a| 
+21 ： 00 ： 00 ： 24 ： ff ： 30 ： 03 ： ea21 ： 00 ： 00 ： 24 ： ff ： 30 ： 03 ： EB
+ a| 
+`igroup create -ostype` vmware ` -protocol` fcp ` -vserver` DataMig -`igroup` dm-rx200s6-20 ` initiator` 21 ： 00 ： 00 ： 24 ： ff ： 30 ： 03 ： ea ， 21 ： 00 ： 00 ： 24 ： ff ： 30 ： 03 ： EB
+
+|===

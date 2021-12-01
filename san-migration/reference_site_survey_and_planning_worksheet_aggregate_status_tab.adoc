@@ -1,0 +1,35 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_aggregate_status_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning, worksheet, aggregate status tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关聚合状态的信息。' 
+---
+= 站点调查和规划工作表聚合状态选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关聚合状态的信息。
+
+以下是如何设置聚合状态选项卡的示例。
+
+[cols="6*"]
+|===
+6+| NetApp 聚合信息 
+
+
+ a| 
+控制器
+ a| 
+聚合
+ a| 
+总大小（ GB ）
+ a| 
+已用容量（ GB ）
+ a| 
+可用（ GB ）
+ a| 
+在扩建之前
+
+|===

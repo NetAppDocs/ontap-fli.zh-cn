@@ -1,0 +1,15 @@
+---
+permalink: san-migration/concept_fli_offline_preparation_for_cutover.html 
+sidebar: sidebar 
+keywords: fli, offline, preparation, cutover 
+summary: 在外部 LUN 导入（ FLI ）的预迁移期间，验证并验证主机和源 LUN 路径。主机重新启动后，它将关闭，以便为迁移做准备。 
+---
+= FLI 脱机：转换准备
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在外部 LUN 导入（ FLI ）的预迁移期间，验证并验证主机和源 LUN 路径。主机重新启动后，它将关闭，以便为迁移做准备。
+
+迁移和修复完成后，可以将主机连接到新的目标存储，并由最终用户验证应用程序。

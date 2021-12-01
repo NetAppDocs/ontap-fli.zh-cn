@@ -1,0 +1,31 @@
+---
+permalink: san-migration/concept_lun_requirements_and_limitations.html 
+sidebar: sidebar 
+keywords: lun, requirements, limitations 
+summary: 在开始 FLI 迁移之前， LUN 应满足以下要求。 
+---
+= LUN 要求和限制
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在开始 FLI 迁移之前， LUN 应满足以下要求。
+
+* FLI 要求每个控制器上至少有一个 FC 端口，并且要使 LUN 直接在启动程序模式下迁移。
+* 必须在目标阵列上将外部 LUN 标记为外部，以防止从 ONTAP 进行分配。
+* 开始导入之前，外部 LUN 必须处于导入关系中。
+* LUN 必须与外部 LUN 大小相同，并且磁盘块大小必须相同。在创建 LUN 的步骤中会同时满足这两项要求。
+* LUN 不得正在扩展或缩减。
+* LUN 必须至少映射到一个 igroup 。
+* 在创建关系之前，应使 NetApp LUN 脱机。但是，创建 LUN 关系后，如果是联机 FLI ，则可以将其恢复联机。
+
+
+
+
+== 限制
+
+* 所有迁移都在 LUN 级别进行。
+* FLI 仅支持光纤通道（ FC ）连接。
+* FLI 不直接支持 iSCSI 连接。要使用 FLI 迁移 iSCSI LUN ，必须将 LUN 类型更改为 FC 。迁移完成后， LUN 类型将更改回 iSCSI 。
+

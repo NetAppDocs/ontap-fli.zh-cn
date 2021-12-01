@@ -1,0 +1,28 @@
+---
+permalink: san-migration/concept_variables_that_affect_foreign_lun_import_migration_performance.html 
+sidebar: sidebar 
+keywords: variables, affect, foreign lun import, migration, performance 
+summary: 有许多变量会影响给定迁移完成的速度。 
+---
+= 影响外部 LUN 导入迁移性能的变量
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+有许多变量会影响给定迁移完成的速度。
+
+这些变量包括：
+
+* 在给定源和目标之间运行的并发迁移数
+* 源阵列功能
+* 源阵列负载
+* 目标阵列功能
+* 目标阵列负载
+* 迁移期间为 LUN 生成的 I/O 量
+* 前端网络结构上的类型，带宽和扇入 / 扇出
+
+
+为了获得最佳性能，每个节点的并发 FLI 迁移数不超过 16 个。
+
+考虑到影响迁移性能的变量数量，建议执行多种测试迁移。一般来说，测试样本越大，特征化就越好。因此，我们建议执行多种大小不同的测试迁移，以便准确地采样吞吐量性能。然后，可以使用这些测试中的性能数据推断计划内生产迁移的时间和持续时间。

@@ -1,0 +1,19 @@
+---
+permalink: san-migration/concept_using_fli_to_import_luns_into_all_flash.html 
+sidebar: sidebar 
+keywords: use, foreign lun import, import luns, aff 
+summary: AFF 并非所有版本的 ONTAP 软件都支持 FlexArray 。在这些版本中，您必须使用 AFF 暂存外部 LUN 导入（ Foreign LUN Imports ， FLI ）到同一集群上的非 AFF 高可用性（ High Availability ， HA ）对。 
+---
+= 使用外部 LUN 导入将 LUN 导入到 AFF 中
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AFF 并非所有版本的 ONTAP 软件都支持 FlexArray 。在这些版本中，您必须使用 AFF 暂存外部 LUN 导入（ Foreign LUN Imports ， FLI ）到同一集群上的非 AFF 高可用性（ High Availability ， HA ）对。
+
+从 ONTAP 9.1 开始， AFF 支持 FLI 。您可以使用 FKU 将 LUN 从其他阵列直接导入到 ONTAP 集群中。
+
+自 ONTAP 8.3.2 起， AFF 可以通过批准的流程差异请求（ PVR ）来支持 FLI 。请联系您的 NetApp 客户团队，将 PVR 提交审批。提交者（通常是 NetApp 系统工程师）在获得批准后，将收到一份批准函，其中包含启用 FLI 功能的说明。
+
+对于 8.3.2 之前的 ONTAP 软件版本，由于已进行了一些写入优化， AFF 当前不支持 FlexArray 。您需要将 FLI 导入暂存到 AFF 所在集群上的非 AFF HA 对。迁移完成后，您可以使用卷或 LUN 移动等无中断操作（ Nondisruptive operations ， NDO ）将迁移的 LUN 移动到 AFF 。如果您的 AFF 集群没有任何非 AFF 节点，请与您的客户团队联系，了解为实现此目的而借用旋转设备的可能性。

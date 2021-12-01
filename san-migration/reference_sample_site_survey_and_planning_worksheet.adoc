@@ -1,0 +1,32 @@
+---
+permalink: san-migration/reference_sample_site_survey_and_planning_worksheet.html 
+sidebar: sidebar 
+keywords: sample, site, survey and planning, worksheet 
+summary: 在迁移方法的分析和规划阶段，您需要使用站点调查和规划工作表记录现有配置，目标配置，差距和修复计划。 
+---
+= 示例站点调查和规划工作表
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在迁移方法的分析和规划阶段，您需要使用站点调查和规划工作表记录现有配置，目标配置，差距和修复计划。
+
+本节提供了 " 现场调查和规划 " 电子表格应包含的信息类型示例。建议使用以下选项卡：
+
+* 联系方式
+* 调查问卷
+* 交换机
+* 存储设备（源）
+* 存储设备（目标）
+* 主机
+* HBA 和分区信息
+* 源 LUN
+* 存储组
+* LUN 详细信息
+* NetApp LUN 布局
+* 迁移计划
+* 聚合状态
+* FAS 配置
+* SDS 命令行界面脚本
+

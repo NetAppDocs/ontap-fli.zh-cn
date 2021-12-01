@@ -1,0 +1,127 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_source_luns_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, source luns tab 
+summary: 在站点调查和规划工作表中，您应设置一个选项卡，其中包含有关源 LUN 的信息。 
+---
+= 站点调查和规划工作表源 LUN 选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在站点调查和规划工作表中，您应设置一个选项卡，其中包含有关源 LUN 的信息。
+
+以下是如何设置源 LUN 选项卡的示例。
+
+|===
+5+| 源 LUN 
+
+
+ a| 
+已屏蔽的 LUN
+
+
+
+ a| 
+存储组名称
+ a| 
+主机 LUN ID
+ a| 
+阵列 LUN ID
+ a| 
+厚 / 精简
+ a| 
+UID
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+0
+ a| 
+30 个
+ a| 
+厚
+ a| 
+60060e801046b96004f2bf4600001e
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+1.
+ a| 
+14
+ a| 
+厚
+ a| 
+60060e801046b96004f2bf460000000e
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+2.
+ a| 
+15
+ a| 
+厚
+ a| 
+60060e801046b96004f2bf460000000f
+
+|===
+|===
+5+| 源 LUN 
+
+
+ a| 
+所有 LUN .2a
+| 自定义前缀 
+
+
+ a| 
+LUN 名称
+ a| 
+UID
+ a| 
+起始扇区
+ a| 
+分区偏移
+ a| 
+
+
+
+| LUN30  a| 
+ a| 
+ a| 
+368050176
+ a| 
+0
+
+
+
+ a| 
+LUN14
+ a| 
+ a| 
+ a| 
+33619968
+ a| 
+0
+
+
+
+ a| 
+LUN15
+ a| 
+ a| 
+ a| 
+33619968
+ a| 
+0
+
+|===

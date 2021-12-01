@@ -1,0 +1,19 @@
+---
+permalink: san-migration/task_presenting_source_luns_to_ontap_storage_during_offline_fli.html 
+sidebar: sidebar 
+keywords: present, source luns, ontap storage, fli 
+summary: 在脱机 FLI 过程中，您必须将源 LUN 呈现给 ONTAP 存储。 
+---
+= 在 FLI 期间向 ONTAP 存储提供源 LUN
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在脱机 FLI 过程中，您必须将源 LUN 呈现给 ONTAP 存储。
+
+.步骤
+. 登录到源阵列。
+. 将 NetApp 启动程序添加到在计划阶段创建的主机组。
+. 从可用逻辑 LUN 中选择需要迁移的主机 LUN 。请为站点调查和规划工作表的源 LUN 部分中提及的每个主机使用 LUN 名称。
+

@@ -1,0 +1,47 @@
+---
+permalink: san-migration/concept_performance_enhancements_in_clustered_data_ontap_8_3_1.html 
+sidebar: sidebar 
+keywords: performance, enhancements, ontap 8.3.1 
+summary: 对 FLI 进行了一些增强，以更好地管理性能并防止出现工作负载不足的情况。ONTAP 8.3.1 中的 FLI 增强功能包括一个新的 throttle 命令和 lun import show 增强功能，这些增强功能显示了吞吐量和 QoS 策略组。 
+---
+= ONTAP 8.3.1 中的性能增强功能
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对 FLI 进行了一些增强，以更好地管理性能并防止出现工作负载不足的情况。ONTAP 8.3.1 中的 FLI 增强功能包括一个新的 throttle 命令和 lun import show 增强功能，这些增强功能显示了吞吐量和 QoS 策略组。
+
+lun import throttle 命令用于限制运行导入的最大速度。
+
+[listing]
+----
+cluster::*> lun import throttle -vserver fli_72C -path /vol/flivol/72Clun1 -max-throughput-limit
+
+{<integer>[KB|MB|GB|TB|PB]}  Maximum Throughput Limit (per sec)
+----
+使用 `instance` switch with `lun import show` 可显示扩展的 LUN 导入信息，包括限制和 QoS 信息。
+
+[listing]
+----
+cluster::*> lun import show -instance
+
+    Vserver Name: fli_72C
+    LUN Path: /vol/flivol/72Clun1
+    Foreign Disk Serial Number: D0i1E+G8Wg6m
+    Import Home Node: ontaptme-fc-cluster-01
+    Import Current Node: ontaptme-fc-cluster-01
+    Operation In Progress: import
+    Admin State: stopped
+    Operational State: stopped
+    Percent Complete: 0
+    Blocks Imported: -
+    Blocks Compared: -
+    Total Blocks: 6297480
+    Estimated Remaining Duration: -
+    Failure Reason: -
+    Maximum Throughput Limit(per sec): -
+    Current Throughput (per sec): -
+    QoS Policy Group: -
+----
+`当前吞吐量` 的值显示导入或验证操作的当前吞吐量速率。用户应先检查此设置，然后再设置限制值。未运行时为空。如果使用了 LUN 导入限制，则 `QoS 策略组` 会显示 QoS 组。

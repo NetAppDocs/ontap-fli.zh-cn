@@ -1,0 +1,58 @@
+---
+permalink: san-migration/concept_migration_discover_phase_workflow.html 
+sidebar: sidebar 
+keywords: discover phase workflow 
+summary: 迁移过程的发现阶段侧重于收集用于主机修复的信息，并在后续步骤中创建迁移计划。大多数信息的收集都是使用 OneCollect 等数据收集工具自动完成的。 
+---
+= 发现阶段工作流
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移过程的发现阶段侧重于收集用于主机修复的信息，并在后续步骤中创建迁移计划。大多数信息的收集都是使用 OneCollect 等数据收集工具自动完成的。
+
+下图显示了发现阶段的工作流。
+
+image::../media/discover_phase_1.png[发现阶段 1]
+
+下表列出了发现阶段任务。
+
+[cols="2*"]
+|===
+| 组件 | 任务 
+
+
+ a| 
+主机
+ a| 
+. 确定 HBA WWPN （用于创建分区）。
+. 确定 LUN 信息（大小，序列号，分区布局和偏移）。
+. 确定第三方 MPIO 配置，主机操作系统， HBA/CNA 型号和固件等。
+
+
+
+
+ a| 
+网络结构
+ a| 
+确定主机到源存储分区。（迁移后会删除这些内容）。
+
+
+
+ a| 
+目标存储
+ a| 
+确定要用于启动程序 / 目标使用的端口的 WWPN 。
+
+
+
+ a| 
+源存储
+ a| 
+. 确定 WWPN （用于创建分区）。
+. 确定映射到主机的 LUN 。
+. 确定主机的启动程序记录。
+
+
+|===

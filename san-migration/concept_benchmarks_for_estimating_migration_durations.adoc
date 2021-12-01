@@ -1,0 +1,22 @@
+---
+permalink: san-migration/concept_benchmarks_for_estimating_migration_durations.html 
+sidebar: sidebar 
+keywords: benchmarks, estimating, migration, durations 
+summary: 出于规划目的，可以使用某些假设来估计数据迁移的工作量和持续时间。 
+---
+= 用于估算迁移持续时间的基准
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+出于规划目的，可以使用某些假设来估计数据迁移的工作量和持续时间。
+
+要准确估计实际性能，您应运行多个不同大小的测试迁移，以便为您的特定环境获得准确的性能数据。
+
+[NOTE]
+====
+以下基准仅用于规划目的，不可能对特定环境特别准确。
+
+====
+假设：每迁移主机 5 小时，具体取决于具有 8 个 LUN 且总数据为 2 TB 的主机。这些参数提供的规划数量约为每小时 400 GB 。

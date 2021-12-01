@@ -1,0 +1,20 @@
+---
+permalink: san-migration/concept_best_practices_for_fli_migration.html 
+sidebar: sidebar 
+keywords: best practices, foreign lun, import migration 
+summary: NetApp 强烈建议您提供专业服务或合作伙伴专业服务，参与确定迁移范围并制定迁移计划，以及培训客户人员如何使用外部 LUN 导入（ Foreign LUN Import ， FLI ） 7- 模式向 ONTAP 执行数据迁移。 
+---
+= 外部 LUN 导入迁移的最佳实践
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 强烈建议您提供专业服务或合作伙伴专业服务，参与确定迁移范围并制定迁移计划，以及培训客户人员如何使用外部 LUN 导入（ Foreign LUN Import ， FLI ） 7- 模式向 ONTAP 执行数据迁移。
+
+* 至少在迁移项目之前一周执行一个或多个测试迁移，以验证配置，连接和吞吐量，发现任何其他问题并验证您的方法。
+* 为了最大程度地提高吞吐量，每个节点同时运行的迁移不能超过 16 个。
+* 不需要验证，但我们建议您验证已导入 / 迁移的 LUN 的子集，以验证导入过程。
+* 使用在测试迁移中观察到的吞吐量来规划生产迁移持续时间。
+* 为了获得最佳性能，请在非高峰需求期间迁移 LUN 。
+

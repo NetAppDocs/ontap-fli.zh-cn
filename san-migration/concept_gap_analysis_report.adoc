@@ -1,0 +1,23 @@
+---
+permalink: san-migration/concept_gap_analysis_report.html 
+sidebar: sidebar 
+keywords: gap, analysis, report 
+summary: 差距分析是对客户当前环境和 NetApp 推荐环境的报告。它提供了迁移后需要对客户环境进行的所有建议升级。 
+---
+= 差距分析报告
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+差距分析是对客户当前环境和 NetApp 推荐环境的报告。它提供了迁移后需要对客户环境进行的所有建议升级。
+
+目标配置（迁移后）包括每个主机的详细信息（操作系统配置， MPIO ， HBA 详细信息，主机实用程序套件版本等）。此外，我们还提供了有关 SnapDrive 和 SnapManager 等 NetApp 所需的其他产品的信息。
+
+由于通常需要计划维护时间，因此通常在实际迁移事件发生之前不会进行所需的更改。通常，迁移前对 MPIO 配置所做的任何更改也会影响对当前存储的支持。
+
+您的站点调查和规划工作表的主机部分中填写完整的 NetApp 建议部分将作为差距分析报告。必须对迁移项目中包括的每个主机完成差距分析。必须与客户一起审核已完成的差距分析报告。
+
+以下是差距分析报告示例。
+
+image::../media/create_the_gap_analysis_report_1.png[创建差距分析报告 1]

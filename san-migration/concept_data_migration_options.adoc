@@ -1,0 +1,33 @@
+---
+permalink: san-migration/concept_data_migration_options.html 
+sidebar: sidebar 
+keywords: data, migration, options 
+summary: 在选择数据迁移选项时，需要考虑的是使用数据传输设备或基于应用程序的迁移。 
+---
+= 数据迁移选项
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在选择数据迁移选项时，需要考虑的是使用数据传输设备或基于应用程序的迁移。
+
+虽然 FLI 可能是大多数迁移的最佳选择，但其他选项可能会无中断地执行，因此可能比使用 FLI 执行迁移更好。您应考虑自己的选项，并为每次迁移选择合适的工具。所有这些工具均可用于最适合的部分迁移。
+
+* 使用数据传输设备（ DTA ）
++
+DTA 是一种连接到 SAN 网络结构的 NetApp 品牌设备，对迁移的每 TB 数据进行许可，并支持脱机和联机迁移。
+
+* 主机操作系统或基于应用程序的迁移
++
+有多种主机操作系统或基于应用程序的数据迁移选项，其中包括：
+
++
+** VMware Storage vMotion
+** 基于逻辑卷管理器（ LVM ）的解决方案
+** DD （ Linux ）和 Robocopy （ Windows ）等实用程序
+
+
+
+
+无论选择何种过程和工具，您都可以而且应该使用数据迁移方法来确定迁移选项和任务的范围，规划和记录。

@@ -1,0 +1,30 @@
+---
+permalink: san-migration/task_importing_non_fc_luns.html 
+sidebar: sidebar 
+keywords: import, non-fc luns 
+summary: 由于外部 LUN 导入（ FLI ）利用 FlexArray 技术挂载外部 LUN ，因此只能使用 FCP 连接到源阵列。FLI 仅支持 FC LUN 。但是，您可以通过临时解决策导入 iSCSI LUN 。由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将涵盖整个工作流： 
+---
+= 导入非 FC LUN
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+由于外部 LUN 导入（ FLI ）利用 FlexArray 技术挂载外部 LUN ，因此只能使用 FCP 连接到源阵列。FLI 仅支持 FC LUN 。但是，您可以通过临时解决策导入 iSCSI LUN 。由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将涵盖整个工作流：
+
+由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将覆盖整个工作流。
+
+.步骤
+. 在源阵列上，您需要从其 iSCSI igroup 取消所需 iSCSI LUN 的映射。
+. 在源阵列上，将 LUN 映射到 FC igroup ，确保已将目标阵列 WWPN 添加到 igroup 。
+. 导入 LUN 。
+. 导入 LUN 后，您可以创建新的 iSCSI igroup 并将主机添加到 igroup 。
+. 在主机上，重新扫描 LUN 。
++
+要验证您的特定环境是否支持本文档所述的确切产品和功能版本，请参见 NetApp 支持站点上的互操作性表工具（ IMT ）。NetApp IMT 定义了可用于构建 NetApp 支持的配置的产品组件和版本。具体结果取决于每个客户是否按照已发布的规格进行安装。
+
+
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

@@ -1,0 +1,17 @@
+---
+permalink: san-migration/concept_migration_process_overview.html 
+sidebar: sidebar 
+keywords: migration, process, overview 
+summary: FLI 迁移过程分为五个阶段，可通过适用场景执行任何数据迁移：发现，分析，规划，执行和验证。 
+---
+= 迁移过程概述
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 迁移过程分为五个阶段，可通过适用场景执行任何数据迁移：发现，分析，规划，执行和验证。
+
+image::../media/migration_overview_1.png[五阶段迁移方法]
+
+这些阶段提供了一个通用框架，可帮助确定在整个迁移过程中执行常见任务的位置。本节中的图表显示了可在主机，网络结构，目标存储和源存储这四个主要组件中的每个组件中并行执行的任务。

@@ -1,0 +1,19 @@
+---
+permalink: san-migration/concept_7_mode_to_ontap_supported_configurations.html 
+sidebar: sidebar 
+keywords: 7-mode, ontap, fli, supported, configurations 
+summary: 请务必验证您最终要过渡到的主机操作系统， HBA ，交换机和 ONTAP 阵列是否受支持。 
+---
+= 7- 模式到 ONTAP FLI 支持的配置
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请务必验证您最终要过渡到的主机操作系统， HBA ，交换机和 ONTAP 阵列是否受支持。
+
+如果您使用的是从 FLI 7- 模式到 ONTAP 的过渡工作流，则无需在 FlexArray IMT 中验证源（ 7- 模式控制器）。此过渡工作流不会列出，但对此过渡工作流明确表示支持。您仍然需要验证所有主机是否采用受支持的配置。
+
+不存在 FLI 专用平台要求。此外，虽然 7- 模式 Data ONTAP 的版本必须支持光纤通道协议（ FCP ），但也没有最低版本。
+
+FLI 可导入的最大 LUN 大小为 6 TB 。此限制基于 ONTAP 当前支持的最大驱动器大小。如果您尝试挂载较大的外部 LUN ，则此 LUN 将标记为已断开，您将无法为其写入标签。

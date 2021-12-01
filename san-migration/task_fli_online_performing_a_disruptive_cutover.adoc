@@ -1,0 +1,66 @@
+---
+permalink: san-migration/task_fli_online_performing_a_disruptive_cutover.html 
+sidebar: sidebar 
+keywords: fli online, perform, disruptive, cutover 
+summary: 本示例介绍了为 FLI 联机迁移过程执行中断转换的一般步骤。 
+---
+= FLI Online ：执行中断转换
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本示例介绍了为 FLI 联机迁移过程执行中断转换的一般步骤。
+
+有关 Windows ， Linux 和 ESXi 的主机修复演练，请参见本指南的后续章节以及主机操作系统和主机连接套件文档。
+
+.步骤
+. 在外部阵列上，显示源 LUN 映射到的存储组。
++
+有关相应的命令，请参见供应商文档。
+
+. 如果要导入的 LUN 适用于 ESXi 主机，请查看 _ESXi CAW/ATS 修复主题并按照其说明进行操作。
+. 从主机取消映射源 LUN 。
++
+[NOTE]
+====
+此时将开始中断窗口。
+
+====
++
+执行 `unmap` 命令后，中断将立即开始。通常，中断窗口可以用几分钟来衡量。中断窗口是指将主机重新指向新 NetApp 目标以及扫描 LUN 所用的时间。
+
++
+您必须确保这是唯一映射到此 igroup 的 LUN ，因为从 igroup 中删除主机（启动程序）会影响映射到此 igroup 的其他 LUN 。有关相应的命令，请参见供应商文档。
+
+. 验证主机启动程序是否已不再存在。
+. 在 ONTAP 集群上，使目标 LUN 联机并验证其是否已映射。
++
+[listing]
+----
+cluster::*> lun online -vserver fli -path /vol/fli_vol/OnlineFLI_LUN
+----
+. 验证 LUN 是否联机。
++
+[listing]
+----
+cluster::*> lun show -vserver fli
+Vserver   Path                            State   Mapped   Type        Size
+--------- ------------------------------- ------- -------- -------- --------
+fli       /vol/fli_vol/OnlineFLI_LUN      online  mapped   windows_2008  1TB
+----
+. 重新扫描主机上的磁盘，找到 ONTAP 目标上的 LUN ，然后确认 DSM 已声明此 LUN 。
++
+[NOTE]
+====
+此时将结束中断窗口。
+
+====
+. 验证您是否可以查看所有预期路径，并检查事件日志以确认不存在任何错误。
++
+此时，此迁移的中断部分将完成，除非存在中断的未完成主机修复任务（在分析和规划阶段确定）。
+
++
+LUN 已联机并已映射，主机现在正在挂载新的 ONTAP 托管 LUN 。读取将通过 ONTAP 阵列传递到源 LUN ，写入将同时写入新的 ONTAP 托管的 LUN 和原始源 LUN 。源 LUN 和目标 LUN 将保持同步，直到迁移完成且 LUN 关系已断开为止。
+
+

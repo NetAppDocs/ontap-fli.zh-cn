@@ -1,0 +1,26 @@
+---
+permalink: san-migration/concept_fli_7_mode_to_ontap_transition_workflow.html 
+sidebar: sidebar 
+keywords: fli, 7-mode, ontap, transition, workflow 
+summary: 本节提供了从 FLI 7- 模式过渡到 ONTAP 的工作流示例。过渡工作流可以作为联机或脱机工作流运行。 
+---
+= FLI 7- 模式到 ONTAP 的过渡工作流
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本节提供了从 FLI 7- 模式过渡到 ONTAP 的工作流示例。过渡工作流可以作为联机或脱机工作流运行。
+
+如果源 LUN 托管在 32 位聚合上和 / 或 LUN 未对齐，则建议使用 FLI 过渡。从 FLI 7- 模式过渡到 ONTAP 可以将 LUN 从 7- 模式过渡到 ONTAP ，同时更正 LUN 对齐并将 LUN 从 32 位聚合过渡到 64 位聚合。其他过渡 LUN 的方法（包括 7- 模式过渡工具（ 7MTT ））可能需要在过渡到 ONTAP 之前修复 LUN 对齐和 / 或将 32 位聚合转换为 64 位聚合。
+
+FLI 7- 模式到 ONTAP 的过渡工作流可以是联机或脱机工作流。这些工作流在功能上与两个相应的 FLI 脱机和联机迁移工作流相同，但源阵列是 NetApp 7- 模式存储阵列除外。这两个工作流的规则和过程与其迁移等效项相同。其中包括 FLI 联机工作流主机操作支持列表。
+
+所提供的示例应全面介绍从 FLI 7- 模式到 ONTAP 的过程。FLI 7- 模式到 ONTAP 的过渡流程包括以下任务：
+
+. 正在准备源阵列和目标阵列
+. 执行中断转换
+. 导入数据
+. 验证迁移结果
+. FLI 过渡后任务
+

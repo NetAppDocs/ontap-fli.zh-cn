@@ -1,0 +1,32 @@
+---
+permalink: san-migration/concept_fli_interoperability_and_support_criteria.html 
+sidebar: sidebar 
+keywords: fli, interoperability, support, criteria 
+summary: FLI 互操作性表（ IMT ）与 FlexArray IMT 非常相似，但作为一种截然不同的互操作性工具添加，目的是更好地支持符合 NetApp 标准且可与 FLI 结合使用的源阵列。 
+---
+= FLI 互操作性和支持标准
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 互操作性表（ IMT ）与 FlexArray IMT 非常相似，但作为一种截然不同的互操作性工具添加，目的是更好地支持符合 NetApp 标准且可与 FLI 结合使用的源阵列。
+
+在执行外部 LUN 导入之前，需要检查两个互操作性方面：
+
+* 检查是否支持 FLI 。您可以通过查看 FLI IMT 来执行此操作。
+* 在导入完成后，检查完整的端到端配置是否为受支持的配置。可通过 FAS/AFF IMT 执行此操作。
+
+
+此外，根据目标 ONTAP 版本检查以下三个条件：
+
+* 源存储平台型号和微代码版本。
+* SAN 交换机型号和微代码版本。
+* 迁移后挂载 LUN 的 NetApp 控制器，客户环境（交换机， HBA ，固件，服务器硬件等）和 SAN 连接客户端。
+
+
+如果这三个组件中的任何一个不受支持，则可能需要进行一些修复，以确保在迁移过程期间和之后获得完全成功和支持。
+
+* 相关信息 *
+
+https://mysupport.netapp.com/NOW/products/interoperability["NetApp 互操作性"]

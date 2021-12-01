@@ -1,0 +1,51 @@
+---
+permalink: san-migration/task_brocade_fabric_example.html 
+sidebar: sidebar 
+keywords: brocade, fabric, example 
+summary: 此操作步骤显示了如何从 Brocade 网络结构区域中删除源存储和主机区域。 
+---
+= Brocade 网络结构示例
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+此操作步骤显示了如何从 Brocade 网络结构区域中删除源存储和主机区域。
+
+[NOTE]
+====
+示例的分区名称为 _rx21_AMS2100_ 。
+
+====
+.步骤
+. 从网络结构 A 的区域集中删除分区
++
+[listing]
+----
+cfgDelete "PROD_LEFT", "rx21_AMS2100"
+cfgDelete "PROD_LEFT", "rx22_AMS2100"
+cfgDelete "PROD_LEFT", "rx20_AMS2100"
+----
+. 激活网络结构 A 中的区域集
++
+[listing]
+----
+cfgEnable "PROD_LEFT"
+cfgSave
+----
+. 从网络结构 B 的区域集中删除分区
++
+[listing]
+----
+cfgDelete "PROD_RIGHT", "rx21_AMS2100"
+cfgDelete "PROD_RIGHT", "rx22_AMS2100"
+cfgDelete "PROD_RIGHT", "rx20_AMS2100"
+----
+. 激活网络结构 B 中的区域集
++
+[listing]
+----
+cfgEnable "PROD_RIGHT"
+cfgSave
+----
+

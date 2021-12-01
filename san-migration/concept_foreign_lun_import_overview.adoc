@@ -1,0 +1,48 @@
+---
+permalink: san-migration/concept_foreign_lun_import_overview.html 
+sidebar: sidebar 
+keywords: foreign, lun, import, overview 
+summary: 外部 LUN 导入（ Foreign LUN Import ， FLI ）是 ONTAP 中内置的一项功能，允许用户以简单高效的方式将数据从外部阵列 LUN 导入到 NetApp LUN 。 
+---
+= 外部 LUN 导入概述
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+外部 LUN 导入（ Foreign LUN Import ， FLI ）是 ONTAP 中内置的一项功能，允许用户以简单高效的方式将数据从外部阵列 LUN 导入到 NetApp LUN 。
+
+所有 FLI 迁移都在 LUN 级别运行。FLI 是一种严格基于块的工具；不支持基于文件，记录， NFS 和 CIFS 的迁移。有关文件级协议的其他迁移方法的讨论，例如 NFS 和 CIFS/SMB ，请查看 _Data Migration Tools 快速参考指南 _ 。
+
+FLI 利用 NetApp FlexArray ® 技术发现外部 RAID 阵列 LUN 并从中提取数据。FlexArray 允许 NetApp ONTAP 控制器在一个或多个第三方阵列前充当启动程序。FlexArray 可以将这些阵列中的 LUN 作为后端存储进行挂载，然后将这些 LUN 中的空间作为 NetApp 统一存储（允许 FCP ， FCoE ， iSCSI ， NFS 和 CIFS/SMB 协议访问）提供给 SAN 或 NAS 环境中的主机。
+
+FLI 不需要 FlexArray 许可证。FLI 利用 FlexArray 技术将外部 LUN 复制到 NetApp ONTAP 阵列，然后允许使用该 LUN 的主机和应用程序指向当前托管相关 LUN 的 NetApp 阵列。虽然 ONTAP 不再需要专业服务运行的迁移，但 NetApp 强烈建议专业服务人员参与范围界定，规划和培训，以满足最简单的迁移需求。
+
+FLI 是为将 SAN LUN 迁移到 ONTAP 而开发的。FLI 支持一系列迁移要求，包括但不限于以下内容：
+
+* 在 FlexArray 配置支持的情况下，将 EMC ， Hitachi ， HP 和其他供应商的异构存储阵列之间的数据迁移到 NetApp 。
+* 在数据中心重新定位，整合和阵列更换期间简化并加速块数据迁移。
+* 将迁移和 LUN 领域整合到一个工作流中。
+
+
+此外， 7- 模式到 ONTAP 的过渡操作步骤可以将聚合从 32 位转换为 64 位，修复对齐问题，并将 LUN 作为一项操作进行迁移。
+
+FLI 使 NetApp 存储能够发现要导入以进行数据迁移的 LUN 。外部 LUN 在 NetApp 存储上显示为磁盘，并且没有自动为其分配所有权，因此不会错误地覆盖用户数据。包含外部阵列 LUN 的磁盘必须标记为外部。要对 NetApp 存储使用 FLI ，必须严格遵守配置外部阵列 LUN 的规则。请参见以下主题： xref:concept_lun_requirements_and_limitations.adoc[LUN 要求和限制]。
+
+FLI 要求每个控制器上至少有一个物理 FC 端口，并使 LUN 直接在启动程序模式下迁移。首选两个端口，每个网络结构一个，但可以使用一个端口。这些端口用于连接到源阵列，需要进行分区和屏蔽，才能查看和挂载源 LUN 。如果需要将端口从目标更改为启动程序，请参见 _FC 虚拟化安装要求和参考指南 _ ，了解将 FlexArray 端口从目标转换为启动程序的过程。
+
+FLI 迁移可以脱机执行，这会在导入期间中断操作，也可以联机执行，这主要是无中断的。
+
+此图显示了 FLI 脱机数据迁移，其中主机将脱机进行迁移。NetApp 阵列直接从第三方阵列复制数据。
+
+image::../media/foreign_lun_import_overview_1.png[FLI 数据迁移概述]
+
+此图显示了 FLI 联机数据迁移。主机已连接到现在托管新 LUN 的 NetApp 控制器。然后，可以在导入期间恢复并继续执行主机操作。
+
+image::../media/foreign_lun_import_overview_2.png[FLI 数据迁移概述]
+
+* 相关信息 *
+
+https://library.netapp.com/ecm/ecm_get_file/ECMP12363719["《数据迁移工具快速参考指南》"]
+
+https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"]

@@ -1,0 +1,72 @@
+---
+permalink: san-migration/task_fli_transition_performing_a_disruptive_cutover.html 
+sidebar: sidebar 
+keywords: perform, disruptive, cutover, fli 7-mode, ontap 
+summary: 本示例介绍了为 FLI 过渡过程执行中断转换的一般步骤。 
+---
+= 执行从 FLI 7- 模式到 ONTAP 的中断转换
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本示例介绍了为 FLI 过渡过程执行中断转换的一般步骤。
+
+有关 Windows ， Linux 和 ESXi 主机的主机修复演练，请参见本指南中的相关主题以及主机操作系统和主机连接套件文档。
+
+.步骤
+. 在 7- 模式系统上，显示源 LUN 映射到的 igroup 。
++
+[listing]
+----
+stme-7ma> igroup show
+    FLI_on_fcp (FCP) (ostype: windows):
+        10:00:00:00:c9:e6:e2:79 (logged in on: 0c, vtic)
+        50:0a:09:81:00:96:43:70 (logged in on: 0c, vtic)
+        50:0a:09:81:00:96:3c:f0 (logged in on: 0c, vtic)
+----
++
+[NOTE]
+====
+执行 unmap 命令后，系统将立即开始中断。通常，中断窗口可以用几分钟来衡量。实际上，这是将主机移至新 NetApp 目标并扫描 LUN 所需的时间长度。
+
+====
+. 如果要导入的 LUN 适用于 ESXi 主机，请查看 _ESXi CAW/ATS 修复 _ 主题并按照其中的说明进行操作。
+. 使用 unmap 命令将 LUN 从其主机中移动。（中断窗口从此处开始。）
++
+[listing]
+----
+stme-7ma> igroup remove -f FLI_on_fcp 10:00:00:00:c9:e6:e2:79
+----
+. 验证主机启动程序是否已不再存在。
++
+[listing]
+----
+stme-7ma> igroup show
+    FLI_on_fcp (FCP) (ostype: windows):
+        50:0a:09:81:00:96:43:70 (logged in on: 0c, vtic)
+        50:0a:09:81:00:96:3c:f0 (logged in on: 0c, vtic)
+----
+. 在 ONTAP 集群上，使目标 LUN 联机并验证其是否已映射。
++
+[listing]
+----
+cluster::*> lun online -vserver fli_72C -path /vol/flivol/72Clun1
+
+cluster::*> lun show -path /vol/flivol/72Clun1
+Vserver   Path                            State   Mapped   Type        Size
+--------- ------------------------------- ------- -------- -------- --------
+fli_72C   /vol/flivol/72Clun1             online  mapped   windows_2008
+                                                                      3.00GB
+----
+. 重新扫描主机上的磁盘；在 ONTAP 目标上查找 LUN 。
++
+[NOTE]
+====
+此时将结束中断窗口。
+
+====
++
+LUN 已联机并已映射，主机现在正在挂载新的 ONTAP 托管 LUN 。读取将通过 ONTAP 阵列传递到源 LUN ，写入将同时写入新的 ONTAP 托管 LUN 和原始源 LUN 。源 LUN 和目标 LUN 将保持同步，直到迁移完成且 LUN 关系已断开为止。
+
+

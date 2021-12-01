@@ -1,0 +1,24 @@
+---
+permalink: san-migration/concept_fli_transition_post_migration_tasks.html 
+sidebar: sidebar 
+keywords: fli, transition, workflow, post-migration, tasks 
+summary: 从 FLI 7- 模式迁移到 ONTAP 工作流的迁移后任务与其他 FLI 工作流类似。 
+---
+= FLI 过渡工作流迁移后任务
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+从 FLI 7- 模式迁移到 ONTAP 工作流的迁移后任务与其他 FLI 工作流类似。
+
+* 准备好后，您可以删除 LUN 导入关系。
++
+可以安全地删除 LUN 导入关系，因为主机现在正在访问新的 NetApp 阵列以获取新 ONTAP LUN 的所有 I/O ，并且源 7- 模式 LUN 不再使用。
+
+* 所有服务器修复均在迁移后执行。
++
+删除第三方软件，安装并配置 NetApp 软件，然后启动主机访问 NetApp 上的 LUN 。
+
+* 查看日志中的错误，检查路径并执行任何应用程序测试，以验证您的迁移是否已成功，正常完成。
+

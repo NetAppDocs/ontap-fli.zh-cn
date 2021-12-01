@@ -1,0 +1,41 @@
+---
+permalink: san-migration/concept_supported_host_operating_systems_for_fli_online.html 
+sidebar: sidebar 
+keywords: supported, host, operating, systems, fli, online 
+summary: FLI 联机工作流可用于连接到运行以下操作系统之一的主机的 LUN 。 
+---
+= FLI 联机支持的主机操作系统
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 联机工作流可用于连接到运行以下操作系统之一的主机的 LUN 。
+
+. Microsoft （支持列出的所有服务器版本）：
++
+** Windows Server 2008 （包括 Windows Server 故障转移集群）
+** Microsoft Hyper-V Server 2008
+** Windows Server 2012 （包括 Windows Server 2012 集群）
+** Microsoft Hyper-V Server 2012
+
+
+. VMware ：
++
+** 所有 ESXi 5.x 版本
+
+
+. Linux ：
++
+** Red Hat Enterprise Linux （ RHEL ） 5.x
+
+
+
+
+请考虑对上述列表之外的主机操作系统使用 FLI 脱机工作流。
+
+[NOTE]
+====
+如果 NetApp 控制器目标为 MetroCluster ，请勿使用联机工作流。如果在主动联机导入期间发生站点故障转移，则源阵列的写入直通可能会失败，从而导致验证失败并可能丢失数据。如果目标为 MetroCluster ，请使用 FLI 脱机过程，而不管主机操作系统如何。
+
+====

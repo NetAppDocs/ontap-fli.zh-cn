@@ -1,0 +1,29 @@
+---
+permalink: san-migration/concept_fli_online_workflow.html 
+sidebar: sidebar 
+keywords: fli, online, workflow 
+summary: 这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。 
+---
+= FLI 联机工作流
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。
+
+此示例中的源阵列是 EMC VNX5500 。下面的示例应全面介绍 FLI 在线流程，并可使用本指南前面部分所述的通用信息和流程。联机工作流具有以下任务：
+
+. 正在准备 LUN 路径
+. 执行中断转换
+. 导入源 LUN 数据
+. 验证迁移结果
+. 清理 FLI 联机迁移
+. FLI 迁移后联机任务
+
+
+[NOTE]
+====
+如果 NetApp 控制器目标为 MetroCluster ，请勿使用联机工作流。如果在主动联机导入期间发生站点故障转移，则源阵列的写入直通可能会失败，从而导致验证失败并可能丢失数据。如果目标为 MetroCluster ，请使用 FLI 脱机过程。
+
+====

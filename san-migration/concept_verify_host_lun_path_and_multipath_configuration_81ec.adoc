@@ -1,0 +1,15 @@
+---
+permalink: san-migration/concept_verify_host_lun_path_and_multipath_configuration_81ec.html 
+sidebar: sidebar 
+keywords: verify, host lun path, multipath, configuration 
+summary: 在进行任何迁移之前，请确认多路径配置正确且工作正常。 
+---
+= 验证主机 LUN 路径和多路径配置
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在进行任何迁移之前，请确认多路径配置正确且工作正常。
+
+LUN 的所有可用路径都应处于活动状态。有关如何在 Windows ， Linux 和 ESXi 主机上验证多路径的示例，请参见 SAN 主机多路径验证主题。

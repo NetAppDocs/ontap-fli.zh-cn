@@ -1,0 +1,23 @@
+---
+permalink: san-migration/task_checking_supported_configurations_for_fli_using_san_lun_migrate_app.html 
+sidebar: sidebar 
+keywords: check, supported configurations, fli, using, san lun migrate app 
+summary: 从 ONTAP 9.1.1 开始，您可以使用 SAN LUN 迁移应用程序为外部源阵列限定 FLI 。如果所需的外部阵列未在 FLI IMT 中列出，则可以使用 SAN LUN 迁移应用程序。 
+---
+= 使用 SAN LUN 迁移应用程序检查支持的 FLI 配置
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+从 ONTAP 9.1.1 开始，您可以使用 SAN LUN 迁移应用程序为外部源阵列限定 FLI 。如果所需的外部阵列未在 FLI IMT 中列出，则可以使用 SAN LUN 迁移应用程序。
+
+.步骤
+. 转到 NetApp 支持站点。
+. 在 Filter by category 下，选择 Migration 。
+. 在 SAN LUN 迁移下，单击下载应用程序
+. 从对源阵列具有块访问权限的 FC 或 iSCSI Linux 主机运行应用程序。
++
+如果可以对外部源阵列进行限定，则会显示一个绿色复选标记。如果外部源阵列无法进行限定，则会显示红色的 X 。如果您的阵列不符合条件，您可以联系 NetApp 支持部门以获得更多帮助。
+
+

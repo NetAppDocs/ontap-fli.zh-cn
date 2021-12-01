@@ -1,0 +1,21 @@
+---
+permalink: san-migration/concept_fli_using_workflow_automation_wfa.html 
+sidebar: sidebar 
+keywords: fli, using, workflow, automation, wfa, migration 
+summary: 工作流自动化可与 FLI 结合使用，以自动执行迁移前和迁移后任务，迁移和过渡任务以及状态检查。在自动迁移中， FLI 使用工作流自动化软件来自动执行部分迁移过程。具有 WFA 的 FLI 可在联机或脱机模式下使用。 
+---
+= 使用工作流自动化（ WFA ）的 FLI
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+工作流自动化可与 FLI 结合使用，以自动执行迁移前和迁移后任务，迁移和过渡任务以及状态检查。在自动迁移中， FLI 使用工作流自动化软件来自动执行部分迁移过程。具有 WFA 的 FLI 可在联机或脱机模式下使用。
+
+要将 WFA 与 FLI 结合使用，您需要在环境中的合适服务器上下载并安装 WFA 。安装 WFA 后，您可以下载指定的工作流。可供下载的两个 FLI 自动化软件包是 FLI 脱机和 FLI 联机。这些自动化软件包遵循与 FLI 脱机和 FLI 联机工作流相同的支持规则。其中包括支持 FLI 联机的主机操作系统列表。
+
+WFA 自动化软件包可从 WFA 自动化商店下载。有关执行的特定操作的详细信息以及其他详细工作流信息，请查看每个软件包内嵌的帮助文件。
+
+* 相关信息 *
+
+http://docs.netapp.com["OnCommand Workflow Automation —工作流开发人员指南"]

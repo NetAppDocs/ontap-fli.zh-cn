@@ -1,0 +1,17 @@
+---
+permalink: san-migration/concept_fli_online_post_migration_tasks.html 
+sidebar: sidebar 
+keywords: fli, online, post-migration, tasks 
+summary: 任何未在迁移前执行的服务器修复都将在迁移后执行。 
+---
+= FLI 迁移后联机任务
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+任何未在迁移前执行的服务器修复都将在迁移后执行。
+
+删除任何第三方软件。已安装和配置 NetApp 软件。有关特定主机类型的迁移后修复示例，请参见主机修复。
+
+查看日志中的错误，检查路径并执行任何应用程序测试，以验证您的迁移是否已成功，正常完成。

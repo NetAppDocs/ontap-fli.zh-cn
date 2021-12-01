@@ -1,0 +1,39 @@
+---
+permalink: san-migration/concept_migration_analyze_phase_workflow.html 
+sidebar: sidebar 
+keywords: analyze, phase, workflow 
+summary: 分析阶段侧重于在迁移规划之前必须解决的问题。必须确定互操作性表之外的主机配置详细信息。 
+---
+= 分析阶段工作流
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+分析阶段侧重于在迁移规划之前必须解决的问题。必须确定互操作性表之外的主机配置详细信息。
+
+对于每个主机，系统会确定一个目标配置（迁移后），并执行差距分析以确定不受支持的特定组件。完成后，应立即查看主机分析。所需更新可能会中断与每个主机上运行的应用程序的兼容性。
+
+通常，在实际迁移事件发生之前，不会进行所需的主机更改。这是因为通常需要计划维护时段，但如果可能，提前进行主机更改（例如系统修补和主机总线适配器（ HBA ）更新）的风险通常会降低。此外，系统更新通常会在应用程序更新的协调下使用相同的维护事件来完成。通常，迁移前对多路径 I/O （ MPIO ）配置所做的任何更改也会影响对当前存储的支持。例如，当前存储配置可能不支持从主机中删除 PowerPath 并将其重新配置为在 Linux 上使用原生 MPIO 和非对称逻辑单元访问（ Asymmetric Logical Unit Access ， ALUA ）。
+
+将 MPIO 重新配置延迟到迁移后，可以根据需要简化回滚过程。
+
+下表列出了规划阶段的任务。
+
+[cols="2*"]
+|===
+| 组件 | 任务 
+
+
+ a| 
+主机
+ a| 
+. 对每个主机执行差距分析。确定与 NetApp IMT 上的选定目标配置匹配所需的热修复 / 修补程序，操作系统更新， HBA 驱动程序和固件升级。此外，还应考虑在此主机（ SnapDrive ® ， SnapManager ® ）上安装其他 NetApp 软件的要求。
+. 确定每个主机的目标配置（迁移后）（操作系统配置， MPIO ， HBA 详细信息，主机实用程序套件版本）。
+. 确定其他 NetApp 产品要求（ SnapDrive ， SnapManager ）。
+
+
+|===
+* 相关信息 *
+
+https://mysupport.netapp.com/NOW/products/interoperability["NetApp 互操作性"]

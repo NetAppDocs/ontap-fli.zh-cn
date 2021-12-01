@@ -1,0 +1,163 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_destination_storage_devices_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, destination storage devices tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关目标存储设备的信息。' 
+---
+= 站点调查和规划工作表目标存储设备选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关目标存储设备的信息。
+
+[cols="6*"]
+|===
+6+| 存储系统 
+
+
+ a| 
+集群名称
+ a| 
+IP 地址
+ a| 
+阵列模式
+ a| 
+ONTAP
+ a| 
+vserver
+ a| 
+端口类型
+
+
+
+ a| 
+DataMig-cDOT
+ a| 
+10.x.x.x
+ a| 
+FAS8080
+ a| 
+8.3.1
+ a| 
+数据
+ a| 
+target
+
+
+
+ a| 
+DataMig-cDOT
+ a| 
+10.x.x.x
+ a| 
+FAS8080
+ a| 
+8.3.1
+ a| 
+数据
+ a| 
+target
+
+
+
+ a| 
+DataMig-cDOT
+ a| 
+10.x.x.x
+ a| 
+FAS8080
+ a| 
+8.3.1
+ a| 
+DataMig-01
+ a| 
+启动程序
+
+
+
+ a| 
+DataMig-cDOT
+ a| 
+10.x.x.x
+ a| 
+FAS8080
+ a| 
+8.3.1
+ a| 
+DataMig-01
+ a| 
+启动程序
+
+|===
+[cols="5*"]
+|===
+5+| 存储系统 
+
+
+ a| 
+端口名称
+ a| 
+LIF 名称
+ a| 
+WWPN
+ a| 
+网络结构名称
+ a| 
+目标类型
+
+
+
+ a| 
+0c
+ a| 
+miglif1
+ a| 
+20 ： 01 ： 00 ： a0 ： 98 ： 2f ： xx ： xx
+ a| 
+产品 A
+ a| 
+target
+
+
+
+ a| 
+0D
+ a| 
+miglif2
+ a| 
+20 ： 01 ： 00 ： a0 ： 98 ： 2f ： xx ： xx
+ a| 
+产品 B
+ a| 
+target
+
+
+
+ a| 
+0a
+ a| 
+不适用
+ a| 
+50 ： 0a ： 09 ： 81 ： 00 ： xx ： xx ： xx
+ a| 
+产品 A
+ a| 
+target
+
+
+
+ a| 
+0b
+ a| 
+不适用
+ a| 
+50 ： 0a ： 09 ： 81 ： 00 ： xx ： xx ： xx
+ a| 
+产品 B
+ a| 
+target
+
+|===
+以下是如何设置目标存储设备选项卡的示例。

@@ -1,0 +1,62 @@
+---
+permalink: san-migration/reference_esxi_caw_ats_remediation.html 
+sidebar: sidebar 
+keywords: esxi, caw/ats, remediation 
+summary: 联机 FLI 不支持 VMware 原子测试和设置（ ATS ） /SCSI 比较和写入（ CAW ）。如果您使用的是 VMFS5 ，并且源阵列支持 CAW ，则这一点非常重要。要修复主机，您必须按照本节所述的过程进行操作。 
+---
+= ESXi CAW/ATS 修复
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+联机 FLI 不支持 VMware 原子测试和设置（ ATS ） /SCSI 比较和写入（ CAW ）。如果您使用的是 VMFS5 ，并且源阵列支持 CAW ，则这一点非常重要。要修复主机，您必须按照本节所述的过程进行操作。
+
+FLI 联机 LUN 关系不支持 ATS/CAW 命令，并且 VMFS5 文件系统可能无法在目标 ESXi 5.x 主机上挂载。这是由于 VMware 在 VMFS5 标头上保留了 ATS 位，该标头会强制实施 CAW/ATS ，并且不允许在没有 ATS 的主机或阵列上使用该标头。ATS 位包含在 VMFS 标头中，该标头是 _Partitions spanted_s 中列出的第一个 LUN 的一部分。如果列出了多个块区，则这是唯一需要修复的 LUN 。
+
+如果 LUN 由多个主机共享，则在其中一个主机上更新 LUN 即可。所有其他主机都会在重新扫描后自动更新。如果任何共享主机中的任何虚拟机或 ESXi 活动 I/O 正在 LUN 上运行，则禁用 ATS/CAW 将失败。我们建议关闭共享 LUN 的 VM 和其他主机，同时进行必要的 ATS/CAW 更改。可以在相应 FLI 工作流的 _disruptive cutover_ 部分中列出的主机重新指向 / 转换的中断部分开始时执行此操作。
+
+如果 LUN 由多个主机共享，则在启用或禁用 ATS 位的情况下，所有主机都需要脱机。启用或禁用 ATS 后，您需要刷新 LUN 。完成任何重新映射后，您可以重新启动主机并验证是否能够访问 LUN 。
+
+如果您运行的是先前版本的 VMFS 或从先前版本升级，则无需执行任何修复。如果您确实需要启用或禁用 ATS/CAW ，可以使用以下命令。但是，如果虚拟机处于活动状态，并且 VMFS5 数据存储库正在运行任何 I/O ，则这两个操作都不起作用。我们建议关闭主机，进行必要的 ATS/CAW 更改，并执行相应 FLI 工作流的 _disruptive cutover_ 部分中列出的主机重新指向 / 转换的其余中断部分。
+
+您可以运行以下命令来检查 ATS/CAW 状态：
+
+[listing]
+----
+~ # vmkfstools -Ph -v 1 /vmfs/volumes/fli-orig-3
+VMFS-5.58 file system spanning 1 partitions.
+File system label (if any): fli-orig-3
+Mode: public ATS-only
+Capacity 99.8 GB, 58.8 GB available, file block size 1 MB, max file size 62.9 TB
+Volume Creation Time: Wed Jun 10 13:56:05 2015
+Files (max/free): 130000/129979
+Ptr Blocks (max/free): 64512/64456
+Sub Blocks (max/free): 32000/31995
+Secondary Ptr Blocks (max/free): 256/256
+File Blocks (overcommit/used/overcommit %): 0/41931/0
+Ptr Blocks  (overcommit/used/overcommit %): 0/56/0
+Sub Blocks  (overcommit/used/overcommit %): 0/5/0
+Volume Metadata size: 804159488
+UUID: 557841f5-145136df-8de6-0025b501a002
+Partitions spanned (on "lvm"):
+naa.60080e50001f83d4000003075576b218:1
+Is Native Snapshot Capable: YES
+OBJLIB-LIB: ObjLib cleanup done.
+~ # vmkfstools -Ph -v 1 /vmfs/volumes/fli-orig-3
+~ # vmkfstools --help
+----
+如果模式仅列出了公有一词，则无需进行任何修复。在这种情况下，仅限公共 ATS 意味着已启用 ATS ，需要禁用此 ATS ，直到导入完成，此时可以重新启用此功能。
+
+要在 LUN 上禁用 ATS/CAW ，请使用以下命令：
+
+[listing]
+----
+# vmkfstools --configATSOnly 0 /vmfs/devices/disks/naa.xxxxxxxxxxxxxxx
+----
+要重新启用 ATS/CAW ，请在迁移完成后使用：
+
+[listing]
+----
+# vmkfstools --configATSOnly 1 /vmfs/devices/disks/naa.xxxxxxxxxxxxxxx
+----

@@ -1,0 +1,25 @@
+---
+permalink: san-migration/concept_migration_types_supported_by_foreign_lun_import.html 
+sidebar: sidebar 
+keywords: migration, types, supported, foreign, lun, import 
+summary: FLI 支持四种主要类型的迁移工作流：联机，脱机，过渡和自动化。您选择要使用的工作流取决于您的配置和其他因素。 
+---
+= 外部 LUN 导入支持的迁移类型
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 支持四种主要类型的迁移工作流：联机，脱机，过渡和自动化。您选择要使用的工作流取决于您的配置和其他因素。
+
+* 在联机迁移中，第三方阵列中的 FLI 允许客户端系统在迁移期间保持联机（需要 Windows ， Linux 或 ESXi 主机操作系统）。
+* 在脱机迁移中，第三方阵列中的 FLI 会使客户端系统脱机，并将数据复制到新 LUN ，然后再使其重新联机。
+* 在过渡迁移中， FLI 会将 7- 模式下运行的 ONTAP 过渡到 ONTAP 。除了源阵列为 ONTAP 之外，此过程在功能上是相同的。过渡工作流可在联机或脱机模式下使用。
+* 在自动迁移中， FLI 使用工作流自动化（ WFA ）软件来自动执行部分迁移过程。具有 WFA 的 FLI 可在联机或脱机模式下使用。
+
+
+从架构上来说，这三种迁移和过渡工作流相当相似。所有这四个阵列都依靠 NetApp 的 FlexArray 技术，使您的 ONTAP 控制器能够在源阵列前面充当启动程序，并使用该位置将块的 LUN 块从源 ONTAP 阵列复制到目标 LUN 阵列上的 LUN 。
+
+这些工作流之间的差异与发生转换的时间，中断窗口的长度，自动化的使用，或者源阵列是运行 ONTAP 7- 模式的 NetApp 阵列或第三方阵列有关。
+
+支持外部 LUN 导入联机工作流的主机操作系统

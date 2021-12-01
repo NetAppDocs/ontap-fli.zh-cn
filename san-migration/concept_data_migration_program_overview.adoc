@@ -1,0 +1,15 @@
+---
+permalink: san-migration/concept_data_migration_program_overview.html 
+sidebar: sidebar 
+keywords: data, migration, program, overview 
+summary: 数据迁移计划可创建数据迁移解决方案，使客户可以更轻松地迁移到 NetApp 存储以及将 LUN 从 NetApp 7- 模式迁移到 ONTAP 。外部 LUN 导入（ FLI ）是数据迁移产品组合的一部分。 
+---
+= 数据迁移计划概述
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+数据迁移计划可创建数据迁移解决方案，使客户可以更轻松地迁移到 NetApp 存储以及将 LUN 从 NetApp 7- 模式迁移到 ONTAP 。外部 LUN 导入（ FLI ）是数据迁移产品组合的一部分。
+
+该计划通过提供成功迁移数据所需的必要工具，产品和服务宣传材料来提高工作效率。通过提供执行数据迁移所需的适当技能和知识，该计划旨在加速采用 NetApp 技术。

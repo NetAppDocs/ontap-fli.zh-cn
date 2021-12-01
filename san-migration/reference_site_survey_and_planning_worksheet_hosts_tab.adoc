@@ -1,0 +1,82 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_hosts_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, hosts tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应设置一个选项卡，其中包含迁移项目主机信息。' 
+---
+= 站点调查和规划工作表主机选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应设置一个选项卡，其中包含迁移项目主机信息。
+
+以下是如何设置主机选项卡的示例。
+
+[cols="8*"]
+|===
+8+| 主机 
+
+
+ a| 
+* 当前 *
+ a| 
+* NetApp 推荐 *
+
+
+
+ a| 
+主机名
+ a| 
+驱动程序
+ a| 
+固件
+ a| 
+Huk
+ a| 
+MPIO
+ a| 
+SnapDrive
+ a| 
+SnapManager
+ a| 
+修补程序
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+DM-rx200s6-22
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+DM-rx200s6-20
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===

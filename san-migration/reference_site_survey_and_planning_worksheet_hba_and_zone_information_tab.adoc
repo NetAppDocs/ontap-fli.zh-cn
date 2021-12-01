@@ -1,0 +1,90 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_hba_and_zone_information_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, hba and zone information tab 
+summary: 在站点调查和规划工作表中，您应设置一个选项卡，其中包含有关 HBA 和分区信息的信息。 
+---
+= 站点调查和规划工作表 HBA 和区域信息选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在站点调查和规划工作表中，您应设置一个选项卡，其中包含有关 HBA 和分区信息的信息。
+
+以下是如何设置 HBA 和区域信息选项卡的示例。
+
+[cols="4*"]
+|===
+4+| 网络结构详细信息 
+
+
+ a| 
+主机名
+ a| 
+Description
+ a| 
+WWPN
+ a| 
+网络结构名称
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+HBA0
+ a| 
+21 ： 00 ： 00 ： 24 ： ff ： xx ： xx ： xx ： xx
+ a| 
+产品 A
+
+
+
+ a| 
+DM-rx200s6-21
+ a| 
+HBA1
+ a| 
+21 ： 00 ： 00 ： 24 ： ff ： xx ： xx ： xx ： xx
+ a| 
+产品 B
+
+|===
+[cols="4*"]
+|===
+4+| 网络结构详细信息 
+
+
+ a| 
+VSA/ 域
+ a| 
+端口号
+ a| 
+迁移前区域成员资格
+ a| 
+迁移后区域成员资格
+
+
+
+ a| 
+10
+ a| 
+FC2/3
+ a| 
+rx21_AMS2100
+ a| 
+rx21_flicDOT
+
+
+
+ a| 
+10
+ a| 
+FC2/3
+ a| 
+rx21_AMS2100
+ a| 
+rx21_flicDOT
+
+|===

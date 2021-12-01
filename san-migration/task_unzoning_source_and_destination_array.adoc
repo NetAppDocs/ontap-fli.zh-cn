@@ -1,0 +1,89 @@
+---
+permalink: san-migration/task_unzoning_source_and_destination_array.html 
+sidebar: sidebar 
+keywords: unzone, source, destination, array 
+summary: 完成所有迁移，过渡和验证后，您可以取消源阵列和目标阵列的分区。 
+---
+= 取消对源和目标阵列的分区
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成所有迁移，过渡和验证后，您可以取消源阵列和目标阵列的分区。
+
+要取消源阵列和目标阵列的分区，请从两个网络结构中删除源存储到目标分区。
+
+Brocade 网络结构示例
+
+.步骤
+. 从网络结构 A 的区域集中删除分区
++
+[listing]
+----
+cfgDelete "PROD_LEFT", "ZONE_AMS2100_cDOT_Initiator_fabA"
+zoneDelete "ZONE_AMS2100_cDOT_Initiator_fabA"
+----
+. 激活网络结构 A 中的区域集
++
+[listing]
+----
+cfgEnable "PROD_LEFT"
+cfgSave
+----
+. 从网络结构 B 的区域集中删除分区
++
+[listing]
+----
+cfgDelete "PROD_RIGHT", "ZONE_AMS2100_cDOT_Initiator_fabB"
+zoneDelete "ZONE_AMS2100_cDOT_Initiator_fabA"
+----
+. 激活网络结构 B 中的区域集
++
+[listing]
+----
+cfgEnable "PROD_RIGHT"
+cfgSave
+----
+
+
+Cisco 网络结构示例
+
+.步骤
+. 从网络结构 A 的区域集中删除分区
++
+[listing]
+----
+conf t
+zoneset name PROD_LEFT vsan 10
+no member ZONE_AMS2100_cDOT_Initiator_fabA
+no zone name ZONE_AMS2100_cDOT_Initiator_fabA vsan 10
+exit
+----
+. 激活网络结构 A 中的区域集
++
+[listing]
+----
+zoneset activate name PROD_LEFT vsan 10
+end
+copy running-config startup-config
+----
+. 从网络结构 B 的区域集中删除分区
++
+[listing]
+----
+conf t
+zoneset name PROD_RIGHT vsan 10
+no member ZONE_AMS2100_cDOT_Initiator_fabB
+no zone name ZONE_AMS2100_cDOT_Initiator_fabB vsan 10
+exit
+----
+. 激活网络结构 B 中的区域集
++
+[listing]
+----
+zoneset activate name PROD_RIGHT vsan 10
+end
+Copy running-config startup-config
+----
+

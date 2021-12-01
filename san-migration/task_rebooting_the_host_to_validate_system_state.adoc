@@ -1,0 +1,21 @@
+---
+permalink: san-migration/task_rebooting_the_host_to_validate_system_state.html 
+sidebar: sidebar 
+keywords: reboot, host, validate, system state 
+summary: 迁移主机会在对其配置进行任何更改之前重新启动。在继续迁移之前，请验证系统是否处于已知正常状态。 
+---
+= 重新启动主机以验证系统状态
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移主机会在对其配置进行任何更改之前重新启动。在继续迁移之前，请验证系统是否处于已知正常状态。
+
+要在重新启动后验证服务器配置是否持久且原始，请完成以下步骤：
+
+.步骤
+. 关闭所有打开的应用程序。
+. 重新启动主机。
+. 查看日志以了解错误。
+

@@ -1,0 +1,56 @@
+---
+permalink: san-migration/concept_recommended_tools_for_data_migration.html 
+sidebar: sidebar 
+keywords: recommended, tools, data, migration 
+summary: 服务工具提供了一种标准化的方法，用于执行远程数据收集，配置和存储管理任务等有用功能。 
+---
+= 建议的数据迁移工具
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+服务工具提供了一种标准化的方法，用于执行远程数据收集，配置和存储管理任务等有用功能。
+
+以下服务工具用于收集和解析数据：
+
+* * OneCollect *
++
+NetApp Active IQ OneCollect 可通过基于 Web 的 UI 或命令行界面获得，可帮助您从 SAN 和 NAS 环境中的存储，主机，网络结构和交换机收集数据。收集的数据用于故障排除，解决方案验证，数据迁移和升级评估。与您的环境相关的诊断内容可以发送给 NetApp 进行进一步分析，也可以在内部进行分析。
+
+* * NetApp 数据迁移 Solaris Relabeler*
++
+Solaris Relabeler 是一个命令行实用程序，可用于在迁移后更新卷目录（ VTOC" ）磁盘上的 ASCII 标签。
+
++
+在初始 V目录 磁盘初始化例程期间， solaris format 命令会对磁盘执行 SCSI 查询，并将供应商专用信息（制造商，产品和修订版）写入磁盘标签。所有后续查询均会定向到磁盘标签，而不是实际设备。块级迁移会将此磁盘标签复制到新磁盘，而旧的 SCSI 查询数据仍会显示在系统工具和日志中。重新标记程序会在迁移后使用新的查询数据更新磁盘。
+
+
+
+这些工具和实用程序在 FLI 迁移项目中也很有用：
+
+* * 互操作性表 *
++
+互操作性表工具（ IMT ）是一款基于 Web 的 NetApp 实用程序，用于检查 NetApp ， FlexArray 和第三方软件组件的互操作性。
+
+* * ONTAP 系统管理器 *
++
+ONTAP System Manager 可通过图形界面对 NetApp FAS 系统进行远程存储管理。
+
+* * OnCommand Workflow Automation *
++
+WFA 是一款软件解决方案，可用于创建存储工作流并自动执行存储管理任务，例如配置，迁移，停用和克隆存储。
+
+
+
+* 相关信息 *
+
+https://mysupport.netapp.com/site/tools["NetApp 工具"]
+
+http://mysupport.netapp.com/NOW/download/tools/ndcp/["NetApp 工具： Data Center Planner"]
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61372["NetApp 文档： OnCommand System Manager （当前版本）"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61550["NetApp 文档： OnCommand Workflow Automation （当前版本）"]

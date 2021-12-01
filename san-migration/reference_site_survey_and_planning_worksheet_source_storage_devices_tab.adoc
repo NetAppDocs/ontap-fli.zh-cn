@@ -1,0 +1,152 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_source_storage_devices_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, source storage devices tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关迁移源存储设备的信息。' 
+---
+= 站点调查和规划工作表源存储设备选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关迁移源存储设备的信息。
+
+以下是如何设置源存储设备选项卡的示例。
+
+|===
+5+| 存储系统 
+
+
+ a| 
+阵列名称
+ a| 
+IP 地址
+ a| 
+供应商
+ a| 
+阵列型号
+ a| 
+微代码 FW/ ONTAP
+
+
+
+ a| 
+AMS2100
+ a| 
+10.x.x.x
+ a| 
+Hitachi
+ a| 
+AMS 2100
+ a| 
+0893/B-X
+
+
+
+ a| 
+AMS2100
+ a| 
+10.x.x.x
+ a| 
+Hitachi
+ a| 
+AMS 2100
+ a| 
+0893/B-X
+
+
+
+ a| 
+AMS2100
+ a| 
+10.x.x.x
+ a| 
+Hitachi
+ a| 
+AMS 2100
+ a| 
+0893/B-X
+
+
+
+ a| 
+AMS2100
+ a| 
+10.x.x.x
+ a| 
+Hitachi
+ a| 
+AMS 2100
+ a| 
+0893/B-X
+
+|===
+|===
+5+| 存储系统 
+
+
+ a| 
+控制器 / 节点
+ a| 
+端口名称
+ a| 
+WWPN
+ a| 
+网络结构名称
+ a| 
+目标类型
+
+
+
+ a| 
+控制器 0
+ a| 
+0a
+ a| 
+50060E80xxxxxxxx
+ a| 
+生产网络结构 A
+ a| 
+源
+
+
+
+ a| 
+控制器 0
+ a| 
+0e.
+ a| 
+50060E80xxxxxxxx
+ a| 
+生产网络结构 B
+ a| 
+源
+
+
+
+ a| 
+控制器 1
+ a| 
+1a.
+ a| 
+50060E80xxxxxxxx
+ a| 
+生产网络结构 A
+ a| 
+源
+
+
+
+ a| 
+控制器 1
+ a| 
+1E
+ a| 
+50060E80xxxxxxxx
+ a| 
+生产网络结构 A
+ a| 
+源
+
+|===

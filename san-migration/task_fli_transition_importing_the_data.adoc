@@ -1,0 +1,53 @@
+---
+permalink: san-migration/task_fli_transition_importing_the_data.html 
+sidebar: sidebar 
+keywords: import, data, fli 7-mode, ontap 
+summary: 以下步骤介绍如何使用 FLI 将数据从 7- 模式源 LUN 导入到 ONTAP 目标 LUN 。 
+---
+= 将数据从 FLI 7- 模式导入到 ONTAP
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+以下步骤介绍如何使用 FLI 将数据从 7- 模式源 LUN 导入到 ONTAP 目标 LUN 。
+
+.步骤
+. 启动迁移导入。
++
+[listing]
+----
+cluster::*> lun import start -vserver fli_72C -path /vol/flivol/72Clun1
+----
+. 显示 FLI 状态。
++
+[listing]
+----
+cluster::*> lun import show -vserver fli_72C -path /vol/flivol/72Clun1
+vserver foreign-disk   path                operation admin operational percent
+                                         in progress state state       complete
+-------------------------------------------------------------------------------
+fli_72C D0i1E+G8Wg6m   /vol/flivol/72Clun1 import    started
+                                                           completed        100
+----
++
+如果要确保在迁移完成后源 LUN 保持一致，则需要：
+
++
+** 在导入显示指示已完成后，关闭主机。
+** 删除 LUN 关系： `lun import delete -vserver fli_72C -path /vol/fvol/72Clun1` 。
++
+[NOTE]
+====
+请记住， LUN 关系断开后， LUN 将很快失去同步，因为仅对新 LUN 进行了更改。因此，如果要还原原始状态，保持一致状态可能会很有用，但新 LUN 的更改可能不会反映在源 LUN 中。
+
+====
++
+[NOTE]
+====
+停止导入后，您可以销毁导入关系，除非您要验证导入。
+
+====
+
+
+

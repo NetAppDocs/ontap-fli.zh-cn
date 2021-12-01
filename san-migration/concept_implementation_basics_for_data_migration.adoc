@@ -1,0 +1,15 @@
+---
+permalink: san-migration/concept_implementation_basics_for_data_migration.html 
+sidebar: sidebar 
+keywords: implementation, basics, data, migration 
+summary: 外部 LUN 导入（ Foreign LUN Import ， FLI ）实施包括物理布线，分区和启动程序记录创建步骤。NetApp 存储启动程序端口和源存储的初始配置可为迁移环境做好准备。 
+---
+= 数据迁移实施基础知识
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+外部 LUN 导入（ Foreign LUN Import ， FLI ）实施包括物理布线，分区和启动程序记录创建步骤。NetApp 存储启动程序端口和源存储的初始配置可为迁移环境做好准备。
+
+本节中的示例使用 Hitachi Data Systems （ HDS ） AMS 阵列，因此根据要迁移的第三方阵列，外部阵列命令会有所不同。

@@ -1,0 +1,35 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_contacts_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, contacts tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应设置一个选项卡，其中包含迁移项目的联系信息。' 
+---
+= 站点调查和规划工作表联系人选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应设置一个选项卡，其中包含迁移项目的联系信息。
+
+以下是如何设置联系人选项卡的示例。
+
+[cols="6*"]
+|===
+6+| 迁移项目联系信息 
+
+
+ a| 
+资源名称
+ a| 
+组织
+ a| 
+项目角色
+ a| 
+办公电话
+ a| 
+手机
+ a| 
+email
+
+|===

@@ -1,0 +1,17 @@
+---
+permalink: san-migration/concept_fli_offline_post_migration_tasks.html 
+sidebar: sidebar 
+keywords: fli, offline, post-migration, tasks 
+summary: 迁移后会执行先前未执行的任何未完成的服务器修复。 
+---
+= FLI 脱机迁移后任务
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移后会执行先前未执行的任何未完成的服务器修复。
+
+删除第三方软件，安装并配置 NetApp 软件，然后启动主机访问 NetApp 上的 LUN 。有关特定主机类型的迁移后修复示例，请参见 " 主机修复 " 主题。
+
+查看日志中的错误，检查路径并执行任何应用程序测试，以验证您的迁移是否已成功，正常完成。

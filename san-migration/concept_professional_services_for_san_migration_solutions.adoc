@@ -1,0 +1,17 @@
+---
+permalink: san-migration/concept_professional_services_for_san_migration_solutions.html 
+sidebar: sidebar 
+keywords: professional, services, san, migration, solutions 
+summary: NetApp 和合作伙伴专业服务部门采用经过时间测试的方法指导 SAN 迁移完成所有主要阶段。 
+---
+= 适用于 SAN 迁移解决方案的专业服务
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 和合作伙伴专业服务部门采用经过时间测试的方法指导 SAN 迁移完成所有主要阶段。
+
+NetApp FLI 技术以及第三方数据迁移软件已在数据迁移方面建立了专业技能，使专业服务能够在全球成功执行 SAN 数据迁移项目。通过利用 NetApp 和合作伙伴专业服务，客户可以释放内部资源，最大限度地减少停机时间并降低风险。
+
+使用 ONTAP ，不再需要执行专业服务运行的迁移。但是， NetApp 仍然强烈建议专业服务或合作伙伴专业服务人员来确定迁移范围并制定迁移计划，同时对客户人员进行如何使用 FLI 执行数据迁移的培训。

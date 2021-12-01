@@ -1,0 +1,28 @@
+---
+permalink: san-migration/concept_reasons_to_perform_test_migrations.html 
+sidebar: sidebar 
+keywords: reasons, perform, test, migrations 
+summary: NetApp 建议在迁移生产数据之前，在客户测试环境中测试所有配置。 
+---
+= 执行测试迁移的原因
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 建议在迁移生产数据之前，在客户测试环境中测试所有配置。
+
+在执行生产迁移之前，您应执行一系列不同大小的测试迁移。在生产迁移之前执行测试迁移可以：
+
+* 验证存储和网络结构配置是否正确。
+* 估计迁移的持续时间和性能。
++
+使用测试迁移结果，您可以估计生产迁移可能需要多长时间以及预期的吞吐量。否则，由于迁移所需时间会因变量数量而有所不同，因此很难准确估计。
+
+
+
+[NOTE]
+====
+测试迁移应至少在开始生产数据迁移之前一周执行。这样就有足够的时间来解决可能出现的问题，例如访问，存储连接和许可。
+
+====

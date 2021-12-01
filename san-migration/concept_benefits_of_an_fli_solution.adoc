@@ -1,0 +1,20 @@
+---
+permalink: san-migration/concept_benefits_of_an_fli_solution.html 
+sidebar: sidebar 
+keywords: benefits, fli-based, solution 
+summary: FLI 解决方案旨在通过这些优势为 NetApp 客户提供卓越的价值。 
+---
+= 基于 FLI 的解决方案的优势
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FLI 解决方案旨在通过这些优势为 NetApp 客户提供卓越的价值。
+
+* FLI 内置在 ONTAP 中，不需要额外的许可。
+* FLI 利用 FlexArray 技术，但不需要 FlexArray 许可证。
+* FLI 不需要额外的硬件设备即可进行数据迁移。
+* 基于 FLI 的解决方案支持各种类型的迁移以及第三方存储平台的配置。
+* FLI 会自动对齐 LUN ，并可将 32 位聚合中托管的 LUN 迁移到 ONTAP 阵列上托管的 64 位聚合。这样， 7- 模式的 FLI 就 ONTAP 成为过渡 32 位聚合上托管和 / 或未对齐的 7- 模式托管 LUN 的理想选择。
+

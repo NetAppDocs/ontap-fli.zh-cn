@@ -1,0 +1,217 @@
+---
+permalink: san-migration/reference_site_survey_and_planning_worksheet_sds_cli_scripts_tab.html 
+sidebar: sidebar 
+keywords: site, survey and planning worksheet, sds cli scripts tab 
+summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 SDS 命令行界面脚本的信息。' 
+---
+= 站点调查和规划工作表 SDS 命令行界面脚本选项卡
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 SDS 命令行界面脚本的信息。
+
+以下是如何设置 SDS 命令行界面脚本选项卡的示例。
+
+|===
+| 控制器 1 | 控制器 2 
+
+
+ a| 
+卷大小 vol0 aggr0 108g
+ a| 
+
+
+
+ a| 
+snap reserve bootsnapvol 0
+ a| 
+
+
+
+ a| 
+快照预留 vol0 20
+ a| 
+
+
+
+ a| 
+启用自动删除 bootsnapvol
+ a| 
+
+
+
+ a| 
+snap autodelete bootsnapvol commitment try
+ a| 
+
+
+
+ a| 
+snap autodelete bootsnapvol trigger volume
+ a| 
+
+
+
+ a| 
+snap autodelete bootvmvol target_free_space 20
+ a| 
+
+
+
+ a| 
+snap autodelete bootvmvol defer_delete user_created
+ a| 
+
+
+
+ a| 
+快照自动删除 vol0
+ a| 
+
+
+
+ a| 
+snap autodelete vol0 commitment try
+ a| 
+
+
+
+ a| 
+snap autodelete vol0 触发卷
+ a| 
+
+
+
+ a| 
+snap autodelete vol0 target_free_space 20
+ a| 
+
+
+
+ a| 
+snap autodelete vol0 defer_delete user_created
+ a| 
+
+
+
+ a| 
+vol autosize bootboovol on
+ a| 
+
+
+
+ a| 
+卷自动调整 vol0 大小
+ a| 
+
+
+
+ a| 
+vol options bootvmvol try_first volume_grow
+ a| 
+
+
+
+ a| 
+vol options bootvmvol fractional_reserve 100
+ a| 
+
+
+
+ a| 
+卷选项 vol0 try_first volume_grow
+ a| 
+
+
+
+ a| 
+卷选项 vol0 fractional_reserve 100
+ a| 
+
+
+
+ a| 
+qtree security /vol/bootvmvol unix
+ a| 
+
+
+
+ a| 
+qtree security /vol/vol0 ntfs
+ a| 
+
+
+
+ a| 
+snap sched bootboovol 0 0 0 0
+ a| 
+
+
+
+ a| 
+snap sched vol0 0 2 6@8 ， 12 ， 16 ， 20
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ，因此 /vol/qavol_Narayan/testlun 跳过了 #LUN 映射。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/DM25_boot_lun 的 LUN 映射已跳过 #lun 映射。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/DM25_data1_lun 的 LUN 映射已跳过 #lun 映射。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/DM25_data2_lun 的 #lun 映射已跳过。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/dm26_boot_lun 的 #lun 映射已跳过。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/dm26_data1_lun 的 #lun 映射已跳过。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/dm26_data2_lun 的 #lun 映射已跳过。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/dm27_boot_lun 的 #lun 映射已跳过。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/dm27_data1_lun 的 LUN 映射已跳过 #lun 映射。
+ a| 
+
+
+
+ a| 
+由于 LUN 未映射到 iGroup ， /vol/bootvmvol/dm27_data2_lun 的 #lun 映射已跳过。
+ a| 
+
+|===

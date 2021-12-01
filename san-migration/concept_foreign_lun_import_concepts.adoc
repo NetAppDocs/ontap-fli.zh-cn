@@ -1,0 +1,31 @@
+---
+permalink: san-migration/concept_foreign_lun_import_concepts.html 
+sidebar: sidebar 
+keywords: foreign, lun, import, concepts 
+summary: 了解基本的 FLI 概念有助于正确操作并减少初始配置工作。 
+---
+= 外部 LUN 导入概念
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+了解基本的 FLI 概念有助于正确操作并减少初始配置工作。
+
+* * 外部阵列 *
++
+外部阵列是不运行 ONTAP 的存储设备。这也称为第三方阵列或源阵列。在从 7- 模式过渡到 ONTAP 的情况下，外部阵列将是由运行 ONTAP 7- 模式的 NetApp 生成的阵列。
+
+* * 外部 LUN*
++
+外部 LUN 是一个 LUN ，其中包含使用该阵列的原生磁盘格式托管在第三方阵列上的用户数据。
+
+* * FLI LUN 关系 *
++
+FLI LUN 关系是源存储与目标存储之间的永久性配对，用于数据导入。源端点和目标端点均为 LUN 。
+
+* * LUN 导入 *
++
+LUN 导入是指将外部 LUN 中的数据从第三方格式传输到原生 NetApp 格式的 LUN 的过程。
+
+

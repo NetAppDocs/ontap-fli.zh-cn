@@ -1,0 +1,31 @@
+---
+permalink: san-migration/task_removing_the_source_array_from_ontap.html 
+sidebar: sidebar 
+keywords: remove, source array, ontap 
+summary: 以下步骤说明了如何在 FLI 迁移完成后从目标阵列中删除源阵列。 
+---
+= 从 ONTAP 中删除源阵列
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+以下步骤说明了如何在 FLI 迁移完成后从目标阵列中删除源阵列。
+
+.步骤
+. 显示所有可见的源阵列。
++
+[listing]
+----
+DataMig-cmode::> storage array show
+Prefix Name Vendor Model  Options
+---- ---- ---- ---- ----- -------
+HIT-1 HITACHI_DF600F_1 HITACHI DF600F
+----
+. 删除源存储阵列。
++
+[listing]
+----
+DataMig-cmode::> storage array remove -name HITACHI_DF600F_1
+----
+

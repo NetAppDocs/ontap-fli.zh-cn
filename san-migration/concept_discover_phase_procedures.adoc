@@ -1,0 +1,15 @@
+---
+permalink: san-migration/concept_discover_phase_procedures.html 
+sidebar: sidebar 
+keywords: discover, phase, data, collection, procedures 
+summary: 发现阶段收集成功进行迁移规划和执行所需的客户环境信息。 
+---
+= 发现阶段数据收集过程
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+发现阶段收集成功进行迁移规划和执行所需的客户环境信息。
+
+在数据收集阶段使用 Active IQ OneCollect 。有关完整的详细信息，请参见 Active IQ OneCollect https://mysupport.netapp.com/site/tools["文档。"]。
