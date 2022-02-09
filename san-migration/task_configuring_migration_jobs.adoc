@@ -55,7 +55,7 @@ Warning: You are changing the Snapshot policy on volume winvol to none.  Any Sna
 Do you want to continue? {y|n}: y
 Volume modify successful on volume winvol of Vserver datamig.
 ----
-. 将每个卷的 frame_reserveoption 设置为 `0` ，并将 Snapshot 策略设置为 `none` 。
+. 将每个卷的 `frame_reserveoption` 设置为 `0` ，并将 Snapshot 策略设置为 `none` 。
 +
 [listing]
 ----

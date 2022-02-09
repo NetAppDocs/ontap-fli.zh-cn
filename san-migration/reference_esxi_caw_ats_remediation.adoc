@@ -46,7 +46,7 @@ OBJLIB-LIB: ObjLib cleanup done.
 ~ # vmkfstools -Ph -v 1 /vmfs/volumes/fli-orig-3
 ~ # vmkfstools --help
 ----
-如果模式仅列出了公有一词，则无需进行任何修复。在这种情况下，仅限公共 ATS 意味着已启用 ATS ，需要禁用此 ATS ，直到导入完成，此时可以重新启用此功能。
+如果此模式列出了 _remedium_ 一词公有 ，则无需进行任何修复。在上述情况下， _ATS 仅用于表示公有 已启用，需要禁用此 ATS ，直到导入完成，此时可以重新启用此功能。
 
 要在 LUN 上禁用 ATS/CAW ，请使用以下命令：
 

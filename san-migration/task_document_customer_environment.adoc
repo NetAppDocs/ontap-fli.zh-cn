@@ -15,7 +15,7 @@ summary: 您需要使用问题描述命令 AutoSupport 来记录客户环境。
 要记录客户环境，请完成以下步骤：
 
 .步骤
-. 问题描述 AutoSupport 命令以记录最终配置。
+. 问题描述 an `AutoSupport` 命令记录最终配置。
 +
 [listing]
 ----

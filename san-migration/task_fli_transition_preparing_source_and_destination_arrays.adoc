@@ -178,7 +178,7 @@ disk    serial-number
 ------- --------------------------------
 NET-1.2 D0i1E+G8Wg6m
 ----
-. 创建目标 LUN 。lun create 命令会根据分区偏移检测大小和对齐情况，并使用 foreign-disk 参数相应地创建 LUN
+. 创建目标 LUN 。`lun create` 命令可根据分区偏移检测大小和对齐，并使用 foreign-disk 参数相应地创建 LUN
 +
 [listing]
 ----

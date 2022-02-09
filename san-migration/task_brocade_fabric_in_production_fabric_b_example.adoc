@@ -12,6 +12,7 @@ summary: 以下是生产网络结构 B 中的 Brocade 网络结构示例
 [role="lead"]
 以下是生产网络结构 B 中的 Brocade 网络结构示例
 
+.步骤
 . 在生产网络结构 B 中创建分区
 +
 [listing]

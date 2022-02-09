@@ -7,7 +7,6 @@
   <block id="af500a5659130b953b1aaa544c6a0927" category="paragraph">如果 LUN 由多个主机共享，则在启用或禁用 ATS 位的情况下，所有主机都需要脱机。启用或禁用 ATS 后，您需要刷新 LUN 。完成任何重新映射后，您可以重新启动主机并验证是否能够访问 LUN 。</block>
   <block id="d4c0da0e413010dec4d7c586a702cb9a" category="paragraph">如果您运行的是先前版本的 VMFS 或从先前版本升级，则无需执行任何修复。如果您确实需要启用或禁用 ATS/CAW ，可以使用以下命令。但是，如果虚拟机处于活动状态，并且 VMFS5 数据存储库正在运行任何 I/O ，则这两个操作都不起作用。我们建议关闭主机，进行必要的 ATS/CAW 更改，并执行相应 FLI 工作流的 _disruptive cutover_ 部分中列出的主机重新指向 / 转换的其余中断部分。</block>
   <block id="b9125bb0d0a2719952566e797bbc87d8" category="paragraph">您可以运行以下命令来检查 ATS/CAW 状态：</block>
-  <block id="a74b9c9d4b6c9527065b4031f26db010" category="paragraph">如果模式仅列出了公有一词，则无需进行任何修复。在这种情况下，仅限公共 ATS 意味着已启用 ATS ，需要禁用此 ATS ，直到导入完成，此时可以重新启用此功能。</block>
   <block id="786f914160b8e10857d5043def09e1f5" category="paragraph">要在 LUN 上禁用 ATS/CAW ，请使用以下命令：</block>
   <block id="bcd5c5dc804423a93948f3bfaaf2b8d0" category="paragraph">要重新启用 ATS/CAW ，请在迁移完成后使用：</block>
   <block id="82ace49e37ca11b2bc063013ceb3d2d2" category="summary">FLI 脱机工作流需要配置源 LUN 和目标 LUN 。</block>
@@ -37,7 +36,6 @@
   <block id="612c6ba81aba3ac58aded1a4788f669e" category="doc">记录新迁移的环境</block>
   <block id="4b01ccfdb3280d21ab30c98722404e14" category="paragraph">您需要使用问题描述 `AutoSupport` 命令记录客户环境。</block>
   <block id="eab8fbcbd63b2bcc58a738edcf07ee89" category="paragraph">要记录客户环境，请完成以下步骤：</block>
-  <block id="d3bc15134b9b89158a56f1a4958ee36d" category="list-text">问题描述 AutoSupport 命令以记录最终配置。</block>
   <block id="0170954f27b1bc746248a2082fc577ca" category="list-text">完整记录新迁移的环境。</block>
   <block id="0815db692d92e6b68693c7dc13e0e8e1" category="summary">任何未在迁移前执行的服务器修复都将在迁移后执行。</block>
   <block id="6793732288bb5f2142753d1aacd2e36d" category="doc">FLI 迁移后联机任务</block>
@@ -201,7 +199,6 @@
   <block id="a4d212c349a12dc67caaf1bdfa5e4d19" category="list-text">在 7- 模式系统上，显示源 LUN 映射到的 igroup 。</block>
   <block id="db44befee07d23bb1b809e30950d2c3c" category="paragraph">执行 unmap 命令后，系统将立即开始中断。通常，中断窗口可以用几分钟来衡量。实际上，这是将主机移至新 NetApp 目标并扫描 LUN 所需的时间长度。</block>
   <block id="fa405c1c690c46367f1ef1157ddf641c" category="list-text">如果要导入的 LUN 适用于 ESXi 主机，请查看 _ESXi CAW/ATS 修复 _ 主题并按照其中的说明进行操作。</block>
-  <block id="f42b3dd272148a8d6162afe53e1aa0b6" category="list-text">使用 unmap 命令将 LUN 从其主机中移动。（中断窗口从此处开始。）</block>
   <block id="17b0701d0156a56f3b06f4e8ca360a2d" category="list-text">验证主机启动程序是否已不再存在。</block>
   <block id="81b4eb05f5436ff7d6fa2f03ab1c0cf7" category="list-text">在 ONTAP 集群上，使目标 LUN 联机并验证其是否已映射。</block>
   <block id="e62bb1753cacdbef374c3d6549f43f42" category="list-text">重新扫描主机上的磁盘；在 ONTAP 目标上查找 LUN 。</block>
@@ -247,7 +244,6 @@
   <block id="1fdab799789df4703c0465cc9b2beb1b" category="list-text">激活生产网络结构 B 中的分区</block>
   <block id="2f449876355c69512df7e569fe9c6a65" category="summary">对 FLI 进行了一些增强，以更好地管理性能并防止出现工作负载不足的情况。ONTAP 8.3.1 中的 FLI 增强功能包括一个新的 throttle 命令和 lun import show 增强功能，这些增强功能显示了吞吐量和 QoS 策略组。</block>
   <block id="8c4a124ca6c953340797ff9481b86241" category="doc">ONTAP 8.3.1 中的性能增强功能</block>
-  <block id="63eeae1818a9dfec81b1b6cd4746532c" category="paragraph">lun import throttle 命令用于限制运行导入的最大速度。</block>
   <block id="e0e081b71a49cfb03b7e6586a50b4ec6" category="paragraph">使用 `instance` switch with `lun import show` 可显示扩展的 LUN 导入信息，包括限制和 QoS 信息。</block>
   <block id="1110e5db0b802b9d4685f94410bce548" category="paragraph">`当前吞吐量` 的值显示导入或验证操作的当前吞吐量速率。用户应先检查此设置，然后再设置限制值。未运行时为空。如果使用了 LUN 导入限制，则 `QoS 策略组` 会显示 QoS 组。</block>
   <block id="197e64993a9bd9d23c9208a3a59ae427" category="summary">本指南面向有意将数据从外部阵列迁移到 ONTAP 或有意将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 的 NetApp 客户。</block>
@@ -470,7 +466,6 @@
   <block id="44023aa16885f326f40c8d26a3d792dc" category="list-text">在自动迁移中， FLI 使用工作流自动化（ WFA ）软件来自动执行部分迁移过程。具有 WFA 的 FLI 可在联机或脱机模式下使用。</block>
   <block id="ed84643b976a61e35dab90c06a1328ad" category="paragraph">从架构上来说，这三种迁移和过渡工作流相当相似。所有这四个阵列都依靠 NetApp 的 FlexArray 技术，使您的 ONTAP 控制器能够在源阵列前面充当启动程序，并使用该位置将块的 LUN 块从源 ONTAP 阵列复制到目标 LUN 阵列上的 LUN 。</block>
   <block id="4d01f8ae44780dd783a9a1352d13eb15" category="paragraph">这些工作流之间的差异与发生转换的时间，中断窗口的长度，自动化的使用，或者源阵列是运行 ONTAP 7- 模式的 NetApp 阵列或第三方阵列有关。</block>
-  <block id="ebe02209a860979dd6e9ae77de5b53da" category="paragraph">支持外部 LUN 导入联机工作流的主机操作系统</block>
   <block id="ee08544761e8c3668ae2cf410df0176e" category="summary">欢迎使用 ONTAP FLI 信息库。此处提供的信息可帮助您将数据从外部阵列迁移到 ONTAP ，并将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 。</block>
   <block id="b4f00c3dc8ec2262f8447975755acf2d" category="doc">使用外部 LUN 导入进行 SAN 迁移</block>
   <block id="53a51b7dcda82a62f1a85a24f43b7788" category="summary">验证作业是可选的，但建议使用。它对源 LUN 和目标 LUN 进行了按块比较。验证作业所需时间几乎与迁移时间相同或稍长。</block>
@@ -584,8 +579,6 @@
   <block id="1c1b0e617e80d3e2dbae61aacaedca3e" category="summary">从 ONTAP 9.1.1 开始，您可以使用 SAN LUN 迁移应用程序为外部源阵列限定 FLI 。如果所需的外部阵列未在 FLI IMT 中列出，则可以使用 SAN LUN 迁移应用程序。</block>
   <block id="af164dd8145e1764ed12737fe49cab35" category="doc">使用 SAN LUN 迁移应用程序检查支持的 FLI 配置</block>
   <block id="a1a90dff83c0faf191818ad546b59252" category="list-text">转到 NetApp 支持站点。</block>
-  <block id="b73cbaaa9320f00644c84f4f03a236a9" category="list-text">在 Filter by category 下，选择 Migration 。</block>
-  <block id="a5d139676dbba59a8e909de2e942741e" category="list-text">在 SAN LUN 迁移下，单击下载应用程序</block>
   <block id="159d7130f3d54d274afe13039b4ede40" category="list-text">从对源阵列具有块访问权限的 FC 或 iSCSI Linux 主机运行应用程序。</block>
   <block id="26e7b511886f2cfa073850c2af28b79e" category="paragraph">如果可以对外部源阵列进行限定，则会显示一个绿色复选标记。如果外部源阵列无法进行限定，则会显示红色的 X 。如果您的阵列不符合条件，您可以联系 NetApp 支持部门以获得更多帮助。</block>
   <block id="0494482584ffb3a3845ebc27d94cf2c6" category="summary">脱机迁移工作流在迁移过程的执行阶段执行。脱机工作流图显示了在主机，网络结构，目标存储和源存储上执行的任务。</block>
@@ -712,9 +705,7 @@
   <block id="12d51f0d0be473e79e59c83fa299c84a" category="list-text">选择 AMS 2100 阵列，然后单击 * 显示和配置阵列 * 。</block>
   <block id="dd1756f111b1bbeab7f11d4f29b44065" category="list-text">选择 * 组 * ，然后选择 * 主机组 * 。</block>
   <block id="423fa3edfa40593a696506ec9b87fb7a" category="list-text">选择 _cDOT_FLI igroup_ 并单击 * 编辑主机组 * 。</block>
-  <block id="86a3dad40c70e95d7983fcbf18aea7d1" category="list-text">在编辑主机组窗口中，选择所有选定目标端口以映射测试 LUN ，然后选择 * 强制设置为所有选定端口 * 。</block>
   <block id="6faa9428b17f6337269c355ad7611403" category="list-text">选择 * 逻辑单元 * 选项卡。</block>
-  <block id="5542bb8f92dc6fbcf06ec00600f7157c" category="list-text">从已分配逻辑单元窗口中选择测试 LUN 。</block>
   <block id="4a47689d7570ed61cf2648819fdfbefe" category="list-text">选择 * 删除 * 以删除 LUN 映射。</block>
   <block id="18d0ad44a1e563aaf9f5871e32535a6c" category="list-text">单击确定。</block>
   <block id="06cd0fe07d89be63e096ae9b935a9747" category="list-text">请勿删除主机组，而是继续删除测试 LUN 。</block>
@@ -973,7 +964,6 @@
   <block id="2691d88591e88679a1811b61d2e2f59d" category="list-text">确定 LUN naa 到 RDM 设备的映射。</block>
   <block id="0cf65c7ab3af2e525287b55acd731b21" category="list-text">确定虚拟机配置： `esxcli storage filesystem list` grep VMFS</block>
   <block id="1abcd23a32826bbad4ffb904fde775e9" category="list-text">记录数据存储库的 UUID 。</block>
-  <block id="c2dbaecbb6484b150b9df9ec555c57fe" category="list-text">创建 /etc/vmware/hostd/vmInventory.xml 的副本，并记下文件和 vmx 配置路径的内容。</block>
   <block id="6fb738ad7ba8ebd383451fcc9c614c23" category="list-text">确定虚拟机硬盘。</block>
   <block id="30d5000b9319e73f23641aa68fbe7723" category="paragraph">迁移后需要此信息才能按顺序添加已删除的 RDM 设备。</block>
   <block id="9dbb45357e9175d4d9379f631599e6eb" category="list-text">确定 RDM 设备，虚拟机映射和兼容模式。</block>
@@ -1163,7 +1153,6 @@
   <block id="a4354633cd0119e1314f471d610ea422" category="paragraph">对于 Windows 主机，请完成以下步骤。</block>
   <block id="7ae3521b4795a0df6960b48844b8bede" category="list-text">打开磁盘管理。</block>
   <block id="36a890df783d05afe153f32ada876698" category="list-text">在 Windows 桌面上，单击 * 启动 * 。</block>
-  <block id="b94b9ba613928ff9d75e25ce0cb374e2" category="list-text">在开始搜索字段中，键入 diskmgmt.msc 。</block>
   <block id="39ddfcd62e9a6f642a082e4825c6ff4f" category="list-text">在程序列表中，单击 `diskmgmt` 。</block>
   <block id="8b103231da97e357c81333af4cc4b45e" category="list-text">右键单击要验证多个路径的每个磁盘，然后单击 * 属性 * 。</block>
   <block id="c0829f1bd784906bc2260964e7df8fcc" category="list-text">在 MPIO 选项卡上的 Select the MPIO policy 列表中，单击所有活动路径。</block>
@@ -1246,7 +1235,6 @@
   <block id="6957ef5bef3e2b05030e2f318c20f70e" category="list-text">查看有关列出的任何存储错误的详细信息。某些错误可能需要采取措施才能继续。但是，可以安全地忽略以下示例中显示的错误 "`this device is an ONTAP （ R ） LUN.` " 。</block>
   <block id="b8e20808df451129caa39264a050e4ae" category="paragraph">导致错误消息 " 此设备是 ontap\ （ R\ ） LUN" 的原因是 FLI 依赖于不支持虚拟化 ONTAP 或 ONTAP 目标的 FlexArray 技术。FLI 可以导入 LUN ，但 FlexArray 不支持对其进行虚拟化。</block>
   <block id="e5810d56320059c0373293d0da4050c0" category="list-text">列出从 7- 模式存储映射的 LUN 。验证磁盘属性和路径。</block>
-  <block id="625ca7c53b2a8736ccd6170298b95c8c" category="list-text">创建目标 LUN 。lun create 命令会根据分区偏移检测大小和对齐情况，并使用 foreign-disk 参数相应地创建 LUN</block>
   <block id="97c500043e97619a7cdae1db7eb50436" category="list-text">创建目标 LUN 。</block>
   <block id="785fe114b1b46895afc9982f8587b494" category="list-text">将测试 LUN 映射到测试 igroup 。</block>
   <block id="07bf6de22d85337808d6babd2bfc8074" category="list-text">使测试 LUN 脱机。</block>
@@ -1332,4 +1320,16 @@
   <block id="a4d60e73cb9c1bfe95e0f1e874619b10" category="sidebar">FLI 迁移后过程</block>
   <block id="11bfb49706ab1fb0b0c2c70607371003" category="sidebar">从区域集删除源存储和主机区域</block>
   <block id="faad5f79401b38fa8970d5b9e778ca6a" category="sidebar">外部 LUN 导入性能</block>
+  <block id="1e82f5734f8c489d66bfd28dadbe2e7b" category="paragraph">如果此模式列出了 _remedium_ 一词公有 ，则无需进行任何修复。在上述情况下， _ATS 仅用于表示公有 已启用，需要禁用此 ATS ，直到导入完成，此时可以重新启用此功能。</block>
+  <block id="f39acf9ee6c52999fba0318708fad80c" category="list-text">将每个卷的 `frame_reserveoption` 设置为 `0` ，并将 Snapshot 策略设置为 `none` 。</block>
+  <block id="4ad1ced7e20a50ce9a61f18de8cc52c9" category="list-text">问题描述 an `AutoSupport` 命令记录最终配置。</block>
+  <block id="603c38097d9812f10e39fcf68d323217" category="list-text">使用 `unmap` 命令将 LUN 从主机中移动。（中断窗口从此处开始。）</block>
+  <block id="8d844627d2b3d4a9f5e6fd64bb23fbdd" category="paragraph">可以使用 `lun import throttle` 命令限制运行导入的最大速度。</block>
+  <block id="fe9b94814e39a3c7f451e4e91676e2a1" category="list-text">在 * 按类别筛选 * 下，选择 * 迁移 * 。</block>
+  <block id="803493b6d9dbe590ab30e0e80a8e1b97" category="list-text">在 * SAN LUN 迁移 * 下，单击 * 下载应用程序 * 。</block>
+  <block id="bcc013c3b737d7967f7bd1b74a363b17" category="list-text">在 * 编辑主机组 * 窗口中，选择为映射测试 LUN 而选择的所有目标端口，然后选择 * 强制设置为所有选定端口 * 。</block>
+  <block id="8c3b55fef9c0e25a2fe01d90beac075c" category="list-text">从 * 已分配逻辑单元 * 窗口中选择测试 LUN 。</block>
+  <block id="0115886be5608c75c55151af2dbe24c0" category="list-text">创建一份 ` /etc/vmware/hostd/vmInventory.xml` 的副本，并记下文件和 vmx 配置路径的内容。</block>
+  <block id="d0148f5ec81506fa10252eb7af3017af" category="list-text">在开始搜索字段中，键入 `diskmgmt.msc` 。</block>
+  <block id="c4d603e30723f5c0bb46df3db3fd8bc6" category="list-text">创建目标 LUN 。`lun create` 命令可根据分区偏移检测大小和对齐，并使用 foreign-disk 参数相应地创建 LUN</block>
 </blocks>

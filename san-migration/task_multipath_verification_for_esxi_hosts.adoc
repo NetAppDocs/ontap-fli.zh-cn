@@ -118,7 +118,7 @@ naa.60060e801046b96004f2bf4600000018                            vml.020004000060
 ~ #
 ----
 . 记录数据存储库的 UUID 。
-. 创建 /etc/vmware/hostd/vmInventory.xml 的副本，并记下文件和 vmx 配置路径的内容。
+. 创建一份 ` /etc/vmware/hostd/vmInventory.xml` 的副本，并记下文件和 vmx 配置路径的内容。
 +
 [listing]
 ----

@@ -32,7 +32,7 @@ stme-7ma> igroup show
 
 ====
 . 如果要导入的 LUN 适用于 ESXi 主机，请查看 _ESXi CAW/ATS 修复 _ 主题并按照其中的说明进行操作。
-. 使用 unmap 命令将 LUN 从其主机中移动。（中断窗口从此处开始。）
+. 使用 `unmap` 命令将 LUN 从主机中移动。（中断窗口从此处开始。）
 +
 [listing]
 ----

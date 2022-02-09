@@ -12,7 +12,7 @@ summary: 对 FLI 进行了一些增强，以更好地管理性能并防止出现
 [role="lead"]
 对 FLI 进行了一些增强，以更好地管理性能并防止出现工作负载不足的情况。ONTAP 8.3.1 中的 FLI 增强功能包括一个新的 throttle 命令和 lun import show 增强功能，这些增强功能显示了吞吐量和 QoS 策略组。
 
-lun import throttle 命令用于限制运行导入的最大速度。
+可以使用 `lun import throttle` 命令限制运行导入的最大速度。
 
 [listing]
 ----

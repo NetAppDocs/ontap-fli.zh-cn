@@ -18,7 +18,7 @@ summary: 在外部 LUN 导入（ Foreign LUN Import ， FLI ）过程中，您�
 . 打开磁盘管理。
 +
 .. 在 Windows 桌面上，单击 * 启动 * 。
-.. 在开始搜索字段中，键入 diskmgmt.msc 。
+.. 在开始搜索字段中，键入 `diskmgmt.msc` 。
 .. 在程序列表中，单击 `diskmgmt` 。
 
 
