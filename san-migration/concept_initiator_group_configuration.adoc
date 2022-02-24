@@ -14,6 +14,9 @@ summary: 正确的 LUN 屏蔽配置对于正确操作至关重要。ONTAP 存储
 
 FLI 迁移要求 NetApp 存储访问源存储 LUN 。要启用分区以外的访问，需要使用目标存储的启动程序端口的全球通用端口名称（ WWPN ）在源存储上创建启动程序组。
 
+
+NOTE: 本节中的示例使用 Hitachi Data Systems （ HDS ） AMS 阵列，因此根据要迁移的第三方阵列，外部阵列命令会有所不同。
+
 请始终在 NetApp 阵列的启动程序组上启用非对称逻辑单元访问（ Asymmetric Logical Unit Access ， ALUA ）。
 
 启动程序组的名称因供应商和产品而异。例如：

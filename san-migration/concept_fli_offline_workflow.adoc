@@ -1,5 +1,6 @@
 ---
 permalink: san-migration/concept_fli_offline_workflow.html 
+redirect: ontap-fli/san-migration/task_rebooting_the_host_to_validate_system_state.html 
 sidebar: sidebar 
 keywords: fli, offline, workflow 
 summary: 本节提供了 FLI 脱机工作流的示例，这是四个 FLI 工作流之一。 

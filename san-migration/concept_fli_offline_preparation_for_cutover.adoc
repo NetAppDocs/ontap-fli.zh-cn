@@ -1,5 +1,6 @@
 ---
 permalink: san-migration/concept_fli_offline_preparation_for_cutover.html 
+redirect: ontap-fli/san-migration/task_rebooting_the_host_to_validate_system_state.html 
 sidebar: sidebar 
 keywords: fli, offline, preparation, cutover 
 summary: 在外部 LUN 导入（ FLI ）的预迁移期间，验证并验证主机和源 LUN 路径。主机重新启动后，它将关闭，以便为迁移做准备。 

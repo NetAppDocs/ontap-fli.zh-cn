@@ -1,5 +1,6 @@
 ---
 permalink: san-migration/concept_migration_process_overview.html 
+redirect: ontap-fli/san-migration/concept_migration_discover_phase_workflow.html 
 sidebar: sidebar 
 keywords: migration, process, overview 
 summary: FLI 迁移过程分为五个阶段，可通过适用场景执行任何数据迁移：发现，分析，规划，执行和验证。 

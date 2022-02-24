@@ -1,5 +1,6 @@
 ---
 permalink: san-migration/concept_enablement_for_non_supported_luns_interoperability.html 
+redirect: ontap-fli/san-migration/task_importing_non_fc_luns.html 
 sidebar: sidebar 
 keywords: enablement, non-supported, luns 
 summary: 请务必确认源阵列的主机操作系统， HBA ，交换机和 ONTAP 阵列以及最终配置均在互操作性表中列为受支持。 

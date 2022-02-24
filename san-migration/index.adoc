@@ -1,11 +1,7 @@
 ---
 permalink: san-migration/index.html 
-sidebar: sidebar 
-keywords: san migration, using, foreign lun import 
-summary: 欢迎使用 ONTAP FLI 信息库。此处提供的信息可帮助您将数据从外部阵列迁移到 ONTAP ，并将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 。 
+redirect: ontap-fli/san-migration/concept_data_migration_program_overview.html 
 ---
-= 使用外部 LUN 导入进行 SAN 迁移
-:icons: font
-:imagesdir: ../media/
+= 
 
 

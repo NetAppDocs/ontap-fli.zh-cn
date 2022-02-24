@@ -1,7 +1,6 @@
 ---
 section: san-migration
 title: 使用 FLI 进行 SAN 迁移
-url: "/san-migration/index.html"
 entries:
 - title: 数据迁移计划概述
   entries:
@@ -66,19 +65,15 @@ entries:
   - title: 分析阶段工作流
     url: "/san-migration/concept_migration_analyze_phase_workflow.html"
   - title: 计划阶段工作流
-    entries:
-    - title: 概述
-      url: "/san-migration/concept_migration_plan_phase_workflow.html"
-    - title: FLI 支持的配置
-      url: "/san-migration/concept_fli_supported_configurations.html"
+    url: "/san-migration/concept_migration_plan_phase_workflow.html"
+  - title: FLI 支持的配置
+    url: "/san-migration/concept_fli_supported_configurations.html"
   - title: 执行阶段工作流
-    entries:
-    - title: 概述
-      url: "/san-migration/concept_migration_execute_phase_workflow.html"
-    - title: 脱机迁移工作流
-      url: "/san-migration/concept_fli_offline_migration.html"
-    - title: 联机迁移工作流
-      url: "/san-migration/concept_fli_online_migration.html"
+    url: "/san-migration/concept_migration_execute_phase_workflow.html"
+  - title: 脱机迁移工作流
+    url: "/san-migration/concept_fli_offline_migration.html"
+  - title: 联机迁移工作流
+    url: "/san-migration/concept_fli_online_migration.html"
   - title: 验证阶段工作流
     url: "/san-migration/concept_migration_verify_phase_workflow.html"
   - title: 发现阶段数据收集过程
@@ -114,11 +109,9 @@ entries:
     - title: 如何配置源阵列
       url: "/san-migration/concept_how_to_configure_source_arrays.html"
     - title: 迁移测试
-      entries:
-      - title: 概述
-        url: "/san-migration/concept_migration_tests.html"
-      - title: 使用 Hitachi AMS2100 测试迁移示例
-        url: "/san-migration/task_test_migration_example_using_hitachi_ams2100.html"
+      url: "/san-migration/concept_migration_tests.html"
+    - title: 使用 Hitachi AMS2100 测试迁移示例
+      url: "/san-migration/task_test_migration_example_using_hitachi_ams2100.html"
 - title: FLI 脱机工作流
   entries:
   - title: 概述
@@ -203,6 +196,8 @@ entries:
   url: "/san-migration/concept_fli_using_workflow_automation_wfa.html"
 - title: FLI 迁移后过程
   entries:
+  - title: 概述
+    url: "/san-migration/concept_fli_post_migration_procedures_all_workflows.html"
   - title: 从 ONTAP 存储中删除源 LUN
     url: "/san-migration/task_removing_source_luns_from_ontap_storage.html"
   - title: 从主机中删除源 LUN
@@ -229,6 +224,8 @@ entries:
     url: "/san-migration/task_document_customer_environment.html"
 - title: 外部 LUN 导入性能
   entries:
+  - title: 概述
+    url: "/san-migration/concept_performance.html"
   - title: ONTAP 8.3.1 中的性能增强功能
     url: "/san-migration/concept_performance_enhancements_in_clustered_data_ontap_8_3_1.html"
   - title: 影响外部 LUN 导入迁移性能的变量

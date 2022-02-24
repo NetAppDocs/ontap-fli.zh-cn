@@ -1,5 +1,6 @@
 ---
 permalink: san-migration/concept_verifying_host_lun_path_and_multipath_configuration.html 
+redirect: ontap-fli/san-migration/task_multipath_verification_for_windows_hosts.html 
 sidebar: sidebar 
 keywords: verify, host lun path, multipath, configuration, verification 
 summary: 在进行任何迁移之前，请确认多路径配置正确且工作正常。LUN 的所有可用路径都应处于活动状态。 
