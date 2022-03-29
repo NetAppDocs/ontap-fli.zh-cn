@@ -12,6 +12,8 @@ sidebar:
   - title: ONTAP FLI 文档
     url: "/index.html"
   - section: san-migration
+  - title: 法律声明
+    url: "/reference_legal_notices.html"
 homepage:
   tiles:
   - title: FLI 工作流

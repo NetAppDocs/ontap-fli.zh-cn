@@ -466,8 +466,6 @@
   <block id="44023aa16885f326f40c8d26a3d792dc" category="list-text">在自动迁移中， FLI 使用工作流自动化（ WFA ）软件来自动执行部分迁移过程。具有 WFA 的 FLI 可在联机或脱机模式下使用。</block>
   <block id="ed84643b976a61e35dab90c06a1328ad" category="paragraph">从架构上来说，这三种迁移和过渡工作流相当相似。所有这四个阵列都依靠 NetApp 的 FlexArray 技术，使您的 ONTAP 控制器能够在源阵列前面充当启动程序，并使用该位置将块的 LUN 块从源 ONTAP 阵列复制到目标 LUN 阵列上的 LUN 。</block>
   <block id="4d01f8ae44780dd783a9a1352d13eb15" category="paragraph">这些工作流之间的差异与发生转换的时间，中断窗口的长度，自动化的使用，或者源阵列是运行 ONTAP 7- 模式的 NetApp 阵列或第三方阵列有关。</block>
-  <block id="ee08544761e8c3668ae2cf410df0176e" category="summary">欢迎使用 ONTAP FLI 信息库。此处提供的信息可帮助您将数据从外部阵列迁移到 ONTAP ，并将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 。</block>
-  <block id="b4f00c3dc8ec2262f8447975755acf2d" category="doc">使用外部 LUN 导入进行 SAN 迁移</block>
   <block id="53a51b7dcda82a62f1a85a24f43b7788" category="summary">验证作业是可选的，但建议使用。它对源 LUN 和目标 LUN 进行了按块比较。验证作业所需时间几乎与迁移时间相同或稍长。</block>
   <block id="ce91b6039e58611f253af932de050269" category="doc">FLI offline ：验证迁移结果</block>
   <block id="47d2204501856353838ee78e45555084" category="list-text">启动验证作业以比较源 LUN 和目标 LUN 。监控验证进度。</block>
@@ -1332,4 +1330,20 @@
   <block id="0115886be5608c75c55151af2dbe24c0" category="list-text">创建一份 ` /etc/vmware/hostd/vmInventory.xml` 的副本，并记下文件和 vmx 配置路径的内容。</block>
   <block id="d0148f5ec81506fa10252eb7af3017af" category="list-text">在开始搜索字段中，键入 `diskmgmt.msc` 。</block>
   <block id="c4d603e30723f5c0bb46df3db3fd8bc6" category="list-text">创建目标 LUN 。`lun create` 命令可根据分区偏移检测大小和对齐，并使用 foreign-disk 参数相应地创建 LUN</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="summary">法律声明提供对版权声明、商标、专利等的访问。</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律声明</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版权</block>
+  <block id="de6edae22bc37b97b38a15c7f8af62e2" category="paragraph"><block ref="de6edae22bc37b97b38a15c7f8af62e2" category="inline-link-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商标</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NetApp 、 NetApp 徽标和 NetApp 商标页面上列出的标记是 NetApp 、 Inc. 的商标。其他公司和产品名称可能是其各自所有者的商标。</block>
+  <block id="a93bc0a57623c2facaa010825c808507" category="paragraph"><block ref="a93bc0a57623c2facaa010825c808507" category="inline-link-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">专利</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">有关 NetApp 拥有的专利的最新列表，请访问：</block>
+  <block id="547ea2e305891e64d8e744949b0aca2c" category="paragraph"><block ref="547ea2e305891e64d8e744949b0aca2c" category="inline-link-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隐私政策</block>
+  <block id="50921fca0d376fca62102a5e608994e2" category="paragraph"><block ref="50921fca0d376fca62102a5e608994e2" category="inline-link-rx"></block></block>
+  <block id="b4de17ead867a3cf0b9d11e57e562672" category="section-title">机器翻译</block>
+  <block id="dd3918c571093dff2b94f7cef5066d01" category="inline-link-macro">NetApp.com</block>
+  <block id="5db028f960e19ec42098e3252e4fb1e3" category="paragraph">有关本地化内容的重要信息，请参见 <block ref="7e89bb7928e951b6f80ad1dab5c58475" category="inline-link-macro-rx"></block></block>
+  <block id="d648f2a68a54fd1b3329efc3cf24d29c" category="sidebar">法律声明</block>
 </blocks>
