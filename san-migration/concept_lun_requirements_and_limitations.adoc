@@ -5,6 +5,7 @@ keywords: lun, requirements, limitations
 summary: 在开始 FLI 迁移之前， LUN 应满足以下要求。 
 ---
 = LUN 要求和限制
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

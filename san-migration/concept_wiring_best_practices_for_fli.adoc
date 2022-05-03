@@ -5,6 +5,7 @@ keywords: wire, best practices, fli migration
 summary: 要为 FLI 迁移配置 ONTAP 存储，您应根据规划信息和建议的最佳实践将源存储连接到网络结构。 
 ---
 = 为 FLI 迁移布线最佳实践
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

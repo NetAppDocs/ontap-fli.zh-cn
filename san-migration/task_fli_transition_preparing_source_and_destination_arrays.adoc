@@ -5,6 +5,7 @@ keywords: prepare, source, destination, arrays, migration
 summary: 要准备从 FLI 7- 模式迁移到 ONTAP ，请验证主机和源 LUN 路径以及其他详细信息。 
 ---
 = 准备要迁移的源和目标阵列
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

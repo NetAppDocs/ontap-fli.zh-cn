@@ -5,6 +5,7 @@ keywords: remove, destination, array, configuration
 summary: 以下步骤说明了如何在 FLI 迁移完成后从源阵列中删除目标阵列配置。 
 ---
 = 正在删除目标阵列配置
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: recommended, tools, data, migration
 summary: 服务工具提供了一种标准化的方法，用于执行远程数据收集，配置和存储管理任务等有用功能。 
 ---
 = 建议的数据迁移工具
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

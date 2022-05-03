@@ -5,6 +5,7 @@ keywords: clean up, fli, online migration
 summary: FLI 联机迁移完成后，您将删除 LUN 导入关系。 
 ---
 = 清理 FLI 联机迁移
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

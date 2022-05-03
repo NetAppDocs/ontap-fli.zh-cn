@@ -5,6 +5,7 @@ keywords: plan, prepare, phase, procedures
 summary: FLI 规划阶段侧重于创建详细迁移计划以及为实际迁移准备客户环境所需的任务。在此阶段执行一个或多个测试迁移，以验证外部 LUN 导入的安装和设置。 
 ---
 = 规划和准备阶段过程
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

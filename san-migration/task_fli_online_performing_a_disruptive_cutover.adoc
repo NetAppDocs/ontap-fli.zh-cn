@@ -5,6 +5,7 @@ keywords: fli online, perform, disruptive, cutover
 summary: 本示例介绍了为 FLI 联机迁移过程执行中断转换的一般步骤。 
 ---
 = FLI Online ：执行中断转换
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

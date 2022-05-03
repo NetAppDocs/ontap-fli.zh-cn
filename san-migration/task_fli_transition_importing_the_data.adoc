@@ -5,6 +5,7 @@ keywords: import, data, fli 7-mode, ontap
 summary: 以下步骤介绍如何使用 FLI 将数据从 7- 模式源 LUN 导入到 ONTAP 目标 LUN 。 
 ---
 = 将数据从 FLI 7- 模式导入到 ONTAP
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

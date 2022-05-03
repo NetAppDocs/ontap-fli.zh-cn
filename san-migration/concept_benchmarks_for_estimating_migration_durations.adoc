@@ -5,6 +5,7 @@ keywords: benchmarks, estimating, migration, durations
 summary: 出于规划目的，可以使用某些假设来估计数据迁移的工作量和持续时间。 
 ---
 = 用于估算迁移持续时间的基准
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

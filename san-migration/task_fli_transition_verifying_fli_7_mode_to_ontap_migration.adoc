@@ -5,6 +5,7 @@ keywords: verify, fli 7-mode, ontap, migration, results
 summary: 您可以选择验证 LUN 是否已从 FLI 7- 模式正确迁移到 ONTAP 。 
 ---
 = 验证从 FLI 7- 模式到 ONTAP 的迁移结果
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

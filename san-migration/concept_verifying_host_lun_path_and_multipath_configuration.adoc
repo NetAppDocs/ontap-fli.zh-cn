@@ -6,6 +6,7 @@ keywords: verify, host lun path, multipath, configuration, verification
 summary: 在进行任何迁移之前，请确认多路径配置正确且工作正常。LUN 的所有可用路径都应处于活动状态。 
 ---
 = 验证主机 LUN 路径和多路径配置验证
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

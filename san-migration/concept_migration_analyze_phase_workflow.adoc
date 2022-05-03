@@ -5,6 +5,7 @@ keywords: analyze, phase, workflow
 summary: 分析阶段侧重于在迁移规划之前必须解决的问题。必须确定互操作性表之外的主机配置详细信息。 
 ---
 = 分析阶段工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -6,6 +6,7 @@ summary: ONTAP 外部 LUN 导入
 ---
 = ONTAP 外部 LUN 导入文档
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

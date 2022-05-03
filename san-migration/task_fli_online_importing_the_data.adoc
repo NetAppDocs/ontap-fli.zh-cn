@@ -5,6 +5,7 @@ keywords: fli online, import, data
 summary: 以下是将数据从源 LUN 导入到目标 LUN 的步骤。 
 ---
 = FLI online ：导入数据
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

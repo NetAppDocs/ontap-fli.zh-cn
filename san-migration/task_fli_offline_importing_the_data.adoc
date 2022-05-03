@@ -5,6 +5,7 @@ keywords: fli offline, import data
 summary: 以下步骤介绍如何将数据从源 LUN 导入到目标 LUN 。 
 ---
 = FLI offline ：导入数据
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

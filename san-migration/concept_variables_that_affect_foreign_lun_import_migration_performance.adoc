@@ -5,6 +5,7 @@ keywords: variables, affect, foreign lun import, migration, performance
 summary: 有许多变量会影响给定迁移完成的速度。 
 ---
 = 影响外部 LUN 导入迁移性能的变量
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

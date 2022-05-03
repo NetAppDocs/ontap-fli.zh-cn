@@ -5,6 +5,7 @@ keywords: offline, migration, workflow
 summary: 脱机迁移工作流在迁移过程的执行阶段执行。脱机工作流图显示了在主机，网络结构，目标存储和源存储上执行的任务。 
 ---
 = 脱机迁移工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

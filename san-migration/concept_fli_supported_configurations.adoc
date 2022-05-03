@@ -5,6 +5,7 @@ keywords: fli, supported, configurations
 summary: 必须以受支持的方式部署 FLI 环境，以确保正常运行和支持。随着工程部门对新配置进行资格认定，支持的配置列表将发生变化。请参见 NetApp 互操作性表以验证对特定配置的支持。 
 ---
 = FLI 支持的配置
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: brocade, fabric, example
 summary: 此操作步骤显示了如何从 Brocade 网络结构区域中删除源存储和主机区域。 
 ---
 = Brocade 网络结构示例
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: cisco, fabric, production, fabric a, example
 summary: 以下是生产网络结构 A 中的 Cisco 网络结构示例 
 ---
 = 以生产网络结构中的 Cisco 网络结构为例
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

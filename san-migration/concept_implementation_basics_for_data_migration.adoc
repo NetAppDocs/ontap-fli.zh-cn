@@ -6,6 +6,7 @@ keywords: implementation, basics, data, migration
 summary: 外部 LUN 导入（ Foreign LUN Import ， FLI ）实施包括物理布线，分区和启动程序记录创建步骤。NetApp 存储启动程序端口和源存储的初始配置可为迁移环境做好准备。 
 ---
 = 数据迁移实施基础知识
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

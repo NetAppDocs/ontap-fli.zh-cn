@@ -5,6 +5,7 @@ keywords: prepare, hosts, fli, offline, migration
 summary: FLI 脱机执行阶段包括准备迁移主机。 
 ---
 = 为 FLI 脱机迁移准备主机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

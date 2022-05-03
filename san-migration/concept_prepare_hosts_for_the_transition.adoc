@@ -5,6 +5,7 @@ keywords: prepare, hosts, transition
 summary: 执行阶段包括准备迁移主机。 
 ---
 = 准备要过渡的主机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

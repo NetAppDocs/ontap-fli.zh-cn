@@ -5,6 +5,7 @@ keywords: professional, services, san, migration, solutions
 summary: NetApp 和合作伙伴专业服务部门采用经过时间测试的方法指导 SAN 迁移完成所有主要阶段。 
 ---
 = 适用于 SAN 迁移解决方案的专业服务
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

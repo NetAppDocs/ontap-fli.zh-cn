@@ -5,6 +5,7 @@ keywords: verify, source luns, destination storage, offline fli
 summary: 在脱机外部 LUN 导入过程中，您必须验证目标存储上的源 LUN 。 
 ---
 = 验证目标存储上的源 LUN 是否存在脱机 FLI
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

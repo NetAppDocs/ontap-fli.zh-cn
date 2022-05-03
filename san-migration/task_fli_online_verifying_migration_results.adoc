@@ -5,6 +5,7 @@ keywords: fli online, verify, migration, results
 summary: 验证作业是可选的，但建议使用。它对源 LUN 和目标 LUN 进行了按块比较。验证作业所需时间几乎与迁移时间相同或稍长。 
 ---
 = FLI online ：验证迁移结果
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

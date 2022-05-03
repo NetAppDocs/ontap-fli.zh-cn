@@ -5,6 +5,7 @@ keywords: configure, switch, zones
 summary: 您必须在 SAN 交换机上创建所需的分区，以便将源存储连接到目标存储。 
 ---
 = 配置交换机分区
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

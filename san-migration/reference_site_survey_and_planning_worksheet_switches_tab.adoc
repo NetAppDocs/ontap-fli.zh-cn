@@ -5,6 +5,7 @@ keywords: site, survey and planning worksheet, switches tab
 summary: 在站点调查和规划工作表中，您应设置一个包含迁移交换机信息的选项卡。 
 ---
 = 站点调查和规划工作表切换选项卡
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

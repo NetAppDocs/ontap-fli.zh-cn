@@ -5,6 +5,7 @@ keywords: unzone, source, destination, array
 summary: 完成所有迁移，过渡和验证后，您可以取消源阵列和目标阵列的分区。 
 ---
 = 取消对源和目标阵列的分区
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

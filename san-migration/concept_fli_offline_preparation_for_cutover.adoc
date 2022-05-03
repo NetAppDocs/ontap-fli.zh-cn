@@ -6,6 +6,7 @@ keywords: fli, offline, preparation, cutover
 summary: 在外部 LUN 导入（ FLI ）的预迁移期间，验证并验证主机和源 LUN 路径。主机重新启动后，它将关闭，以便为迁移做准备。 
 ---
 = FLI 脱机：转换准备
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: foreign, lun, import, overview
 summary: 外部 LUN 导入（ Foreign LUN Import ， FLI ）是 ONTAP 中内置的一项功能，允许用户以简单高效的方式将数据从外部阵列 LUN 导入到 NetApp LUN 。 
 ---
 = 外部 LUN 导入概述
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: migration, report
 summary: 导入日志存储在集群事件日志文件中。您应查看日志中的错误，以验证迁移是否成功。 
 ---
 = 迁移报告
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: fli, zoning, requirements
 summary: 使用 FLI 的标准迁移方案需要四个不同的分区。您应在每个分区中包含特定端口。 
 ---
 = FLI 分区要求
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

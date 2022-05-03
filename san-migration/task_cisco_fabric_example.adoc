@@ -5,6 +5,7 @@ keywords: cisco, fabric, example
 summary: 此操作步骤显示了如何从 Cisco 网络结构区域集删除源存储和主机区域。 
 ---
 = Cisco 网络结构示例
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

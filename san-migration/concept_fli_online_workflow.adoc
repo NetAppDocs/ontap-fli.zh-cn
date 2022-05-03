@@ -5,6 +5,7 @@ keywords: fli, online, workflow
 summary: 这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。 
 ---
 = FLI 联机工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

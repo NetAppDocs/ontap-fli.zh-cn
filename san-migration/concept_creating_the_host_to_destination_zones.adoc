@@ -5,6 +5,7 @@ keywords: create, host, destination, zones
 summary: 您需要创建主机到目标分区。生产网络结构有两种类型：网络结构 A 和网络结构 B 
 ---
 = 将主机创建到目标分区
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: intended, audience
 summary: 本指南面向有意将数据从外部阵列迁移到 ONTAP 或有意将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 的 NetApp 客户。 
 ---
 = 目标受众
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

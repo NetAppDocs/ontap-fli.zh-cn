@@ -5,6 +5,7 @@ keywords: data, migration, service, heterogeneous, san, environments
 summary: 适用于异构 SAN 环境的数据迁移服务是一种使用 FLI 技术的全面数据迁移解决方案。SAN 数据迁移服务提供的软件和服务可减少错误，提高工作效率，并促进 NetApp 和合作伙伴专业服务一致地交付数据迁移。 
 ---
 = 适用于异构 SAN 环境的数据迁移服务
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

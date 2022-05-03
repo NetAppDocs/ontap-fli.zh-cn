@@ -6,6 +6,7 @@ keywords: enablement, non-supported, luns
 summary: 请务必确认源阵列的主机操作系统， HBA ，交换机和 ONTAP 阵列以及最终配置均在互操作性表中列为受支持。 
 ---
 = 支持不受支持的 LUN
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

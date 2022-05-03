@@ -5,6 +5,7 @@ keywords: fli, using, workflow, automation, wfa, migration
 summary: 工作流自动化可与 FLI 结合使用，以自动执行迁移前和迁移后任务，迁移和过渡任务以及状态检查。在自动迁移中， FLI 使用工作流自动化软件来自动执行部分迁移过程。具有 WFA 的 FLI 可在联机或脱机模式下使用。 
 ---
 = 使用工作流自动化（ WFA ）的 FLI
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

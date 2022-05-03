@@ -5,6 +5,7 @@ keywords: gap, analysis, report
 summary: 差距分析是对客户当前环境和 NetApp 推荐环境的报告。它提供了迁移后需要对客户环境进行的所有建议升级。 
 ---
 = 差距分析报告
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

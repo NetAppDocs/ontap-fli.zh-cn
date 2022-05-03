@@ -5,6 +5,7 @@ keywords: reboot, host, validate, system state
 summary: 迁移主机会在对其配置进行任何更改之前重新启动。在继续迁移之前，请验证系统是否处于已知正常状态。 
 ---
 = 重新启动主机以验证系统状态
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

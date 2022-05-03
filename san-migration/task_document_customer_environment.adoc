@@ -5,6 +5,7 @@ keywords: document, newly, migrated, environment
 summary: 您需要使用问题描述命令 AutoSupport 来记录客户环境。 
 ---
 = 记录新迁移的环境
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: data, migration, options
 summary: 在选择数据迁移选项时，需要考虑的是使用数据传输设备或基于应用程序的迁移。 
 ---
 = 数据迁移选项
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

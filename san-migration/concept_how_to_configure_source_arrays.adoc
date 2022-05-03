@@ -5,6 +5,7 @@ keywords: configure, source, arrays
 summary: '要为启动程序端口添加主机条目（ LUN 屏蔽， NetApp 术语中的 igroup ），请参见源阵列的阵列文档。此信息可从 " 站点调查和规划 " 工作表的 " 存储组 " 部分中检索。' 
 ---
 = 如何配置源阵列
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

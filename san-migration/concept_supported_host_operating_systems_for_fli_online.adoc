@@ -5,6 +5,7 @@ keywords: supported, host, operating, systems, fli, online
 summary: FLI 联机工作流可用于连接到运行以下操作系统之一的主机的 LUN 。 
 ---
 = FLI 联机支持的主机操作系统
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

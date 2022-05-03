@@ -5,6 +5,7 @@ keywords: sample, site, survey and planning, worksheet
 summary: 在迁移方法的分析和规划阶段，您需要使用站点调查和规划工作表记录现有配置，目标配置，差距和修复计划。 
 ---
 = 示例站点调查和规划工作表
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: esxi, caw/ats, remediation
 summary: 联机 FLI 不支持 VMware 原子测试和设置（ ATS ） /SCSI 比较和写入（ CAW ）。如果您使用的是 VMFS5 ，并且源阵列支持 CAW ，则这一点非常重要。要修复主机，您必须按照本节所述的过程进行操作。 
 ---
 = ESXi CAW/ATS 修复
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

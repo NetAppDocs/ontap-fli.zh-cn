@@ -5,6 +5,7 @@ keywords: reboot, hosts
 summary: 您可以选择在启动此工作流之前重新启动主机，以验证主机是否处于已知正常状态。 
 ---
 = 正在重新启动主机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

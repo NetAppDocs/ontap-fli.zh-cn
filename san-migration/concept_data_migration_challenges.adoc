@@ -5,6 +5,7 @@ keywords: data, migration, challenges
 summary: 数据迁移带来的一些挑战包括长时间停机，潜在风险，资源匮乏和专业知识不足。 
 ---
 = 数据迁移挑战
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

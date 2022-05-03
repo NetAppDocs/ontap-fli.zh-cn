@@ -5,6 +5,7 @@ keywords: fli, migration, cleanup, verify, phase
 summary: 在清理阶段，您可以收集 FLI 迁移日志，从 NetApp 存储中删除源存储配置以及从源存储中删除 NetApp 存储主机组。此外，删除源到目标分区。验证是指确定迁移计划执行准确性的时刻。 
 ---
 = FLI 迁移清理和验证阶段
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

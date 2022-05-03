@@ -5,6 +5,7 @@ keywords: host remediation
 summary: 根据迁移类型，主机修复可能会在迁移后实时进行（外部 LUN 导入联机和 7- 模式到 ONTAP ），也可能会在迁移完成后进行（外部 LUN 导入脱机）。 
 ---
 = 主机修复
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

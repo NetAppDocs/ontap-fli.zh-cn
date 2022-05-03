@@ -5,6 +5,7 @@ keywords: site, survey and planning worksheet, fas config tab
 summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 FAS 配置的信息。' 
 ---
 = 站点调查和规划工作表 FAS 配置选项卡
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

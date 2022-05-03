@@ -5,6 +5,7 @@ keywords: site, survey and planning worksheet, sds cli scripts tab
 summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 SDS 命令行界面脚本的信息。' 
 ---
 = 站点调查和规划工作表 SDS 命令行界面脚本选项卡
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

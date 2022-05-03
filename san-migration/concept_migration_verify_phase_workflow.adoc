@@ -5,6 +5,7 @@ keywords: verify, phase, workflow
 summary: 迁移过程的验证阶段侧重于迁移后清理以及确认迁移计划执行的准确性。源存储上的启动程序记录以及源和目标区域之间的分区将被删除。 
 ---
 = 验证阶段工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

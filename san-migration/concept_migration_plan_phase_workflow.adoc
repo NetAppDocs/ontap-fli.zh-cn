@@ -5,6 +5,7 @@ keywords: plan, phase, workflow
 summary: 数据迁移过程的规划阶段侧重于创建详细的迁移计划并确保所有内容均已准备好进行实际迁移所需的任务。大多数迁移工作都是在此阶段执行的规划。 
 ---
 = 计划阶段工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

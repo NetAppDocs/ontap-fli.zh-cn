@@ -5,6 +5,7 @@ keywords: fli, 7-mode, ontap, transition, workflow
 summary: 本节提供了从 FLI 7- 模式过渡到 ONTAP 的工作流示例。过渡工作流可以作为联机或脱机工作流运行。 
 ---
 = FLI 7- 模式到 ONTAP 的过渡工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

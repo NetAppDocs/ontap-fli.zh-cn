@@ -5,6 +5,7 @@ keywords: remove, source, luns, ontap, storage
 summary: 以下步骤介绍了如何在迁移完成后从 ONTAP 存储中删除源 LUN 。 
 ---
 = 从 ONTAP 存储中删除源 LUN
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

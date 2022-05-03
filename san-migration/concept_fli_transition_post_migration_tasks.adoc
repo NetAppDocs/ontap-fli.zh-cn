@@ -5,6 +5,7 @@ keywords: fli, transition, workflow, post-migration, tasks
 summary: 从 FLI 7- 模式迁移到 ONTAP 工作流的迁移后任务与其他 FLI 工作流类似。 
 ---
 = FLI 过渡工作流迁移后任务
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

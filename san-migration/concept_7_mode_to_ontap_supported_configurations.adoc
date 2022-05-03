@@ -5,6 +5,7 @@ keywords: 7-mode, ontap, fli, supported, configurations
 summary: 请务必验证您最终要过渡到的主机操作系统， HBA ，交换机和 ONTAP 阵列是否受支持。 
 ---
 = 7- 模式到 ONTAP FLI 支持的配置
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

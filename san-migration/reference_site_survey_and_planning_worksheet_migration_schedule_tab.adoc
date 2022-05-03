@@ -5,6 +5,7 @@ keywords: site, survey and planning worksheet, migration schedule tab
 summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关迁移计划的信息。' 
 ---
 = 站点调查和规划工作表迁移计划选项卡
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

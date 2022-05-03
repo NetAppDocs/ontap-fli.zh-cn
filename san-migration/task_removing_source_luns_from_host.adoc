@@ -5,6 +5,7 @@ keywords: remove, source, luns, hosts
 summary: 以下步骤介绍了如何在 FLI 迁移完成后从主机中删除源 LUN 。 
 ---
 = 从主机中删除源 LUN
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

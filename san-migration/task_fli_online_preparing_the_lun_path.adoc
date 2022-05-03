@@ -5,6 +5,7 @@ keywords: fli online, prepare, lun path
 summary: 要为 FLI 联机迁移做准备，请验证主机和源 LUN 路径以及其他详细信息。 
 ---
 = FLI online ：准备 LUN 路径
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

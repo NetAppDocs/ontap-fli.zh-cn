@@ -5,6 +5,7 @@ keywords: check, supported configurations, fli, using, san lun migrate app
 summary: 从 ONTAP 9.1.1 开始，您可以使用 SAN LUN 迁移应用程序为外部源阵列限定 FLI 。如果所需的外部阵列未在 FLI IMT 中列出，则可以使用 SAN LUN 迁移应用程序。 
 ---
 = 使用 SAN LUN 迁移应用程序检查支持的 FLI 配置
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

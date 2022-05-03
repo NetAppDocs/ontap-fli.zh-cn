@@ -5,6 +5,7 @@ keywords: initiator, group, configuration
 summary: 正确的 LUN 屏蔽配置对于正确操作至关重要。ONTAP 存储中的所有启动程序端口（在两个节点上）必须位于同一 igroup 中。 
 ---
 = 启动程序组配置
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

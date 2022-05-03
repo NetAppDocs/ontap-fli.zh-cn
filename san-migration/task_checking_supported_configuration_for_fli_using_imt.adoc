@@ -5,6 +5,7 @@ keywords: check, supported configurations, fli using imt
 summary: 您应使用互操作性表工具（ IMT ）查找有关使用 NetApp 认证的第三方产品和组件的 NetApp 产品配置的信息。 
 ---
 = 使用 IMT 检查支持的 FLI 配置
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

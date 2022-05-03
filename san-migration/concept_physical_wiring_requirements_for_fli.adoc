@@ -5,6 +5,7 @@ keywords: physical, wiring, requirements, fli
 summary: FLI 与 NetApp FlexArray 具有相同的布线要求。NetApp 存储启动程序端口连接到源存储目标端口所连接的网络结构。在将源存储连接到 NetApp 存储时，请遵循 FlexArray 最佳实践。 
 ---
 = FLI 的物理布线要求
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: fli, interoperability, support, criteria
 summary: FLI 互操作性表（ IMT ）与 FlexArray IMT 非常相似，但作为一种截然不同的互操作性工具添加，目的是更好地支持符合 NetApp 标准且可与 FLI 结合使用的源阵列。 
 ---
 = FLI 互操作性和支持标准
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: reasons, perform, test, migrations
 summary: NetApp 建议在迁移生产数据之前，在客户测试环境中测试所有配置。 
 ---
 = 执行测试迁移的原因
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

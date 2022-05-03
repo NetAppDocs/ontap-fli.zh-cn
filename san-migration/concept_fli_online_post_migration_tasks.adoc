@@ -5,6 +5,7 @@ keywords: fli, online, post-migration, tasks
 summary: 任何未在迁移前执行的服务器修复都将在迁移后执行。 
 ---
 = FLI 迁移后联机任务
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

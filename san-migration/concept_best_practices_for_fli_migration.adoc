@@ -5,6 +5,7 @@ keywords: best practices, foreign lun, import migration
 summary: NetApp 强烈建议您提供专业服务或合作伙伴专业服务，参与确定迁移范围并制定迁移计划，以及培训客户人员如何使用外部 LUN 导入（ Foreign LUN Import ， FLI ） 7- 模式向 ONTAP 执行数据迁移。 
 ---
 = 外部 LUN 导入迁移的最佳实践
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

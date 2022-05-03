@@ -5,6 +5,7 @@ keywords: configure, migration, jobs
 summary: FLI 脱机工作流需要配置源 LUN 和目标 LUN 。 
 ---
 = 配置迁移作业
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

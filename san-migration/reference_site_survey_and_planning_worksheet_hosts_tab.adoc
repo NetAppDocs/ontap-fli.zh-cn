@@ -5,6 +5,7 @@ keywords: site, survey and planning worksheet, hosts tab
 summary: '在 " 站点调查和规划 " 工作表中，您应设置一个选项卡，其中包含迁移项目主机信息。' 
 ---
 = 站点调查和规划工作表主机选项卡
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

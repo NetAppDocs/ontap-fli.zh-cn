@@ -6,6 +6,7 @@ keywords: fli, offline, workflow
 summary: 本节提供了 FLI 脱机工作流的示例，这是四个 FLI 工作流之一。 
 ---
 = FLI 脱机工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

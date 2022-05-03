@@ -5,6 +5,7 @@ keywords: site, survey and planning worksheet, questionnaire tab
 summary: '在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含初始迁移调查问卷中的迁移项目信息。' 
 ---
 = 站点调查和规划工作表调查问卷选项卡
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: benefits, fli-based, solution
 summary: FLI 解决方案旨在通过这些优势为 NetApp 客户提供卓越的价值。 
 ---
 = 基于 FLI 的解决方案的优势
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

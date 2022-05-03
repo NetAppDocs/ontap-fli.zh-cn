@@ -5,6 +5,7 @@ keywords: target, initiator, port, zoning
 summary: FLI 迁移要求 NetApp 存储访问源存储 LUN 。这是通过使用目标存储的启动程序端口对源存储的目标端口进行分区来实现的。 
 ---
 = 目标和启动程序端口分区
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

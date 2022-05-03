@@ -5,6 +5,7 @@ keywords: site, survey and planning worksheet, source luns tab
 summary: 在站点调查和规划工作表中，您应设置一个选项卡，其中包含有关源 LUN 的信息。 
 ---
 = 站点调查和规划工作表源 LUN 选项卡
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: remove, source array, ontap
 summary: 以下步骤说明了如何在 FLI 迁移完成后从目标阵列中删除源阵列。 
 ---
 = 从 ONTAP 中删除源阵列
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

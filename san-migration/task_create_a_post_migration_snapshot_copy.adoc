@@ -5,6 +5,7 @@ keywords: Create, post-migration, snapshot, copies
 summary: 您可以创建迁移后 Snapshot 副本，以便于稍后根据需要进行还原。 
 ---
 = 创建迁移后 Snapshot 副本
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

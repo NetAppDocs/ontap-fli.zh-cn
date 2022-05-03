@@ -5,6 +5,7 @@ keywords: test, migration, example, hitachi ams2100
 summary: 以下是使用 Hitachi AMS2100 作为外部阵列的测试迁移示例。根据涉及的阵列，主机操作系统和其他变量，您的步骤可能会有所不同。 
 ---
 = 使用 Hitachi AMS2100 测试迁移示例
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

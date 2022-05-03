@@ -5,6 +5,7 @@ keywords: migration, types, supported, foreign, lun, import
 summary: FLI 支持四种主要类型的迁移工作流：联机，脱机，过渡和自动化。您选择要使用的工作流取决于您的配置和其他因素。 
 ---
 = 外部 LUN 导入支持的迁移类型
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

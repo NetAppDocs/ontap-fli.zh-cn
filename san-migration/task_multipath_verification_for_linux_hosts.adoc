@@ -5,6 +5,7 @@ keywords: multipath, verification, linux, hosts
 summary: 在外部 LUN 导入（ Foreign LUN Import ， FLI ）过程中，您应验证主机上是否已配置多路径并正常运行。 
 ---
 = Linux 主机的多路径验证
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

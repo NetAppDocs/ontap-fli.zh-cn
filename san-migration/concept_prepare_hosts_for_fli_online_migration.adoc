@@ -5,6 +5,7 @@ keywords: prepare, hosts, fli, online, migration
 summary: FLI 联机执行阶段包括准备迁移主机，以便采用受支持的配置。 
 ---
 = 为 FLI 联机迁移准备主机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

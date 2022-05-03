@@ -5,6 +5,7 @@ keywords: clear, scsi-3, persistent, reservations
 summary: 如果您使用的是 Windows 集群，则需要删除仲裁磁盘的 SCSI-3 预留，即使所有集群主机均脱机也是如此。 
 ---
 = 清除 SCSI-3 持久预留
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

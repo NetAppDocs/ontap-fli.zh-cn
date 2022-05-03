@@ -5,6 +5,7 @@ keywords: execute, phase, workflows
 summary: 执行阶段侧重于执行 FLI 脱机或联机迁移的 LUN 迁移任务。 
 ---
 = 执行阶段工作流
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

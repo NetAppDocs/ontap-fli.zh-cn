@@ -5,6 +5,7 @@ keywords: foreign, lun, import, features
 summary: FLI 功能允许您将数据从第三方 SAN 存储迁移到 ONTAP 系统。FLI 迁移功能支持多种流程和系统。 
 ---
 = 外部 LUN 导入功能
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

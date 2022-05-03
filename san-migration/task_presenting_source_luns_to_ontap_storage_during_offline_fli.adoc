@@ -5,6 +5,7 @@ keywords: present, source luns, ontap storage, fli
 summary: 在脱机 FLI 过程中，您必须将源 LUN 呈现给 ONTAP 存储。 
 ---
 = 在 FLI 期间向 ONTAP 存储提供源 LUN
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
