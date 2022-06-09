@@ -11,24 +11,24 @@ summary: FLI 联机工作流可用于连接到运行以下操作系统之一的�
 
 
 [role="lead"]
-FLI 联机工作流可用于连接到运行以下操作系统之一的主机的 LUN 。
+从列出的版本开始、可对连接到运行以下操作系统之一的主机的LUN使用FLI联机工作流。
 
 . Microsoft （支持列出的所有服务器版本）：
 +
-** Windows Server 2008 （包括 Windows Server 故障转移集群）
-** Microsoft Hyper-V Server 2008
-** Windows Server 2012 （包括 Windows Server 2012 集群）
-** Microsoft Hyper-V Server 2012
+** Windows Server 2008及更高版本(包括Windows Server故障转移集群)
+** Microsoft Hyper-V Server 2008及更高版本
+** Windows Server 2012及更高版本(包括Windows Server 2012集群)
+** Microsoft Hyper-V Server 2012及更高版本
 
 
 . VMware ：
 +
-** 所有 ESXi 5.x 版本
+** 所有ESXi 5.x及更高版本
 
 
 . Linux ：
 +
-** Red Hat Enterprise Linux （ RHEL ） 5.x
+** Red Hat Enterprise Linux (RHEL) 5.x及更高版本
 
 
 

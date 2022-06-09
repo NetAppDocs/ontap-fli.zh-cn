@@ -844,14 +844,8 @@
   <block id="7e213ad16c9a59879f7a880ec25c8ff7" category="summary">FLI 联机工作流可用于连接到运行以下操作系统之一的主机的 LUN 。</block>
   <block id="756160f9a9295d0e21e6988cef242402" category="doc">FLI 联机支持的主机操作系统</block>
   <block id="1e56b897e242c05a6e77f4537273968f" category="list-text">Microsoft （支持列出的所有服务器版本）：</block>
-  <block id="b378e5b6db47fe787cbe646bc532a609" category="list-text">Windows Server 2008 （包括 Windows Server 故障转移集群）</block>
-  <block id="1f1a25e978da1c016c63c585cbc52e10" category="list-text">Microsoft Hyper-V Server 2008</block>
-  <block id="d50eec67d4e661b4eb86bf373683aaf4" category="list-text">Windows Server 2012 （包括 Windows Server 2012 集群）</block>
-  <block id="92a116390e39269df1b7c4595a775509" category="list-text">Microsoft Hyper-V Server 2012</block>
   <block id="606e3e56eb022ae65c21a710d0cbdd26" category="list-text">VMware ：</block>
-  <block id="452277a14e52bd8c8634c1b09b21ba6f" category="list-text">所有 ESXi 5.x 版本</block>
   <block id="82c6ab7bfe1f9fbf789b4f7f57b56c24" category="list-text">Linux ：</block>
-  <block id="7b89b319ca7225ccbc9bb3fd9f5537ac" category="list-text">Red Hat Enterprise Linux （ RHEL ） 5.x</block>
   <block id="28bbf286cd32c930a00eb1e625c5bff0" category="paragraph">请考虑对上述列表之外的主机操作系统使用 FLI 脱机工作流。</block>
   <block id="f928088b6e4c30670d8787a5fced1d76" category="paragraph">如果 NetApp 控制器目标为 MetroCluster ，请勿使用联机工作流。如果在主动联机导入期间发生站点故障转移，则源阵列的写入直通可能会失败，从而导致验证失败并可能丢失数据。如果目标为 MetroCluster ，请使用 FLI 脱机过程，而不管主机操作系统如何。</block>
   <block id="1e9a8e71031d88390d2ab79f264cd54d" category="summary">以下步骤说明了如何在 FLI 迁移完成后从源阵列中删除目标阵列配置。</block>
@@ -1346,4 +1340,11 @@
   <block id="dd3918c571093dff2b94f7cef5066d01" category="inline-link-macro">NetApp.com</block>
   <block id="5db028f960e19ec42098e3252e4fb1e3" category="paragraph">有关本地化内容的重要信息，请参见 <block ref="7e89bb7928e951b6f80ad1dab5c58475" category="inline-link-macro-rx"></block></block>
   <block id="d648f2a68a54fd1b3329efc3cf24d29c" category="sidebar">法律声明</block>
+  <block id="1e0480ea9333345d355b03ac0ed8c596" category="paragraph">从列出的版本开始、可对连接到运行以下操作系统之一的主机的LUN使用FLI联机工作流。</block>
+  <block id="699bb4733c472f6589e0d75a44cab002" category="list-text">Windows Server 2008及更高版本(包括Windows Server故障转移集群)</block>
+  <block id="16cebcaaa355d1d005ebb411931e91fa" category="list-text">Microsoft Hyper-V Server 2008及更高版本</block>
+  <block id="7baf75e8ff99eb049dc1229f036e6323" category="list-text">Windows Server 2012及更高版本(包括Windows Server 2012集群)</block>
+  <block id="fa2f5a6c59acbca7d864db464d96c18d" category="list-text">Microsoft Hyper-V Server 2012及更高版本</block>
+  <block id="3599871babc6dc6561e34cba9300055d" category="list-text">所有ESXi 5.x及更高版本</block>
+  <block id="fa55a1211374f77dff267c22b6a483bb" category="list-text">Red Hat Enterprise Linux (RHEL) 5.x及更高版本</block>
 </blocks>
