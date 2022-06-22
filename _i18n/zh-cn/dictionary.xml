@@ -578,7 +578,6 @@
   <block id="af164dd8145e1764ed12737fe49cab35" category="doc">使用 SAN LUN 迁移应用程序检查支持的 FLI 配置</block>
   <block id="a1a90dff83c0faf191818ad546b59252" category="list-text">转到 NetApp 支持站点。</block>
   <block id="159d7130f3d54d274afe13039b4ede40" category="list-text">从对源阵列具有块访问权限的 FC 或 iSCSI Linux 主机运行应用程序。</block>
-  <block id="26e7b511886f2cfa073850c2af28b79e" category="paragraph">如果可以对外部源阵列进行限定，则会显示一个绿色复选标记。如果外部源阵列无法进行限定，则会显示红色的 X 。如果您的阵列不符合条件，您可以联系 NetApp 支持部门以获得更多帮助。</block>
   <block id="0494482584ffb3a3845ebc27d94cf2c6" category="summary">脱机迁移工作流在迁移过程的执行阶段执行。脱机工作流图显示了在主机，网络结构，目标存储和源存储上执行的任务。</block>
   <block id="6696f8ecf38c4df0054e0dc95a616d3d" category="doc">脱机迁移工作流</block>
   <block id="9295fcebcba793fecd195c670dd2da3b" category="image-alt">脱机迁移 1.</block>
@@ -1347,4 +1346,5 @@
   <block id="fa2f5a6c59acbca7d864db464d96c18d" category="list-text">Microsoft Hyper-V Server 2012及更高版本</block>
   <block id="3599871babc6dc6561e34cba9300055d" category="list-text">所有ESXi 5.x及更高版本</block>
   <block id="fa55a1211374f77dff267c22b6a483bb" category="list-text">Red Hat Enterprise Linux (RHEL) 5.x及更高版本</block>
+  <block id="08f64b69a1ef937409895057222834ca" category="paragraph">如果可以对外部源阵列进行限定，则会显示一个绿色复选标记。如果外部源阵列无法进行限定，则会显示红色的 X 。</block>
 </blocks>
