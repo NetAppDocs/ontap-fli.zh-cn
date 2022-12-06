@@ -185,10 +185,8 @@
   <block id="b86568f0ab2436e9a4ea2cfd9d49fcd5" category="paragraph">此图是双网络结构的存储布线示例。</block>
   <block id="e0bf412f811af5d2ff097a082cf5c13d" category="image-alt">物理布线 1.</block>
   <block id="3798557e78dc0ab485623d8d2387bacb" category="paragraph">请遵循以下布线最佳实践：</block>
-  <block id="ba960e8e33af1699383d16d8dd33e718" category="list-text">按照 _NetApp FlexArray 虚拟化安装要求和参考指南 _ 中所述，使用 NetApp FlexArray 最佳实践为源存储和目标存储布线。</block>
   <block id="363d30e9a00e0b43fea3e9ac48cdf525" category="list-text">要连接到网络结构， ONTAP 存储需要可用的启动程序端口。如果不存在可用端口，请配置启动程序端口。</block>
   <block id="70894d5c0a41692947485c0d0a19e60a" category="inline-link">FlexArray 虚拟化安装要求和参考</block>
-  <block id="458876feaed6a906ecafed4badb622d0" category="paragraph"><block ref="458876feaed6a906ecafed4badb622d0" category="inline-link-rx"></block></block>
   <block id="5944df1e5ed1e52e4fe16947c1409df9" category="summary">此操作步骤显示了如何从 Cisco 网络结构区域集删除源存储和主机区域。</block>
   <block id="86a4dc023813209073ffb6165caf17d6" category="paragraph">示例的分区名称为 _rx21_AMS2100_ 。</block>
   <block id="bf3c5489c33b59824c4bd80dbd544bb9" category="list-text">激活网络结构 A 中的区域集</block>
@@ -246,16 +244,7 @@
   <block id="8c4a124ca6c953340797ff9481b86241" category="doc">ONTAP 8.3.1 中的性能增强功能</block>
   <block id="e0e081b71a49cfb03b7e6586a50b4ec6" category="paragraph">使用 `instance` switch with `lun import show` 可显示扩展的 LUN 导入信息，包括限制和 QoS 信息。</block>
   <block id="1110e5db0b802b9d4685f94410bce548" category="paragraph">`当前吞吐量` 的值显示导入或验证操作的当前吞吐量速率。用户应先检查此设置，然后再设置限制值。未运行时为空。如果使用了 LUN 导入限制，则 `QoS 策略组` 会显示 QoS 组。</block>
-  <block id="197e64993a9bd9d23c9208a3a59ae427" category="summary">本指南面向有意将数据从外部阵列迁移到 ONTAP 或有意将 LUN 从 NetApp 7- 模式阵列过渡到 ONTAP 的 NetApp 客户。</block>
   <block id="f2b84afd0523a6df7547c404aa3647d8" category="doc">目标受众</block>
-  <block id="6a0084c43e3b07ca1669a87939d166f2" category="paragraph">本指南的其他受众如下：</block>
-  <block id="76b24a3784b33e4ce635868ce091da49" category="list-text">NetApp 异构存储区域网络（ HeSAN ）迁移服务的客户</block>
-  <block id="f03c5a57377de686e50617ce08b51eca" category="list-text">NetApp 销售工程师（ SE ）</block>
-  <block id="966055f7cebb6103e11fa83f105dac29" category="list-text">咨询销售工程师（ CSE ）</block>
-  <block id="1295b40a9546cbd753ad696fafca430f" category="list-text">专业服务工程师（ PSE ）</block>
-  <block id="244dfbf3a07dab1c6bbe4aebed28e520" category="list-text">专业服务顾问（ PSC ）</block>
-  <block id="af9825daba7879a001106256849f17ac" category="list-text">渠道合作伙伴工程师</block>
-  <block id="36fa43d399c70772782de29dfdc1bfcf" category="paragraph">本指南的读者应熟悉常见的 SAN 概念和过程，包括分区， LUN 屏蔽，需要迁移其 LUN 的主机操作系统， ONTAP 以及源第三方阵列。</block>
   <block id="da0ef72dfd2318a7b3ea7fd19201f389" category="summary">您可以选择在启动此工作流之前重新启动主机，以验证主机是否处于已知正常状态。</block>
   <block id="76f2c890386ab31204bf3f74245ae16c" category="doc">正在重新启动主机</block>
   <block id="9423c8dcb51a54db4db7f2071a9575e8" category="paragraph">现在也是创建 Snapshot 副本以便于稍后根据需要进行还原的好时机。要在重新启动后验证服务器配置是否持久且原始，请完成以下步骤：</block>
@@ -385,7 +374,6 @@
   <block id="18f3717603a0469912a341c387795b1b" category="list-text">激活生产网络结构 A 中的分区</block>
   <block id="0d1ab32d2e734165cc6fa60ad4e92f19" category="summary">这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。</block>
   <block id="d0d7a8d464c5eb9f10cf2c7f522fdff3" category="doc">FLI 联机工作流</block>
-  <block id="888a5ac5077bd0a2595ac8d4d57343b6" category="paragraph">此示例中的源阵列是 EMC VNX5500 。下面的示例应全面介绍 FLI 在线流程，并可使用本指南前面部分所述的通用信息和流程。联机工作流具有以下任务：</block>
   <block id="207c99dbe101d7af2533d861e39077d9" category="list-text">正在准备 LUN 路径</block>
   <block id="de95ff0b767f79557fe9a9b692d65ab1" category="list-text">执行中断转换</block>
   <block id="3892b30160c9653f481e358d32fbc22f" category="list-text">导入源 LUN 数据</block>
@@ -602,9 +590,7 @@
   <block id="a240b24dd20a7186ef47310e58829086" category="list-text">EMC 使用 "`启动程序记录` " 或 " `s存储组 " 。`</block>
   <block id="62cc656c82973e8ebe8c1a1926a6d435" category="list-text">NetApp 使用 "`igroup.` "</block>
   <block id="425d84ebe29c9da22fd1d2621c3dc21e" category="paragraph">无论使用何种命名方式，启动程序组的目的都是通过共享相同 LUN 映射的 WWPN 来标识启动程序。</block>
-  <block id="de3f6d89ed583f1dd9cf88e665b994b9" category="paragraph">要定义启动程序组，请查看阵列文档，了解如何设置 LUN 屏蔽（ igroup/ 主机组 / 存储组等）。此外，您还可以查看《第三 FlexArray 方存储 _Storage 虚拟化实施指南》，了解第三方存储配置要求。</block>
   <block id="2e97596bf006ab4a63eb1ab1532e9166" category="inline-link">第三方存储的 FlexArray 虚拟化实施</block>
-  <block id="cac75528257d480d7397192a839ba0d5" category="paragraph"><block ref="cac75528257d480d7397192a839ba0d5" category="inline-link-rx"></block></block>
   <block id="812fbde33504c45051c067a08f4f1901" category="summary">要为 FLI 迁移配置 ONTAP 存储，您应根据规划信息和建议的最佳实践将源存储连接到网络结构。</block>
   <block id="84a737f44c8713a3904d04f2744e05c1" category="doc">为 FLI 迁移布线最佳实践</block>
   <block id="2fe64cf0bee4b9242f1610457f3a8f7b" category="paragraph">在为 FLI 迁移配置 ONTAP 存储时，建议遵循以下布线最佳实践。</block>
@@ -1251,7 +1237,6 @@
   <block id="8129cc4d9aa314cede44f0db47578d65" category="list-text">FLI 过渡后任务</block>
   <block id="ed7cbae072fb6b5459833b1aaf0b2b9c" category="summary">外部 LUN 导入（ Foreign LUN Import ， FLI ）是 ONTAP 中内置的一项功能，允许用户以简单高效的方式将数据从外部阵列 LUN 导入到 NetApp LUN 。</block>
   <block id="bd6d110624152bef80bfb3a40415afcb" category="doc">外部 LUN 导入概述</block>
-  <block id="5ae42afc477ebe652aee70c0421e761c" category="paragraph">所有 FLI 迁移都在 LUN 级别运行。FLI 是一种严格基于块的工具；不支持基于文件，记录， NFS 和 CIFS 的迁移。有关文件级协议的其他迁移方法的讨论，例如 NFS 和 CIFS/SMB ，请查看 _Data Migration Tools 快速参考指南 _ 。</block>
   <block id="e545390b6a02c90809e3ba41d6cd0d49" category="paragraph">FLI 利用 NetApp FlexArray ® 技术发现外部 RAID 阵列 LUN 并从中提取数据。FlexArray 允许 NetApp ONTAP 控制器在一个或多个第三方阵列前充当启动程序。FlexArray 可以将这些阵列中的 LUN 作为后端存储进行挂载，然后将这些 LUN 中的空间作为 NetApp 统一存储（允许 FCP ， FCoE ， iSCSI ， NFS 和 CIFS/SMB 协议访问）提供给 SAN 或 NAS 环境中的主机。</block>
   <block id="19f6373fc1d63d6ca70966941c8c6838" category="paragraph">FLI 不需要 FlexArray 许可证。FLI 利用 FlexArray 技术将外部 LUN 复制到 NetApp ONTAP 阵列，然后允许使用该 LUN 的主机和应用程序指向当前托管相关 LUN 的 NetApp 阵列。虽然 ONTAP 不再需要专业服务运行的迁移，但 NetApp 强烈建议专业服务人员参与范围界定，规划和培训，以满足最简单的迁移需求。</block>
   <block id="603139ad94ee4b366078d1718edd6cc8" category="paragraph">FLI 是为将 SAN LUN 迁移到 ONTAP 而开发的。FLI 支持一系列迁移要求，包括但不限于以下内容：</block>
@@ -1261,13 +1246,10 @@
   <block id="587d7ded98be7df0f5f867261e578e9e" category="paragraph">此外， 7- 模式到 ONTAP 的过渡操作步骤可以将聚合从 32 位转换为 64 位，修复对齐问题，并将 LUN 作为一项操作进行迁移。</block>
   <block id="e54685159c7474efa74aedc4b8c29106" category="inline-xref-macro">LUN 要求和限制</block>
   <block id="4c905b9a5d9837a1d1309ec0bbc65581" category="paragraph">FLI 使 NetApp 存储能够发现要导入以进行数据迁移的 LUN 。外部 LUN 在 NetApp 存储上显示为磁盘，并且没有自动为其分配所有权，因此不会错误地覆盖用户数据。包含外部阵列 LUN 的磁盘必须标记为外部。要对 NetApp 存储使用 FLI ，必须严格遵守配置外部阵列 LUN 的规则。请参见以下主题： <block ref="0c1805ddb0e0c88224858f6489806cc7" category="inline-xref-macro-rx"></block>。</block>
-  <block id="e848157e470882bb6cecc83cbc92062d" category="paragraph">FLI 要求每个控制器上至少有一个物理 FC 端口，并使 LUN 直接在启动程序模式下迁移。首选两个端口，每个网络结构一个，但可以使用一个端口。这些端口用于连接到源阵列，需要进行分区和屏蔽，才能查看和挂载源 LUN 。如果需要将端口从目标更改为启动程序，请参见 _FC 虚拟化安装要求和参考指南 _ ，了解将 FlexArray 端口从目标转换为启动程序的过程。</block>
   <block id="eab5ce4cf7af1499d92d1389fefa2f66" category="paragraph">FLI 迁移可以脱机执行，这会在导入期间中断操作，也可以联机执行，这主要是无中断的。</block>
   <block id="b0b8376daf73a10ceae233832249516f" category="paragraph">此图显示了 FLI 脱机数据迁移，其中主机将脱机进行迁移。NetApp 阵列直接从第三方阵列复制数据。</block>
   <block id="3b1a98b47b97af6d96e1b57d86c0ef45" category="image-alt">FLI 数据迁移概述</block>
   <block id="4ab82376627d3c92c29ab3d0e5562860" category="paragraph">此图显示了 FLI 联机数据迁移。主机已连接到现在托管新 LUN 的 NetApp 控制器。然后，可以在导入期间恢复并继续执行主机操作。</block>
-  <block id="41472df39787eec959ea5cef1aad8ef3" category="inline-link">《数据迁移工具快速参考指南》</block>
-  <block id="b4ad04dd5f331d7793a4a573eb0f12cc" category="paragraph"><block ref="b4ad04dd5f331d7793a4a573eb0f12cc" category="inline-link-rx"></block></block>
   <block id="3e93c4ba8debcbb0556af1cd7ab1b741" category="summary">在开始 FLI 迁移之前， LUN 应满足以下要求。</block>
   <block id="e80e48acabbfbfabe9d26f77e6893f2e" category="list-text">FLI 要求每个控制器上至少有一个 FC 端口，并且要使 LUN 直接在启动程序模式下迁移。</block>
   <block id="1aa4f2a052fd81ec3e8e4d05af38fa3d" category="list-text">必须在目标阵列上将外部 LUN 标记为外部，以防止从 ONTAP 进行分配。</block>
@@ -1348,4 +1330,14 @@
   <block id="fa55a1211374f77dff267c22b6a483bb" category="list-text">Red Hat Enterprise Linux (RHEL) 5.x及更高版本</block>
   <block id="08f64b69a1ef937409895057222834ca" category="paragraph">如果可以对外部源阵列进行限定，则会显示一个绿色复选标记。如果外部源阵列无法进行限定，则会显示红色的 X 。</block>
   <block id="d1b92a4930d50c6ed1038655db0d2684" category="sidebar">所有ONTAP 产品文档</block>
+  <block id="ea55df179f5c8f2dc6d72bdcb7fe2e57" category="summary">您可以使用此内容帮助您将数据从外部阵列迁移到ONTAP 、或者将LUN从NetApp 7-模式阵列过渡到ONTAP。</block>
+  <block id="401497503074d7ec7406c3ce5a48dbc8" category="paragraph">您应熟悉常见的SAN概念和过程、包括分区、LUN屏蔽、需要迁移其LUN的主机操作系统、ONTAP 以及源第三方阵列。</block>
+  <block id="bccfda2dd766fcf9db897075f70d113a" category="inline-link">FlexArray 虚拟化安装要求</block>
+  <block id="8899c4f28badd5881e532a34f2c0d2d7" category="list-text">按照中所述、使用NetApp FlexArray 最佳实践为源存储和目标存储布线<block ref="af4972f8b97e166c7432d033e734d43e" category="inline-link-rx"></block>。</block>
+  <block id="b0f36dbc8cbf7c56840f51534500c27b" category="inline-link">数据迁移工具快速参考</block>
+  <block id="baca4f7d8c0223a33622dbfb8e5e38de" category="paragraph">所有 FLI 迁移都在 LUN 级别运行。FLI 是一种严格基于块的工具；不支持基于文件，记录， NFS 和 CIFS 的迁移。有关文件级协议的其他迁移方法的讨论、例如NFS和CIFS/SMB、请查看<block ref="e415da1b4972963be10dbe349c4850a6" category="inline-link-rx"></block>。</block>
+  <block id="e0a83b8c461db09706d982eeea30d1df" category="paragraph">FLI 要求每个控制器上至少有一个物理 FC 端口，并使 LUN 直接在启动程序模式下迁移。首选两个端口，每个网络结构一个，但可以使用一个端口。这些端口用于连接到源阵列，需要进行分区和屏蔽，才能查看和挂载源 LUN 。如果需要将端口从目标更改为启动程序、请参见<block ref="66f8c243fef55cbf3f49d4ec76027b8d" category="inline-link-rx"></block> 查看将FC端口从目标转换为启动程序的过程。</block>
+  <block id="7a6d059da8a56b5bb032ab555e452fb8" category="paragraph">这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。此示例中的源阵列是 EMC VNX5500 。</block>
+  <block id="b107b92b08e1507c6d61c65a86b28086" category="paragraph">联机工作流具有以下任务：</block>
+  <block id="0acd87400826433082ab90260e9cc109" category="paragraph">要定义启动程序组，请查看阵列文档，了解如何设置 LUN 屏蔽（ igroup/ 主机组 / 存储组等）。您也可以查看<block ref="737823659babb212ffbc8948b616644f" category="inline-link-rx"></block> 以满足第三方存储配置要求。</block>
 </blocks>

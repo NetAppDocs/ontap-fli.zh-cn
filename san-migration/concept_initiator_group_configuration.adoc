@@ -30,8 +30,4 @@ NOTE: 本节中的示例使用 Hitachi Data Systems （ HDS ） AMS 阵列，因
 
 无论使用何种命名方式，启动程序组的目的都是通过共享相同 LUN 映射的 WWPN 来标识启动程序。
 
-要定义启动程序组，请查看阵列文档，了解如何设置 LUN 屏蔽（ igroup/ 主机组 / 存储组等）。此外，您还可以查看《第三 FlexArray 方存储 _Storage 虚拟化实施指南》，了解第三方存储配置要求。
-
-* 相关信息 *
-
-https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]
+要定义启动程序组，请查看阵列文档，了解如何设置 LUN 屏蔽（ igroup/ 主机组 / 存储组等）。您也可以查看 https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"] 以满足第三方存储配置要求。
