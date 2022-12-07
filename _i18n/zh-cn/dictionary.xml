@@ -1332,12 +1332,11 @@
   <block id="d1b92a4930d50c6ed1038655db0d2684" category="sidebar">所有ONTAP 产品文档</block>
   <block id="ea55df179f5c8f2dc6d72bdcb7fe2e57" category="summary">您可以使用此内容帮助您将数据从外部阵列迁移到ONTAP 、或者将LUN从NetApp 7-模式阵列过渡到ONTAP。</block>
   <block id="401497503074d7ec7406c3ce5a48dbc8" category="paragraph">您应熟悉常见的SAN概念和过程、包括分区、LUN屏蔽、需要迁移其LUN的主机操作系统、ONTAP 以及源第三方阵列。</block>
-  <block id="bccfda2dd766fcf9db897075f70d113a" category="inline-link">FlexArray 虚拟化安装要求</block>
-  <block id="8899c4f28badd5881e532a34f2c0d2d7" category="list-text">按照中所述、使用NetApp FlexArray 最佳实践为源存储和目标存储布线<block ref="af4972f8b97e166c7432d033e734d43e" category="inline-link-rx"></block>。</block>
   <block id="b0f36dbc8cbf7c56840f51534500c27b" category="inline-link">数据迁移工具快速参考</block>
   <block id="baca4f7d8c0223a33622dbfb8e5e38de" category="paragraph">所有 FLI 迁移都在 LUN 级别运行。FLI 是一种严格基于块的工具；不支持基于文件，记录， NFS 和 CIFS 的迁移。有关文件级协议的其他迁移方法的讨论、例如NFS和CIFS/SMB、请查看<block ref="e415da1b4972963be10dbe349c4850a6" category="inline-link-rx"></block>。</block>
   <block id="e0a83b8c461db09706d982eeea30d1df" category="paragraph">FLI 要求每个控制器上至少有一个物理 FC 端口，并使 LUN 直接在启动程序模式下迁移。首选两个端口，每个网络结构一个，但可以使用一个端口。这些端口用于连接到源阵列，需要进行分区和屏蔽，才能查看和挂载源 LUN 。如果需要将端口从目标更改为启动程序、请参见<block ref="66f8c243fef55cbf3f49d4ec76027b8d" category="inline-link-rx"></block> 查看将FC端口从目标转换为启动程序的过程。</block>
   <block id="7a6d059da8a56b5bb032ab555e452fb8" category="paragraph">这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。此示例中的源阵列是 EMC VNX5500 。</block>
   <block id="b107b92b08e1507c6d61c65a86b28086" category="paragraph">联机工作流具有以下任务：</block>
-  <block id="0acd87400826433082ab90260e9cc109" category="paragraph">要定义启动程序组，请查看阵列文档，了解如何设置 LUN 屏蔽（ igroup/ 主机组 / 存储组等）。您也可以查看<block ref="737823659babb212ffbc8948b616644f" category="inline-link-rx"></block> 以满足第三方存储配置要求。</block>
+  <block id="d65237d15ed3f23354581867591cc773" category="list-text">按照中所述、使用NetApp FlexArray 最佳实践为源存储和目标存储布线<block ref="66f8c243fef55cbf3f49d4ec76027b8d" category="inline-link-rx"></block>。</block>
+  <block id="6c98897f95672b5dde701dffbd4b05a0" category="paragraph">要定义启动程序组，请查看阵列文档，了解如何设置 LUN 屏蔽（ igroup/ 主机组 / 存储组等）。您也可以查看<block ref="737823659babb212ffbc8948b616644f" category="inline-link-rx"></block> 以满足第三方存储配置要求。</block>
 </blocks>
