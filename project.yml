@@ -14,18 +14,6 @@ sidebar:
   - section: san-migration
   - title: 法律声明
     url: "/reference_legal_notices.html"
-homepage:
-  tiles:
-  - title: FLI 工作流
-    links:
-    - title: 脱机工作流
-      url: "/san-migration/concept_fli_offline_workflow.html"
-    - title: 联机工作流
-      url: "/san-migration/concept_fli_online_workflow.html"
-    - title: FLI 7- 模式到 ONTAP 的过渡工作流
-      url: "/san-migration/concept_fli_7_mode_to_ontap_transition_workflow.html"
-    - title: 使用工作流自动化（ WFA ）的 FLI
-      url: "/san-migration/concept_fli_using_workflow_automation_wfa.html"
 product-family:
   name: ONTAP
   repo: ontap-family
