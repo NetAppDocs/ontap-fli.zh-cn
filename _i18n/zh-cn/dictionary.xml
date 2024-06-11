@@ -1127,16 +1127,6 @@
   <block id="ba8f47747c3717527073a5c3d8eacb92" category="list-text">验证迁移结果（可选）</block>
   <block id="2c9d6f9fe74e21cf8104c62c4ad61ceb" category="list-text">FLI 脱机迁移后任务</block>
   <block id="ee39d65a1817160f3851b1ca24746c37" category="doc">Windows 主机的多路径验证</block>
-  <block id="a4354633cd0119e1314f471d610ea422" category="paragraph">对于 Windows 主机，请完成以下步骤。</block>
-  <block id="7ae3521b4795a0df6960b48844b8bede" category="list-text">打开磁盘管理。</block>
-  <block id="36a890df783d05afe153f32ada876698" category="list-text">在 Windows 桌面上，单击 * 启动 * 。</block>
-  <block id="39ddfcd62e9a6f642a082e4825c6ff4f" category="list-text">在程序列表中，单击 `diskmgmt` 。</block>
-  <block id="8b103231da97e357c81333af4cc4b45e" category="list-text">右键单击要验证多个路径的每个磁盘，然后单击 * 属性 * 。</block>
-  <block id="c0829f1bd784906bc2260964e7df8fcc" category="list-text">在 MPIO 选项卡上的 Select the MPIO policy 列表中，单击所有活动路径。</block>
-  <block id="08531ca1dfb960884b4522ff558a0b0d" category="image-alt">Windows MPIO 属性</block>
-  <block id="ef7d878aad6a3854d597cac990e1eb38" category="paragraph">要使用命令行验证多路径，请完成以下步骤：</block>
-  <block id="411ebc979cd3a229976869daa9547a33" category="list-text">打开 Windows 命令提示符。</block>
-  <block id="d4680a9ea0a2cb04b104f631e80d8264" category="list-text">运行 mpclaim.exe -v c ： \multipathconfig.txt 以捕获多路径配置。</block>
   <block id="cd2ea2efb6e484e9f76aa6c911f083cf" category="summary">在 " 站点调查和规划 " 工作表中，您应该有一个选项卡，其中包含有关 FAS 配置的信息。</block>
   <block id="d816e66cd7b51d120e7ae740a2d2b7d8" category="doc">站点调查和规划工作表 FAS 配置选项卡</block>
   <block id="cb27b289fa8961c6a3dcd409d777c342" category="paragraph">以下是如何设置 FAS 配置选项卡的示例。</block>
@@ -1283,9 +1273,6 @@
   <block id="3be720072e03679f7ed0f85258130b70" category="summary">ONTAP 外部 LUN 导入</block>
   <block id="dbd3f1a817d137c052ec01ef60940131" category="doc">ONTAP 外部 LUN 导入文档</block>
   <block id="9273826bb0d876c78b121ff252c71f0e" category="sidebar">ONTAP FLI 文档</block>
-  <block id="9a4c1be88c2720ce2a1f8a5fd2b27a5c" category="sidebar">FLI 工作流</block>
-  <block id="9661e4f0a38203cee0d0ec82dcba896f" category="sidebar">脱机工作流</block>
-  <block id="afec4ed45e968a4fe6c00ed1c1e83691" category="sidebar">联机工作流</block>
   <block id="88f3f903d8cfd4ec8cf08ee64f86504b" category="sidebar">使用 FLI 进行 SAN 迁移</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">概述</block>
   <block id="8d98bee06f527b9e9c395ead1ae98be3" category="sidebar">外部 LUN 导入</block>
@@ -1303,7 +1290,6 @@
   <block id="bcc013c3b737d7967f7bd1b74a363b17" category="list-text">在 * 编辑主机组 * 窗口中，选择为映射测试 LUN 而选择的所有目标端口，然后选择 * 强制设置为所有选定端口 * 。</block>
   <block id="8c3b55fef9c0e25a2fe01d90beac075c" category="list-text">从 * 已分配逻辑单元 * 窗口中选择测试 LUN 。</block>
   <block id="0115886be5608c75c55151af2dbe24c0" category="list-text">创建一份 ` /etc/vmware/hostd/vmInventory.xml` 的副本，并记下文件和 vmx 配置路径的内容。</block>
-  <block id="d0148f5ec81506fa10252eb7af3017af" category="list-text">在开始搜索字段中，键入 `diskmgmt.msc` 。</block>
   <block id="c4d603e30723f5c0bb46df3db3fd8bc6" category="list-text">创建目标 LUN 。`lun create` 命令可根据分区偏移检测大小和对齐，并使用 foreign-disk 参数相应地创建 LUN</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="summary">法律声明提供对版权声明、商标、专利等的访问。</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律声明</block>
@@ -1329,7 +1315,6 @@
   <block id="3599871babc6dc6561e34cba9300055d" category="list-text">所有ESXi 5.x及更高版本</block>
   <block id="fa55a1211374f77dff267c22b6a483bb" category="list-text">Red Hat Enterprise Linux (RHEL) 5.x及更高版本</block>
   <block id="08f64b69a1ef937409895057222834ca" category="paragraph">如果可以对外部源阵列进行限定，则会显示一个绿色复选标记。如果外部源阵列无法进行限定，则会显示红色的 X 。</block>
-  <block id="d1b92a4930d50c6ed1038655db0d2684" category="sidebar">所有ONTAP 产品文档</block>
   <block id="ea55df179f5c8f2dc6d72bdcb7fe2e57" category="summary">您可以使用此内容帮助您将数据从外部阵列迁移到ONTAP 、或者将LUN从NetApp 7-模式阵列过渡到ONTAP。</block>
   <block id="401497503074d7ec7406c3ce5a48dbc8" category="paragraph">您应熟悉常见的SAN概念和过程、包括分区、LUN屏蔽、需要迁移其LUN的主机操作系统、ONTAP 以及源第三方阵列。</block>
   <block id="b0f36dbc8cbf7c56840f51534500c27b" category="inline-link">数据迁移工具快速参考</block>
@@ -1339,4 +1324,6 @@
   <block id="b107b92b08e1507c6d61c65a86b28086" category="paragraph">联机工作流具有以下任务：</block>
   <block id="d65237d15ed3f23354581867591cc773" category="list-text">按照中所述、使用NetApp FlexArray 最佳实践为源存储和目标存储布线<block ref="66f8c243fef55cbf3f49d4ec76027b8d" category="inline-link-rx"></block>。</block>
   <block id="6c98897f95672b5dde701dffbd4b05a0" category="paragraph">要定义启动程序组，请查看阵列文档，了解如何设置 LUN 屏蔽（ igroup/ 主机组 / 存储组等）。您也可以查看<block ref="737823659babb212ffbc8948b616644f" category="inline-link-rx"></block> 以满足第三方存储配置要求。</block>
+  <block id="29b512fbc4379581cd2fd8694ca529c4" category="inline-link-macro">将Windows Server 2022与ONTAP 结合使用</block>
+  <block id="82e292bca3bfc1c57dd6f3dc796412a0" category="paragraph">有关Windows主机的分步说明、请参见的"多路径"一节 <block ref="cce832a1ed6f79df8eb06042aeeb6d79" category="inline-link-macro-rx"></block>。</block>
 </blocks>
