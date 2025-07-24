@@ -1,0 +1,61 @@
+---
+permalink: san-migration/map-source-lun-to-destination-online-migration.html 
+sidebar: sidebar 
+keywords: fli online, perform, disruptive, cutover 
+summary: 本示例介绍了为 FLI 联机迁移过程执行中断转换的一般步骤。 
+---
+= 将源 LUN 映射到ONTAP阵列以进行 FLI 在线迁移
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要从外部阵列 LUN 导入数据，必须先在外部阵列上取消映射该 LUN，然后将其重新映射到您的ONTAP存储系统。用于取消外部阵列上 LUN 映射的命令因阵列供应商而异。您应该遵循整个过程提供的步骤，并参阅外部阵列的文档以了解具体命令。
+
+.开始之前
+从 igroup 中移除主机（启动器）会影响映射到该 igroup 的所有 LUN。为防止外部阵列上的其他 LUN 中断，要迁移的 LUN 必须是映射到其 igroup 的唯一 LUN。如果还有其他 LUN 共享该 igroup，请将它们重新映射到其他 igroup，或者专门为要迁移的 LUN 创建一个新的 igroup。请参阅供应商文档以了解相应的命令。
+
+.步骤
+. 在外部阵列上，显示源 LUN 映射到的存储组。
++
+有关相应的命令，请参见供应商文档。
+
+. 如果要导入的 LUN 用于 ESXi 主机，请查看并遵循link:reference_esxi_caw_ats_remediation.html["ESXi CAW/ATS 修复"] 。
+. 从主机取消映射源 LUN 。
++
+[NOTE]
+====
+执行 `unmap` 命令后，中断将立即开始。通常，中断窗口可以用几分钟来衡量。中断窗口是指将主机重新指向新 NetApp 目标以及扫描 LUN 所用的时间。
+
+====
+. 验证主机启动程序是否已不再存在。
+. 在 ONTAP 集群上，使目标 LUN 联机并验证其是否已映射。
++
+[source, cli]
+----
+lun online -vserver <SVM_name> -path <volume_path|storage_unit_path>
+----
+. 验证 LUN 是否联机。
++
+[source, cli]
+----
+lun show -vserver <SVM_name>
+----
+. 重新扫描主机上的磁盘，找到 ONTAP 目标上的 LUN ，然后确认 DSM 已声明此 LUN 。
++
+[NOTE]
+====
+此时将结束中断窗口。
+
+====
+. 验证您是否可以查看所有预期路径，并检查事件日志以确认不存在任何错误。
+
+
+.结果
+此迁移的破坏性部分已完成，除非存在破坏性的未完成的主机修复任务（在分析和规划阶段确定）。
+
+LUN 已联机并已映射，主机现在正在挂载新的 ONTAP 托管 LUN 。读取将通过 ONTAP 阵列传递到源 LUN ，写入将同时写入新的 ONTAP 托管的 LUN 和原始源 LUN 。源 LUN 和目标 LUN 将保持同步，直到迁移完成且 LUN 关系已断开为止。
+
+.下一步是什么？
+link:task_fli_online_importing_the_data.html["从外部 LUN 导入数据"] 。

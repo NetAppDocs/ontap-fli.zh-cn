@@ -1,0 +1,27 @@
+---
+permalink: san-migration/prepare-host-online-migration.html 
+sidebar: sidebar 
+keywords: reboot, hosts, fli, online migration, prepare 
+summary: 在开始 FLI 离线迁移之前，您应该执行主机修复所需的任何步骤；然后，您应该重新启动主机并验证主机多路径是否配置正确。 
+---
+= 为ONTAP FLI 在线迁移准备主机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在开始外部 LUN 导入 (FLI) 联机迁移之前，您应该执行分析阶段确定的主机修复所需的所有步骤，例如安装主机连接工具包或 DSM。执行完所有必要的修复步骤后，建议您重新启动主机。
+
+.开始之前
+作为预防措施，请对主机数据进行快照复制，以便以后需要时进行恢复。
+
+.步骤
+. 执行任何必要的主机修复步骤。
+. 关闭所有打开的应用程序。
+. 重新启动主机。
+. 查看日志以了解错误。
+
+
+.下一步是什么？
+link:create-lun-import-relationship-online.html["创建LUN导入关系"] 。

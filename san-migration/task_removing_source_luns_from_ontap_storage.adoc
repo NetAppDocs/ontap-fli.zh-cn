@@ -28,6 +28,6 @@ image::../media/remove_source_luns_from_ontap_storage_2.png[编辑主机组]
 
 . 选择从分配的逻辑 LUN 迁移的主机 LUN 。对源 LUN 工作表中提及的每个主机使用 LUN 名称。在此处，选择 Windows 2012 ， RHEL 5.10 和 ESXi 5.5 主机的 LUN ，然后选择 * 删除 * 。
 +
-image::../media/remove_source_luns_from_ontap_storage_3.png[从 ONTAP 存储中删除源 LUN 3.]
+image::../media/remove_source_luns_from_ontap_storage_3.png[删除 LUN]
 
 

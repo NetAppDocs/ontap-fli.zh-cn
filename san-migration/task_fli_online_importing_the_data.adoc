@@ -2,28 +2,38 @@
 permalink: san-migration/task_fli_online_importing_the_data.html 
 sidebar: sidebar 
 keywords: fli online, import, data 
-summary: 以下是将数据从源 LUN 导入到目标 LUN 的步骤。 
+summary: 建立 LUN 导入关系并将主机从外部阵列切换到ONTAP阵列后，您可以将数据从外部源 LUN 导入到ONTAP目标 LUN。 
 ---
-= FLI online ：导入数据
+= 使用ONTAP FLI 在线迁移从外部阵列导入数据
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-以下是将数据从源 LUN 导入到目标 LUN 的步骤。
+建立 LUN 导入关系并将主机连接从外部阵列移动到ONTAP阵列后，您可以将数据从外部源 LUN 导入到ONTAP目标 LUN。
 
 .步骤
+. 将权限级别设置为高级。
++
+[source, cli]
+----
+set -privilege advanced
+----
+. 当系统询问您是否要继续时，输入 `y` 。
 . 启动迁移导入。
 +
-[listing]
+[source, cli]
 ----
-cluster::*> lun import start -vserver fli -path /vol/fli_vol/OnlineFLI_LUN
+lun import start -vserver <SVM_name> -path <volume_path|storage_unit_path>
 ----
 . 显示 FLI 状态。
 +
-[listing]
+[source, cli]
 ----
-cluster::*> lun import start -vserver fli -path /vol/fli_vol/OnlineFLI_LUN
+lun import show -vserver <SVM_name> -path <volume_path|storage_unit_path>
 ----
 
+
+.下一步是什么？
+link:task_fli_online_verifying_migration_results.html["验证迁移结果"] 。

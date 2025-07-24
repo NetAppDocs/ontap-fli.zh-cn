@@ -1,0 +1,59 @@
+---
+permalink: san-migration/configure-fc-adapter-initiator.html 
+sidebar: sidebar 
+keywords: online, migration, workflow 
+summary: '启动器模式用于将端口连接到磁带驱动器、磁带库或具有外部 LUN 导入 (FLI) 的第三方存储。' 
+---
+= 为启动器模式配置 FC 适配器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+启动器模式用于将端口连接到磁带驱动器、磁带库或具有外部 LUN 导入 (FLI) 功能的第三方存储。您需要将 FC 目标适配器转换为启动器模式才能将其用于 FLI。
+
+.开始之前
+* 必须将适配器上的 LIF 从其所属的任何端口集中删除。
+* 在将物理端口的特性从目标更改为启动器之前，必须迁移或销毁使用要修改的物理端口的每个存储虚拟机 (SVM) 的所有 LIF。
+
+
+.步骤
+. 从适配器中删除所有 LIF：
++
+[source, cli]
+----
+network interface delete -vserver <SVM_name> -lif <lif_name>,<lif_name>
+----
+. 使您的适配器脱机：
++
+[source, cli]
+----
+network fcp adapter modify -node <node_name> -adapter <adapter_port> -status-admin down
+----
++
+如果适配器没有脱机，您还可以从系统上相应的适配器端口移除电缆。
+
+. 将适配器从目标更改为启动器：
++
+[source, cli]
+----
+system hardware unified-connect modify -t initiator <adapter_port>
+----
+. 重新启动托管您更改的适配器的节点。
+. 验证 FC 端口是否配置为适合您的配置的正确状态：
++
+[source, cli]
+----
+system hardware unified-connect show
+----
+. 使适配器重新联机：
++
+[source, cli]
+----
+node run -node _node_name_ storage enable adapter <adapter_port>
+----
+
+
+.下一步是什么？
+使用ONTAP存储的启动器端口对外部阵列的目标端口进行区域划分。

@@ -1,0 +1,52 @@
+---
+permalink: san-migration/remove-lun-import-relationship-online.html 
+sidebar: sidebar 
+keywords: clean up, fli, online migration 
+summary: FLI 联机迁移完成后，您将删除 LUN 导入关系。 
+---
+= ONTAP FLI 在线迁移后删除 LUN 导入关系
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+外部 LUN 导入 (FLI) 在线迁移完成后，可以安全地移除 LUN 导入关系。此时，主机正在访问新的NetApp阵列，执行对新ONTAP LUN 的所有 I/O，并且源 LUN 不再使用。
+
+从ONTAP9.17.1 开始，支持使用 FLI 离线迁移对外来 LUN 进行数据迁移，具体方法如下 link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^].ASA r2 系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实现方面有所不同。ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。每个卷仅包含一个存储单元。因此，对于ASA r2 系统，您无需在 `-path`创建 LUN 时，请提供此选项；您应该包含存储单元路径。
+
+.步骤
+. 删除 LUN 导入关系。
++
+[source, cli]
+----
+lun import delete -vserver <SVM_name> -path <volume_path|storage_unit_path>
+----
+. 验证导入关系是否已被删除。
++
+[source, cli]
+----
+lun import show -vserver <SVM_name>
+----
+. 或者，查看事件日志以验证迁移结果。
++
+[source, cli]
+----
+event log show –event fli*
+----
++
+此示例显示用于查看 FLI 迁移结果的事件日志的命令的示例输出。
+
++
+[listing]
+----
+DataMig-ontap::*> event log  show –event fli*
+
+7/7/2014 18:37:21   DataMig-ontap-01 INFORMATIONAL fli.lun.verify.complete: Import verify of foreign LUN 83017542001E of size 42949672960 bytes from array model DF600F belonging to vendor HITACHI  with NetApp LUN QvChd+EUXoiS is successfully completed.
+7/7/2014 18:37:15   DataMig-ontap-01 INFORMATIONAL fli.lun.verify.complete: Import verify of foreign LUN 830175420015 of size 42949672960 bytes from array model DF600F belonging to vendor HITACHI  with NetApp LUN QvChd+EUXoiX is successfully completed.
+7/7/2014 18:02:21   DataMig-ontap-01 INFORMATIONAL fli.lun.import.complete: Import of foreign LUN 83017542000F of size 3221225472 bytes from array model DF600F belonging to vendor HITACHI  is successfully completed. Destination NetApp LUN is QvChd+EUXoiU.
+----
+
+
+.下一步是什么？
+link:concept_fli_online_post_migration_tasks.html["执行迁移后任务"] 。

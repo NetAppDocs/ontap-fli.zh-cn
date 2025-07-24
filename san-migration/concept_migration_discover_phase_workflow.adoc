@@ -15,7 +15,7 @@ summary: 迁移过程的发现阶段侧重于收集用于主机修复的信息�
 
 下图显示了发现阶段的工作流。
 
-image::../media/discover_phase_1.png[发现阶段 1]
+image::../media/discover_phase_1.png[发现阶段工作流程]
 
 下表列出了发现阶段任务。
 

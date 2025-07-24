@@ -13,7 +13,7 @@ summary: 脱机迁移工作流在迁移过程的执行阶段执行。脱机工�
 [role="lead"]
 脱机迁移工作流在迁移过程的执行阶段执行。脱机工作流图显示了在主机，网络结构，目标存储和源存储上执行的任务。
 
-image::../media/offline_migration_1.png[脱机迁移 1.]
+image::../media/offline_migration_1.png[FLI 离线迁移工作流程]
 
 下表列出了脱机工作流任务。
 

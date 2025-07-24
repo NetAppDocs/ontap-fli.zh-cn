@@ -30,7 +30,7 @@ FLI 是为将 SAN LUN 迁移到 ONTAP 而开发的。FLI 支持一系列迁移�
 
 FLI 使 NetApp 存储能够发现要导入以进行数据迁移的 LUN 。外部 LUN 在 NetApp 存储上显示为磁盘，并且没有自动为其分配所有权，因此不会错误地覆盖用户数据。包含外部阵列 LUN 的磁盘必须标记为外部。要对 NetApp 存储使用 FLI ，必须严格遵守配置外部阵列 LUN 的规则。请参见以下主题： xref:concept_lun_requirements_and_limitations.adoc[LUN 要求和限制]。
 
-FLI 要求每个控制器上至少有一个物理 FC 端口，并使 LUN 直接在启动程序模式下迁移。首选两个端口，每个网络结构一个，但可以使用一个端口。这些端口用于连接到源阵列，需要进行分区和屏蔽，才能查看和挂载源 LUN 。如果需要将端口从目标更改为启动程序、请参见 https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"] 查看将FC端口从目标转换为启动程序的过程。
+FLI 要求每个控制器上至少有一个物理 FC 端口，以便 LUN 在启动器模式下直接迁移。建议使用两个端口，每个光纤通道阵列一个，但也可以只使用一个端口。这些端口用于连接到源阵列，需要进行分区和屏蔽，以便能够查看和挂载源 LUN。如果需要将端口从目标更改为启动器，请参阅link:https://docs.netapp.com/us-en/ontap/san-admin/configure-fc-adapters-task.html["配置 FC 适配器"^] 。
 
 FLI 迁移可以脱机执行，这会在导入期间中断操作，也可以联机执行，这主要是无中断的。
 

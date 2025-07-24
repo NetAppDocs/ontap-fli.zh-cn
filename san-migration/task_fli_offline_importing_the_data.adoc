@@ -1,34 +1,58 @@
 ---
 permalink: san-migration/task_fli_offline_importing_the_data.html 
 sidebar: sidebar 
-keywords: fli offline, import data 
-summary: 以下步骤介绍如何将数据从源 LUN 导入到目标 LUN 。 
+keywords: fli offline, import data, migration 
+summary: 为 FLI 离线迁移创建源 LUN 和目标 LUN 之间的 LUN 导入关系后，您可以将数据从外部阵列导入到ONTAP存储系统。 
 ---
-= FLI offline ：导入数据
+= 使用ONTAP FLI 离线迁移从外部阵列导入数据
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-以下步骤介绍如何将数据从源 LUN 导入到目标 LUN 。
+为 FLI 离线迁移创建源 LUN 和目标 LUN 之间的 LUN 导入关系后，您可以将数据从外部阵列导入到ONTAP存储系统。
+
+从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 离线迁移对外部 LUN 进行数据迁移。ASAASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。每个卷仅包含一个存储单元。因此，对于ASA r2 系统，您无需在 `-path`创建 LUN 时，请提供此选项；您应该包含存储单元路径。
+
+详细了解link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^] 。
 
 .步骤
-. 启动迁移导入。
+. 开始从外部 LUN 向ONTAP LUN 导入数据。
++
+[source, cli]
+----
+lun import start –vserver <SVM_name> –path <volume_path|storage_unit_path>
+----
++
+此示例显示了启动对 *winvol* 卷和 *datamig* SVM 中名为 *bootlun*、*fdrive* 和 *gdrive* 的 LUN 的数据导入的命令。
+
 +
 [listing]
 ----
-DataMig-cmode::*> lun import start –vserver datamig –path /vol/winvol/bootlun
+DataMig-ontap::*> lun import start –vserver datamig –path /vol/winvol/bootlun
 
-DataMig-cmode::*> lun import start –vserver datamig –path /vol/winvol/fdrive
+DataMig-ontap::*> lun import start –vserver datamig –path /vol/winvol/fdrive
 
-DataMig-cmode::*> lun import start –vserver datamig –path /vol/winvol/gdrive
+DataMig-ontap::*> lun import start –vserver datamig –path /vol/winvol/gdrive
 ----
-. 监控导入进度。您可以将此处看到的进度与执行测试迁移后得出的迁移性能估计值进行比较。
+. 监控导入进度。
++
+[source, cli]
+----
+lun import show –vserver <SVM_name> –fields vserver, foreign-disk, path, admin-state, operational-state, percent-complete, imported-blocks, total-blocks, estimated-remaining-duration
+----
++
+您可以将此处看到的进度与执行测试迁移后制定的迁移性能估计进行比较。
+
++
+此示例显示用于监控 *datamig* SVM 的导入进度的命令。
+
 +
 [listing]
 ----
-DataMig-cmode::*> lun import show –vserver datamig –fields vserver, foreign-disk, path, admin-state, operational-state, percent-complete, imported-blocks, total-blocks, , estimated-remaining-duration
+DataMig-ontap::*> lun import show –vserver datamig –fields vserver, foreign-disk, path, admin-state, operational-state, percent-complete, imported-blocks, total-blocks, , estimated-remaining-duration
+
 vserver foreign-disk path               admin-state operational-state percent-complete imported-blocks total-blocks estimated-remaining-duration
 ------- ------------ ------------------ ----------- ----------------- ---------------- --------------- ------------ ----------------------------
 datamig 83017542000E /vol/winvol/fdrive started     completed         100              4194304         4194304      -
@@ -37,17 +61,24 @@ datamig 830175420010 /vol/linuxvol/bootlun
                                         started     in_progress       83               35107077        41943040     00:00:48
 3 entries were displayed.
 ----
-. 检查导入作业是否已成功完成。
+. 验证数据导入是否成功完成。
++
+[source, cli]
+----
+lun import show –vserver <SVM_name> –fields vserver, foreign-disk, path, admin-state, operational-state, percent-complete, imported-blocks, total-blocks, , estimated-remaining-duration
+----
++
+此示例显示用于验证 *datamig* SVM 的导入状态的命令。
+
 +
 [listing]
 ----
-DataMig-cmode::*> lun import show –vserver datamig –fields vserver, foreign-disk, path, admin-state, operational-state, percent-complete, imported-blocks, total-blocks, , estimated-remaining-duration
-vserver foreign-disk path               admin-state operational-state percent-complete imported-blocks total-blocks estimated-remaining-duration
-------- ------------ ------------------ ----------- ----------------- ---------------- --------------- ------------ ----------------------------
-datamig 83017542000E /vol/winvol/fdrive started     completed         100              4194304         4194304      -
-datamig 83017542000F /vol/winvol/gdrive started     completed         100              6291456         6291456      -
-datamig 830175420010 /vol/linuxvol/bootlun
-                                        started     completed         100
-3 entries were displayed.
+DataMig-ontap::*> lun import show –vserver datamig –fields vserver, foreign-disk, path, admin-state, operational-state, percent-complete, imported-blocks, total-blocks, , estimated-remaining-duration
 ----
++
+当导入作业成功完成时，*操作状态*显示为*已完成*。
 
+
+
+.下一步是什么？
+link:task_fli_offline_verifying_migration_results.html["验证迁移结果"] 。

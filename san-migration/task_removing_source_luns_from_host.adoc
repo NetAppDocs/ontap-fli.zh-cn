@@ -22,15 +22,15 @@ NOTE: 此任务会在示例中使用 _HDS AMS2100_ 阵列。如果您使用的�
 . 登录到 Hitachi Storage Navigator 模块化。
 . 选择要迁移的主机，然后选择 * 编辑主机组 * 。
 +
-image::../media/remove_source_luns_from_host_1.png[从主机 1 中删除源 LUN]
+image::../media/remove_source_luns_from_host_1.png[编辑主机组屏幕]
 
 . 选择 * 端口 * ，然后选择 * 强制设置 * 到所有选定端口。
 +
-image::../media/remove_source_luns_from_host_2.png[从主机 2 中删除源 LUN]
+image::../media/remove_source_luns_from_host_2.png[编辑主机组端口屏幕]
 
 . 选择从分配的逻辑 LUN 迁移的主机 LUN 。对源 LUN 工作表中提及的每个主机使用 LUN 名称。在此处，选择 Windows 2012 主机的 LUN ，然后选择 * 删除 * 。
 +
-image::../media/remove_source_luns_from_host_3.png[从主机 3 中删除源 LUN]
+image::../media/remove_source_luns_from_host_3.png[删除逻辑单元屏幕]
 
 . 对 Linux 和 VMware ESX 主机重复上述步骤。
 

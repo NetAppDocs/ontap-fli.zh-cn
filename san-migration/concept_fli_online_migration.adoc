@@ -13,7 +13,7 @@ summary: 联机迁移工作流在迁移过程的执行阶段执行。联机工�
 [role="lead"]
 联机迁移工作流在迁移过程的执行阶段执行。联机工作流图显示了在主机，网络结构，目标存储和源存储上执行的任务。
 
-image::../media/online_migration_1.png[联机迁移 1.]
+image::../media/online_migration_1.png[FlI 在线迁移工作流程]
 
 下表列出了联机工作流任务。
 

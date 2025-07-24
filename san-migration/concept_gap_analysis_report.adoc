@@ -21,4 +21,4 @@ summary: 差距分析是对客户当前环境和 NetApp 推荐环境的报告。
 
 以下是差距分析报告示例。
 
-image::../media/create_the_gap_analysis_report_1.png[创建差距分析报告 1]
+image::../media/create_the_gap_analysis_report_1.png[差距分析报告示例]

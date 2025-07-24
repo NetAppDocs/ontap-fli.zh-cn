@@ -15,7 +15,7 @@ summary: 迁移过程的验证阶段侧重于迁移后清理以及确认迁移�
 
 下图显示了验证阶段的工作流。
 
-image::../media/verify_phase_1.png[验证阶段 1]
+image::../media/verify_phase_1.png[迁移验证阶段工作流程]
 
 下表列出了验证阶段任务。
 

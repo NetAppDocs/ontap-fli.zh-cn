@@ -4,29 +4,32 @@ sidebar: sidebar
 keywords: fli online, verify, migration, results 
 summary: 验证作业是可选的，但建议使用。它对源 LUN 和目标 LUN 进行了按块比较。验证作业所需时间几乎与迁移时间相同或稍长。 
 ---
-= FLI online ：验证迁移结果
+= 验证ONTAP FLI 在线迁移结果
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-验证作业是可选的，但建议使用。它对源 LUN 和目标 LUN 进行了按块比较。验证作业所需时间几乎与迁移时间相同或稍长。
+将 LUN 从外部阵列迁移到ONTAP阵列后，外部 LUN 导入 (FLI) 功能可以对源 LUN 和目标 LUN 进行逐块比较，以验证迁移是否完整准确。迁移验证所需的时间与迁移过程大致相同（或略长）。
 
-启动验证作业以比较源 LUN 和目标 LUN 。监控验证进度。要验证的 LUN 需要在验证会话期间处于脱机状态。验证会话可能会很长，因为它是源 LUN 和目标 LUN 之间的逐块比较。虽然不需要验证，但最好验证已导入 / 迁移的部分 LUN ，以便对导入过程感到满意。除了在测试 / 试点迁移期间执行的验证之外，还会执行这些验证。
+不需要进行迁移验证，但强烈建议进行。
 
-[NOTE]
-====
-此过程会造成中断。
+.关于此任务
+* 从ONTAP9.17.1 开始，支持使用 FLI 离线迁移对外来 LUN 进行数据迁移，具体方法如下 link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^].ASA r2 系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实现方面有所不同。ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。每个卷仅包含一个存储单元。因此，对于ASA r2 系统，您无需在 `-path`创建 LUN 时，请提供此选项；您应该包含存储单元路径。
+* 迁移验证会造成中断。正在验证的 LUN 需要在验证期间处于脱机状态。
 
-====
-[NOTE]
-====
-在将 LUN 恢复联机之前，必须明确停止 LUN 导入验证。否则， LUN 联机将失败。请参见以下命令行界面输出。
 
-====
 .步骤
-. 使要验证的 LUN 脱机。< 中断窗口从此处开始 >
+. 使要验证的 LUN 脱机。
++
+[source, cli]
+----
+lun offline -vserver <SVM_name> -path <volume_path|storage_unit_path>
+----
++
+此示例显示使 *flivol* 卷和 *fli_72C* SVM 中名为 *72Clun1* 的 LUN 脱机的命令。
+
 +
 [listing]
 ----
@@ -34,13 +37,24 @@ cluster::*> lun offline -vserver fli_72C -path /vol/flivol/72Clun1
 Warning: This command will take LUN "/vol/flivol/72Clun1" in Vserver "fli_72C" offline.
 Do you want to continue? {y|n}: y
 ----
-. 启动 LUN 验证。
 +
-[listing]
+此时将开始中断窗口。
+
+. 开始LUN迁移验证。
++
+[source, cli]
 ----
-lun import verify start -vserver fli_72C -path /vol/flivol/72Clun1
+lun import verify start -vserver <SVM_name> -path <volume_path|storage_unit_path>
 ----
-. 显示 LUN 验证状态。
+. 监控验证状态。
++
+[source, cli]
+----
+lun import show -vserver <SVM_name> -path <volume_path|storage_unit_path>
+----
++
+此示例显示用于监控 *flivol* 卷和 *fli_72C* SVM 中名为 *72Clun1* 的 LUN 的验证状态的命令。
+
 +
 [listing]
 ----
@@ -51,16 +65,25 @@ vserver foreign-disk   path                operation admin operational percent
 fli_72C D0i1E+G8Wg6m   /vol/flivol/72Clun1 verify    started
                                                                         9
 ----
-. 停止 LUN 验证。即使状态显示 verify is complete ，也需要手动执行此步骤。
+. 停止 LUN 验证。
 +
-[listing]
+[source, cli]
 ----
-lun import verify stop -vserver fli_72C -path /vol/flivol/72Clun1
+lun import verify stop -vserver <SVM_name> -path <volume_path|storage_unit_path>
 ----
-. 验证完成后使 LUN 联机。< 中断窗口到此结束 >
 +
-[listing]
-----
-lun online -vserver fli_72C -path /vol/flivol/72Clun1
-----
+在将 LUN 重新联机之前，必须明确停止 LUN 导入验证。否则，LUN 联机将失败。即使状态显示验证已完成，也必须手动执行此步骤。
 
+. 使 LUN 联机。
++
+[source, cli]
+----
+lun online -vserver <SVM_name> -path <volume_path|storage_unit_path>
+----
++
+此时将结束中断窗口。
+
+
+
+.下一步是什么？
+link:remove-lun-import-relationship-online.html["解除LUN导入关系"] 。

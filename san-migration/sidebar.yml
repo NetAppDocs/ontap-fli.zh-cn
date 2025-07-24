@@ -48,10 +48,10 @@ entries:
     url: "/san-migration/concept_implementation_basics_for_data_migration.html"
   - title: FLI 的物理布线要求
     url: "/san-migration/concept_physical_wiring_requirements_for_fli.html"
-  - title: 目标和启动程序端口分区
+  - title: 为启动器模式配置 FC 适配器
+    url: san-migration/configure-fc-adapter-initiator.html
+  - title: FLI 的目标和启动器端口分区
     url: "/san-migration/concept_target_and_initiator_port_zoning.html"
-  - title: FLI 分区要求
-    url: "/san-migration/concept_fli_zoning_requirements.html"
   - title: 启动程序组配置
     url: "/san-migration/concept_initiator_group_configuration.html"
   - title: 执行测试迁移的原因
@@ -112,63 +112,41 @@ entries:
       url: "/san-migration/concept_migration_tests.html"
     - title: 使用 Hitachi AMS2100 测试迁移示例
       url: "/san-migration/task_test_migration_example_using_hitachi_ams2100.html"
-- title: FLI 脱机工作流
+- title: FLI 离线迁移
   entries:
-  - title: 概述
+  - title: 工作流
     url: "/san-migration/concept_fli_offline_workflow.html"
-  - title: FLI 脱机：转换准备
-    entries:
-    - title: 概述
-      url: "/san-migration/concept_fli_offline_preparation_for_cutover.html"
-    - title: 重新启动主机以验证系统状态
-      url: "/san-migration/task_rebooting_the_host_to_validate_system_state.html"
-    - title: 验证主机 LUN 路径和多路径配置验证
-      entries:
-      - title: 概述
-        url: "/san-migration/concept_verifying_host_lun_path_and_multipath_configuration.html"
-      - title: Windows 主机的多路径验证
-        url: "/san-migration/task_multipath_verification_for_windows_hosts.html"
-      - title: Linux 主机的多路径验证
-        url: "/san-migration/task_multipath_verification_for_linux_hosts.html"
-      - title: ESXi 主机的多路径验证
-        url: "/san-migration/task_multipath_verification_for_esxi_hosts.html"
-    - title: 为 FLI 脱机迁移准备主机
-      url: "/san-migration/concept_prepare_hosts_for_fli_offline_migration.html"
-    - title: 在 FLI 期间向 ONTAP 存储提供源 LUN
-      url: "/san-migration/task_presenting_source_luns_to_ontap_storage_during_offline_fli.html"
-    - title: 验证目标存储上的源 LUN 是否存在脱机 FLI
-      url: "/san-migration/task_verifying_source_luns_on_destination_storage_for_offline_foreign_lun_import.html"
-    - title: 配置迁移作业
-      url: "/san-migration/task_configuring_migration_jobs.html"
-  - title: FLI offline ：导入数据
+  - title: 准备主机以进行迁移
+    url: "/san-migration/prepare-host-offline-migration.html"
+  - title: 准备外部 LUN 以进行迁移
+    url: "/san-migration/prepare-foreign-lun-offline.html"
+  - title: 创建LUN导入关系
+    url: "/san-migration/create-lun-import-relationship-offline.html"
+  - title: 导入数据
     url: "/san-migration/task_fli_offline_importing_the_data.html"
-  - title: FLI offline ：验证迁移结果
+  - title: 验证迁移结果
     url: "/san-migration/task_fli_offline_verifying_migration_results.html"
-  - title: FLI 脱机迁移后任务
+  - title: 解除LUN导入关系
+    url: "/san-migration/remove-lun-import-relationship-offline.html"
+  - title: 执行迁移后任务
     url: "/san-migration/concept_fli_offline_post_migration_tasks.html"
-- title: FLI 联机工作流
+- title: FLI 在线迁移
   entries:
-  - title: 概述
+  - title: 工作流
     url: "/san-migration/concept_fli_online_workflow.html"
-  - title: 正在重新启动主机
-    url: "/san-migration/task_rebooting_hosts_f0f8.html"
-  - title: FLI 联机支持的主机操作系统
-    url: "/san-migration/concept_supported_host_operating_systems_for_fli_online.html"
-  - title: 验证主机 LUN 路径和多路径配置
-    url: "/san-migration/concept_verify_host_lun_path_and_multipath_configuration_fa1e.html"
-  - title: 为 FLI 联机迁移准备主机
-    url: "/san-migration/concept_prepare_hosts_for_fli_online_migration.html"
-  - title: FLI online ：准备 LUN 路径
-    url: "/san-migration/task_fli_online_preparing_the_lun_path.html"
-  - title: FLI Online ：执行中断转换
-    url: "/san-migration/task_fli_online_performing_a_disruptive_cutover.html"
-  - title: FLI online ：导入数据
+  - title: 准备主机以进行迁移
+    url: "/san-migration/prepare-host-online-migration.html"
+  - title: 创建LUN导入关系
+    url: "/san-migration/create-lun-import-relationship-online.html"
+  - title: 将源 LUN 映射到目标阵列
+    url: "/san-migration/map-source-lun-to-destination-online-migration.html"
+  - title: 导入数据
     url: "/san-migration/task_fli_online_importing_the_data.html"
-  - title: FLI online ：验证迁移结果
+  - title: 验证迁移结果
     url: "/san-migration/task_fli_online_verifying_migration_results.html"
-  - title: 清理 FLI 联机迁移
-    url: "/san-migration/task_fli_online_cleanup.html"
-  - title: FLI 迁移后联机任务
+  - title: 解除LUN导入关系
+    url: "/san-migration/remove-lun-import-relationship-online.html"
+  - title: 执行迁移后任务
     url: "/san-migration/concept_fli_online_post_migration_tasks.html"
 - title: FLI 7- 模式到 ONTAP 的过渡工作流
   entries:
@@ -196,8 +174,6 @@ entries:
   url: "/san-migration/concept_fli_using_workflow_automation_wfa.html"
 - title: FLI 迁移后过程
   entries:
-  - title: 概述
-    url: "/san-migration/concept_fli_post_migration_procedures_all_workflows.html"
   - title: 从 ONTAP 存储中删除源 LUN
     url: "/san-migration/task_removing_source_luns_from_ontap_storage.html"
   - title: 从主机中删除源 LUN
@@ -224,8 +200,6 @@ entries:
     url: "/san-migration/task_document_customer_environment.html"
 - title: 外部 LUN 导入性能
   entries:
-  - title: 概述
-    url: "/san-migration/concept_performance.html"
   - title: ONTAP 8.3.1 中的性能增强功能
     url: "/san-migration/concept_performance_enhancements_in_clustered_data_ontap_8_3_1.html"
   - title: 影响外部 LUN 导入迁移性能的变量

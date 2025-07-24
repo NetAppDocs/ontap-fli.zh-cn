@@ -1,0 +1,367 @@
+---
+permalink: san-migration/create-lun-import-relationship-offline.html 
+sidebar: sidebar 
+keywords: ceate, lun import relationship, fli, offline migration 
+summary: 在将 LUN 从外部阵列迁移到ONTAP存储之前，您必须创建 LUN 导入关系。LUN导入关系是源存储和目标存储之间为了导入数据而建立的持久配对。 
+---
+= 为ONTAP FLI 离线迁移创建 LUN 导入关系
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将 LUN 从外部阵列迁移到ONTAP存储系统之前，必须先创建 LUN 导入关系。LUN导入关系是源存储和目标存储之间为了导入数据而建立的持久配对。源端点和目标端点都是 LUN。
+
+为外部 LUN 导入 (FLI) 离线迁移创建 LUN 导入关系包括在ONTAP中将源阵列 LUN 标识为外部 LUN、创建和配置目标卷以包含外部 LUN、创建目标 LUN、最后建立导入关系。
+
+.开始之前
+您应该已经完成以下步骤link:prepare-foreign-lun-offline.html["准备外部 LUN 以进行 FLI 离线迁移"] 。
+
+
+
+== 步骤 1：在ONTAP中将源阵列 LUN 标识为外来
+
+在开始 FLI 离线迁移之前，您需要在ONTAP中将源阵列 LUN 标识为外部 LUN。
+
+.步骤
+. 列出从外部阵列映射的源 LUN；然后验证磁盘属性和路径。
++
+[source, cli]
+----
+storage disk show -array-name <array_name> -fields disk, serial-number, container-type, owner, path-lun-in-use-count, import-in-progress, is-foreign
+----
++
+您应根据布线情况查看预期路径数（每个源控制器至少有两个路径）。在屏蔽阵列 LUN 之后，您还应检查事件日志。
+
++
+以下示例显示了来自 Hitachi DF600F 阵列的源 LUN。
+
++
+[listing]
+----
+DataMig-ontap::*> storage disk show -array-name HITACHI_DF600F_1 -fields disk, serial-number, container-type, owner, path-lun-in-use-count, import-in-progress, is-foreign
+
+disk     owner is-foreign container-type import-in-progress path-lun-in-use-count serial-number
+-------- ----- ---------- -------------- ------------------ --------------------- -------------
+HIT-1.2  -     false      unassigned     false        0,0,0,0,0,0,0,0       83017542001E
+HIT-1.3  -     false      unassigned     false        0,0,0,0,0,0,0,0       83017542000E
+HIT-1.14 -     false      unassigned     false        0,0,0,0,0,0,0,0       830175420019
+3 entries were displayed.
+
+----
+. 使用序列号在ONTAP源 LUN 标记为外来 LUN：
++
+[source, cli]
+----
+storage disk set-foreign-lun -serial-number <lun_serial_number> -is-foreign true
+----
++
+以下示例将 Hitachi DF600F 阵列中的源 LUN 标记为外来 LUN。
+
++
+[listing]
+----
+DataMig-ontap::*> storage disk set-foreign-lun { -serial-number 83017542001E }
+                   -is-foreign true
+DataMig-ontap::*> storage disk set-foreign-lun { -serial-number 83017542000E }
+                   -is-foreign true
+DataMig-ontap::*> storage disk set-foreign-lun { -serial-number 83017542000F }
+                   -is-foreign true
+----
+. 验证源 LUN 是否标记为外部。
++
+[source, cli]
+----
+storage disk show -array-name <array_name> -fields disk, serial-number, container-type, owner,import-in-progress, is-foreign
+----
++
+以下示例显示来自 Hitachi DF600F 阵列的源 LUN 被标记为外部。
+
++
+[listing]
+----
+DataMig-ontap::*> storage disk show -array-name HITACHI_DF600F_1 -fields disk, serial-number, container-type, owner,import-in-progress, is-foreign
+
+disk     owner is-foreign container-type import-in-progress serial-number
+-------- ----- ---------- -------------- ------------------ -------------
+HIT-1.2  -     true       foreign        false              83017542001E
+HIT-1.3  -     true       foreign        false              83017542000E
+HIT-1.4  -     true       foreign        false              83017542000F
+3 entries were displayed.
+----
+
+
+
+
+== 步骤 2：创建并配置目标卷
+
+在为 FLI 离线迁移创建 LUN 导入关系之前，您必须在ONTAP存储系统上创建一个卷来包含将从外部阵列导入的 LUN。
+
+.关于此任务
+从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 离线迁移对外部 LUN 进行数据迁移。ASAASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。因此，您无需在创建 LUN 导入关系之前创建卷。如果您使用的是ASA r2 系统，则可以跳过此步骤。
+
+详细了解link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^] 。
+
+.步骤
+. 创建目标卷。
++
+[source, cli]
+----
+volume create -vserver <SVM_name> -volume <volume_name> -aggregate <aggregate> -size <volume_size> -snapshot-policy default
+----
++
+以下示例创建一个名为 `winvol`在 `aggr1`大小为 100 GB 的聚合。
+
++
+[listing]
+----
+DataMig-ontap::*> vol create -vserver datamig winvol aggr1 -size 100g
+----
+. 禁用每个卷上的默认 Snapshot 策略。
++
+[source, cli]
+----
+volume modify -vserver <SVM_name> -volume <volume_name> -snapshot-policy none
+----
++
+如果在 FLI 迁移之前存在默认 Snapshot 副本，则卷需要额外的空间来存储更改的数据。
+
++
+以下示例禁用 `winvol`体积。
+
++
+[listing]
+----
+DataMig-ontap::> volume modify -vserver datamig -volume winvol -snapshot-policy none
+
+Warning: You are changing the Snapshot policy on volume winvol to none.  Any Snapshot copies on this volume from the previous policy will not be deleted by
+         this new Snapshot policy.
+Do you want to continue? {y|n}: y
+Volume modify successful on volume winvol of Vserver datamig.
+----
+. 将每个卷的 `frame_reserveoption` 设置为 `0` ，并将 Snapshot 策略设置为 `none` 。
++
+[source, cli]
+----
+vol modify -vserver <SVM_name> -volume * -fractional-reserve 0 –snapshot-policy none
+----
++
+以下示例设置 `fractional-reserve`选择 `0`并将快照策略 `none`适用于 datamig SVM 中的所有卷。
+
++
+[listing]
+----
+DataMig-ontap::> vol modify -vserver datamig -volume * -fractional-reserve 0 –snapshot-policy none
+Volume modify successful on volume winvol of Vserver datamig.
+----
+. 验证您的音量设置。
++
+[source, cli]
+----
+volume show -vserver <SVM_name> -volume * -fields fractional-reserve,snapshot-policy
+----
++
+factional-reserve 和 snapper-policy 设置应该是 `0`和 `none` ， 分别。
+
+. 删除任何现有 Snapshot 副本。
++
+[source, cli]
+----
+set advanced; snap delete –vserver <SVM_name> –volume <volume_name> –snapshot * -force true
+----
++
+[NOTE]
+====
+FLI 迁移会修改目标 LUN 的每个块。如果在进行 FLI 迁移之前某个卷上存在默认 Snapshot 副本或其他 Snapshot 副本，则该卷将填满。需要在进行 FLI 迁移之前更改策略并删除任何现有 Snapshot 副本。可以在迁移后重新设置 Snapshot 策略。
+
+====
+
+
+
+
+== 步骤 3：创建目标 LUN 和 LUN 导入关系
+
+对于 FLI 离线迁移，必须创建ONTAP存储系统上的目标 LUN 并将其映射到 igroup；然后必须在创建 LUN 导入关系之前将其离线。
+
+.关于此任务
+从ONTAP9.17.1 开始，支持使用 FLI 离线迁移对外来 LUN 进行数据迁移，具体方法如下 link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^].ASA r2 系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实现方面有所不同。ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。每个卷仅包含一个存储单元。因此，对于ASA r2 系统，您无需在 `-path`创建 LUN 时，请提供此选项；您应该包含存储单元路径。
+
+.步骤
+. 创建目标 LUN。
++
+[source, cli]
+----
+lun create -vserver <SVM_name> -path <volume_path|storage_unit_path> -ostype <os_type> -foreign-disk <serial_number>
+----
++
+以下示例在 `datamig`具有指定路径和外部磁盘序列号的 SVM。  `-ostype`选项指定 LUN 的操作系统类型。
+
++
+[listing]
+----
+DataMig-ontap::*> lun create -vserver datamig -path /vol/winvol/bootlun -ostype windows_2008 -foreign-disk 83017542001E
+
+Created a LUN of size 40g (42949672960)
+
+Created a LUN of size 20g (21474836480)
+DataMig-ontap::*> lun create -vserver datamig -path /vol/linuxvol/lvmlun1 -ostype linux -foreign-disk 830175420011
+
+Created a LUN of size 2g (2147483648)
+DataMig-ontap::*> lun create -vserver datamig -path /vol/esxvol/bootlun -ostype vmware -foreign-disk 830175420014
+
+Created a LUN of size 20g (21474836480)
+----
++
+[NOTE]
+====
+这 `lun create`命令会根据分区偏移量检测 LUN 的大小和对齐方式，并使用 Foreign-Disk 选项相应地创建 LUN。某些 I/O 始终会显示为部分写入，因此看起来会不对齐。例如，数据库日志。
+
+====
+. 验证新创建的 LUN 的大小和源 LUN。
++
+[source, cli]
+----
+lun show -vserver <SVM_name> -fields vserver, path, state, mapped, type, size
+----
++
+以下示例显示了在 `datamig` SVM 及其路径、状态、映射状态、类型和大小。
+
++
+[listing]
+----
+DataMig-ontap::*> lun show -vserver datamig
+
+Vserver   Path                            State   Mapped   Type        Size
+--------- ------------------------------- ------- -------- -------- --------
+datamig   /vol/esxvol/bootlun             online  unmapped vmware       20GB
+datamig   /vol/esxvol/linuxrdmvlun        online  unmapped linux         2GB
+datamig   /vol/esxvol/solrdmplun          online  unmapped solaris       2GB
+datamig   /vol/winvol/gdrive              online  unmapped windows_2008  3GB
+4 entries were displayed.
+----
+. 如果您运行的是ONTAP 9.15.1 或更高版本，请禁用新创建的 LUN 的空间分配。
++
+在ONTAP 9.15.1 及更高版本中，新创建的 LUN 默认启用空间分配。
+
++
+[source, cli]
+----
+lun modify -vserver <vserver_name> -volume <volume_name> -lun <lun_name> -space-allocation disabled
+----
+. 验证空间分配是否已禁用。
++
+[source, cli]
+----
+lun show -vserver <vserver_name> -volume <volume_name> -lun <lun_name> -fields space-allocation
+----
+. 创建协议FCP的主机igroup，并添加主机启动器。
++
+[source, cli]
+----
+lun igroup create -ostype <os_type> -protocol fcp -vserver <SVM_name> -igroup <igroup_name> -initiator <initiator_wwpn1>,<initiator_wwpn2>
+----
++
+从站点调查规划工作表的存储组部分中查找启动器 WWPN。
+
++
+以下示例为具有指定操作系统类型和启动器的目标 LUN 创建 igroup。
+
++
+[listing]
+----
+DataMig-ontap::*> lun igroup create -ostype windows -protocol fcp -vserver datamig -igroup dm-rx200s6-21 -initiator 21:00:00:24:ff:30:14:c4,21:00:00:24:ff:30:14:c5
+
+DataMig-ontap::*> lun igroup create -ostype linux -protocol fcp -vserver datamig  -igroup dm-rx200s6-22 -initiator 21:00:00:24:ff:30:04:85,21:00:00:24:ff:30:04:84
+
+DataMig-ontap::*> lun igroup create -ostype vmware -protocol fcp -vserver datamig -igroup dm-rx200s6-20 -initiator 21:00:00:24:ff:30:03:ea,21:00:00:24:ff:30:03:eb
+----
++
+[NOTE]
+====
+使用与源相同的 LUN ID 。请参见站点调查规划工作表中的源 LUN 部分。
+
+====
+. 将目标 LUN 映射到 igroup。
++
+[source, cli]
+----
+lun map -vserver <SVM_name> -path <volume_path|storage_unit_path> -igroup <igroup_name> -lun-id <lun_id>
+----
++
+以下示例使用指定的路径和 LUN ID 将目标 LUN 映射到其各自的 igroup。
+
++
+[listing]
+----
+DataMig-ontap::*> lun map -vserver datamig -path /vol/winvol/bootlun -igroup dm-rx200s6-21 -lun-id 0
+DataMig-ontap::*> lun map -vserver datamig -path /vol/linuxvol/bootlun -igroup dm-rx200s6-22 -lun-id 0
+DataMig-ontap::*> lun map -vserver datamig -path /vol/esxvol/bootlun -igroup dm-rx200s6-20 -lun-id 0
+----
+. 使目标 LUN 脱机。
++
+[source, cli]
+----
+lun offline -vserver <SVM_name> -path <volume_path|storage_unit_path>
+----
++
+以下示例将使 `datamig`支持向量机。
+
++
+[listing]
+----
+DataMig-ontap::*> lun offline -vserver datamig -path /vol/esxvol/bootlun
+DataMig-ontap::*> lun offline -vserver datamig -path /vol/esxvol/linuxrdmvlun
+DataMig-ontap::*> lun offline -vserver datamig -path /vol/esxvol/solrdmplun
+----
+. 在目标 LUN 和源 LUN 之间创建 LUN 导入关系。
++
+[source, cli]
+----
+lun import create -vserver <SVM_name> -path <volume_path|storage_unit_path> -foreign-disk <serial_number>
+----
++
+以下示例为 `datamig` SVM 及其各自的路径和外部磁盘序列号。
+
++
+[listing]
+----
+DataMig-ontap::*> lun import create -vserver datamig -path /vol/winvol/bootlun -foreign-disk 83017542001E
+DataMig-ontap::*> lun import create -vserver datamig -path /vol/linuxvol/ext3lun -foreign-disk 830175420013
+DataMig-ontap::*> lun import create -vserver datamig -path /vol/esxvol/linuxrdmvlun -foreign-disk 830175420018
+DataMig-ontap::*> lun import create -vserver datamig -path /vol/esxvol/solrdmplun -foreign-disk 830175420019
+----
+. 验证 LUN 导入关系是否已创建。
++
+[source, cli]
+----
+lun import show -vserver <SVM_name> -fields vserver, foreign-disk, path, operation, admin-state, operational-state, percent-complete
+----
++
+以下示例显示了为目标 LUN 创建的 LUN 导入关系 `datamig` SVM 及其各自的外部磁盘和路径。
+
++
+[listing]
+----
+DataMig-ontap::*> lun import show -vserver datamig
+vserver foreign-disk   path                operation admin operational percent
+                                         in progress state state       complete
+-------------------------------------------------------------------------------
+datamig 83017542000E   /vol/winvol/fdrive  import    stopped
+                                                           stopped            0
+datamig 83017542000F   /vol/winvol/gdrive  import    stopped
+                                                           stopped            0
+datamig 830175420010   /vol/linuxvol/bootlun
+                                           import    stopped
+                                                           stopped            0
+3 entries were displayed.
+----
+
+
+.下一步是什么？
+link:task_fli_offline_importing_the_data.html["将数据从外部 LUN 导入到ONTAP LUN"] 。
+
+.相关信息
+* https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/What_is_an_unaligned_I%2F%2FO%3F["了解有关未对齐 I/O 的更多信息"] 。
+* https://docs.netapp.com/us-en/ontap/san-admin/enable-space-allocation.html["了解有关为 SAN 协议启用空间分配的更多信息"] 。
+

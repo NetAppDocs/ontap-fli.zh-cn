@@ -17,10 +17,9 @@ FLI 与 NetApp FlexArray 具有相同的布线要求。NetApp 存储启动程序
 
 此图是双网络结构的存储布线示例。
 
-image::../media/physical_wiring_1.png[物理布线 1.]
+image::../media/physical_wiring_1.png[双结构存储布线示例]
 
 请遵循以下布线最佳实践：
 
-* 按照中所述、使用NetApp FlexArray 最佳实践为源存储和目标存储布线 https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"]。
 * 要连接到网络结构， ONTAP 存储需要可用的启动程序端口。如果不存在可用端口，请配置启动程序端口。
 

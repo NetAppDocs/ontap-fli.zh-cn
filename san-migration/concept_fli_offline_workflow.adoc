@@ -1,23 +1,50 @@
 ---
 permalink: san-migration/concept_fli_offline_workflow.html 
-redirect: ontap-fli/san-migration/task_rebooting_the_host_to_validate_system_state.html 
 sidebar: sidebar 
 keywords: fli, offline, workflow 
-summary: 本节提供了 FLI 脱机工作流的示例，这是四个 FLI 工作流之一。 
+summary: 在 FLI 离线迁移中，客户端系统在从第三方外部存储阵列到NetApp存储系统的数据迁移过程中处于离线状态 
 ---
-= FLI 脱机工作流
+= ONTAP FLI 离线迁移工作流程摘要
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-本节提供了 FLI 脱机工作流的示例，这是四个 FLI 工作流之一。
+外部 LUN 导入 (FLI) 数据迁移过程涉及多个关键步骤，以确保数据从第三方存储阵列成功迁移到NetApp存储系统。FLI支持离线和在线迁移。在 FLI 离线迁移中，客户端系统在从第三方外部存储阵列向NetApp存储系统迁移数据期间处于离线状态。
 
-此工作流使用 HDS AMS2100 阵列作为源阵列。脱机工作流具有以下任务：
+.开始之前
+* 您应该完成link:concept_migration_discover_phase_workflow.html["发现"] ， link:concept_migration_analyze_phase_workflow.html["分析"] ， 和link:concept_migration_plan_phase_workflow.html["规划"]迁移过程的各个阶段。
+* 你应该link:configure-fc-adapter-initiator.html["为启动器模式配置 FC 适配器"] 。
+* 你应该link:concept_target_and_initiator_port_zoning.html["使用ONTAP存储启动器端口对外部阵列目标端口进行分区"] 。
 
-. 转换准备
-. 导入数据
-. 验证迁移结果（可选）
-. FLI 脱机迁移后任务
 
+FLI 离线工作流程包括准备主机和外部 LUN 以供导入、创建 LUN 导入关系以及导入数据。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:prepare-host-offline-migration.html["准备你的主人"] 。
+[role="quick-margin-para"]
+在执行 FLI 离线迁移之前，您应该重新启动主机并验证主机多路径配置。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:prepare-foreign-lun-offline.html["准备外部 LUN"] 。
+[role="quick-margin-para"]
+在 FLI 离线迁移过程中，您必须从外部阵列采取手动步骤将外部源 LUN 呈现给ONTAP存储系统；然后，您必须采取额外的手动步骤来在ONTAP存储系统上发现外部源 LUN。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:create-lun-import-relationship-offline.html["创建LUN导入关系"] 。
+[role="quick-margin-para"]
+为 FLI 离线迁移创建 LUN 导入关系包括在ONTAP中将源阵列 LUN 标识为外部 LUN、创建和配置目标卷以包含外部 LUN、创建目标 LUN，最后建立导入关系。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:task_fli_offline_importing_the_data.html["从外部阵列导入 LUN 数据"] 。
+[role="quick-margin-para"]
+使用 FLI 从外部阵列导入 LUN 数据。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:task_fli_offline_verifying_migration_results.html["验证迁移结果"] 。
+[role="quick-margin-para"]
+对源 LUN 和目标 LUN 进行逐块比较，以验证迁移是否完整且准确。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:remove-lun-import-relationship-offline.html["解除LUN导入关系"] 。
+[role="quick-margin-para"]
+FLI离线迁移完成后，可以安全地移除LUN导入关系。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七"]link:concept_fli_offline_post_migration_tasks.html["执行迁移后任务"] 。
+[role="quick-margin-para"]
+查看日志中的错误，验证主机多路径配置，并执行应用程序测试以验证迁移是否成功完成。

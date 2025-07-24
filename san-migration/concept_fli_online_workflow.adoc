@@ -2,29 +2,71 @@
 permalink: san-migration/concept_fli_online_workflow.html 
 sidebar: sidebar 
 keywords: fli, online, workflow 
-summary: 这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。 
+summary: 在 FLI 在线迁移中，客户端系统在数据从第三方外部存储阵列迁移到NetApp存储系统期间保持在线。 
 ---
-= FLI 联机工作流
+= ONTAP FLI 在线迁移工作流程摘要
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-这是四个 FLI 工作流示例中的第二个示例，其中涵盖 FLI 联机迁移。此示例中的源阵列是 EMC VNX5500 。
+外部 LUN 导入 (FLI) 数据迁移过程涉及多个关键步骤，以确保数据从第三方存储阵列成功迁移到NetApp存储系统。FLI支持离线和在线迁移。在外部 LUN 导入 (FLI) 在线迁移过程中，客户端系统在数据从第三方外部存储阵列迁移到NetApp存储系统期间保持在线状态。
 
-联机工作流具有以下任务：
+.开始之前：
+* 您应该完成link:concept_migration_discover_phase_workflow.html["发现"] ， link:concept_migration_analyze_phase_workflow.html["分析"] ， 和link:concept_migration_plan_phase_workflow.html["规划"]迁移过程的各个阶段。
+* 您应该验证您的主机类型和NetApp目标存储阵列配置是否支持在线迁移。
++
+MetroCluster配置不支持联机迁移。如果在活动联机导入期间发生站点故障转移，则写入源阵列的直通操作可能会失败，从而导致验证失败和潜在的数据丢失。如果您的NetApp目标控制器采用MetroCluster配置，则应使用link:prepare-host-offline-migration.html["FLI 离线迁移过程"] 。
 
-. 正在准备 LUN 路径
-. 执行中断转换
-. 导入源 LUN 数据
-. 验证迁移结果
-. 清理 FLI 联机迁移
-. FLI 迁移后联机任务
++
+以下版本的 Windows、Linux 或 ESXi 主机操作系统支持在线迁移。对于其他主机操作系统，您应该使用link:prepare-host-offline-migration.html["FLI 离线迁移过程"] 。
+
++
+** Microsoft （支持列出的所有服务器版本）：
++
+*** Windows Server 2008 R2 及更高版本（包括 Windows Server 故障转移群集）
+*** Microsoft Hyper-V Server 2008 及更高版本
+*** Windows Server 2012及更高版本(包括Windows Server 2012集群)
+*** Microsoft Hyper-V Server 2012及更高版本
 
 
-[NOTE]
-====
-如果 NetApp 控制器目标为 MetroCluster ，请勿使用联机工作流。如果在主动联机导入期间发生站点故障转移，则源阵列的写入直通可能会失败，从而导致验证失败并可能丢失数据。如果目标为 MetroCluster ，请使用 FLI 脱机过程。
+** VMware ESXi 5.x 及更高版本
+** Red Had Enterprise Linux (RHEL) 5.x 及更高版本
 
-====
+
+* 您应该验证主机多路径是否已正确配置并正常工作。所有可用的 LUN 路径都应处于活动状态。
+* 你应该link:configure-fc-adapter-initiator.html["为启动器模式配置 FC 适配器"] 。
+* 你应该link:concept_target_and_initiator_port_zoning.html["使用ONTAP存储启动器端口对外部阵列目标端口进行分区"] 。
+
+
+.关于此任务
+要执行 FLI 在线迁移，您应该准备主机、创建 LUN 导入关系、将外部 LUN 映射到ONTAP存储系统、从外部 LUN 导入数据、验证迁移结果、删除 LUN 导入关系，最后执行迁移后任务。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:prepare-host-online-migration.html["准备你的主人"] 。
+[role="quick-margin-para"]
+执行任何必要的主机修复步骤并重新启动主机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:create-lun-import-relationship-online.html["创建LUN导入关系"] 。
+[role="quick-margin-para"]
+创建 LUN 导入关系包括识别要从源阵列导入的外部 LUN、创建包含外部 LUN 的目标卷、在ONTAP存储系统上创建目标 LUN，最后建立导入关系。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:map-source-lun-to-destination-online-migration.html["将外部 LUN 映射到您的ONTAP存储系统"] 。
+[role="quick-margin-para"]
+在外部阵列上，取消映射要迁移的 LUN，然后将其重新映射到ONTAP存储系统。此过程会造成中断。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:task_fli_online_importing_the_data.html["从外部 LUN 导入数据"] 。
+[role="quick-margin-para"]
+将数据从外部阵列源 LUN 导入到ONTAP目标 LUN。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:task_fli_online_verifying_migration_results.html["验证迁移结果"] 。
+[role="quick-margin-para"]
+使用 FLI 对源 LUN 和目标 LUN 进行逐块比较，以验证迁移是否完整且准确
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:remove-lun-import-relationship-online.html["解除LUN导入关系"] 。
+[role="quick-margin-para"]
+FLI 在线迁移完成后，可以安全地移除 LUN 导入关系。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七"]link:concept_fli_online_post_migration_tasks.html["执行迁移后任务"] 。
+[role="quick-margin-para"]
+查看日志中的错误，验证主机多路径配置并执行应用程序测试以验证迁移是否成功完成。

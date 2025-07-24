@@ -1,0 +1,420 @@
+---
+permalink: san-migration/create-lun-import-relationship-online.html 
+sidebar: sidebar 
+keywords: fli online, prepare, lun path 
+summary: 在将 LUN 从外部阵列迁移到ONTAP存储之前，您必须创建 LUN 导入关系。LUN导入关系是源存储和目标存储之间为了导入数据而建立的持久配对。 
+---
+= 为ONTAP FLI 在线迁移创建 LUN 导入关系
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将 LUN 从外部阵列迁移到ONTAP存储之前，您必须创建 LUN 导入关系。LUN导入关系是源存储和目标存储之间为了导入数据而建立的持久配对。源端点和目标端点都是 LUN。
+
+为外部 LUN 导入 (FLI) 在线迁移创建 LUN 导入关系包括识别要从源阵列导入的外部 LUN、创建和配置目标卷以包含外部 LUN、创建目标 LUN 以及最终建立导入关系。
+
+
+
+== 步骤 1：在ONTAP中将源阵列 LUN 标识为外部 LUN
+
+在开始 FLI 在线迁移之前，您需要将源阵列 LUN 标识为外部 LUN。
+
+.步骤
+. 在ONTAP中，将权限级别更改为高级。
++
+[source, cli]
+----
+set -privilege advanced
+----
+. 当系统询问您是否要继续时，输入 `y` 。
+. 验证是否可以在目标控制器上看到源阵列。
++
+[source, cli]
+----
+storage array show
+----
++
+以下示例显示了 DGC LUNZ 阵列的发现。
+
++
+[listing]
+----
+cluster::*> storage array show
+Prefix                         Name   Vendor            Model Options
+-------- ---------------------------- -------- ---------------- ----------
+DGC-1                      DGC_LUNZ_1      DGC             LUNZ
+1 entries were displayed.
+----
+. 显示源 LUN 详细信息。
++
+[source, cli]
+----
+storage array config show -array-name <array_name> -instance
+----
++
+以下示例显示了 DGC LUNZ 阵列的详细信息。
+
++
+[listing]
+----
+cluster::*> storage array config show -array-name DGC_LUNZ_1 -instance
+
+           Controller Name: ontaptme-fc-cluster-01
+                 LUN Group: 0
+        Array Target Ports: 500601643ea067da
+                 Initiator: 0c
+                Array Name: DGC_LUNZ_1
+   Target Side Switch Port: stme-5010-3:2-1
+Initiator Side Switch Port: stme-5010-3:2-3
+      Number of array LUNs: 1
+
+           Controller Name: ontaptme-fc-cluster-01
+                 LUN Group: 0
+        Array Target Ports: 500601653ea067da
+                 Initiator: 0d
+                Array Name: DGC_LUNZ_1
+   Target Side Switch Port: stme-5010-4:2-1
+Initiator Side Switch Port: stme-5010-4:2-3
+      Number of array LUNs: 1
+~~~~~~~~~~~ output truncated for readability ~~~~~~~~~~~~~~~~~
+8 entries were displayed.
+----
+. 验证是否已通过所有启动程序端口发现源阵列。
++
+[source, cli]
+----
+storage array config show -array-name <array_name>
+----
++
+以下示例显示通过所有启动器端口发现的 DGC LUNZ 阵列。
+
++
+[listing]
+----
+cluster::*> storage array config show -array-name DGC_LUNZ_1
+             LUN   LUN
+Node         Group Count                   Array Name       Array Target Port Initiator
+------------ ----- ----- ---------------------------- ----------------------- ---------
+ontaptme-fc-cluster-01
+                 0     1                   DGC_LUNZ_1        500601643ea067da        0c
+                                                             500601653ea067da        0d
+                                                             5006016c3ea067da        0c
+                                                             5006016d3ea067da        0d
+ontaptme-fc-cluster-02
+                 0     1                   DGC_LUNZ_1        500601643ea067da        0c
+                                                             500601653ea067da        0d
+                                                             5006016c3ea067da        0c
+                                                             5006016d3ea067da        0d
+8 entries were displayed.
+----
+. 列出从源存储映射的 LUN；然后验证磁盘属性和路径。
++
+[source, cli]
+----
+storage disk show -array-name <array_name> -container-type lun
+----
++
+以下示例显示了从源存储映射的 LUN。
+
++
+[listing]
+----
+cluster::*> storage disk show -array-name DGC_LUNZ_1 -instance
+                  Disk: DGC-1.9
+        Container Type: unassigned
+            Owner/Home: -  / -
+               DR Home: -
+    Stack ID/Shelf/Bay: -  / -  / -
+                   LUN: 0
+                 Array: DGC_LUNZ_1
+                Vendor: DGC
+                 Model: VRAID
+         Serial Number: 600601603F103100662E70861000E511
+                   UID: 60060160:3F103100:662E7086:1000E511:00000000:00000000:00000000:00000000:00000000:00000000
+                   BPS: 512
+         Physical Size: -
+              Position: present
+Checksum Compatibility: block
+             Aggregate: -
+                  Plex: -
+Paths:
+                               LUN  Initiator Side        Target Side                                                        Link
+Controller         Initiator     ID  Switch Port           Switch Port           Acc Use  Target Port                TPGN    Speed      I/O KB/s          IOPS
+------------------ ---------  -----  --------------------  --------------------  --- ---  -----------------------  ------  -------  ------------  ------------
+ontaptme-fc-cluster-02
+                   0c             0  stme-5010-3:2-4       stme-5010-3:2-2       AO  INU  5006016c3ea067da              2   4 Gb/S             0             0
+ontaptme-fc-cluster-02
+                   0d             0  stme-5010-4:2-4       stme-5010-4:2-2       AO  INU  5006016d3ea067da              2   4 Gb/S             0             0
+ontaptme-fc-cluster-02
+                   0d             0  stme-5010-4:2-4       stme-5010-4:2-1       ANO RDY  500601653ea067da              1   4 Gb/S             0             0
+
+Errors:
+-
+----
+. 查看源 LUN 。
++
+[source, cli]
+----
+storage disk show -array-name <array_name>
+----
++
+以下示例显示了源 LUN。
+
++
+[listing]
+----
+cluster::*> storage disk show -array-name DGC_LUNZ_1
+                     Usable           Disk    Container   Container
+Disk                   Size Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+DGC-1.9                   -     -   - LUN     unassigned  -         -
+----
+. 将源 LUN 标记为外部。
++
+[source, cli]
+----
+storage disk set-foreign-lun -is-foreign true -disk <disk_name>
+----
++
+以下示例显示将源 LUN 标记为外部的命令。
+
++
+[listing]
+----
+cluster::*> storage disk set-foreign-lun -is-foreign true -disk DGC-1.9
+----
+. 验证源 LUN 是否标记为外部。
++
+[source, cli]
+----
+storage disk show -array-name <array_name>
+----
++
+以下示例显示标记为外部的源 LUN。
+
++
+[listing]
+----
+cluster::*> storage disk show -array-name DGC_LUNZ_1
+                     Usable           Disk    Container   Container
+Disk                   Size Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+DGC-1.9
+----
+. 列出所有外部 LUN 及其序列号。
++
+[source, cli]
+----
+storage disk show -container-type foreign -fields serial-number
+----
++
+序列号用于 FLI LUN 导入命令。
+
++
+以下示例显示了外部 LUN 及其序列号。
+
++
+[listing]
+----
+disk    serial-number
+------- --------------------------------
+DGC-1.9 600601603F103100662E70861000E511
+----
+
+
+
+
+== 步骤 2：创建并配置目标卷
+
+在为 FLI 在线迁移创建 LUN 导入关系之前，您必须在ONTAP存储系统上创建一个卷来包含您将从外部阵列导入的 LUN。
+
+.关于此任务
+从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 离线迁移对外部 LUN 进行数据迁移。ASAASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。因此，您无需在创建 LUN 导入关系之前创建卷。如果您使用的是ASA r2 系统，则可以跳过此步骤。
+
+详细了解link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^] 。
+
+.步骤
+. 创建目标卷。
++
+[source, cli]
+----
+volume create -vserver <SVM_name> -volume <volume_name> -aggregate <aggregate_name> -size <size>
+----
+. 验证卷是否已创建。
++
+[source, cli]
+----
+volume show -vserver <SVM_name>
+----
++
+以下示例显示在 *fli* SVM 中创建的 *fli_vol* 卷。
+
++
+[listing]
+----
+cluster::*> vol show -vserver fli
+Vserver   Volume       Aggregate    State      Type       Size  Available Used%
+--------- ------------ ------------ ---------- ---- ---------- ---------- -----
+fli       fli_root     aggr1        online     RW          1GB    972.6MB    5%
+fli       fli_vol      aggr1        online     RW          2TB     1.90TB    5%
+2 entries were displayed.
+----
+. 将每个卷的 frame_reserveoption 设置为 `0` ，并将 Snapshot 策略设置为 `none` 。
++
+[source, cli]
+----
+volume modify -vserver <SVM_name> -volume * -fractional-reserve 0 -snapshot-policy none
+----
+. 验证音量设置。
++
+[source, cli]
+----
+volume show -vserver <SVM_name> -volume * -fields fractional-reserve,snapshot-policy
+----
++
+以下示例显示将 *fractional-reserve* 设置为 `0`并将 *snapshot-policy* 设置为 `none`用于 *fli* SVM 中的 *fli_vol* 卷。
+
++
+[listing]
+----
+cluster::*> vol show -vserver datamig -volume * -fields fractional-reserve,snapshot-policy
+vservervolumesnapshot-policyfractional-reserve
+-----------------------------------------------
+datamigdatamig_rootnone0%
+datamigwinvolnone0%
+Volume modify successful on volume winvol of Vserver datamig.
+----
+. 删除任何现有 Snapshot 副本。
++
+[source, cli]
+----
+set advanced; snap delete –vserver <SVM_name> –vol <volume_name> –snapshot * -force true
+----
++
+[NOTE]
+====
+FLI 迁移会修改目标 LUN 的每个块。如果在进行 FLI 迁移之前某个卷上存在默认 Snapshot 副本或其他 Snapshot 副本，则该卷将填满。需要在进行 FLI 迁移之前更改策略并删除任何现有 Snapshot 副本。可以在迁移后重新设置 Snapshot 策略。
+
+====
+
+
+
+
+== 步骤 3：创建目标 LUN 和 LUN 导入关系
+
+为准备外部 LUN 导入，请创建目标 LUN 和 igroup，将 LUN 映射到 igroup 并创建 LUN 导入关系。
+
+从ONTAP9.17.1 开始，支持使用 FLI 离线迁移对外来 LUN 进行数据迁移，具体方法如下 link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^].ASA r2 系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实现方面有所不同。ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。每个卷仅包含一个存储单元。因此，对于ASA r2 系统，您无需在 `-path`创建 LUN 时，请提供此选项；您应该包含存储单元路径。
+
+.步骤
+. 创建目标 LUN。
++
+[source, cli]
+----
+lun create -vserver <SVM_name> -path <volume_path|storage_unit_path> -ostype <os_type> -foreign-disk <serial_number>
+----
++
+[NOTE]
+====
+这 `lun create`命令会根据分区偏移量检测 LUN 的大小和对齐方式，并使用 Foreign-Disk 选项相应地创建 LUN。某些 I/O 始终会显示为部分写入，因此看起来会不对齐。例如，数据库日志。
+
+====
+. 验证是否已创建新的 LUN。
++
+[source, cli]
+----
+lun show -vserver <SVM_name>
+----
++
+以下示例显示了在 *fli* SVM 中创建的新 LUN。
+
++
+[listing]
+----
+cluster::*> lun show -vserver fli
+Vserver   Path                            State   Mapped   Type        Size
+--------- ------------------------------- ------- -------- -------- --------
+fli       /vol/fli_vol/OnlineFLI_LUN      online  unmapped windows_2008  1TB
+----
+. 如果您运行的是ONTAP 9.15.1 或更高版本，请禁用新创建的 LUN 的空间分配。
++
+在ONTAP 9.15.1 及更高版本中，新创建的 LUN 默认启用空间分配。
+
++
+[source, cli]
+----
+lun modify -vserver <vserver_name> -volume <volume_name> -lun <lun_name> -space-allocation disabled
+----
+. 验证空间分配是否已禁用。
++
+[source, cli]
+----
+lun show -vserver <vserver_name> -volume <volume_name> -lun <lun_name> -fields space-allocation
+----
+. 使用主机启动程序创建协议 FCP 的 igroup 。
++
+[source, cli]
+----
+igroup create -vserver <SVM_name> -igroup <igroup_name> -protocol fcp -ostype <os_type> -initiator <initiator_name>
+----
+. 验证主机是否可以访问新 igroup 的所有路径。
++
+[source, cli]
+----
+igroup show -vserver <SVM_name> -igroup <igroup_name>
+----
++
+以下示例显示了 *fli* SVM 中的 *FLI* igroup，其中有两个启动器已登录。
+
++
+[listing]
+----
+cluster::*> igroup show –vserver fli –igroup FLI
+   Vserver name: fli
+    Igroup name: FLI
+       Protocol: fcp
+     OS Type: Windows
+Portset Binding Igroup: -
+   Igroup UUID: 5c664f48-0017-11e5-877f-00a0981cc318
+          ALUA: true
+    Initiators: 10:00:00:00:c9:e6:e2:77 (logged in)
+10:00:00:00:c9:e6:e2:79 (logged in)
+----
+. 使目标 LUN 脱机。
++
+[source, cli]
+----
+lun offline -vserver <SVM_name> -path <volume_path|storage_unit_path>
+----
++
+以下示例显示了在 *fli* SVM 中使新 LUN 脱机的命令。
+
++
+[listing]
+----
+cluster::*> lun offline -vserver fli -path /vol/fli_vol/OnlineFLI_LUN
+
+Warning: This command will take LUN "/vol/fli_vol/OnlineFLI_LUN" in Vserver "fli" offline.
+Do you want to continue? {y|n}: y
+----
+. 将目标 LUN 映射到 igroup 。
++
+[source, cli]
+----
+lun map -vserver <SVM_name> -path <volume_path|storage_unit_path> -igroup <igroup_name>
+----
+. 在新 LUN 和外部 LUN 之间创建导入关系。
++
+[source, cli]
+----
+lun import create -vserver <SVM_name> -path <volume_path|storage_unit_path> -foreign-disk <disk_serial_number>
+----
+
+
+.下一步是什么？
+link:map-source-lun-to-destination-online-migration.html["将源 LUN 映射到ONTAP目标 LUN"] 。
+
+.相关信息
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/What_is_an_unaligned_I%2F%2FO%3F["了解有关未对齐 I/O 的更多信息"^] 。
