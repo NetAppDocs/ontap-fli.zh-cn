@@ -231,7 +231,7 @@ DGC-1.9 600601603F103100662E70861000E511
 在为 FLI 在线迁移创建 LUN 导入关系之前，您必须在ONTAP存储系统上创建一个卷来包含您将从外部阵列导入的 LUN。
 
 .关于此任务
-从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 离线迁移对外部 LUN 进行数据迁移。ASAASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。因此，您无需在创建 LUN 导入关系之前创建卷。如果您使用的是ASA r2 系统，则可以跳过此步骤。
+从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 在线迁移对外部 LUN 进行数据迁移。ASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。因此，您无需在创建 LUN 导入关系之前创建卷。如果您使用的是ASA r2 系统，则可以跳过此步骤。
 
 详细了解link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA r2 系统"^] 。
 
@@ -417,4 +417,4 @@ lun import create -vserver <SVM_name> -path <volume_path|storage_unit_path> -for
 link:map-source-lun-to-destination-online-migration.html["将源 LUN 映射到ONTAP目标 LUN"] 。
 
 .相关信息
-https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/What_is_an_unaligned_I%2F%2FO%3F["了解有关未对齐 I/O 的更多信息"] 。
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/What_is_an_unaligned_I%2F%2FO%3F["了解有关未对齐 I/O 的更多信息"^] 。

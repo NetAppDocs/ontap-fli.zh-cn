@@ -121,7 +121,7 @@ entries:
   - title: 准备外部 LUN 以进行迁移
     url: "/san-migration/prepare-foreign-lun-offline.html"
   - title: 创建LUN导入关系
-    url: "/san-migration/create-lun-import-relationship-offline.adoc.html"
+    url: "/san-migration/create-lun-import-relationship-offline.html"
   - title: 导入数据
     url: "/san-migration/task_fli_offline_importing_the_data.html"
   - title: 验证迁移结果

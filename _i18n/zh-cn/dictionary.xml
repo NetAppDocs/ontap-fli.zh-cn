@@ -1451,7 +1451,6 @@
   <block id="faa638e01a027f3e33ce873fec967f8a" category="paragraph">序列号用于 FLI LUN 导入命令。</block>
   <block id="6f6829770b4585c77f91df7632cfa37b" category="paragraph">以下示例显示了外部 LUN 及其序列号。</block>
   <block id="501a07ad7efd92d4ab6857db010311d9" category="paragraph">在为 FLI 在线迁移创建 LUN 导入关系之前，您必须在ONTAP存储系统上创建一个卷来包含您将从外部阵列导入的 LUN。</block>
-  <block id="e206a420950b325cd731e287640847e1" category="paragraph">从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 离线迁移对外部 LUN 进行数据迁移。ASAASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。因此，您无需在创建 LUN 导入关系之前创建卷。如果您使用的是ASA r2 系统，则可以跳过此步骤。</block>
   <block id="36c24dd9dc232796178e694a76c5bb02" category="paragraph">详细了解<block ref="9f40590ca1185cea7261c2a60fc922ea" category="inline-link-macro-rx"></block> 。</block>
   <block id="a08233060f61816c66576ecb8a6b108d" category="list-text">验证卷是否已创建。</block>
   <block id="c9d18f8008099eef7df9f27c2445e7e7" category="paragraph">以下示例显示在 *fli* SVM 中创建的 *fli_vol* 卷。</block>
@@ -1590,4 +1589,5 @@
   <block id="f93ebe1eaf4c78ebab1a110b95f655d8" category="sidebar">FLI 在线迁移</block>
   <block id="a9fa02c73b0556989b39e0a09dc2fb37" category="sidebar">准备主机以进行迁移</block>
   <block id="9cc66e684b29dae71b3873021ab5f900" category="sidebar">将源 LUN 映射到目标阵列</block>
+  <block id="3e06682f4f26baa39169365df5a4cbff" category="paragraph">从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 在线迁移对外部 LUN 进行数据迁移。ASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。因此，您无需在创建 LUN 导入关系之前创建卷。如果您使用的是ASA r2 系统，则可以跳过此步骤。</block>
 </blocks>
