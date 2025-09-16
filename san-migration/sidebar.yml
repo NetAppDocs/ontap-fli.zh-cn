@@ -49,7 +49,7 @@ entries:
   - title: FLI 的物理布线要求
     url: "/san-migration/concept_physical_wiring_requirements_for_fli.html"
   - title: 为启动器模式配置 FC 适配器
-    url: san-migration/configure-fc-adapter-initiator.html
+    url: "/san-migration/configure-fc-adapter-initiator.html"
   - title: FLI 的目标和启动器端口分区
     url: "/san-migration/concept_target_and_initiator_port_zoning.html"
   - title: 启动程序组配置
