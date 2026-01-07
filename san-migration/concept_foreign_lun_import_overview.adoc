@@ -15,13 +15,11 @@ summary: 外部 LUN 导入（ Foreign LUN Import ， FLI ）是 ONTAP 中内置�
 
 所有 FLI 迁移都在 LUN 级别运行。FLI 是一种严格基于块的工具；不支持基于文件，记录， NFS 和 CIFS 的迁移。有关文件级协议的其他迁移方法的讨论、例如NFS和CIFS/SMB、请查看 https://library.netapp.com/ecm/ecm_get_file/ECMP12363719["数据迁移工具快速参考"]。
 
-FLI 利用 NetApp FlexArray ® 技术发现外部 RAID 阵列 LUN 并从中提取数据。FlexArray 允许 NetApp ONTAP 控制器在一个或多个第三方阵列前充当启动程序。FlexArray 可以将这些阵列中的 LUN 作为后端存储进行挂载，然后将这些 LUN 中的空间作为 NetApp 统一存储（允许 FCP ， FCoE ， iSCSI ， NFS 和 CIFS/SMB 协议访问）提供给 SAN 或 NAS 环境中的主机。
-
-FLI 不需要 FlexArray 许可证。FLI 利用 FlexArray 技术将外部 LUN 复制到 NetApp ONTAP 阵列，然后允许使用该 LUN 的主机和应用程序指向当前托管相关 LUN 的 NetApp 阵列。虽然 ONTAP 不再需要专业服务运行的迁移，但 NetApp 强烈建议专业服务人员参与范围界定，规划和培训，以满足最简单的迁移需求。
+尽管ONTAP不再需要专业服务人员进行迁移，但NetApp强烈建议专业服务人员参与除最简单的迁移之外的所有迁移的范围界定、规划和培训。
 
 FLI 是为将 SAN LUN 迁移到 ONTAP 而开发的。FLI 支持一系列迁移要求，包括但不限于以下内容：
 
-* 在 FlexArray 配置支持的情况下，将 EMC ， Hitachi ， HP 和其他供应商的异构存储阵列之间的数据迁移到 NetApp 。
+* 将来自 EMC、日立、惠普和其他供应商的异构存储阵列之间的数据迁移到NetApp。
 * 在数据中心重新定位，整合和阵列更换期间简化并加速块数据迁移。
 * 将迁移和 LUN 领域整合到一个工作流中。
 

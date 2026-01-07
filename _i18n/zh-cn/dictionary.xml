@@ -86,7 +86,6 @@
   <block id="61c84893442e8d448753228d506c5ea1" category="paragraph">50 ： 0a ： 09 ： 81 ： 00 ： xx ： xx ： xx</block>
   <block id="347017fd1e37a22faf91875981bc4fb3" category="paragraph">0b</block>
   <block id="e3be5aecfb0260579fe80049e1c8a50c" category="paragraph">以下是如何设置目标存储设备选项卡的示例。</block>
-  <block id="5de6b93b6bf9ec704eaeabd6643ae0c4" category="summary">FLI 互操作性表（ IMT ）与 FlexArray IMT 非常相似，但作为一种截然不同的互操作性工具添加，目的是更好地支持符合 NetApp 标准且可与 FLI 结合使用的源阵列。</block>
   <block id="2a37c6b1b4932254bf5792ec6f52e0fc" category="doc">FLI 互操作性和支持标准</block>
   <block id="a4600dce963004a41457e38f18ab9470" category="paragraph">在执行外部 LUN 导入之前，需要检查两个互操作性方面：</block>
   <block id="86af0a34f3847c9f63762fbabc885521" category="list-text">检查是否支持 FLI 。您可以通过查看 FLI IMT 来执行此操作。</block>
@@ -172,7 +171,6 @@
   <block id="43ba6657c4f4e7530405ab5336090456" category="list-text">从网络结构 B 的区域集中删除分区</block>
   <block id="e9497856652d0046bf57cfde9533357c" category="list-text">激活网络结构 B 中的区域集</block>
   <block id="00638c4d1a05535ef1e35dda5d0df3aa" category="paragraph">Cisco 网络结构示例</block>
-  <block id="8970c458447db1c2605bb5f15b71b109" category="summary">FLI 与 NetApp FlexArray 具有相同的布线要求。NetApp 存储启动程序端口连接到源存储目标端口所连接的网络结构。在将源存储连接到 NetApp 存储时，请遵循 FlexArray 最佳实践。</block>
   <block id="3ce8bd6c1992bd681505fc41c17c030b" category="doc">FLI 的物理布线要求</block>
   <block id="e23cfe3f5f5db6eba97c79167e9f598f" category="paragraph">迁移期间使用的存储阵列必须具有两个网络结构中每个控制器（正在使用）的主路径。这意味着，要迁移到的源阵列和目标阵列节点必须位于两个网络结构上的一个公共区域中。无需在 NetApp 集群中添加其他控制器，只需添加实际导入 / 迁移 LUN 的控制器即可。虽然可以使用间接路径进行迁移，但最佳实践是在源阵列和目标阵列之间使用主动 / 优化路径。下图显示了在两个网络结构中都存在主（活动）路径的 HDS AMS2100 和 NetApp ONTAP 存储。</block>
   <block id="b86568f0ab2436e9a4ea2cfd9d49fcd5" category="paragraph">此图是双网络结构的存储布线示例。</block>
@@ -328,19 +326,14 @@
   <block id="13ebdf331e696ec36ce21332b70ff56a" category="paragraph">在初始 V目录 磁盘初始化例程期间， solaris format 命令会对磁盘执行 SCSI 查询，并将供应商专用信息（制造商，产品和修订版）写入磁盘标签。所有后续查询均会定向到磁盘标签，而不是实际设备。块级迁移会将此磁盘标签复制到新磁盘，而旧的 SCSI 查询数据仍会显示在系统工具和日志中。重新标记程序会在迁移后使用新的查询数据更新磁盘。</block>
   <block id="3a63df31c7c07052260a745267ccc673" category="paragraph">这些工具和实用程序在 FLI 迁移项目中也很有用：</block>
   <block id="9169b858c9b6edfe9b59c84b47b04338" category="list-text">* 互操作性表 *</block>
-  <block id="f2d4045460d1a1983c44cb974e219db3" category="paragraph">互操作性表工具（ IMT ）是一款基于 Web 的 NetApp 实用程序，用于检查 NetApp ， FlexArray 和第三方软件组件的互操作性。</block>
   <block id="a6a077b904bacb12d48c41c5c73204a8" category="list-text">* ONTAP 系统管理器 *</block>
   <block id="a9d0aa8b103e4adf8ae15e7f25516585" category="paragraph">ONTAP System Manager 可通过图形界面对 NetApp FAS 系统进行远程存储管理。</block>
   <block id="63f145a157a4de507f52e0defe916b43" category="list-text">* OnCommand Workflow Automation *</block>
   <block id="314466fdc9350ebf7ec10c814395d315" category="paragraph">WFA 是一款软件解决方案，可用于创建存储工作流并自动执行存储管理任务，例如配置，迁移，停用和克隆存储。</block>
   <block id="41906f366d54c43ed11596a26fede0c4" category="inline-link">NetApp 工具</block>
   <block id="ecd381cf83e11898e675dbdba4cb2661" category="paragraph"><block ref="ecd381cf83e11898e675dbdba4cb2661" category="inline-link-rx"></block></block>
-  <block id="d1ed20623d06a5575b5bebe97eb3c03a" category="inline-link">NetApp 工具： Data Center Planner</block>
-  <block id="82330aa0d5032553b20acd353259792c" category="paragraph"><block ref="82330aa0d5032553b20acd353259792c" category="inline-link-rx"></block></block>
   <block id="9ed4a475dd3705157a9fed8811f63ce2" category="inline-link">NetApp 互操作性表工具</block>
   <block id="687d97208bee730c33801be1d460abf6" category="paragraph"><block ref="687d97208bee730c33801be1d460abf6" category="inline-link-rx"></block></block>
-  <block id="4313112e38e2034aae406f4730087905" category="inline-link">NetApp 文档： OnCommand System Manager （当前版本）</block>
-  <block id="0fb89981f1f59ac6c2fc1a6cad5da0e0" category="paragraph"><block ref="0fb89981f1f59ac6c2fc1a6cad5da0e0" category="inline-link-rx"></block></block>
   <block id="62580aa51e9dd22e6410288365e0cfae" category="inline-link">NetApp 文档： OnCommand Workflow Automation （当前版本）</block>
   <block id="385f2125f2c2eed2ad18d00d78cfc7d4" category="paragraph"><block ref="385f2125f2c2eed2ad18d00d78cfc7d4" category="inline-link-rx"></block></block>
   <block id="ee3c3a8b2f3a842e463f69562d71d6e7" category="summary">FLI 迁移过程分为五个阶段，可通过适用场景执行任何数据迁移：发现，分析，规划，执行和验证。</block>
@@ -349,7 +342,6 @@
   <block id="ce4f0621e8f1bf1e49980aaf4a5f7334" category="paragraph">这些阶段提供了一个通用框架，可帮助确定在整个迁移过程中执行常见任务的位置。本节中的图表显示了可在主机，网络结构，目标存储和源存储这四个主要组件中的每个组件中并行执行的任务。</block>
   <block id="00c90fb59f1e33aa67f42b7b9099b00f" category="summary">请务必验证您最终要过渡到的主机操作系统， HBA ，交换机和 ONTAP 阵列是否受支持。</block>
   <block id="2843856fe1aedc468540254858bf6c10" category="doc">7- 模式到 ONTAP FLI 支持的配置</block>
-  <block id="b5b71cee20299cfbb2af31994283f0bf" category="paragraph">如果您使用的是从 FLI 7- 模式到 ONTAP 的过渡工作流，则无需在 FlexArray IMT 中验证源（ 7- 模式控制器）。此过渡工作流不会列出，但对此过渡工作流明确表示支持。您仍然需要验证所有主机是否采用受支持的配置。</block>
   <block id="ae26af74c65eb30e105c96f274d4516a" category="paragraph">不存在 FLI 专用平台要求。此外，虽然 7- 模式 Data ONTAP 的版本必须支持光纤通道协议（ FCP ），但也没有最低版本。</block>
   <block id="6cdd3c73f6b04848b0836f249b29d749" category="paragraph">FLI 可导入的最大 LUN 大小为 6 TB 。此限制基于 ONTAP 当前支持的最大驱动器大小。如果您尝试挂载较大的外部 LUN ，则此 LUN 将标记为已断开，您将无法为其写入标签。</block>
   <block id="5e0c9df591e5df923a8325573e7ca5f7" category="summary">以下是生产网络结构 A 中的 Brocade 网络结构示例</block>
@@ -364,11 +356,7 @@
   <block id="0371a2b790b684d89139aa01a9d899dd" category="paragraph">我们会查看主机事件日志，以发现并更正任何问题并降低风险。主机将重新启动，以确保在进行重大重新配置之前主机不存在任何底层问题。</block>
   <block id="9a2d7036802624ba03c75b07ef21f584" category="paragraph">在目标存储上显示源 LUN 后，可以创建并执行迁移作业。迁移完成（ FLI 脱机）或建立 FLI LUN 关系（ FLI 联机）后，主机将分区到目标存储。映射新的 LUN ，并可开始对驱动程序，多路径软件以及在分析阶段确定的任何其他更新进行主机修复。</block>
   <block id="16abdd8ae3b60341fa19eb1be8305b9e" category="summary">此操作步骤显示了如何从 Brocade 网络结构区域中删除源存储和主机区域。</block>
-  <block id="d0ae902543b17dc39935b9f9ff10caf9" category="summary">AFF 并非所有版本的 ONTAP 软件都支持 FlexArray 。在这些版本中，您必须使用 AFF 暂存外部 LUN 导入（ Foreign LUN Imports ， FLI ）到同一集群上的非 AFF 高可用性（ High Availability ， HA ）对。</block>
   <block id="4d2c8e2d52b2d1e27a2032516bde2b24" category="doc">使用外部 LUN 导入将 LUN 导入到 AFF 中</block>
-  <block id="678b11ba8ef0148b72870cd8ab43c178" category="paragraph">从 ONTAP 9.1 开始， AFF 支持 FLI 。您可以使用 FKU 将 LUN 从其他阵列直接导入到 ONTAP 集群中。</block>
-  <block id="1d1decf73b3514198e759fb813b2f31e" category="paragraph">自 ONTAP 8.3.2 起， AFF 可以通过批准的流程差异请求（ PVR ）来支持 FLI 。请联系您的 NetApp 客户团队，将 PVR 提交审批。提交者（通常是 NetApp 系统工程师）在获得批准后，将收到一份批准函，其中包含启用 FLI 功能的说明。</block>
-  <block id="03120ec505b2fc02252feb3c2947d24a" category="paragraph">对于 8.3.2 之前的 ONTAP 软件版本，由于已进行了一些写入优化， AFF 当前不支持 FlexArray 。您需要将 FLI 导入暂存到 AFF 所在集群上的非 AFF HA 对。迁移完成后，您可以使用卷或 LUN 移动等无中断操作（ Nondisruptive operations ， NDO ）将迁移的 LUN 移动到 AFF 。如果您的 AFF 集群没有任何非 AFF 节点，请与您的客户团队联系，了解为实现此目的而借用旋转设备的可能性。</block>
   <block id="22e769e6dfe56bc3b7fec8d36e575f71" category="summary">FLI 脱机执行阶段包括准备迁移主机。</block>
   <block id="540aa6d6b05b87237a5035773dc7ce09" category="doc">为 FLI 脱机迁移准备主机</block>
   <block id="5f51d20e71b9fee9d17896df728cf25f" category="paragraph">在许多情况下，可能会在执行此步骤之前执行此修复。如果不是，则可以在此处执行任何主机修复，例如安装主机连接套件或 DSM 。在分析阶段，您将获得一个间隔列表，其中列出了需要在每个主机上执行的项，以便该主机能够使用 ONTAP 实现受支持的配置。根据所执行的迁移类型，主机将进行修复，然后重新启动（联机 FLI/7- 模式到 ONTAP FLI ），或者在完成迁移过程（脱机 FLI ）之前对其进行修复，然后关闭。</block>
@@ -431,7 +419,6 @@
   <block id="bb127db0e6dffe1777a9bc3bbf1ecc82" category="list-text">在脱机迁移中，第三方阵列中的 FLI 会使客户端系统脱机，并将数据复制到新 LUN ，然后再使其重新联机。</block>
   <block id="b33a9293c8c067048b0e027cc7820941" category="list-text">在过渡迁移中， FLI 会将 7- 模式下运行的 ONTAP 过渡到 ONTAP 。除了源阵列为 ONTAP 之外，此过程在功能上是相同的。过渡工作流可在联机或脱机模式下使用。</block>
   <block id="44023aa16885f326f40c8d26a3d792dc" category="list-text">在自动迁移中， FLI 使用工作流自动化（ WFA ）软件来自动执行部分迁移过程。具有 WFA 的 FLI 可在联机或脱机模式下使用。</block>
-  <block id="ed84643b976a61e35dab90c06a1328ad" category="paragraph">从架构上来说，这三种迁移和过渡工作流相当相似。所有这四个阵列都依靠 NetApp 的 FlexArray 技术，使您的 ONTAP 控制器能够在源阵列前面充当启动程序，并使用该位置将块的 LUN 块从源 ONTAP 阵列复制到目标 LUN 阵列上的 LUN 。</block>
   <block id="4d01f8ae44780dd783a9a1352d13eb15" category="paragraph">这些工作流之间的差异与发生转换的时间，中断窗口的长度，自动化的使用，或者源阵列是运行 ONTAP 7- 模式的 NetApp 阵列或第三方阵列有关。</block>
   <block id="53a51b7dcda82a62f1a85a24f43b7788" category="summary">验证作业是可选的，但建议使用。它对源 LUN 和目标 LUN 进行了按块比较。验证作业所需时间几乎与迁移时间相同或稍长。</block>
   <block id="e57e82538b681c873e1cfb334a6f3601" category="list-text">将外部 LUN 属性标记为 `false` 。</block>
@@ -588,7 +575,6 @@
   <block id="f9e0cb9ba50f068a2ac223e1fb2428e7" category="summary">FLI 解决方案旨在通过这些优势为 NetApp 客户提供卓越的价值。</block>
   <block id="ebe284b6317268b9506fdcdb41331f0b" category="doc">基于 FLI 的解决方案的优势</block>
   <block id="53d134f02bc4e40dc1a38a13c2b5f025" category="list-text">FLI 内置在 ONTAP 中，不需要额外的许可。</block>
-  <block id="ce3b5246051a674a15f5382caab2cc12" category="list-text">FLI 利用 FlexArray 技术，但不需要 FlexArray 许可证。</block>
   <block id="a6af658145c481e571f55cb606f4e3e3" category="list-text">FLI 不需要额外的硬件设备即可进行数据迁移。</block>
   <block id="601633186bcdcca37af13ab5aeaa6b02" category="list-text">基于 FLI 的解决方案支持各种类型的迁移以及第三方存储平台的配置。</block>
   <block id="ff8176da561485db908ffcc196a65b8c" category="list-text">FLI 会自动对齐 LUN ，并可将 32 位聚合中托管的 LUN 迁移到 ONTAP 阵列上托管的 64 位聚合。这样， 7- 模式的 FLI 就 ONTAP 成为过渡 32 位聚合上托管和 / 或未对齐的 7- 模式托管 LUN 的理想选择。</block>
@@ -1150,8 +1136,6 @@
   <block id="5ee8c627194be9305eb2f195346bf13e" category="summary">要准备从 FLI 7- 模式迁移到 ONTAP ，请验证主机和源 LUN 路径以及其他详细信息。</block>
   <block id="7892998f6cd1a85180c0b47cb02c2b6c" category="doc">准备要迁移的源和目标阵列</block>
   <block id="62915faa86ce0270957550462ab778f3" category="list-text">在 ONTAP 中，更改为 `advanced` privilege level 。</block>
-  <block id="6957ef5bef3e2b05030e2f318c20f70e" category="list-text">查看有关列出的任何存储错误的详细信息。某些错误可能需要采取措施才能继续。但是，可以安全地忽略以下示例中显示的错误 "`this device is an ONTAP （ R ） LUN.` " 。</block>
-  <block id="b8e20808df451129caa39264a050e4ae" category="paragraph">导致错误消息 " 此设备是 ontap\ （ R\ ） LUN" 的原因是 FLI 依赖于不支持虚拟化 ONTAP 或 ONTAP 目标的 FlexArray 技术。FLI 可以导入 LUN ，但 FlexArray 不支持对其进行虚拟化。</block>
   <block id="e5810d56320059c0373293d0da4050c0" category="list-text">列出从 7- 模式存储映射的 LUN 。验证磁盘属性和路径。</block>
   <block id="97c500043e97619a7cdae1db7eb50436" category="list-text">创建目标 LUN 。</block>
   <block id="785fe114b1b46895afc9982f8587b494" category="list-text">将测试 LUN 映射到测试 igroup 。</block>
@@ -1160,7 +1144,6 @@
   <block id="cf4e13b9b7146fa58901a5bc51850ed3" category="paragraph">删除第三方软件，安装并配置 NetApp 软件，然后启动主机访问 NetApp 上的 LUN 。有关特定主机类型的迁移后修复示例，请参见 " 主机修复 " 主题。</block>
   <block id="dfe7b37a42a22434a5cd3777ed775602" category="summary">您应执行一个或多个测试迁移，以验证阵列，交换机和主机是否已正确配置，同时还应获取可推断的多个示例，以确定迁移持续时间和工作量级别。</block>
   <block id="29b36bd1e7c4f736d341e2632051fa93" category="doc">迁移测试</block>
-  <block id="ee499a8b98fda959d00d7caca3584161" category="summary">由于外部 LUN 导入（ FLI ）利用 FlexArray 技术挂载外部 LUN ，因此只能使用 FCP 连接到源阵列。FLI 仅支持 FC LUN 。但是，您可以通过临时解决策导入 iSCSI LUN 。由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将涵盖整个工作流：</block>
   <block id="8c83908f3246c4ea01517197b1f0a841" category="doc">导入非 FC LUN</block>
   <block id="dc54dc0df5ad07a6c087036a2585ee52" category="paragraph">由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将覆盖整个工作流。</block>
   <block id="e7ce7ac413ef9c629400cec0539ce23e" category="list-text">在源阵列上，您需要从其 iSCSI igroup 取消所需 iSCSI LUN 的映射。</block>
@@ -1178,10 +1161,7 @@
   <block id="8129cc4d9aa314cede44f0db47578d65" category="list-text">FLI 过渡后任务</block>
   <block id="ed7cbae072fb6b5459833b1aaf0b2b9c" category="summary">外部 LUN 导入（ Foreign LUN Import ， FLI ）是 ONTAP 中内置的一项功能，允许用户以简单高效的方式将数据从外部阵列 LUN 导入到 NetApp LUN 。</block>
   <block id="bd6d110624152bef80bfb3a40415afcb" category="doc">外部 LUN 导入概述</block>
-  <block id="e545390b6a02c90809e3ba41d6cd0d49" category="paragraph">FLI 利用 NetApp FlexArray ® 技术发现外部 RAID 阵列 LUN 并从中提取数据。FlexArray 允许 NetApp ONTAP 控制器在一个或多个第三方阵列前充当启动程序。FlexArray 可以将这些阵列中的 LUN 作为后端存储进行挂载，然后将这些 LUN 中的空间作为 NetApp 统一存储（允许 FCP ， FCoE ， iSCSI ， NFS 和 CIFS/SMB 协议访问）提供给 SAN 或 NAS 环境中的主机。</block>
-  <block id="19f6373fc1d63d6ca70966941c8c6838" category="paragraph">FLI 不需要 FlexArray 许可证。FLI 利用 FlexArray 技术将外部 LUN 复制到 NetApp ONTAP 阵列，然后允许使用该 LUN 的主机和应用程序指向当前托管相关 LUN 的 NetApp 阵列。虽然 ONTAP 不再需要专业服务运行的迁移，但 NetApp 强烈建议专业服务人员参与范围界定，规划和培训，以满足最简单的迁移需求。</block>
   <block id="603139ad94ee4b366078d1718edd6cc8" category="paragraph">FLI 是为将 SAN LUN 迁移到 ONTAP 而开发的。FLI 支持一系列迁移要求，包括但不限于以下内容：</block>
-  <block id="8f9080da05de4c15ecad29c5259754e0" category="list-text">在 FlexArray 配置支持的情况下，将 EMC ， Hitachi ， HP 和其他供应商的异构存储阵列之间的数据迁移到 NetApp 。</block>
   <block id="63fcf874938b3f8a8d09eea8f4e717fd" category="list-text">在数据中心重新定位，整合和阵列更换期间简化并加速块数据迁移。</block>
   <block id="99abf425200601a606145e997abba074" category="list-text">将迁移和 LUN 领域整合到一个工作流中。</block>
   <block id="587d7ded98be7df0f5f867261e578e9e" category="paragraph">此外， 7- 模式到 ONTAP 的过渡操作步骤可以将聚合从 32 位转换为 64 位，修复对齐问题，并将 LUN 作为一项操作进行迁移。</block>
@@ -1193,12 +1173,8 @@
   <block id="4ab82376627d3c92c29ab3d0e5562860" category="paragraph">此图显示了 FLI 联机数据迁移。主机已连接到现在托管新 LUN 的 NetApp 控制器。然后，可以在导入期间恢复并继续执行主机操作。</block>
   <block id="3e93c4ba8debcbb0556af1cd7ab1b741" category="summary">在开始 FLI 迁移之前， LUN 应满足以下要求。</block>
   <block id="e80e48acabbfbfabe9d26f77e6893f2e" category="list-text">FLI 要求每个控制器上至少有一个 FC 端口，并且要使 LUN 直接在启动程序模式下迁移。</block>
-  <block id="1aa4f2a052fd81ec3e8e4d05af38fa3d" category="list-text">必须在目标阵列上将外部 LUN 标记为外部，以防止从 ONTAP 进行分配。</block>
-  <block id="9aa3188a54765c6430f32b9c1bd813fd" category="list-text">开始导入之前，外部 LUN 必须处于导入关系中。</block>
-  <block id="44aa1f7a817892effc0c87066a63421e" category="list-text">LUN 必须与外部 LUN 大小相同，并且磁盘块大小必须相同。在创建 LUN 的步骤中会同时满足这两项要求。</block>
   <block id="712ab059b692b9bc1b27b9cc4debdd19" category="list-text">LUN 不得正在扩展或缩减。</block>
   <block id="28346dfebd33c0a30bb74655c8205c5e" category="list-text">LUN 必须至少映射到一个 igroup 。</block>
-  <block id="1be37e9706ae71ec79642c4a74ddb6e4" category="list-text">在创建关系之前，应使 NetApp LUN 脱机。但是，创建 LUN 关系后，如果是联机 FLI ，则可以将其恢复联机。</block>
   <block id="e646e16bee8b32e6ea29e30d01970a6c" category="section-title">限制</block>
   <block id="9f0253275fe68858c0af6b82677674c0" category="list-text">所有迁移都在 LUN 级别进行。</block>
   <block id="627efaeda3a2eeb48c8581eb26bd2021" category="list-text">FLI 仅支持光纤通道（ FC ）连接。</block>
@@ -1590,4 +1566,20 @@
   <block id="a9fa02c73b0556989b39e0a09dc2fb37" category="sidebar">准备主机以进行迁移</block>
   <block id="9cc66e684b29dae71b3873021ab5f900" category="sidebar">将源 LUN 映射到目标阵列</block>
   <block id="3e06682f4f26baa39169365df5a4cbff" category="paragraph">从ONTAP 9.17.1 开始， ASA r2 系统支持使用 FLI 在线迁移对外部 LUN 进行数据迁移。ASA系统与其他ONTAP系统（ASA、 AFF和FAS）在存储层实施方面有所不同。在ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。因此，您无需在创建 LUN 导入关系之前创建卷。如果您使用的是ASA r2 系统，则可以跳过此步骤。</block>
+  <block id="8f5dacf4f4b55059433f61ed7a616538" category="paragraph">如果您使用 FLI 7-Mode 到ONTAP 的过渡工作流程，则无需在IMT中验证您的源（7-Mode 控制器）。它不会被列入清单，但专门为这种过渡工作流程提供支持。您仍然需要验证所有主机是否都处于受支持的配置中。</block>
+  <block id="70af7e1fedf476634203ffed3e810f9b" category="summary">FLI 互操作性矩阵 (IMT) 是一种截然不同的互操作性工具，旨在更好地支持与 FLI 配合使用的NetApp认证源阵列。</block>
+  <block id="4381eab0b8454437664a831f008b220f" category="paragraph">尽管ONTAP不再需要专业服务人员进行迁移，但NetApp强烈建议专业服务人员参与除最简单的迁移之外的所有迁移的范围界定、规划和培训。</block>
+  <block id="5c2701f0dedd30db8b462a850ade9d29" category="list-text">将来自 EMC、日立、惠普和其他供应商的异构存储阵列之间的数据迁移到NetApp。</block>
+  <block id="03bdcb1abadb9de7e792d4ea528ede06" category="list-text">必须在目标阵列上将外部 LUN 标记为外部，以防止从ONTAP进行分配。</block>
+  <block id="12c0657de6e3049dc1c10bc5be7c65ea" category="list-text">导入之前，必须先将国外 LUN 与系统建立导入关系。</block>
+  <block id="54299053ded6ce9382d5400397c64c0a" category="list-text">LUN 的大小必须与外部 LUN 的大小相同。此要求在 LUN 创建步骤中已得到处理。</block>
+  <block id="c6f68a5b040db10ea284e182330b02fa" category="list-text">外部 LUN 块大小必须为 512 字节。NetApp LUN 仅支持 512 字节块大小。</block>
+  <block id="2f4de8a67de8d942e5c6cb3bc23f9971" category="list-text">在建立关系之前，应先将NetApp LUN 脱机。但是，在创建 LUN 关系之后，如果 FLI 在线，则可以将其重新上线。</block>
+  <block id="381b5fecf3c1646a7eb39b7c4003f26b" category="summary">迁移期间使用的存储阵列必须具有来自两个网络结构中每个控制器（正在使用）的主路径。这意味着源阵列和要迁移到的目标阵列节点必须位于两个网络架构的同一区域内。</block>
+  <block id="b027f66470fdc2503b4a162dfc66f032" category="paragraph">互操作性矩阵工具 (IMT) 是NetApp基于 Web 的实用程序，用于检查NetApp和第三方软件组件的互操作性。</block>
+  <block id="fe3b2f586b2d988463d0819cb5bd8354" category="summary">从ONTAP 9.1 开始， AFF支持 FLI。您可以使用 FLI 将其他阵列中的 LUN 直接导入ONTAP集群。</block>
+  <block id="544cd217124f2df963edefb2af62f43d" category="paragraph">从ONTAP 8.3.2 开始， AFF可以通过已批准的流程变更请求 (PVR) 来支持 FLI。请联系您的NetApp客户团队，提交 PVR 以供审批。获得批准后，提交人（通常是NetApp系统工程师）将收到一封批准函，其中包含启用 FLI 功能的说明。</block>
+  <block id="c0be6833308ef6249cbd9f89e7a798b0" category="paragraph">对于 8.3.2 之前的ONTAP软件版本，您需要将 FLI 导入暂存到与AFF位于同一集群上的非AFF HA 对中。迁移完成后，您可以使用非中断操作 (NDO)，例如卷或 LUN 移动，将迁移的 LUN 移动到AFF。如果您的AFF集群没有任何非AFF节点，请与您的客户团队讨论借用备用设备以方便实施的可能性。</block>
+  <block id="b259a08f8828833b95c5b4f5f88fa25b" category="list-text">查看列出的所有存储错误详情。有些错误可能需要先进行处理才能继续。</block>
+  <block id="2496428c9cc7db06e462e33d26960f96" category="summary">FLI 仅支持 FC LUN。但是，有一个变通方法可以让你导入 iSCSI LUN。由于您将把 iSCSI LUN 作为 FC LUN 导入，与其他 FLI 在线 7 模式到ONTAP工作流程不同，中断窗口将贯穿整个工作流程：</block>
 </blocks>

@@ -2,7 +2,7 @@
 permalink: san-migration/task_importing_non_fc_luns.html 
 sidebar: sidebar 
 keywords: import, non-fc luns 
-summary: 由于外部 LUN 导入（ FLI ）利用 FlexArray 技术挂载外部 LUN ，因此只能使用 FCP 连接到源阵列。FLI 仅支持 FC LUN 。但是，您可以通过临时解决策导入 iSCSI LUN 。由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将涵盖整个工作流： 
+summary: FLI 仅支持 FC LUN。但是，有一个变通方法可以让你导入 iSCSI LUN。由于您将把 iSCSI LUN 作为 FC LUN 导入，与其他 FLI 在线 7 模式到ONTAP工作流程不同，中断窗口将贯穿整个工作流程： 
 ---
 = 导入非 FC LUN
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 由于外部 LUN 导入（ FLI ）利用 FlexArray 技术挂载外部 L
 
 
 [role="lead"]
-由于外部 LUN 导入（ FLI ）利用 FlexArray 技术挂载外部 LUN ，因此只能使用 FCP 连接到源阵列。FLI 仅支持 FC LUN 。但是，您可以通过临时解决策导入 iSCSI LUN 。由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将涵盖整个工作流：
+FLI 仅支持 FC LUN。但是，有一个变通方法可以让你导入 iSCSI LUN。由于您将把 iSCSI LUN 作为 FC LUN 导入，与其他 FLI 在线 7 模式到ONTAP工作流程不同，中断窗口将贯穿整个工作流程：
 
 由于您要将 iSCSI LUN 作为 FC LUN 导入，因此与其他 FLI 联机 7- 模式到 ONTAP 工作流不同，中断窗口将覆盖整个工作流。
 

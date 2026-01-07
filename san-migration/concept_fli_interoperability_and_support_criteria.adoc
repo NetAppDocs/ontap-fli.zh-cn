@@ -2,7 +2,7 @@
 permalink: san-migration/concept_fli_interoperability_and_support_criteria.html 
 sidebar: sidebar 
 keywords: fli, interoperability, support, criteria 
-summary: FLI 互操作性表（ IMT ）与 FlexArray IMT 非常相似，但作为一种截然不同的互操作性工具添加，目的是更好地支持符合 NetApp 标准且可与 FLI 结合使用的源阵列。 
+summary: 'FLI 互操作性矩阵 (IMT) 是一种截然不同的互操作性工具，旨在更好地支持与 FLI 配合使用的NetApp认证源阵列。' 
 ---
 = FLI 互操作性和支持标准
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: FLI 互操作性表（ IMT ）与 FlexArray IMT 非常相似，但作�
 
 
 [role="lead"]
-FLI 互操作性表（ IMT ）与 FlexArray IMT 非常相似，但作为一种截然不同的互操作性工具添加，目的是更好地支持符合 NetApp 标准且可与 FLI 结合使用的源阵列。
+FLI 互操作性矩阵 (IMT) 是一种截然不同的互操作性工具，旨在更好地支持与 FLI 配合使用的NetApp认证源阵列。
 
 在执行外部 LUN 导入之前，需要检查两个互操作性方面：
 

@@ -48,13 +48,7 @@ ontaptme-fc-cluster-02
 
 Warning: Configuration errors were detected.  Use 'storage errors show' for detailed information.
 ----
-. 查看有关列出的任何存储错误的详细信息。某些错误可能需要采取措施才能继续。但是，可以安全地忽略以下示例中显示的错误 "`this device is an ONTAP （ R ） LUN.` " 。
-+
-[NOTE]
-====
-导致错误消息 " 此设备是 ontap\ （ R\ ） LUN" 的原因是 FLI 依赖于不支持虚拟化 ONTAP 或 ONTAP 目标的 FlexArray 技术。FLI 可以导入 LUN ，但 FlexArray 不支持对其进行虚拟化。
-
-====
+. 查看列出的所有存储错误详情。有些错误可能需要先进行处理才能继续。
 +
 [listing]
 ----

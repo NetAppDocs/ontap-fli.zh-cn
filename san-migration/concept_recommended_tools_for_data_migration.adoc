@@ -32,7 +32,7 @@ Solaris Relabeler 是一个命令行实用程序，可用于在迁移后更新�
 
 * * 互操作性表 *
 +
-互操作性表工具（ IMT ）是一款基于 Web 的 NetApp 实用程序，用于检查 NetApp ， FlexArray 和第三方软件组件的互操作性。
+互操作性矩阵工具 (IMT) 是NetApp基于 Web 的实用程序，用于检查NetApp和第三方软件组件的互操作性。
 
 * * ONTAP 系统管理器 *
 +
@@ -48,10 +48,6 @@ WFA 是一款软件解决方案，可用于创建存储工作流并自动执行�
 
 https://mysupport.netapp.com/site/tools["NetApp 工具"]
 
-http://mysupport.netapp.com/NOW/download/tools/ndcp/["NetApp 工具： Data Center Planner"]
-
 https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
-
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61372["NetApp 文档： OnCommand System Manager （当前版本）"]
 
 http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61550["NetApp 文档： OnCommand Workflow Automation （当前版本）"]
