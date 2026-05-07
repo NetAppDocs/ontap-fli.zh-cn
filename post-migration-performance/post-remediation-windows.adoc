@@ -1,0 +1,157 @@
+---
+permalink: post-migration-performance/post-remediation-windows.html 
+sidebar: sidebar 
+keywords: host remediation, windows, post-migration, fli, ontap 
+summary: 迁移后，Windows 主机需要采取补救措施，以确保新导入的 LUN 被正确识别并正常运行。 
+---
+= 执行 ONTAP FLI Windows 迁移后主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移后，Windows 主机需要采取补救措施，以确保新导入的 LUN 被正确识别并正常运行。
+
+
+
+== 迁移后 - 离线 FLI
+
+对于脱机 FLI，删除 LUN 导入并确认主机启动器已连接后，使 LUN 联机。
+
+[cols="4"]
+|===
+| 文件系统设备 | 物理驱动器（无文件系统） | WFSC | Hyper V 
+
+
+| 步骤 1：重新扫描所有映射主机上的存储 | 步骤 1：重新扫描所有映射主机上的存储 | 步骤 1：重新扫描所有映射主机上的存储 | 步骤 1：重新扫描磁盘管理，所有磁盘都应连接。 
+
+
+| 步骤 2：识别列出的驱动器并使磁盘联机 | 步骤 2：将物理磁盘添加到所需的应用程序并启动。 | 步骤 2：识别列出的驱动器并使磁盘联机。 | 步骤 2：选择磁盘并将其联机，所有磁盘都应联机，并应获得原始名称和磁盘字母。 
+
+
+| 步骤 3：验证所有文件系统磁盘是否可用且工作正常 |  | 步骤 3：验证所有映射的主机是否具有可用和 ONLINE 的驱动器 | 第 3 步：尝试开启 Virtual Machines，Virtual Machine 应正常上线 
+
+
+| 步骤 4：启动所需的应用程序 |  | 步骤 4：启动 WFSC 集群应用程序并配置所需的集群资源。 |  
+|===
+
+
+== 迁移后 - 在线 FLI
+
+删除 LUN 导入后，请检查 LUN 是否设置为禁用 -space-reserve 并启用 -space-allocation。如果没有，请相应地进行修改。
+
+[cols="2"]
+|===
+| 文件系统设备 | 物理驱动器（无文件系统） 
+
+
+| 步骤 1：重新扫描所有映射主机上的存储 | 步骤 1：重新扫描所有映射主机上的存储 
+
+
+| 第 2 步：如果目标端已启用空间分配，则需要重新启动主机以反映更改。 | 第 2 步：如果目标端已启用空间分配，则需要重新启动主机以反映更改。 
+|===
+
+
+=== 文件系统设备
+
+.步骤
+. 重新扫描所有映射主机上的存储
++
+[source, cli]
+----
+Update-HostStorageCache
+----
+. 识别列出的驱动器并使磁盘联机。
++
+[source, cli]
+----
+Get-Disk | Where-Object IsOffline -eq $true
+Set-Disk -Number <DiskNumber> -IsOffline $false
+----
+. 验证所有文件系统磁盘是否可用并正常工作。
++
+[source, cli]
+----
+Get-Volume | Format-Table DriveLetter, FileSystemLabel, Size, SizeRemaining
+----
+. 启动所需的应用程序。
++
+[source, cli]
+----
+Start-Service -Name <ServiceName>
+----
+
+
+
+
+=== 物理驱动器（无文件系统）
+
+.步骤
+. 重新扫描所有映射主机上的存储。
++
+[source, cli]
+----
+Update-HostStorageCache
+----
+. 将物理磁盘添加到所需的应用程序并启动。
+
+
+
+
+=== WSFC
+
+.步骤
+. 重新扫描所有映射主机上的存储。
++
+[source, cli]
+----
+Update-HostStorageCache
+----
+. 识别列出的驱动器并使磁盘联机。
++
+[source, cli]
+----
+Get-Disk | Where-Object IsOffline -eq $true
+Set-Disk -Number <DiskNumber> -IsOffline $false
+----
+. 验证所有映射的主机是否具有可用和 ONLINE 的驱动器。
++
+[source, cli]
+----
+Get-ClusterResource | Where-Object ResourceType -eq "Physical Disk"
+----
+. 启动 WSFC 集群应用程序并配置所需的集群资源。
++
+[source, cli]
+----
+Start-Cluster -Name <ClusterName>
+Start-ClusterResource -Name <ResourceName>
+----
+
+
+
+
+=== Hyper V
+
+.步骤
+. 重新扫描磁盘管理，所有磁盘都应连接。
++
+[source, cli]
+----
+Update-HostStorageCache
+----
+. 选择磁盘并将其联机，所有磁盘都应联机，并应获得原始名称和磁盘字母。
++
+[source, cli]
+----
+Get-Disk | Where-Object IsOffline -eq $true
+Set-Disk -Number <DiskNumber> -IsOffline $false
+----
+. 尝试开启虚拟机，虚拟机应该可以正常上线。
++
+[source, cli]
+----
+Start-VM -Name <VM_Name>
+----
+

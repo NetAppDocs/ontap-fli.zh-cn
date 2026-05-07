@@ -1,0 +1,18 @@
+---
+section: get-started
+title: 开始使用
+entries:
+- title: 概述
+  url: "/get-started/learn-about-data-migration.html"
+- title: SAN 数据迁移到 ONTAP
+  url: "/get-started/learn-about-san-data-migration.html"
+- title: 外部 LUN 导入
+  url: "/get-started/learn-about-fli.html"
+- title: FLI 从 7-mode 迁移到 ONTAP
+  url: "/get-started/learn-about-7-mode.html"
+- title: 主要功能和优势
+  url: "/get-started/key-features-benefits.html"
+- title: FLI 先决条件
+  url: "/get-started/prerequisites.html"
+- title: 支持的配置和平台
+  url: "/get-started/supported-configurations.html"

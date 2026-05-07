@@ -1,0 +1,75 @@
+---
+permalink: post-migration-performance/clean-up.html 
+sidebar: sidebar 
+keywords: post-migration cleanup, foreign lun import, fli, data integrity, snapshot, autosupport, fc fli, iscsi fli, san migration, de-provision, import logs 
+summary: 通过确认导入完成并验证数据完整性和删除临时后端配置，在 FLI 后完成迁移后清理。 
+---
+= 执行 ONTAP FLI 迁移后清理
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 LUN 导入完成并删除关系后，有几个重要的清理步骤来完成迁移，确保数据完整性，并删除为 FLI 工作流程设置的任何临时配置。这些步骤包括确认导入已完成、验证数据完整性、从 ONTAP 发现中取消设置外来 LUN、清理后端连接以及查看日志和文档。
+
+在您的 FLI 迁移之后，您应该执行以下步骤来完成迁移并确保清洁状态：
+
+* 确认 LUN 导入已成功完成并验证了数据完整性
+* 拍摄卷级 Snapshot
+* 从 NetApp 存储阵列启动器取消调配 LUN。
++
+根据不同的存储供应商，步骤会有所不同。遵循外部存储阵列供应商推荐的步骤
+
+
+
+.步骤
+. 将外部 LUN 属性标记为 false（使用外部磁盘序列号）：
++
+[source, cli]
+----
+storage disk modify -serial-number <FOREIGN_SERIAL> -is-foreign false
+----
+. 确保外部存储阵列 LUN 在 ONTAP 中不再可见：
++
+[source, cli]
+----
+storage disk show -array-name <ARRAY_NAME> -fields disk,serial-number,is-foreign,import-in-progress
+----
+. 对 FC FLI 执行以下操作：
++
+.. 删除 NetApp 存储阵列启动器与外部存储阵列目标 WWPN 之间的分区。
+.. 检查外部存储阵列上 NetApp 存储阵列启动器是否不再登录。
+.. 将 FC 适配器从启动器转换为目标。
+
+
+. 对 iSCSI FLI 执行以下操作：
++
+.. 删除外部存储阵列和 NetApp 存储阵列之间的 iSCSI 会话。
+.. 删除集群间 LIF 上的 iSCSI 启动程序。
+.. 如果集群间 LIF 是为外部 LUN 导入而创建的，并且没有其他应用程序使用集群间 LIF，请删除该集群间 LIF。
+
+
+. 检查日志是否有错误，以确认迁移成功。
++
+导入日志存储在集群事件日志文件中。
+
++
+*示例*
+
++
+[listing]
+----
+DataMig-cmode::*> rows 0; event log show -nodes * -event fli*
+7/7/2014 18:37:21   DataMig-cmode-01 INFORMATIONAL fli.lun.verify.complete: Import verify of foreign LUN 83017542001E of size 42949672960 bytes from array model DF600F belonging to vendor HITACHI  with NetApp LUN QvChd+EUXoiS is successfully completed.
+~~~~~~ Output truncated ~~~~~~~
+
+The verification steps to compare the source and destination LUNs are covered in the execute migration phase. The importing and LUN verification steps are covered in the execute migration phase because they are linked to the import job and the foreign LUN.
+----
+. 收集 AutoSupport 以记录客户环境，并在完成后收集另一个 AutoSupport 以记录最终配置：
++
+[source, cli]
+----
+autosupport invoke -node <node_name> -type all -message “migration-final”
+----
+

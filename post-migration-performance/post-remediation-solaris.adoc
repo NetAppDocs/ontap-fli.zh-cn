@@ -1,0 +1,143 @@
+---
+permalink: post-migration-performance/post-remediation-solaris.html 
+sidebar: sidebar 
+keywords: host remediation, solaris, post-migration, fli, ontap 
+summary: 迁移后，Solaris 主机需要采取补救措施，以确保新导入的 LUN 被正确识别并正常工作。 
+---
+= 执行 ONTAP FLI Solaris 迁移后主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移后，Solaris 主机需要采取补救措施，以确保新导入的 LUN 被正确识别并正常工作。
+
+
+
+== 迁移后 - 离线 FLI
+
+对于离线 FLI，删除 LUN 导入并确认主机启动器已连接后，使 LUN 联机。
+
+[cols="5"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | 集群 | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 Solaris 主机上的存储 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储 | 步骤 1：打开服务器电源 
+
+
+| 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：在 SPARC 服务器 OBP 上，配置呈现给此主机 HBA 的新引导设备 
+
+
+| 步骤 3：检查池详细信息 | 步骤 3：识别多路径设备 ID 并将其呈现给相应的应用程序。 | 步骤 3：检查池状态 | 步骤 3：检查文件系统详细信息 | 步骤 3：重新启动主机，从作为 LUN 导入一部分的新映射 LUN 启动 
+
+
+| 步骤 4：将设备装回相应的文件夹 |  | 步骤 4：导入池 | 步骤 4：验证所需的集群配置并启动集群应用程序 |  
+
+
+|  |  | 第 5 步：列出池中存在的 FS | 第 5 步：验证集群状态和正在使用的应用程序。 |  
+
+
+|  |  | 第 6 步：将 FS 挂载回相应的文件夹 |  |  
+|===
+
+NOTE: 有关最新和更新的命令列表，请参阅操作系统供应商文档。
+
+.步骤
+. 连接后重新扫描。
++
+[source, cli]
+----
+cfgadm -al
+----
+. 识别存储设备。
++
+[source, cli]
+----
+format
+sanlun lun show all
+mpathadm list lu
+mpathadm show lu
+----
+. 验证设备是否已连接。
++
+[source, cli]
+----
+format |grep disk_id
+----
+. 导入 zpool，FS 将自动挂载。
++
+[source, cli]
+----
+zpool import zpool_name
+df -g (to ensure its unmounted)
+----
+
+
+
+
+== 迁移后 - 在线 FLI
+
+删除 LUN 导入后，请检查 LUN 是否设置为禁用 -space-reserve 并启用 -space-allocation。如果没有，请相应地进行修改。
+
+[cols="4"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 
+|===
+
+NOTE: 有关最新和更新的命令列表，请参阅操作系统供应商文档。
+
+.步骤
+. 连接后重新扫描。
++
+[source, cli]
+----
+cfgadm -al
+----
+. 识别存储设备。
++
+[source, cli]
+----
+format
+sanlun lun show all
+mpathadm list lu
+mpathadm show lu
+----
+. 验证设备是否已连接。
++
+[source, cli]
+----
+`format |grep disk_id`
+----
+. 导入 zpool，FS 将自动挂载。
++
+[source, cli]
+----
+zpool import zpool_name
+df -g
+----
+
+
+[cols="2"]
+|===
+|  | Solaris 
+
+
+| 第 1 步 | 捕获主机信息。 
+
+
+| 第 2 步 | 卸载文件系统。 
+
+
+| 第 3 步 | 获取 VG 的备份。 
+
+
+| 第 4 步 | 停用 VG。 
+
+
+| 第 5 步 | 导出 VG。 
+|===

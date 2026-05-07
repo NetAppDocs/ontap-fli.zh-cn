@@ -1,0 +1,296 @@
+---
+permalink: configure/iscsi-setup-backend-connectivity.html 
+sidebar: sidebar 
+keywords:  
+summary:  
+---
+= ONTAP 外部 LUN 导入 (FLI) 推荐的 FC 布线和分区实践
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP iSCSI FLI 使用与 FLI 堆栈集成的 ONTAP 软件 iSCSI 启动程序，并将出站 iSCSI 会话绑定到集群间 LIF，其中后端连接由集群间 LIF 网络驱动，而不是主机数据 LIF。
+
+由于会话基于集群间 LIF，请规划集群间 LIF 放置、可达性和冗余性，这通常在拥有 LUN 的节点及其 HA 合作伙伴上，具有跨端口的弹性放置，以避免单点故障。在创建会话之前，请通过集群间 LIF IP 和外部阵列目标门户 IP 之间的 VLAN 可达性来验证端到端路由，包括允许 TCP 端口 3260，因为成功的网络是 LUN 发现的先决条件。
+
+必须使用目标门户 IP 和目标 IQN 明确创建会话。不使用 iSCSI 发现会话。预期的弹性模型是全网状连接，其中每个参与的 ONTAP 节点建立到每个外部目标门户的会话，因此在开始导入之前，外部 LUN 在所有可用路径中都是可见的。
+
+后端传输（iSCSI 或 FC）与您用于向主机呈现目标 ONTAP LUN 的前端协议无关。您可以使用 iSCSI 后端进行导入，也可以使用 FC 或 iSCSI 进行呈现。根据主机 I/O 是否必须停止以完成完整导入，或者在短暂切换后可以恢复而复制在后台继续，选择脱机或在线迁移。
+
+无论后端是 FC 还是 iSCSI，前端传输 SAN 传输协议可以是 SCSI FC 或 iSCSI。
+
+.开始之前
+* 使用  `version` 命令确认 ONTAP 版本，并确认集群处于 iSCSI FLI 的预期版本上。
+
+
+.关于此任务
+ONTAP FLI iSCSI 后端连接设置包括集群间 LIF、iSCSI 启动程序和会话。在开始导入之前，您应该执行以下操作来设置和验证 iSCSI 后端连接：
+
+* 确认您将用于导入的两个 HA 节点（拥有节点和 HA 合作伙伴）上都存在集群间 LIF，并且它们已启动且可访问。
+* 创建绑定到集群间 LIF 的 ONTAP 软件 iSCSI 启动程序（每个 LIF 一个启动程序）。
+* 从两个节点到外部阵列目标门户和 IQN 创建 iSCSI 会话。
+* 确认会话运行正常，并发现外部 LUN。
+
+
+.步骤
+. 验证集群间 LIF：
++
+[source, cli]
+----
+network interface show -service-policy default-intercluster -fields vserver,home-node,home-port,curr-node,curr-port,address,ipspace,status-admin,status-oper
+----
++
+*输出示例*
+
++
+[listing]
+----
+vserver         lif             address        home-node home-port curr-node  curr-port status-oper status-admin ipspace
+
+C1_vsim_cluster iSCSI_FLI_IC_1  172.21.180.220 vsim       e0d      vsim        e0d       up          up          Default
+C1_vsim2_cluster iSCSI_FLI_IC_2 172.21.180.228 vsim2      e0d      vsim2       e0d       up          up          Default
+2 entries were displayed.
+----
+. 验证网络端口是否已启动且位于正确的 IPSpace 中：
++
+[source, cli]
+----
+network port show -port e0d -fields port ,ipspace ,broadcast-domain ,link ,mtu,speed-admin ,speed-oper ,health-status
+----
++
+*输出示例*
+
++
+[listing]
+----
+node  port link mtu  speed-admin speed-oper ipspace broadcast-domain health-status
+----- ---- ---- ---- ----------- ---------- ------- ---------------- -------------
+vsim  e0d  up   1500 auto        1000       Default Default          healthy
+vsim2 e0d  up   1500 auto        1000       Default Default          healthy
+2 entries were displayed.
+----
+. 验证从 ONTAP 到每个外部目标门户的可达性（每个目标门户重复）：
++
+[source, cli]
+----
+network ping -lif <IC_LIF_NAME> -destination <FOREIGN_TARGET_IP>
+----
++
+*输出示例*
+
++
+[listing]
+----
+C1_vsim_cluster::*>  network ping -node vsim -destination 172.21.180.238
+172.21.180.238 is alive
+C1_vsim_cluster::*> network ping -node vsim -destination 172.21.180.238
+172.21.180.238 is alive
+C1_vsim_cluster::*>
+----
+. 检查 iSCSI 启动程序是否存在，或者创建绑定到集群间 LIF 的 iSCSI 启动程序（在两个 HA 节点上重复）：
++
+[source, cli]
+----
+storage iswi initiator create -node <NODE_A> -lif <IC_LIF_A> -initiator-name <INIT_NAME_A>
+----
++
+[source, cli]
+----
+storage iswi initiator create -node <NODE_B> -lif <IC_LIF_B> -initiator-name <INIT_NAME_B>
+----
+. 将权限级别设置为高级：
++
+[source, cli]
+----
+set -privilege advanced
+----
++
+*输出示例*
+
++
+[listing]
+----
+C1_vsim_cluster::> set -privilege advanced
+Warning: These advanced commands are potentially dangerous; use them only when
+         directed to do so by NetApp personnel.
+Do you want to continue? {y|n}: y
+----
+. 查看 iSCSI 启动程序列表：
++
+[source, cli]
+----
+storage iscsi-initiator show
+----
++
+*输出示例*
+
++
+[listing]
+----
+C1_vsim_cluster::*> storage iscsi-initiator show
+This table is currently empty.
+----
+. 创建 iSCSI 启动程序：
++
+[source, cli]
+----
+storage iscsi-initiator create -node <node_name> -initiator-name <initiator_name> -lif <lif_name>
+----
++
+*示例*
+
++
+[listing]
+----
+C1_vsim_cluster::*>  storage iscsi-initiator create -node vsim  -initiator-name init207m  -lif iSCSI_FLI_IC_1
+C1_vsim2_cluster::*> storage iscsi-initiator create -node vsim2 -initiator-name init207n  -lif iSCSI_FLI_IC_2
+----
+. 验证是否已创建启动程序：
++
+[source, cli]
+----
+storage iscsi-initiator show
+----
++
+*输出示例*
+
++
+[listing]
+----
+C1_sti84-vsim-ucs207m_cluster::*> storage iswi initiator show
+       Initiator Logical        Source
+ Node  Name      Interface      Name                   ISID              State
+----- ---------  -----------    ---------------------  ----------------  -------------
+vsim  init207m   iSCSI_FLI_IC_1 iqn.1992-08.com.netapp:sn.4086639599:vs.1  80:0a:75:00:00:00  online
+vsim2 init207n   iSCSI_FLI_IC_2 iqn.1992-08.com.netapp:sn.4086639600:vs.1  80:1f:61:00:00:00  online
+2 entries were displayed.
+----
+. 从每个 <TARGET_IP>/<TARGET_IQN> 对的两个节点创建到外部目标的 iSCSI 会话，确保会话形成完整的网状拓扑，其中每个节点建立到每个目标门户的会话：
++
+[source, cli]
+----
+storage iswi initiator session create -node <NODE_A> -initiator-name <INIT_NAME_A> -target-ip <TARGET_IP> -target-name <TARGET_IQN> -target-port 3260
+----
++
+[source, cli]
+----
+storage iswi initiator session create -node <NODE_B> -initiator-name <INIT_NAME_B> -target-ip <TARGET_IP> -target-name <TARGET_IQN> -target-port 3260
+----
++
+*示例*
+
++
+[listing]
+----
+C1_vsim_cluster::*> storage iswi initiator session create -node vsim -initiator-name init207m -target-name iqn.1992-08.com.netapp:sn.054a3ea61f7c11f1bc73005056acc5b1:vs.3 -target-ip 172.21.180.238
+C1_vsim_cluster::*> storage iswi initiator session create -node vsim2 -initiator-name init207n -target-name iqn.1992-08.com.netapp:sn.054a3ea61f7c11f1bc73005056acc5b1:vs.3 -target-ip 172.21.180.238
+
+C1_vsim_cluster::*> storage iswi initiator session create -node vsim2 -initiator-name init207n -target-name iqn.1992-08.com.netapp:sn.054a3ea61f7c11f1bc73005056acc5b1:vs.3 -target-ip 172.21.180.230
+C1_vsim_cluster::*> storage iswi initiator session create -node vsim -initiator-name init207m -target-name iqn.1992-08.com.netapp:sn.054a3ea61f7c11f1bc73005056acc5b1:vs.3 -target-ip 172.21.180.230
+----
++
+image::new-iscsi-sessions.png[从两个节点到每个目标门户的新 iSCSI 会话]
+
+. 验证会话：
++
+[source, cli]
+----
+storage iswi initiator session show -node <NODE_A> -initiator-name <INIT_NAME_A>
+----
++
+[source, cli]
+----
+storage iswi initiator session show -node <NODE_B> -initiator-name <INIT_NAME_B>
+----
++
+*示例*
+
++
+[listing]
+----
+C1_sti84-vsim-ucs207m_cluster::*> storage iswi initiator session show
+      Initiator  Target                                  Target-ip       Target Tpgroup-tag TSIH State
+Node  Name       Name                                                    Port
+----- --------- ---------------------------------------- --------------  ------ ------      ---- ------
+vsim  init207m  iqn.1992-08.com.netapp:sn.054a3eab1:vs.3 172.21.180.230  3260   1026          2  online
+vsim  init207m  iqn.1992-08.com.netapp:sn.054a3eab1:vs.3 172.21.180.238  3260   1032          1  online
+vsim2 init207n  iqn.1992-08.com.netapp:sn.054a3eab1:vs.3 172.21.180.230  3260   1026          1  online
+vsim2 init207n  iqn.1992-08.com.netapp:sn.054a3eab1:vs.3 172.21.180.238  3260   1032          2  online
+4 entries were displayed.
+----
+. 启动统计
++
+此统计数据将有助于在 iSCSI FLI 期间对任何故障进行分类。
+
++
+[source, cli]
+----
+statistics start -object <pbject> -sample-id <sample_id>
+----
++
+*示例*
+
++
+[listing]
+----
+C1_sti84-vsim-ucs207m::*> statistics start -object iswi_session -sample-id iswi_fli_import
+Statistics collection is being started for sample-id: iswi_fli_import
+----
+. 检查会话统计信息：
++
+[source, cli]
+----
+statistics show -sample-id <sample_id>
+----
++
+*示例*
+
++
+[listing]
+----
+C1_sti84-vsim-ucs207m_cluster::*> statistics show -sample-id iswi_fli_import
+Object: iswi_session
+Instance: (init207m)-(172.21.180.230)
+Start-time: 4/5/2026 08:37:15
+End-time: 4/5/2026 08:37:34
+Elapsed-time: 19s
+Scope: sti84-vsim-ucs207m
+
+    Counter                                                     Value
+    -------------------------------- --------------------------------
+    instance_name                         (init207m)-(172.21.180.230)
+    instance_uuid                          iqn.1992-08.com.netapp:sn.
+                                     054a3ea61f7c11f1bc73005056acc5b1
+                                                                :vs.3
+    node_name                                      sti84-vsim-ucs207m
+    process_name                                                    -
+    read_data                                                       0
+    read_ops                                                        0
+    session_state                                              Online
+    write_data                                                      0
+    write_ops                                                       0
+Object: iswi_session
+Instance: (init207m)-(172.21.180.238)
+Start-time: 4/5/2026 08:37:15
+End-time: 4/5/2026 08:37:34
+Elapsed-time: 19s
+----
+. 检查外部阵列上的连接：
++
+在此阶段，外部存储阵列 iSCSI 目标必须能够检测并确认来自 NetApp iSCSI 启动程序的活动登录和会话。在外部阵列上使用供应商推荐的命令来验证启动程序已连接且会话正常。
+
++
+*示例*
+
++
+[listing]
+----
+pureport list --initiator --raw --filter "initiator.iqn='<HOST_IQN>'"
+pureport list -initiator
+purehost list --all
+----
+
+
+*发现检查点*：建立会话后，ONTAP 应添加存储路径并发现存储堆栈中的外来 LUN，这是将磁盘标记为外来并继续导入工作流程的先决条件。

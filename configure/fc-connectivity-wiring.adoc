@@ -1,0 +1,27 @@
+---
+permalink: configure/fc-connectivity-wiring.html 
+sidebar: sidebar 
+keywords:  
+summary:  
+---
+= ONTAP 外部 LUN 导入 (FLI) 连接和布线
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+通过 FC 进行外部 LUN 导入依赖于双结构 SAN 设计，因此目标 ONTAP 控制器可以在发现和导入期间可靠地访问外部阵列 LUN。对于受支持的部署，使用中的每个存储控制器必须在两个结构中都具有主活动路径，这实际上意味着执行导入的节点的源阵列目标端口和 ONTAP 启动程序端口必须位于结构 A 和结构 B 中的公共区域中。您不需要包括 ONTAP 集群中的每个节点，只需要包括实际导入和迁移 LUN 的节点。虽然间接路径可以工作，但最佳做法是在源和目标之间使用活动的、优化的路径。
+
+
+
+== ONTAP FLI 推荐的 FC 布线和分区做法
+
+* 使用双网络结构（A 和 B）实现冗余。
+* 确保两个结构中都存在来自正在使用的每个控制器的主要活动路径。
+* 尽可能使用至少两个 ONTAP 启动程序端口和两个源阵列目标端口，以避免单点故障。
+* 请勿将 ONTAP 启动器端口与主机进行分区。ONTAP 启动器端口仅用于连接到源阵列目标端口以进行导入和发现。
+* 仅对参与导入的 ONTAP 节点进行分区，无需对整个集群进行分区。
+
+
+image::new-zoning.png[适用于 ONTAP FLI 的 FC 分区示例]

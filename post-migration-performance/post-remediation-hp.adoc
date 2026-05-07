@@ -1,0 +1,115 @@
+---
+permalink: post-migration-performance/post-remediation-hp.html 
+sidebar: sidebar 
+keywords: host remediation, hp-ux, post-migration, fli, ontap 
+summary: 迁移后，HP-UX 主机需要采取补救措施，以确保新导入的 LUN 得到正确识别并正常运行。 
+---
+= 执行 ONTAP FLI HP 迁移后主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移后，HP-UX 主机需要采取补救措施，以确保新导入的 LUN 得到正确识别并正常运行。
+
+
+
+== 迁移后 - 离线 FLI
+
+对于离线 FLI，删除 LUN 导入并确认主机启动器已连接后，使 LUN 联机。
+
+[cols="5"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | 集群 | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储。 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 | 步骤 1：打开服务器电源 
+
+
+| 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：从 UEFI shell 验证设备映射表，并从新的 Storage 设备启动到 hpux。将主启动设备设置为新的 Storage LUN 
+
+
+| 步骤 3：检查文件系统详细信息 | 步骤 3：识别多路径设备 ID 并将其呈现给相应的应用程序。 | 步骤 3：确保正确发现新的 LVM 设备文件 | 步骤 3：检查文件系统详细信息 | 步骤 3：重新启动主机，从作为 LUN 导入一部分的新映射 LUN 启动 
+
+
+| 步骤 4：将设备装回相应的文件夹 |  | 步骤 4：导入 VG/LVM | 步骤 4：验证所需的集群配置并启动集群应用程序 |  
+
+
+|  |  | 第 5 步：激活 VG | 第 5 步：验证集群状态和正在使用的应用程序。 |  
+
+
+|  |  | 第 6 步：列出 VG 上存在的 LV |  |  
+
+
+|  |  | 第 7 步：将 LVM 装载回相应的文件夹 |  |  
+|===
+
+
+== 迁移后 - 在线 FLI
+
+删除 LUN 导入后，请检查 LUN 是否设置为 `-space-reserve disabled`和 `-space-allocation enabled`。如果没有，请相应地进行修改。
+
+要使 SCSI UNMAP 功能正常运行，请参阅供应商文档以验证支持的软件版本。需要 Veritas VxVM + VxFS 组合来启用此功能。
+
+[cols="4"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储。 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 
+|===
+.步骤
+. 识别存储设备。
++
+[source, cli]
+----
+ioscan -fnC disk
+insf -e
+sanlun lun show all
+sanlun lun show all -pv
+sanlun lun show -wwpn
+----
+. 导入 VG 并使 VG 联机。
++
+[source, cli]
+----
+vgimport /dev/vg_name /dev/disk/disk_name
+vgchange -a y /dev/vg_name
+----
+. 标识卷组和文件系统。
++
+[source, cli]
+----
+vgdisplay -v /dev/vg_name
+vgdisplay /dev/vg_name
+lvdisplay /dev/vg_name/lv_name
+----
+. 挂载文件系统。
++
+[source, cli]
+----
+bdf
+mount /dev/vg_name/vol_name /mount_point
+----
+
+
+[cols="2"]
+|===
+|  | HP-UX 
+
+
+| 第 1 步 | 捕获主机信息。 
+
+
+| 第 2 步 | 卸载文件系统。 
+
+
+| 第 3 步 | 获取 VG 的备份。 
+
+
+| 第 4 步 | 停用 VG。 
+
+
+| 第 5 步 | 导出 VG。 
+|===

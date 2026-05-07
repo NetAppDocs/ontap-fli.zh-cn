@@ -1,0 +1,44 @@
+---
+permalink: get-started/learn-about-san-data-migration.html 
+sidebar: sidebar 
+keywords: san migration, foreign lun import, fli, ontap, data transfer appliance, san lun migrate, active iq onecollect, interoperability matrix tool, imt, migration planning, online migration, offline migration, lun migration, migration tools 
+summary: 探索适用于 ONTAP 的 SAN 数据迁移选项，包括外部 LUN 导入以及用于规划持续时间和合格配置的推荐工具。 
+---
+= 了解有关将 SAN 数据迁移到 ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移 SAN 数据通常受限于紧凑的停机窗口、生产风险和有限的专业资源。ONTAP Foreign LUN Import (FLI) 是一种内置的块迁移功能，可将数据从外部（第三方）阵列 LUN 复制到本机 ONTAP LUN，并支持脱机和在线迁移样式。虽然 ONTAP 不需要专业服务主导的迁移，但仍强烈建议让 NetApp 或合格的合作伙伴参与范围界定、规划和培训，特别是在非常重要的环境中。
+
+
+
+== 选择正确的迁移方法（高级别）
+
+实际的迁移策略可能使用一种主要方法，并用最适合的其他方法进行补充。对于迁移到 ONTAP 的 SAN/LUN 级别迁移，FLI 通常是一个强有力的选择；但是，某些方案可能通过设计上无中断的替代方案来更好地提供服务。
+
+.常见选项：
+外部 LUN 导入 (FLI):: 使用联机和脱机工作流将块/LUN 级别迁移到 ONTAP。
+数据传输设备 (DTA):: 每 TB 迁移许可的 SAN 连接应用装置模型，支持离线和在线迁移。
+主机操作系统或基于应用程序的迁移:: 当平台提供本机移动性或首选主机或应用程序控制时非常有用（例如，VMware 存储移动性和基于主机的复制方法）。
+
+
+
+
+== 规划迁移持续时间
+
+仅对于初始规划，对于具有 8 个 LUN 总计约 2 TB 的主机，通常引用的基准假设为每个主机约 5 小时，相当于约 400 GB/小时。这有意是一个粗略的规划数字，不太可能与每个环境相匹配。获得准确估计的建议方法是运行不同大小的多个测试迁移，以衡量您自己的存储、网络和主机条件下的实际吞吐量。
+
+
+
+== 推荐工具（数据收集、兼容性、自动化、鉴定）
+
+服务工具提供了一种标准化的方式来收集环境数据，验证可支持性，并减少规划和执行过程中的人为错误。
+
+Active IQ OneCollect:: 从存储、主机、结构和交换机收集数据，以进行故障排除、验证、迁移规划和升级评估。
+互操作性表工具 (IMT):: 一个基于 Web 的实用程序，用于确认 NetApp 和第三方组件的受支持配置。
+Solaris Relabeler（如适用）:: 迁移后更新 VTOC 磁盘标签，以便系统反映块级迁移后的更新查询信息。
+SAN LUN 迁移（适用于 FLI 项目的 sanlunmigrate）:: 在提交生产迁移之前，使用鉴定方法验证客户环境中的外部阵列 LUN 行为；当传输或供应商行为不同时，这一点尤其重要。
+

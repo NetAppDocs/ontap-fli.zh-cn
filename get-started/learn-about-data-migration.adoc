@@ -1,0 +1,60 @@
+---
+permalink: get-started/learn-about-data-migration.html 
+sidebar: sidebar 
+keywords: data migration, foreign lun import, fli, ontap, foreign array, san migration, fibre channel, iscsi, offline import, online import, import relationship, lun migration, migration methodology, scsi initiator, 7 mode 
+summary: 了解 ONTAP 数据迁移计划，包括关键术语和五阶段方法，涵盖从发现到验证的 SAN 迁移。 
+---
+= 了解 ONTAP 数据迁移计划
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+数据迁移计划提供了经过验证的解决方案，可帮助客户将数据从外部（第三方）阵列移动到 ONTAP，并将 LUN 从 NetApp 7 Mode 系统转移到 ONTAP，其中外部 LUN 导入（FLI）是此迁移产品组合的关键组成部分。为了提高迁移成功率并减少工作量，该计划提供了高效、一致地执行迁移所需的工具、指导和支持，帮助客户更快、更有信心地采用 NetApp 技术。
+
+数据迁移通常伴随着实际的运营挑战——延长的停机时间窗口、生产工作负载的风险、有限的资源以及专业知识的缺口。随着可用性预期的持续上升和停机时间变得不那么可接受，迁移必须围绕业务连续性进行规划。由于性能影响、数据完整性和潜在数据丢失是任何迁移中的常见问题，因此预先了解核心 FLI 概念和工作流有助于简化执行并降低初始配置和运营开销。
+
+FLI 是一种 ONTAP 数据迁移功能，可将用户数据从外部（第三方）阵列 LUN 复制到本机 ONTAP LUN。ONTAP 通过充当 SCSI 启动程序来执行迁移：它从外部 LUN 读取块并将它们写入目标 ONTAP LUN。
+
+当通过光纤通道 (FC) 访问外部 LUN 时，支持 ONTAP FLI。从 ONTAP 9.19.1 开始，添加了 iSCSI FLI 支持，以使用后端的 iSCSI 传输访问外部阵列 LUN。对于 iSCSI FLI，源阵列的后端路径是 iSCSI/TCP，而对 ONTAP LUN 的前端主机访问可以是 FC 或 iSCSI（后端和前端可能不同）。
+
+iSCSI 和 FC ONTAP FLI 支持离线导入（导入期间没有主机 I/O）和在线导入（主机保持连接，只有一次短暂的切换中断）。
+
+
+
+== 关键术语
+
+外部阵列:: 任何不运行 ONTAP 的存储系统（包括 7 模式到 ONTAP 转换上下文中的 NetApp 7 模式）。
+外部 LUN:: 包含外部阵列上该阵列的本机格式的用户数据的 LUN。
+导入关系:: 用于数据复制的外部 LUN（源）和 ONTAP LUN（目标）之间的持久配对。
+LUN 导入:: 将块从外部 LUN 传输到 ONTAP LUN 的过程。
+
+
+
+
+== 高级方法
+
+发现阶段:: 收集环境的完整清单—主机、存储系统和 SAN/网络结构—以便了解存在的内容以及所有内容的连接方式。
+分析阶段:: 查看收集的清单，并根据兼容性、风险和操作限制，为每个主机和源阵列确定最合适的迁移方法。
+规划阶段:: 构建和验证迁移计划，调配目标 ONTAP 存储，并准备所需的迁移和鉴定工具以及操作 runbook。
+执行阶段:: 根据所选工作流程（在线或离线）执行迁移（导入/复制）并完成所需的主机修复和切换操作。
+验证阶段:: 确认迁移的数据和配置按预期运行，验证主机访问和多路径，并记录最终状态和结果以进行运营切换。
+
+
+
+
+== 目标受众
+
+此信息面向计划或执行 SAN（块/LUN）数据迁移到 ONTAP 的客户、合作伙伴和 NetApp 现场团队，特别是使用外部 LUN 导入（FLI）和相关迁移选项的迁移。
+
+.主要读者
+* 客户存储管理员 / SAN 管理员负责规划迁移方法、准备 ONTAP、协调更改窗口以及验证主机访问/多路径。
+* 需要高级指导的迁移负责人/技术项目所有者可以在 FLI、基于设备的选项或基于主机/应用程序的迁移方法之间进行选择，并估计时间表和工作量。
+* NetApp 和合作伙伴专业服务工程师，支持迁移范围界定、规划、资格认证和客户支持（推荐用于除最简单迁移之外的大多数迁移）。
+
+
+.读者应基本熟悉：
+* SAN 概念（LUN 屏蔽/映射、分区或 iSCSI 网络、多路径/ALUA）和标准变更控制实践。
+* ONTAP 管理基础和支持计划工具的使用（如环境数据收集和互操作性验证实用程序）。
+

@@ -1,0 +1,112 @@
+---
+permalink: phases/remediation-hp.html 
+sidebar: sidebar 
+keywords: ontap, fli, foreign lun import, hp host, pre-migration, offline fli, online fli 
+summary: 在 HP 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。 
+---
+= ONTAP FLI HP 主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 HP 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。
+
+
+
+== 预迁移 - 离线 FLI
+
+这些步骤对于在线和离线 FLI 都很常见。从主机取消置备源 LUN 之前，请确保完成以下步骤。
+
+[cols="3"]
+|===
+| 文件系统（LVM 和非 LVM） | 主机群集 (SCSI3 PR) | SANBOOT 
+
+
+| 步骤 1：收集端到端块设备配置：多路径运行状况/路径、启动 LUN 上的 LVM 布局以及 UEFI 设置，以确认正确的启动设备和启动参数。 | 步骤 1：捕获整体集群详细信息以及迁移过程中涉及的磁盘。 | 步骤 1：收集端到端 SAN 引导配置：多路径运行状况/路径、引导 LUN 上的 LVM 布局以及 UEFI 设置，以确认正确的引导设备和引导参数。 
+
+
+| 步骤 2：确保相应数据设备（LVM/非 LVM）的 /etc/fstab 条目正确。 | 步骤 2：按照推荐的步骤正常关闭集群服务。 | 步骤 2：确保包含数据设备（lvm/nonlvm）的 SAN Boot 设备的 /etc/fstab 条目正确 
+
+
+| 步骤 3：确保暂停对目标装载点的所有操作。确保没有任何进程仍在访问块设备。如果需要，排出/终止打开的进程句柄。 | 步骤 3：删除与多路径设备关联的 SCSI 块设备。 | 步骤 3：从 UEFI shell 验证设备映射表，并从存储设备启动到 hpux 
+
+
+| 步骤 4：卸载文件系统并执行 LVM 卷组配置备份。停用 VG 并导出 VG | 第 4 步：重新扫描主机，确保现有设备映射中没有过时的条目。 | 第 4 步：确保将主启动设备设置为存储设备，以便在后续重新启动时自动启动 
+
+
+| 第 5 步：删除所有陈旧的 SCSI 设备文件。 |  | 第 5 步：重新启动主机，确保主机能够正常启动并应用上述更改。主机正常启动后，了解主机 FLI 迁移的预修复已准备就绪。 
+
+
+| 第 6 步：重新扫描 sci 总线，以便主机具有更新的设备列表，例如：ioscan -fnC disk |  | 第 6 步：现在关闭 sanboot 主机，以继续执行 ONTAP FLI 工作流程。 
+|===
+
+
+== 迁移前 - 在线 FLI
+
+以下是在线 FLI 的具体步骤，但在执行这些步骤之前，必须先执行 Pre-Migration Offline FLI 中的步骤。在向主机配置 NetApp LUN 后，必须执行以下步骤。
+
+[cols="4"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储。 | 步骤 1：重新扫描所有映射的 HP-UX 主机上的存储 | 步骤 1：打开服务器电源 
+
+
+| 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：识别多路径设备 | 步骤 2：从 UEFI shell 验证设备映射表，并从新的存储设备引导到 hpux 
+
+
+| 步骤 3：检查文件系统详细信息 | 步骤 3：识别多路径设备 ID 并将其呈现给相应的应用程序。 | 步骤 3：确保新的 LVM 设备文件已正确创建 | 步骤 3：将主引导设备修改为新的存储 LUN 重新启动主机以从作为 LUN Import 一部分的新映射 LUN 引导 
+
+
+| 步骤 4：将设备装回相应的文件夹 |  | 步骤 4：导入 VG/LVM |  
+
+
+|  |  | 第 5 步：激活 VG |  
+
+
+|  |  | 第 6 步：列出 VG 上存在的 LV |  
+
+
+|  |  | 第 7 步：将 LVM 装载回相应的文件夹 |  
+|===
+
+NOTE: 有关最新和更新的命令列表，请参阅操作系统供应商文档。
+
+.步骤
+. 识别存储设备。
++
+[Source]
+----
+ioscan -fnC disk
+sanlun lun show all (Works on Netapp Storage)
+sanlun lun show all -pv
+sanlun lun show -wwpn
+----
+. 标识卷组和文件系统。
++
+[Source]
+----
+vgdisplay -v /dev/vg_name
+vgdisplay /dev/vg_name
+lvdisplay /dev/vg_name/lv_name
+----
+. 卸载文件系统并导出 VG。
++
+[Source]
+----
+bdf
+umount /mount_point
+vgchange -a n /dev/vg_name
+vgexport /dev/hpux_vg_online
+----
+. 分离后重新扫描以确认清洁状态。
++
+[Source]
+----
+insf -e
+ioscan -fnC disk
+----
+

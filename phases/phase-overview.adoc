@@ -1,0 +1,16 @@
+---
+permalink: phases/phase-overview.html 
+sidebar: sidebar 
+keywords: foreign lun import, fli, ontap, phase, overview 
+summary: 本节描述使用结构化分阶段方法执行外部 LUN 导入（FLI）迁移的端到端方法，特别强调 iSCSI 后端 FLI。 
+---
+= 了解 ONTAP FLI 阶段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本节描述使用结构化分阶段方法执行外部 LUN 导入（FLI）迁移的端到端方法，特别强调 iSCSI 后端 FLI。它概述了跨发现、分析、计划和准备、执行和验证阶段的目标、输入、验证检查点和交付件，以确保从外部存储阵列到 ONTAP 的可预测、可支持和低风险迁移。
+
+工作流强调前期数据收集和互操作性验证、主机和交换矩阵就绪性、明确的 iSCSI 后端设计约束（IC LIF 使用、明确的目标门户/IQN、全网状连接和规模限制）以及严格的变更管理，以保护应用程序可用性和回滚选项。通过将 IMT 驱动的支持验证、有针对性的补救计划、测试迁移和严格的迁移后清理相结合，该方法可确保成功完成迁移，同时为基于 FC 和 iSCSI 的 FLI 场景提供完全支持、记录良好且操作干净的迁移后状态。

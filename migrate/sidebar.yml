@@ -1,0 +1,12 @@
+---
+section: migrate
+title: FLI 迁移
+entries:
+- title: 发现外来 LUN
+  url: "/migrate/discover-foreign-luns.html"
+- title: 创建导入关系
+  url: "/migrate/create-import-relationship.html"
+- title: 执行和监控迁移
+  url: "/migrate/execute-monitor.html"
+- title: 验证和删除源 LUN
+  url: "/migrate/verify-delete.html"

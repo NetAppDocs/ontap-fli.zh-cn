@@ -1,0 +1,35 @@
+---
+permalink: configure/fc-zoning-model-best-practices.html 
+sidebar: sidebar 
+keywords:  
+summary:  
+---
+= ONTAP 外部 LUN 导入建议的 FC 布线和分区实践
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+外部 LUN 导入 (FLI) 要求源 LUN 可由 ONTAP 访问，这是通过将源目标端口分区到 ONTAP 启动器端口来实现的。现有的源到主机区域通常不会在迁移期间进行修改，并且可以在迁移后删除或停用。
+
+.标准 FC FLI 场景使用 4 个不同的区域
+* 区域 1：源存储到目标存储（Fabric A）
+* 区域 2：源存储到目标存储（Fabric B）
+* 区域 3：主机到目标存储（Fabric A）
+* 区域 4：主机到目标存储（Fabric B）
+
+
+.分区最佳实践
+* 请勿在同一区域中混合源目标端口和目标目标端口。
+* 请勿在同一区域中混合目标 initiator 端口和主机端口。
+* 请勿在同一区域中混合目标 target 和目标 initiator 端口。
+* 在可能的情况下，每个控制器至少有两个端口用于冗余的区域。
+* 首选单 initiator 和单 target 分区。
+* 为 FLI 工作流所需的分区模型使用适当的物理端口 WWPN。在迁移分区指南明确禁止的情况下，请勿使用 NPIV WWPN。
+
+
+image::new-fc-zoning-model.png[适用于 ONTAP FLI 的 FC 分区模型示例]
+
+
+NOTE: 将源目标分区到目标启动器后，源存储应通过发现命令从 ONTAP 变为可见。如果阵列第一次没有出现，则在某些环境中可能需要重置连接到 ONTAP 启动器的交换机端口。

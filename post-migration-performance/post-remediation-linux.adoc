@@ -1,0 +1,53 @@
+---
+permalink: post-migration-performance/post-remediation-linux.html 
+sidebar: sidebar 
+keywords: host remediation, linux, post-migration, fli, ontap 
+summary: 迁移后，Linux 主机需要采取补救措施，以确保新导入的 LUN 得到正确识别并正常运行。 
+---
+= 执行 ONTAP FLI Linux 迁移后主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+迁移后，Linux 主机需要采取补救措施，以确保新导入的 LUN 得到正确识别并正常运行。
+
+
+
+== 迁移后 - 离线 FLI
+
+对于脱机 FLI，删除 LUN 导入并确认主机启动器已连接后，使 LUN 联机。
+
+[cols="3"]
+|===
+| 文件系统（LVM 和非 LVM） | 带 LVM 的 Pacemaker（SCSI3 PR） | SANBOOT 
+
+
+| 步骤 1：重新扫描所有映射的 Linux 主机上的存储 | 步骤 1：重新扫描所有映射的 Linux 主机上的存储 | 步骤 1：打开服务器电源 
+
+
+| 步骤 2：发现多路径设备。 | 步骤 2：发现多路径设备。确保已迁移的 LUN 已添加到 PCS Stonith 配置中。 | 步骤 2：在服务器 HBA BIOS 或 UEFI 上配置呈现给此主机 HBA 的新引导设备 
+
+
+| 步骤 3：导入卷组并执行 VG 激活。 | 步骤 3：对新发现的 VG/LVM 执行 VG 配置备份恢复，然后激活 VG。 | 步骤 3：重新启动主机，从作为 LUN 导入一部分的新映射 LUN 启动 
+
+
+| 步骤 4：将 LVM 配置挂载到相应的挂载点上。 | 步骤 4：创建新的 PCS 资源组并为可用的 LV 和文件系统添加相应的资源。注意：请注意，新激活的 LVM 对象具有完整的 LV 和文件系统结构。 |  
+
+
+|  | 第 5 步：验证所有资源的 PCS 集群状态是否处于在线和可用状态。 |  
+|===
+
+
+== 迁移后 - 在线 FLI
+
+删除 LUN 导入后，请检查 LUN 是否设置为 `-space-reserve disabled`和 `-space-allocation enabled`。如果没有，请相应地进行修改。
+
+[cols="4"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 Linux 主机上的存储 | 步骤 1：重新扫描所有映射的 Linux 主机上的存储 | 步骤 1：重新扫描所有映射的 Linux 主机上的存储 | 步骤 1：重新扫描所有映射的 Linux 主机上的存储 
+|===

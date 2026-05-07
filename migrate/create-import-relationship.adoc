@@ -1,0 +1,88 @@
+---
+permalink: migrate/create-import-relationship.html 
+sidebar: sidebar 
+keywords: lun import relationship, foreign lun import, fli, ontap, create import relationship, lun create, igroup, lun mapping, destination lun, foreign disk, asa r2, san migration, offline fli, online fli 
+summary: 创建 LUN 导入关系，将外来 LUN 与自动调整大小以匹配源 LUN 的目标 ONTAP LUN 配对。 
+---
+= 创建 ONTAP FLI LUN 导入关系
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+发现外来 LUN 并将其标记为外来后，可以创建 LUN 导入关系，以便将外来 LUN 与目标 ONTAP LUN 配对。目标 ONTAP LUN 是使用外部磁盘标识符创建的，因此它会自动调整大小以匹配源。目标 LUN 根据预期前端协议和切换计划映射到适当的启动器组，然后在导入设置之前作为安全步骤离线。
+
+使用  `lun create` 和  `lun import create` 命令执行以下操作：
+
+* 使用外部磁盘标识符创建目标 ONTAP LUN，以便自动调整目标大小以匹配源。
+* 通过根据预期前端协议定义适当的 igroup 并根据切换计划的要求映射目标 LUN 来准备主机访问。
+* 作为导入设置之前的一个安全步骤，使目标 LUN 脱机。
+* 创建 LUN 导入关系，该关系将外来磁盘与目标 ONTAP LUN 永久配对，并为后续数据复制操作做好准备。
+
+
+.关于此任务
+从 ONTAP 9.17.1 开始，ASA r2 系统支持使用 FLI 离线迁移的外部 LUN 的数据迁移。ASA r2 系统与其他 ONTAP 系统（ASA、AFF 和 FAS）在其存储层的实现方面有所不同。在 ASA r2 系统中，创建存储单元（LUN 或命名空间）时会自动创建卷。每个卷仅包含一个存储单元。因此，对于 ASA r2 系统，在创建 LUN 时无需在  `-path` 选项中包含卷名，而应包含存储单元路径。
+
+.步骤
+. 创建大小与外部磁盘匹配的目标 NetApp LUN：
++
+这将确保 NetApp LUN 和外部 LUN 具有相同的大小。
+
++
+[source, cli]
+----
+lun create -vserver <SVM> -path /vol/<VOL>/<lun_name> -ostype <ostype> -foreign-disk <foreign_serial>
+----
+. 创建 igroup 并映射目标 LUN（协议取决于前端计划）：
++
+[source, cli]
+----
+igroup create -vserver <SVM> -igroup <igroup> -protocol <iscsi|fcp|mixed> -ostype <ostype> -initiator <host_initiator>
+----
+. 将 NetApp 存储阵列 LUN 映射到主机：
++
+[source, cli]
+----
+lun map -vserver <SVM> -path /vol/<VOL>/<LUN_NAME> -igroup <igroup>
+----
+. 在导入创建之前使此 LUN 保持脱机状态（最佳做法）：
++
+[source, cli]
+----
+lun offline -vserver <SVM> -path /vol/<VOL>/<LUN_NAME>
+----
+. 创建导入关系：
++
+[source, cli]
+----
+lun import create -vserver <SVM> -foreign-disk <foreign_serial> -path /vol/<VOL>/<lun_name>
+----
+. 确认导入关系存在：
++
+[source, cli]
+----
+lun import show -vserver <svm_name>
+----
++
+[NOTE]
+====
+如果在此步骤中 LUN 未联机，则工作流将被视为离线 FLI，主机将不会看到 NetApp 存储阵列 LUN 来执行任何 I/O 操作。
+
+** 离线 FLI 意味着主机在整个导入窗口内保持离线状态。当应用程序停止时，ONTAP 执行从外部 LUN 到 NetApp LUN 的块复制，并且只有在导入和验证完成后才进行主机修正和切换活动。
+** 在线 FLI 意味着您切换一次主机，然后在后台继续导入。切换期间通常只有短暂的停机时间，主机修复和切换活动在导入完成之前发生，而 ONTAP 继续复制数据。
+
+
+从 ONTAP 工作流程的角度来看，核心导入命令在两种模式下都是相同的(`lun import create/start/show/verify/delete`）。实际的行为区别在于 LUN 状态和时间：在离线 FLI 中，目标 LUN 通常保持离线状态，直到您准备好完成和呈现，而在在线 FLI 中，目标 LUN 可以联机并提前呈现，以便在后台复制期间启用主机访问。
+
+====
+. 对于在线 FLI，将 LUN 置于在线状态：
++
+[source, cli]
+----
+lun online -vserver <SVM> -path /vol/<VOL>/<lun_name>
+----
++
+在 LUN 联机后，在主机上发现 LUN，并执行任何后续的特定于主机的修正，然后您可以在 LUN 上启动工作负载。
+
+

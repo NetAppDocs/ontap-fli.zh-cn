@@ -1,0 +1,95 @@
+---
+permalink: get-started/supported-configurations.html 
+sidebar: sidebar 
+keywords: supported configurations, foreign lun import, fli, ontap fli, aff, asa, fas, ontap select, cloud volumes ontap, cvo, iscsi fli, fc fli, interoperability, san migration, lun import, supported platforms 
+summary: 查看 ONTAP FLI 支持的平台和配置，包括 FC 和 iSCSI 后端选项以及迁移规划的关键限制。 
+---
+= 了解 ONTAP Foreign LUN Import 支持的配置和平台
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP FLI 必须部署在受支持的配置中，以确保可预测的行为和完全可支持性。
+
+* 所有 FLI 迁移都是在 LUN（块）级别执行的；文件和协议级别的迁移不在 ONTAP FLI 范围之内。
+* 规划每个节点最多 8 个并发导入。实际的安全并发取决于观察到的主机延迟和导入延迟。
+* 用于导入的最大外来 LUN 大小为每个 LUN 4 TB。
+* iSCSI 会话扩展限制（后端 iSCSI）：
++
+** 每个 IC LIF 1 个启动程序
+** 每个 LIF 最多 16 个会话
+** 每个节点最多 32 个会话
+
+
+* iSCSI 协议约束：
++
+** 无 iSCSI 发现会话
+** 无多连接会话 (MCS)
+** 不支持错误恢复级别 > 0（仅限 ERL0）
+** iSCSI 启动程序 LIF 使用不支持 IPv6
+
+
+* 安全和管理可用性说明：
++
+** 不包括 CHAP
+** iSCSI FLI 操作的 REST API 覆盖不可用（仅限 CLI 工作流程）。
+
+
+* 在线导入的运营规划说明：
++
+** 在在线 FLI 中，主机 I/O 和导入副本共享后端资源
+** 可以暂停和恢复导入以保护主机延迟
+** 如果可能，应安排在非高峰时段进行迁移
+
+
+
+
+
+
+== 支持的配置和平台
+
+ONTAP FLI 必须部署在受支持的配置中，以确保可预测的行为和完全可支持性。由于新配置会随着时间的推移而合格，因此支持的组合可能会发生变化。对于每次迁移，根据当前的互操作性指南验证端到端堆栈（源阵列 + 主机 + 结构/网络 + ONTAP 目标）。
+
+.支持的目标位置（您可以迁移到的位置）
+* ONTAP 是 FLI 迁移的唯一支持目的地。FLI 旨在将数据导入 ONTAP LUN；不支持迁移到第三方目标存储。
+* 对于 iSCSI FLI，iSCSI 软件启动程序与 FLI 堆栈集成，专门用于启用使用 iSCSI/TCP 后端连接的外部 LUN 发现和导入。
+
+
+.支持的 ONTAP 平台覆盖范围（目标平台）
+平台覆盖范围取决于用于发现/导入的后端传输：
+
+* FC 后端 FLI（传统）支持 AFF / ASA / ASA r2 / FAS 上的 ONTAP（根据 iSCSI 测试设计中的比较表）。
+* iSCSI 后端 FLI 扩展了覆盖范围，包括 AFF / ASA / ASA r2 / FAS / ONTAP Select / Cloud Volumes ONTAP (CVO) （根据相同的比较）。
+
+
+.支持的源阵列和鉴定方法
+* 使用 FC 后端 FLI，支持的外部阵列通常通过已建立的互操作性列表和资格认证指南进行验证（支持的列表会随着新阵列的合格而演变）。
+* 使用 iSCSI 后端 FLI，默认情况下不会对外部阵列进行资格预审；在提交生产迁移之前，客户应使用提供的资格审批工具（例如 sanlunmigrate / offtap sanlunmigrate）执行现场资格审批。
+
+
+.主机操作系统和光纤/交换机支持（端到端验证）
+* 主机操作系统支持应与所选前端协议（FC 或 iSCSI）和迁移后主机配置的 SAN 主机互操作性指南保持一致。
+* 交换机/结构支持还必须作为端到端配置的一部分进行验证（特别是对于需要分区/屏蔽的 FC 环境）。
+
+
+.迁移后要求（切换后继续支持）
+导入完成且主机正在 ONTAP LUN 上运行后，请确保支持最终稳态配置。这包括主机多路径、HBA/驱动程序/固件级别、分区/屏蔽 (FC)、iSCSI 配置（如果使用）以及您计划使用的任何 ONTAP 功能交互。
+
+.iSCSI FLI 专用护栏（对可支持性很重要）
+* iSCSI FLI 使用集群间 (IC) LIF 进行后端 iSCSI 会话。当现有 IC LIF 已在另一个子网上建立时，仅为了访问外部目标而在不同子网上创建新的 IC LIF 被视为不受支持的规划指导。
+* iSCSI 启动程序会话配置仅用于迁移，应在迁移完成后清理，以避免操作副作用，包括升级和还原考虑因素。
+
+
+
+
+== 最佳实践
+
+NetApp 强烈建议您提供专业服务或合作伙伴专业服务，参与确定迁移范围并制定迁移计划，以及培训客户人员如何使用外部 LUN 导入（ Foreign LUN Import ， FLI ） 7- 模式向 ONTAP 执行数据迁移。
+
+* 至少在迁移项目之前一周执行一次或多次测试迁移，以验证配置、连接和吞吐量；发现任何其他问题；并验证您的方法。
+* 为了最大程度地提高吞吐量，每个节点同时运行的迁移不能超过 16 个。
+* 不需要验证，但我们建议您验证导入和迁移的 LUN 的子集以验证导入过程。
+* 使用测试迁移中观察到的吞吐量来计划生产迁移
+

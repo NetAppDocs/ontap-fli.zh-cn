@@ -1,0 +1,16 @@
+---
+permalink: configure/config-overview.html 
+sidebar: sidebar 
+keywords: foreign lun import, fli, ontap, configuration, overview 
+summary: '本节描述使用光纤通道 (FC) 和 iSCSI 后端连接的外部 LUN 导入 (FLI) 的配置和验证框架。' 
+---
+= 了解 ONTAP FLI 配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本节描述使用光纤通道 (FC) 和 iSCSI 后端连接的外部 LUN 导入 (FLI) 的配置和验证框架。它侧重于确保在 LUN 发现和导入期间从 ONTAP 到外部存储阵列的可靠、冗余访问，同时保持与主机访问路径的明确分离。内容介绍了推荐的 SAN 设计原则（双结构 FC、iSCSI 启动程序/iSCSI 目标端口使用和分区最佳实践）、ONTAP 上的适配器配置要求，以及在启动导入之前确认外部 LUN 可见且运行状况良好的操作检查。
+
+此外，它详细介绍了 iSCSI 后端 FLI 模型，该模型使用绑定到集群间 LIF（IC LIF）的 ONTAP 软件 iSCSI 启动程序，强调显式会话创建（无发现会话）、用于恢复能力的全网格连接以及网络可达性和会话运行状况的严格验证。在 FC 和 iSCSI 方案中，目标是建立一个确定的、可支持的后端传输，满足 FLI 先决条件，在所有路径上实现一致的外部 LUN 发现，并提供必要的检测（统计和可见性）来排除发现和导入执行期间的问题。

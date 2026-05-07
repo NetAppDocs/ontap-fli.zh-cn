@@ -1,0 +1,14 @@
+---
+section: configure
+title: 配置 ONTAP FLI
+entries:
+- title: 概述
+  url: "/configure/config-overview.html"
+- title: FC 连接和布线
+  url: "/configure/fc-connectivity-wiring.html"
+- title: 为启动器模式配置 FC 适配器
+  url: "/configure/fc-configure-adapter-initiator-mode.html"
+- title: FC 分区最佳实践
+  url: "/configure/fc-zoning-model-best-practices.html"
+- title: 配置 iSCSI 后端
+  url: "/configure/iscsi-setup-backend-connectivity.html"

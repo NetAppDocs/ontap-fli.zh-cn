@@ -1,0 +1,70 @@
+---
+permalink: phases/verify-phase.html 
+sidebar: sidebar 
+keywords: verify phase, foreign lun import, fli, post-migration cleanup, application validation, fc zoning, iscsi cleanup, ontap configuration, migration documentation, san migration 
+summary: 了解验证阶段，该阶段确认迁移按计划完成，并删除迁移窗口期间使用的临时配置。 
+---
+= ONTAP 外部 LUN 导入 (FLI) 验证阶段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+验证阶段确认迁移按计划完成，并侧重于迁移后清理。这包括验证应用程序行为，确认对 ONTAP LUN 的正确主机访问和路径，收集用于审核和故障排除的迁移日志，以及删除仅用于迁移的临时连接和配置。
+
+作为清理的一部分，您需要删除不再需要的源端 initiator 记录和分区，并记录最终配置，以便运营团队有一个清晰的"竣工"状态。
+
+对于 iSCSI FLI，验证阶段还应包括删除在集群间 LIF 上创建的软件 iSCSI 启动程序会话和启动程序。如果仅为外部 LUN 导入创建了集群间 LIF，则必须删除这些 LIF。
+
+
+
+== ONTAP FLI 验证阶段任务
+
+下面是每个组件的 ONTAP FLI 验证任务。
+
+[cols="1,2"]
+|===
+| 组件 | 任务 
+
+
+| 主机  a| 
+* 对迁移的 LUN 执行应用程序级验证。（文件系统一致性检查、校验和错误、dbcc checkdb (MS SQL)、rman (Oracle)）
+* 确认所有预期的文件系统、数据存储、集群磁盘在迁移和修复后均可访问且稳定。
+* 确认 IO 路径计数和路径类型在预期行上。
+
+
+
+
+| FC FLI 光纤  a| 
+* 如果在早期切换期间尚未删除主机到源存储区域，请从活动区域集或同等访问规则中删除主机到源存储区域。
+* 删除专门为迁移创建的源到目标连接区域。
+* 为回滚和审计目的备份更新后的迁移后区域集。
+
+
+
+
+| iSCSI FLI 网络  a| 
+* 删除为迁移创建的 iSCSI FLI 后端连接对象。
+* 必须删除 iSCSI 启动程序会话，并且必须删除在集群间 LIF 上创建的 iSCSI 启动程序对象。
+
+
+
+
+| NetApp 存储阵列（目标）  a| 
+* 验证迁移后存储的正确性，包括主机或使用案例要求的 LUN 对齐。
+* 收集 FLI 迁移导入日志以进行审核和故障排除。迁移完成后触发 AutoSupport。
+* 删除在迁移窗口期间仅用于回滚的所有手动创建的 Snapshot 副本。
+* 从 ONTAP 中删除不再需要的源阵列配置项目，例如源阵列对象和外部磁盘关联详细信息。使用 storage disk show 命令确认相同内容。
+* 记录最终的 ONTAP 配置，包括 LUN 路径、映射、igroup、启动程序和主机访问模型。
+
+
+
+
+| 外部存储阵列（源）  a| 
+* 删除在迁移期间为向 ONTAP 提供源 LUN 而创建的目标存储 (NetApp) 启动器组和主机组。
+* 停用源访问时，删除与原始主机映射相关的主机启动器组和主机记录。
+* 确保迁移的源 LUN 不再以可能导致向主机双重呈现的方式呈现。这是至关重要的，必须在整个迁移过程中确保这一点。
+
+
+|===

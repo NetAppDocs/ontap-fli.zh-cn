@@ -1,0 +1,226 @@
+---
+permalink: phases/remediation-windows.html 
+sidebar: sidebar 
+keywords: ontap, fli, foreign lun import, windows host, pre-migration, offline fli, online fli 
+summary: 在 Windows 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。 
+---
+= ONTAP FLI Windows 主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 Windows 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。
+
+
+
+== 预迁移 - 离线 FLI
+
+这些步骤适用于离线和在线 FLI。在从 Windows 主机取消映射源 LUN 之前，请完成以下主机端准备工作。
+
+[cols="4"]
+|===
+| 文件系统设备 | 物理驱动器（无文件系统） | WSFC（WFC） | Hyper V 
+
+
+| 步骤 1：确定计划迁移的文件系统磁盘 | 步骤 1：确定计划迁移的物理磁盘 | 步骤 1：确定计划迁移的 Cluster 磁盘 | 步骤 1：停止虚拟机上的所有应用程序并关闭虚拟机。 
+
+
+| 步骤 2：正常关闭应用程序 | 步骤 2 正常关闭应用程序 | 步骤 2 正常关闭应用程序 | 步骤 2：从主机使磁盘脱机。 
+
+
+| 步骤 3：使磁盘脱机 |  | 第 3 步：关闭集群并停止所有集群节点上的集群服务 | 步骤 3：从主机取消所有 LUN 的映射。 
+|===
+
+
+=== 文件系统设备
+
+.步骤
+. 标识计划迁移的文件系统磁盘。
++
+Get-Disk | Format-Table Number，FriendlyName，Size，PartitionStyle
+
+. 正常关闭应用程序。
++
+Stop-Service -Name <ServiceName>
+
+. 使磁盘脱机。
++
+Set-Disk -Number <DiskNumber> -IsOffline $true
+
+
+
+
+
+=== 物理驱动器（无文件系统）
+
+.步骤
+. 确定计划迁移的物理磁盘。
++
+Get-PhysicalDisk | Format-Table FriendlyName, 容量, MediaType
+
+. 正常关闭应用程序。
++
+Stop-Service -Name <ServiceName>
+
+
+
+
+
+=== WSFC (Windows Server 故障转移群集)
+
+.步骤
+. 确定计划迁移的 Cluster 磁盘。
++
+Get-ClusterResource | Where-Object ResourceType -eq "Physical Disk"
+
+. 正常关闭应用程序。
++
+停止-ClusterResource -Name <ResourceName>
+
+. 关闭集群并停止所有集群节点上的集群服务。
++
+Stop-Cluster -Name <ClusterName>
+
+
+
+
+
+=== Hyper V
+
+.步骤
+. 停止虚拟机上的所有应用程序并关闭虚拟机。
++
+Stop-VM -Name <VM_Name> -Force
+
+. 从主机脱机磁盘。
++
+Set-Disk -Number <DiskNumber> -IsOffline $true
+
+. 从存储阵列端取消主机的所有 LUN 映射。
+. 确保磁盘已从主机上正确移除。
++
+Get-Disk | Where-Object OperationalStatus -ne "Online"
+
+
+
+
+
+== 迁移前 - 在线 FLI
+
+以下是在线 FLI 的具体步骤，但这些步骤之前必须有预迁移 - 离线 FLI 的步骤。
+
+在向主机调配 NetApp LUN 后，必须执行以下步骤。
+
+此时，lun 导入已创建，lun 映射到主机 igroup，并且存在从主机登录的 iSCSI 或 FC 启动程序。
+
+对于脱机 FLI，NetApp LUN 保持脱机状态。
+
+[cols="2"]
+|===
+| 文件系统设备 | 物理驱动器（无文件系统） 
+
+
+| 步骤 1：重新扫描所有映射主机上的存储。 | 步骤 1：重新扫描所有映射主机上的存储。 
+
+
+| 步骤 2：识别列出的驱动器并使磁盘联机。 | 步骤 2：将物理磁盘添加到所需的应用程序并启动。 
+
+
+| 步骤 3：验证所有文件系统磁盘是否可用并正常工作。 |  
+
+
+| 步骤 4：启动所需的应用程序。 |  
+|===
+
+
+=== 文件系统设备
+
+.步骤
+. 重新扫描所有映射主机上的存储。
++
+更新-HostStorageCache
+
+. 识别列出的驱动器并使磁盘联机。
++
+[Source]
+----
+Get-Disk | Where-Object IsOffline -eq $true
+Set-Disk -Number <DiskNumber> -IsOffline $false
+----
+. 验证所有文件系统磁盘是否可用并正常工作。
++
+Get-Volume | Format-Table DriveLetter，FileSystemLabel，Size，SizeRemaining
+
+. 启动所需的应用程序。
++
+启动服务 -Name <ServiceName>
+
+
+
+
+
+=== 物理驱动器（无文件系统）
+
+.步骤
+. 重新扫描所有映射主机上的存储。
++
+更新-HostStorageCache
+
+. 将物理磁盘添加到所需的应用程序并启动。
++
+特定于应用程序的配置
+
+
+
+
+
+=== WSFC
+
+.步骤
+. 重新扫描所有映射主机上的存储。
++
+更新-HostStorageCache
+
+. 识别列出的驱动器并使磁盘联机。
++
+[Source]
+----
+Get-Disk | Where-Object IsOffline -eq $true
+Set-Disk -Number <DiskNumber> -IsOffline $false
+----
+. 验证所有映射的主机是否具有可用和在线的驱动器。
++
+Get-ClusterResource | Where-Object ResourceType -eq "Physical Disk"
+
+. 启动 WSFC 集群应用程序并配置所需的集群资源。
++
+[Source]
+----
+Start-Cluster -Name <ClusterName>
+Start-ClusterResource -Name <ResourceName>
+----
+
+
+
+
+=== Hyper V
+
+.步骤
+. 重新扫描磁盘管理，所有磁盘都应连接。
++
+更新-HostStorageCache
+
+. 选择磁盘并将其联机，所有磁盘都应联机，并应获得原始名称和磁盘字母。
++
+[Source]
+----
+Get-Disk | Where-Object IsOffline -eq $true
+Set-Disk -Number <DiskNumber> -IsOffline $false
+----
+. 尝试开启虚拟机，虚拟机应该可以正常上线。
++
+Start-VM -Name <VM_Name>
+
+

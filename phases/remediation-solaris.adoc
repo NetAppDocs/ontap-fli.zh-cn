@@ -1,0 +1,157 @@
+---
+permalink: phases/remediation-solaris.html 
+sidebar: sidebar 
+keywords: ontap, fli, foreign lun import, solaris host, pre-migration, offline fli, online fli 
+summary: 在 Solaris 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有不同的步骤。 
+---
+= ONTAP FLI Solaris 主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 Solaris 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有不同的步骤。
+
+
+
+== 预迁移 - 离线 FLI
+
+这些步骤对于在线和离线 FLI 都很常见。从主机取消置备源 LUN 之前，请确保完成以下步骤。
+
+[cols="3"]
+|===
+| 文件系统 (ZFS/Zpool) | 带 Zpool 的 OSC (Oracle Sun Cluster) (SCSI3 PR) | SANBOOT 
+
+
+| 步骤 1：收集端到端块设备配置：多路径运行状况/路径、块设备上的 Zpool 布局和 OBP（ok prompt）设置，以确认正确的启动设备和启动参数。 | 步骤 1：收集端到端块设备配置：多路径运行状况/路径、块设备上的 LVM 布局和 OBP 设置，以确认正确的引导设备和引导参数。 | 步骤 1：收集端到端 SAN 引导配置：多路径运行状况/路径、引导 LUN 上的 RPool 布局以及 OBP 设置，以确认正确的引导设备和引导参数。 
+
+
+| 步骤 2：确保暂停对目标装载点的所有操作。确保没有进程仍在访问块设备。如果需要，排出/终止打开的进程句柄。 | 步骤 2：为要迁移的各个 LUN 禁用集群资源组。 | 第 2 步：重新启动主机，确保主机能够正常运行上述更改。一旦主机正常运行，即可了解 FLI 迁移的主机预修复已准备就绪。 
+
+
+| 第 3 步：确保池未被使用 卸载任何使用该池的文件系统： | 第 3 步：确保池未被使用 | 步骤 3：现在关闭 sanboot 主机，以继续执行 ONTAP FLI 工作流程。 
+
+
+| 步骤 4：导出池验证导出 | 步骤 4：从 OSC 配置中删除源 LUN。 |  
+
+
+| 第 5 步：如果需要，请执行主机 SCSI 总线重新扫描。例如： `devfsadm` | 第 5 步：删除所有陈旧的 SCSI 设备文件（如果存在）注意：如果看到任何 lun 永久保留，请清除它们并确保不存在 PR 密钥 |  
+
+
+|  | 第 6 步：重新扫描主机，确保现有设备映射中没有过时的条目。 |  
+|===
+
+NOTE: 有关最新和更新的命令列表，请参阅操作系统供应商文档。
+
+.步骤
+. 识别存储设备。
++
+[Source]
+----
+echo | format
+sanlun lun show all (This is only applicable for NetApp devices)
+mpathadm list lu
+mpathadm show lu lu_name
+luxadm display node wwn/ disk path
+----
+. 识别 zpool 和文件系统。
++
+[Source]
+----
+zpool status <zpool_name>
+df -h
+----
+. 卸载和导出文件系统。
++
+[Source]
+----
+zfs umount /mount_point
+zpool export <zpool_name>
+df -h (to ensure its unmounted)
+----
+. 删除 scsi 块设备。
++
+[Source]
+----
+rm /dev/rdsk/disk_ID
+----
+. 确认设备已分离。
++
+format | grep disk_id
+
+. 分离后重新扫描以确认清洁状态。
++
+cfgadm -al
+
+
+
+
+
+== 迁移前 - 在线 FLI
+
+以下是在线 FLI 的具体步骤，但这些步骤之前必须有预迁移 - 离线 FLI 的步骤。向主机配置 NetApp LUN 后，必须执行以下步骤。
+
+[cols="4"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 | 步骤 1：重新扫描所有映射的 Solaris 主机上的存储。 | 步骤 1：启动服务器。 
+
+
+| 步骤 2：识别多路径存储设备。 | 步骤 2：识别多路径设备。 | 步骤 2：识别多路径设备。 | 步骤 2：在 SPARC 服务器 OBP 上，配置呈现给此主机 HBA 的新启动设备。修改 nvalias 以表示新的磁盘路径。 
+
+
+| 步骤 3：检查文件系统详细信息。 | 步骤 3：识别多路径设备 ID 并将其呈现给相应的应用程序。 | 步骤 3：验证池状态。 | 步骤 3：重新启动主机，从作为 LUN Import 一部分的新映射 LUN 启动。 
+
+
+| 第 4 步：将设备重新挂载到相应的文件夹。 |  | 步骤 4：导入池。 |  
+
+
+|  |  | 第 5 步：检查池状态。 |  
+
+
+|  |  | 第 6 步：挂载池/ZFS。 |  
+|===
+
+NOTE: 有关最新和更新的命令列表，请参阅操作系统供应商文档。
+
+.步骤
+. 识别存储设备。
++
+[Source]
+----
+format
+sanlun lun show all
+mpathadm list lu
+mpathadm show lu
+----
+. 识别 zpool 和文件系统。
++
+[Source]
+----
+zpool status <zpool_name>
+df -h
+----
+. Varyoffvg 并卸载文件系统。
++
+[Source]
+----
+zfs umount /mount_point
+zpool export <zpool_name>
+df -h (to ensure its unmounted)
+----
+. 删除 scsi 块设备。
++
+rm /dev/rdsk/disk_ID
+
+. 确认设备已分离。
++
+format | grep disk_id
+
+. 分离后重新扫描以确认清洁状态。
++
+cfgadm -al
+
+

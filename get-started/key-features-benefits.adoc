@@ -1,0 +1,37 @@
+---
+permalink: get-started/key-features-benefits.html 
+sidebar: sidebar 
+keywords: fli, foreign lun import, ontap fli, block migration, san migration, online migration, offline migration, key features, benefits, multipathing, fibre channel, iscsi, lun import, data migration, load balancing 
+summary: 了解 ONTAP FLI 的主要功能和优势，包括在线和离线迁移选项以及针对 SAN 环境的块级 LUN 迁移。 
+---
+= 了解 ONTAP Foreign LUN Import 的主要功能和优势
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 外部 LUN 导入 (FLI) 是一种内置的数据块迁移功能，可将数据从外部（第三方）阵列 LUN 复制到本机 ONTAP LUN，并支持离线和联机迁移样式。FLI 旨在将 SAN LUN 从一系列第三方阵列迁移到 ONTAP，它提供了一致的迁移方法，有助于跨不同主机和阵列标准化规划、执行和验证。
+
+
+
+== 主要特点
+
+* 在线和离线迁移以满足业务停机时间要求。
+* 独立于操作系统的块级迁移不依赖于主机卷管理器或操作系统实用程序来移动数据。
+* 适用于异构 SAN 环境，旨在将 SAN LUN 从一系列第三方阵列迁移到 ONTAP。
+* 后端传输非常灵活，支持 FC 和 iSCSI 后端连接，但支持的配置取决于互操作性验证。
+* 利用标准 SAN 路径模型的本机多路径和负载平衡支持。
+* CLI 驱动的控制和可见性，实现可重复的执行和运营监控。
+
+
+
+
+== 主要优势
+
+* ONTAP FLI 包含在 ONTAP 中。无需单独的迁移应用装置即可执行基于 FLI 的 LUN 导入。
+* 通过启用在线工作流程降低停机风险，在短暂切换后，主机可以继续访问，同时在后台继续导入。
+* 一致的迁移方法，有助于跨不同主机和阵列标准化规划、执行和验证。
+* 支持复杂的过渡场景，包括 7 Mode 到 ONTAP 迁移，在过渡工作流程中可以解决对齐和格式考虑因素。
+* 强力支持的运营模式，虽然专业服务不是强制性的，但 NetApp 推荐专业服务或合格的合作伙伴进行范围界定、规划和培训，以应对除简单迁移之外的任何事情。
+

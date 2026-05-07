@@ -1,0 +1,31 @@
+---
+permalink: get-started/prerequisites.html 
+sidebar: sidebar 
+keywords: fli prerequisites, foreign lun import, ontap fli, fc backend, iscsi backend, intercluster lif, lun discovery, import relationship, 512 byte sectors, igroup, lun mapping, fibre channel, iscsi initiator 
+summary: 查看 ONTAP Foreign LUN Import 的先决条件，包括后端连接、LUN 发现和导入关系要求。 
+---
+= 了解 ONTAP 外部 LUN 导入先决条件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在启动 ONTAP Foreign LUN Import (FLI) 之前，必须具备几个先决条件，以确保成功迁移。这些先决条件涵盖了 FLI 流程正常运行所必需的兼容性、连接性和配置要求。
+
+* 后端连接必须可用于所选传输：
++
+** FC FLI 要求每个控制器至少有一个可以在启动程序模式下运行的 FC 端口（对于冗余，首选两个端口，每个结构一个）。
+** iSCSI FLI 需要集群间 (IC) LIF（或能够托管 IC LIF 的以太网端口），因为 iSCSI 软件启动程序将出站会话绑定到 IC 连接。
+
+
+* 在导入之前，必须能够在 ONTAP 中发现外部 LUN。外部阵列 LUN 必须在 ONTAP 存储堆栈中可见（发现是导入的先决条件）。
+* 在 ONTAP 中将源 LUN 标记为"外部"。发现外部 LUN 后，必须明确标记为外部，以防止意外所有权或覆盖行为。
+* 源 LUN 必须稳定。在导入工作流期间，外来 LUN 不得扩展或收缩。
+* 外来 LUN 必须使用 512 字节扇区（512B 块大小）以实现导入兼容性，其他扇区大小不支持导入。
+* 目标 ONTAP LUN 必须与源 LUN 大小匹配。"使用外部磁盘创建 LUN"工作流可确保目标 LUN 的创建大小正确。
+* 必须根据前端协议计划将目标 ONTAP LUN 映射到至少一个 igroup，以便可以在工作流的正确阶段连接主机。
+* 在开始导入副本之前，必须通过导入关系将外部 LUN 和目标 ONTAP LUN 配对。
+
+
+在创建导入关系之前保持目标 ONTAP LUN 脱机；创建关系后，只有在执行联机 FLI 时才能使 LUN 联机，以便在继续复制时主机可以恢复 I/O。

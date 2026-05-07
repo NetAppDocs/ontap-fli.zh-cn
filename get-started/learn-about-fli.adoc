@@ -1,0 +1,44 @@
+---
+permalink: get-started/learn-about-fli.html 
+sidebar: sidebar 
+keywords: foreign lun import, fli, ontap, block migration, lun migration, san migration, offline fli, online fli, fibre channel, iscsi, scsi initiator, import workflow, cutover, fc backend, iscsi backend 
+summary: 了解 ONTAP Foreign LUN Import 如何通过充当 SCSI 启动程序从外部阵列读取数据并写入目标 ONTAP LUN 来迁移 SAN LUN。 
+---
+= 了解 ONTAP 外部 LUN 导入
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+外部 LUN 导入 (FLI) 是一种 ONTAP 功能，它通过将用户数据从外部阵列 LUN 复制到 ONTAP LUN 来实现块级别 (LUN) 数据迁移。ONTAP 通过充当 SCSI 启动程序从外部 LUN 读取数据并写入目标 ONTAP LUN 来执行迁移。
+
+FLI 严格在 LUN 级别运行，用于 SAN 迁移；它不是文件级迁移工具（NAS/文件协议迁移（如 NFS/SMB）需要不同的方法）。FLI 支持离线和在线迁移。在离线模式下，主机 I/O 在导入期间停止；在在线模式下，主机操作在短暂切换后恢复，同时在后台继续导入。
+
+外来 LUN 出现在 ONTAP 存储堆栈中，必须明确标记为外来，以防止意外覆盖/所有权。FC FLI 使用 FC 后端连接（启动器端口、分区/屏蔽），而 iSCSI FLI，后端使用绑定到群集间连接的 iSCSI 软件启动器，而迁移后的面向主机的（前端）协议仍然可以是 FC 或 iSCSI，具体取决于设计。
+
+.离线和在线 FLI 对比
+以下总结了离线和在线迁移方法之间的主要区别。
+
+[cols="3"]
+|===
+| 区域 | 离线 FLI | 联机 FLI 
+
+
+| 导入期间的主机 I/O | 主机 I/O 在完整导入期间停止。 | 在导入副本继续进行时（切换后），主机 I/O 可以运行。 
+
+
+| 停机时间配置文件 | 需要在整个导入窗口内停机。 | 设计为基本无中断，通常只需要短暂停机即可切换。 
+
+
+| 运营用例 | 当应用程序或主机模型可以接受或需要更长的停机时间时，效果最佳。 | 最适合必须最大限度地减少停机时间并且可以容忍后台复制活动的情况。 
+|===
+.离线 FLI 工作流
+在脱机工作流中，主机在整个导入过程中都处于断开连接状态。
+
+image::new-offline-fli.png[离线 FLI 工作流]
+
+.联机 FLI 工作流
+在在线工作流中，主机仅在导入从复制转换到完成的短暂切换期间断开连接。
+
+image::new-online-fli.png[离线 FLI 工作流]

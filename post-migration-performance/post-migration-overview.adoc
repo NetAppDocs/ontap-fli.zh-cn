@@ -1,0 +1,16 @@
+---
+permalink: post-migration-performance/post-migration-overview.html 
+sidebar: sidebar 
+keywords: foreign lun import, fli, ontap, post-migration, performance, overview 
+summary: '本节介绍外部 LUN 导入 (FLI) 迁移完成后应执行的操作。' 
+---
+= 了解 ONTAP FLI 迁移后
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本节介绍外部 LUN 导入 (FLI) 迁移完成后应执行的操作。包括常规清理步骤、性能验证步骤，以及针对各种主机类型（AIX、ESXi、HP、Linux、Solaris 和 Windows）的步骤。
+
+迁移后步骤对于确保环境处于干净和可支持的状态，以及从数据完整性和性能角度验证迁移是否成功非常重要。

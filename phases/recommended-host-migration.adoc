@@ -1,0 +1,157 @@
+---
+permalink: phases/recommended-host-migration.html 
+sidebar: sidebar 
+keywords: discovery phase, foreign lun import, fli, active iq onecollect, fc fli, iscsi fli, intercluster lif, wwpn, iqn, foreign array, lun discovery, san migration 
+summary: '在选择迁移方法之前，请将主机操作系统和存储配置与建议的 Foreign LUN Import (FLI) 方法保持一致。' 
+---
+= 按操作系统和配置推荐的 ONTAP FLI 方法
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在选择迁移方法之前，请将主机操作系统和存储配置与建议的 Foreign LUN Import (FLI) 方法保持一致。
+
+
+
+== 意图
+
+在选择迁移方法之前，下表可帮助主机操作系统和存储配置与建议的外部 LUN 导入 (FLI) 方法保持一致。对于每种主机类型和使用模式，它指示在线 FLI、离线 FLI 或两者之一是否合适。Notes / Rationale 列突出显示了关键的技术限制，例如集群语义、SCSI 3 持久保留和引导依赖关系，这些限制直接影响主机 I/O 是否可以安全地与活动导入关系共存。本指南应在规划早期使用，以避免不受支持的工作流程，并围绕停机窗口和补救时间设定切合实际的预期。
+
+
+
+== 关键指导
+
+* 由于 SCSI 3 永久保留要求，群集几乎总是意味着离线 FLI。
+* 独立主机和非群集虚拟化工作负载通常具有灵活性，可以使用在线或离线 FLI。
+* SAN 引导用例在技术上都支持这两种模式，但通常在操作上更易于作为离线 FLI 执行。
+* 最终模式选择应考虑应用程序停机容忍度、回滚要求和操作复杂性，而不仅仅是协议支持。
+
+
+
+
+== 详细指导
+
+
+
+=== Windows
+
+[cols="3"]
+|===
+| 配置 | 建议 | 原因（如有） 
+
+
+| NTFS 卷  a| 
+在线/离线 FLI
+| 两种模式都支持；选择取决于应用程序的停机容忍度。 
+
+
+| Windows 故障转移群集 (WFSC) | 离线 FLI | WFSC 需要 SCSI 3 永久保留，并且在 LUN 处于活动导入关系时不受支持。 
+
+
+| Hyper V | 在线/离线 FLI | 支持独立 Hyper V；群集 Hyper V 遵循 WFSC 指导。 
+
+
+| SAN 引导 | 在线/离线 FLI | 需要仔细的切换计划；除非停机时间得到很好的控制，否则通常被视为离线。 
+|===
+
+
+=== Linux (RHEL/SLES)
+
+[cols="3"]
+|===
+| 配置 | 建议 | 原因（如有） 
+
+
+| 文件系统 / RAW 磁盘 | 在线/离线 FLI | 在两种模式下都支持标准多路径。 
+
+
+| LVM | 在线/离线 FLI | 支持；确保切换期间正确的主机发现和 PV/VG 一致性。 
+
+
+| Pacemaker 集群 | 在线/离线 FLI | 支持，但必须在切换期间验证集群行为。 
+
+
+| SAN 引导 | 在线/离线 FLI | 通常在操作上离线更简单，但技术上支持在线。 
+|===
+
+
+=== Solaris
+
+[cols="3"]
+|===
+| 配置 | 建议 | 原因（如有） 
+
+
+| 独立 | 在线/离线 FLI | 根据中断容忍度，支持任一模式。 
+
+
+| Oracle Solaris Cluster（OSC / Sun Cluster） | 离线 FLI | 群集需要活动导入期间不支持的独占 SCSI 行为。 
+
+
+| SAN 引导 | 在线/离线 FLI | 处理方式与其他操作系统 SAN 启动方案类似。 
+|===
+
+
+=== AIX
+
+[cols="3"]
+|===
+| 配置 | 建议 | 原因（如有） 
+
+
+| 独立 | 在线/离线 FLI | 在两种模式下都支持。 
+
+
+| PowerHA (HACMP) | 离线 FLI | 群集磁盘需要与在线导入不兼容的保留语义。 
+
+
+| 虚拟化（PowerVM NPIV/VFC、vSCSI - 无集群） | 在线/离线 FLI | 不属于集群时受支持。 
+
+
+| 虚拟化（带群集的 PowerVM） | 离线 FLI | 与物理 PowerHA 相同的群集限制。 
+
+
+| SAN 引导 | 在线/离线 FLI | 运营偏好通常离线。 
+|===
+
+
+=== HP-UX
+
+[cols="3"]
+|===
+| 配置 | 建议 | 原因（如有） 
+
+
+| 独立 | 在线/离线 FLI | 在两种模式下都支持。 
+
+
+| 主机群集 (MC/ServiceGuard) | 离线 FLI | 群集磁盘语义需要脱机迁移。 
+
+
+| SAN 引导 | 在线/离线 FLI | 在实践中通常计划为离线。 
+|===
+
+
+=== VMware ESXi
+
+[cols="3"]
+|===
+| 配置 | 建议 | 原因（如有） 
+
+
+| VMDK（标准数据存储） | 在线/离线 FLI | 支持任一模式；在线可最大限度地减少虚拟机停机时间。 
+
+
+| RDM（标准） | 在线/离线 FLI | 支持；确保在切换期间对主机进行一致的重新扫描。 
+
+
+| VMSC / VMHA | 在线/离线 FLI | 在精心协调下受支持。 
+
+
+| WFSC（集群 VMDK） | 离线 FLI | 适用 Windows 群集限制。 
+
+
+| WFSC (RDM) | 离线 FLI | 需要 SCSI 3 PR，不支持在线导入。 
+|===

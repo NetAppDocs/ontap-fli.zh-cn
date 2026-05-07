@@ -1,0 +1,109 @@
+---
+permalink: phases/discovery-phase.html 
+sidebar: sidebar 
+keywords: discovery phase, foreign lun import, fli, active iq onecollect, fc fli, iscsi fli, intercluster lif, wwpn, iqn, foreign array, lun discovery, san migration 
+summary: 了解发现阶段，该阶段收集有关源环境和连接的信息，为迁移规划奠定基础。 
+---
+= ONTAP 外部 LUN 导入 (FLI) 发现阶段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP FLI 发现阶段是迁移过程的第一步。收集有关源环境、连接和目标 ONTAP 系统的所有必要信息以确保顺利迁移至关重要。发现阶段为规划、准备、执行和验证迁移奠定了基础。
+
+
+
+== 准备使用 ONTAP FLI 进行 iSCSI 迁移
+
+ONTAP FLI 发现阶段收集完成迁移所需的技术细节：
+
+* 规划迁移工作流程（在线与离线）
+* 安全地执行主机修复
+* 在创建导入关系之前，验证 ONTAP 上外部 LUN 的连接性和发现
+
+
+对于跨主机、NetApp 控制器和结构的结构化、可重复的数据收集，您可以使用 NetApp Active IQ OneCollect。OneCollect 旨在从存储、主机、结构和交换机收集信息，以进行迁移规划和验证。
+
+对于 FC FLI，发现阶段必须捕获外部阵列目标端口 WWPN。
+
+对于 iSCSI FLI，发现阶段必须：
+
+* 捕获外部阵列目标门户 IP 和目标 IQN
+* 验证 IC LIF 可达性
+* 规划完整的网状 iSCSI 会话（每个 HA 节点连接到每个目标门户），以确保通过所有可用路径发现外部 LUN
+
+
+
+
+== ONTAP FLI 发现阶段任务
+
+每个组件都有一组任务来收集数据或验证连接。
+
+[cols="1,2"]
+|===
+| 组件 | 任务 
+
+
+| 主机  a| 
+* 识别主机 OS 版本、多路径堆栈和配置以及任何特殊的消耗模型，例如文件系统、原始设备或集群磁盘，以驱动主机修复和切换步骤。
+* 捕获 LUN 清单，包括大小、标识符或序列号、分区布局或偏移，以及应用程序如何使用每个 LUN 进行规划和回滚。
+* 对于 FC 前端环境，记录主机启动器 WWPN。如果适用于整体迁移和切换设计，则用于分区和掩蔽。
+* 对于 iSCSI 前端环境，如果在迁移后使用，则记录主机启动器 IQN 和切换后主机将用于登录的目标门户 IP。
+
+
+
+
+| 光纤和网络  a| 
+* 对于 FC 环境：
++
+** 记录当前分区（主机和源阵列区域的往返分区），以便在切换后可以安全删除或更新。
+** 捕获所涉及的交换机标识符和端口。
+
+
+* 对于 iSCSI 环境：
++
+** 记录 ONTAP IC LIF 和外部阵列目标门户之间的 VLAN、子网和路由路径
+** 确认没有阻止通信的防火墙或 ACL。
+
+
+
+
+
+
+| NetApp 存储阵列（目标）  a| 
+* 确认 iSCSI FLI 的 ONTAP 版本和 ECV 就绪性。
++
+
+NOTE: 如果集群未处于受支持的级别，则阻止创建发起程序。
+
+* 确定哪些节点将参与，例如拥有 LUN 的节点及其 HA 伙伴，并记录这些节点上可用的集群间 LIF 。规划冗余；在两个 HA 节点上规划 IC LIF 、启动器和会话。
+* 记录 IC LIF IPspace 和子网，并验证它们可以到达外部目标门户。如果现有 IC LIF 已在集群中的其他地方使用，请避免在不同的子网中创建新的 IC LIF。
+* 验证您在规划期间必须实施的目标端约束，例如导入最大大小、512B 块大小要求以及与 iSCSI FLI 相关的会话和导入缩放限制。
+
+
+
+
+| 外部存储阵列（源）  a| 
+* 识别外部阵列目标门户 IP 和目标 IQN；iSCSI FLI 不支持 iSCSI 发现会话，因此必须预先明确知道这些信息。
+* 标识映射到源主机的特定 LUN，包括 LUN 大小和块大小。确保 LUN 稳定、不膨胀，并适合导入规划。
+* 记录主机访问和屏蔽对象，例如主机和启动器记录，以便您可以在切换期间安全地取消映射或重新映射，并验证回滚准备情况。
+* 计划并运行外部阵列认证。
++
+
+NOTE: iSCSI FLI 需要字段限定；不要假设 FC 限定的阵列自动符合 iSCSI。
+
+
+
+|===
+
+
+== 推荐的 ONTAP FLI 发现交付件
+
+* 单个库存表映射：主机 → 源 LUN → 外部目标门户/IQN → ONTAP IC LIF/节点 → 目标 LUN，用于干净执行和回滚。
+* 在执行更改之前捕获的 OneCollect 包（或等效包），以便在出现问题时缩短分流时间。
+
+
+.相关信息
+link:https://mysupport.netapp.com/site/tools["工具"]

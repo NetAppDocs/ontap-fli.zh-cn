@@ -1,0 +1,157 @@
+---
+permalink: phases/remediation-aix.html 
+sidebar: sidebar 
+keywords: ontap, fli, foreign lun import, aix host, pre-migration, offline fli, online fli 
+summary: 在 AIX 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有单独的步骤。 
+---
+= ONTAP FLI AIX 主机修复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 AIX 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有单独的步骤。
+
+
+
+== 预迁移 - 离线 FLI
+
+这些步骤对于在线和离线 FLI 都很常见。从主机取消置备源 LUN 之前，请确保完成以下步骤。
+
+[cols="5"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | 集群 | Sanboot 
+
+
+| 步骤 1：捕获迁移范围内文件系统的 LUN 详细信息。 | 步骤 1：捕获在迁移范围内用作原始块设备（无文件系统）的 LUN 详细信息。 | 步骤 1：捕获映射到具有 LVM 配置且在迁移范围内的主机的 LUN。 | 步骤 1：捕获整体集群详细信息以及迁移过程中涉及的磁盘。 | 步骤 1：捕获 SAN 引导的 LUN 详细信息和关联的分区信息。 
+
+
+| 步骤 2：卸载文件系统。 | 步骤 2：删除与多路径设备关联的 SCSI 块设备 | 步骤 2：如果 LVM 设备已挂载，请卸载该设备。 | 步骤 2：按照推荐的步骤正常关闭集群服务。 | 步骤 2：从操作系统以及 IPL（Initial Program Load）/SMS 菜单验证启动设备列表。确保所有设备均以其设备名称正确引用。 
+
+
+| 步骤 3：删除与多路径设备关联的 SCSI 块设备。 | 步骤 3：重新扫描所有设备。 | 第 3 步：备份 VG 并停用/varyoff VG。例如： `varyoffvg vg_name` | 步骤 3：删除与多路径设备关联的 SCSI 块设备。例如： `rmdev -Rdl hdiskx` |  
+
+
+| 第 4 步：重新扫描主机，确保现有设备映射没有过时条目。 | 第 4 步：重新扫描主机，确保现有设备映射没有过时条目。 | 第 4 步：重新扫描主机，确保现有设备映射中没有过时的条目。例如： `cfgmgr` | 第 4 步：重新扫描主机，确保现有设备映射中没有过时的条目。 |  
+|===
+
+NOTE: 有关最新和更新的命令列表，请参阅操作系统供应商文档。
+
+.步骤
+. 识别存储设备。
++
+[Source]
+----
+lsdev -Cc disk
+sanlun lun show all (This works only for NetApp storage)
+sanlun lun show all -pv
+lsmpio -l hdiskx
+----
+. 标识卷组和文件系统。
++
+[Source]
+----
+lspv
+lsvg <vg_name>
+lsvg -l <vg_name>
+lsvg -p <vs_name>
+----
+. Varyoffvg 并卸载文件系统。
++
+[Source]
+----
+df -g (to get the mount points)
+umount /mount_point
+varyoffvg <vg_name>
+df -g (to ensure its unmounted)
+----
+. 删除 scsi 块设备。
++
+rmdev -Rdl hdiskx
+
+. 确认设备已分离。
++
+lspv |grep hdiskx
+
+. 分离后重新扫描以确认清洁状态。
++
+cfgmgr
+
+
+
+
+
+== 迁移前 - 在线 FLI
+
+以下是在线 FLI 的具体步骤，但这些步骤之前必须执行上述"预迁移 - 离线 FLI"部分中的步骤。
+
+向主机配置 NetApp LUN 后，必须执行以下步骤。
+
+此时，lun 导入已创建，lun 映射到主机 igroup，并且存在从主机登录的 iSCSI 或 FC Initiator。
+
+对于脱机 FLI，NetApp LUN 保持脱机状态。
+
+[cols="4"]
+|===
+| Filesystem | 块设备 | LVM（文件系统） | Sanboot 
+
+
+| 步骤 1：重新扫描所有映射的 AIX 主机上的存储。 | 步骤 1：重新扫描所有映射的 AIX 主机上的存储。 | 步骤 1：重新扫描所有映射的 AIX 主机上的存储。 | 步骤 1：启动服务器。 
+
+
+| 步骤 2：识别多路径设备。例如： `lsdev -Cc disk; lsmpio -l hdiskx` | 步骤 2：识别多路径设备。例如： `lsdev -Cc disk; lsmpio -l hdiskx` | 步骤 2：识别多路径设备。例如： `lsdev -Cc disk; lsmpio -l hdiskx` | 步骤 2：验证 IPL（Initial Program Load）/SMS 菜单中的启动设备列表将列出引用来自新存储设备的设备列表的新 LUN。将引导顺序设置为新的设备列表路径。 
+
+
+| 步骤 3：检查文件系统详细信息。 | 步骤 3：识别多路径设备 ID 并将其呈现给相应的应用程序。 | 步骤 3：确保已发现新 LUN。 | 步骤 3：确保服务器正常启动。 
+
+
+| 第 4 步：将设备重新挂载到相应的文件夹。 |  | 步骤 4：VG 应自动激活。 |  
+
+
+|  |  | 第 5 步：验证 VG、LV 和文件系统处于活动状态且可挂载。 |  
+|===
+
+NOTE: 有关最新和更新的命令列表，请参阅操作系统供应商文档。
+
+.步骤
+. 识别存储设备
++
+[Source]
+----
+lsdev -Cc disk
+sanlun lun show all (This works only for NetApp storage)
+sanlun lun show all -pv
+lsmpio -l hdiskx
+----
+. 标识卷组和文件系统。
++
+[Source]
+----
+lspv
+lsvg <vg_name>
+lsvg -l <vg_name>
+lsvg -p <vs_name>
+----
+. Varyoffvg 并卸载文件系统。
++
+[Source]
+----
+df -g (to get the mount points)
+umount /mount_point
+varyoffvg <vg_name>
+df -g (to ensure its unmounted)
+----
+. 删除 scsi 块设备。
++
+rmdev -Rdl
+
+. 确认设备已分离。
++
+lspv |grep hdiskx
+
+. 分离后重新扫描以确认清洁状态。
++
+cfgmgr
+
+

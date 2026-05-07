@@ -6,13 +6,62 @@ indexpage:
     foreign
   lead: ONTAP 外部 LUN 导入
   tiles:
-  - title: FLI工作流
+  - title: 发行说明
+    url: "/release-notes.html"
     links:
-    - title: 脱机工作流
-      url: "/san-migration/concept_fli_offline_workflow.html"
-    - title: 联机工作流
-      url: "/san-migration/concept_fli_online_workflow.html"
-    - title: FLI 7- 模式到 ONTAP 的过渡工作流
-      url: "/san-migration/concept_fli_7_mode_to_ontap_transition_workflow.html"
-    - title: 使用工作流自动化（ WFA ）的 FLI
-      url: "/san-migration/concept_fli_using_workflow_automation_wfa.html"
+    - title: ONTAP 中适用于 SAN 数据迁移的新功能
+      url: release-notes/whats-new.html
+  - title: 开始使用
+    url: "/get-started.html"
+    links:
+    - title: 了解 ONTAP 数据迁移计划
+      url: "/get-started/learn-about-data-migration.html"
+    - title: 了解有关将 SAN 数据迁移到 ONTAP
+      url: "/get-started/learn-about-san-data-migration.html"
+    - title: 了解 ONTAP 外部 LUN 导入
+      url: "/get-started/learn-about-fli.html"
+  - title: FLI 阶段
+    url: "/phases.html"
+    links:
+    - title: ONTAP 外部 LUN 导入 (FLI) 发现阶段
+      url: "/phases/discovery-phase.html"
+    - title: ONTAP 外部 LUN 导入 (FLI) 分析阶段
+      url: "/phases/analyze-phase.html"
+    - title: ONTAP 外部 LUN 导入 (FLI) 计划和准备阶段
+      url: "/phases/plan-prepare-phase.html"
+    - title: ONTAP 外部 LUN 导入 (FLI) 执行阶段
+      url: "/phases/execute-phase.html"
+    - title: ONTAP 外部 LUN 导入 (FLI) 验证阶段
+      url: "/phases/verify-phase.html"
+  - title: FLI 配置
+    url: "/configure.html"
+    links:
+    - title: ONTAP 外部 LUN 导入 (FLI) 连接和布线
+      url: "/configure/fc-connectivity-wiring.html"
+    - title: ONTAP 外部 LUN 导入 (FLI) 推荐的 FC 布线和分区实践
+      url: "/configure/iscsi-setup-backend-connectivity.html"
+  - title: FLI 迁移
+    url: "/migrate.html"
+    links:
+    - title: 发现 FLI 迁移的外部 LUN
+      url: "/migrate/discover-foreign-luns.html"
+    - title: 创建 ONTAP FLI LUN 导入关系
+      url: "/migrate/create-import-relationship.html"
+    - title: 执行和监控 FLI LUN 导入
+      url: "/migrate/execute-monitor.html"
+    - title: 验证并删除 FLI LUN 导入关系
+      url: "/migrate/verify-delete.html"
+  - title: FLI 迁移后
+    url: "/post-migration-performance.html"
+    links:
+    - title: 执行迁移后清理
+      url: "/post-migration-performance/clean-up.html"
+    - title: 执行 ESXi VMFSS ATS/CAW 修复
+      url: "/post-migration-performance/esxi-remediation.html"
+    - title: FLI 性能
+      url: "/post-migration-performance/performance.html"
+  - title: 示例站点调查和规划工作表
+    url: "/sample-site.html"
+    links:
+    - title: 概述
+      url: "/san-migration/reference_sample_site_survey_and_planning_worksheet.html"

@@ -12,7 +12,12 @@ sidebar:
   - title: ONTAP FLI 文档
     url: "/index.html"
   - section: release-notes
-  - section: san-migration
+  - section: get-started
+  - section: phases
+  - section: configure
+  - section: migrate
+  - section: post-migration-performance
+  - section: sample-site
   - title: 法律声明
     url: "/legal-notices.html"
 product-family:
