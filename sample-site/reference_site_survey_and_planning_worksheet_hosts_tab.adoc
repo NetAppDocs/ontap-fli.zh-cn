@@ -1,5 +1,5 @@
 ---
-permalink: san-migration/reference_site_survey_and_planning_worksheet_hosts_tab.html 
+permalink: sample-site/reference_site_survey_and_planning_worksheet_hosts_tab.html 
 sidebar: sidebar 
 keywords: site, survey and planning worksheet, hosts tab 
 summary: '在 " 站点调查和规划 " 工作表中，您应设置一个选项卡，其中包含迁移项目主机信息。' 

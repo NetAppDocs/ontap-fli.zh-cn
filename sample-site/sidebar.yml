@@ -3,34 +3,34 @@ section: sample-site
 title: 示例站点调查和规划工作表
 entries:
 - title: 概述
-  url: "/san-migration/reference_sample_site_survey_and_planning_worksheet.html"
+  url: "/sample-site/reference_sample_site_survey_and_planning_worksheet.html"
 - title: 站点调查和规划工作表联系人选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_contacts_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_contacts_tab.html"
 - title: 站点调查和规划工作表调查问卷选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_questionnaire_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_questionnaire_tab.html"
 - title: 站点调查和规划工作表切换选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_switches_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_switches_tab.html"
 - title: 站点调查和规划工作表源存储设备选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_source_storage_devices_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_source_storage_devices_tab.html"
 - title: 站点调查和规划工作表目标存储设备选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_destination_storage_devices_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_destination_storage_devices_tab.html"
 - title: 站点调查和规划工作表主机选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_hosts_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_hosts_tab.html"
 - title: 站点调查和规划工作表 HBA 和区域信息选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_hba_and_zone_information_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_hba_and_zone_information_tab.html"
 - title: 站点调查和规划工作表源 LUN 选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_source_luns_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_source_luns_tab.html"
 - title: 站点调查和规划工作表存储组选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_storage_groups_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_storage_groups_tab.html"
 - title: 站点调查和规划工作表 LUN 详细信息选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_lun_details_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_lun_details_tab.html"
 - title: 站点调查和规划工作表 NetApp LUN 布局选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_netapp_lun_layouts_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_netapp_lun_layouts_tab.html"
 - title: 站点调查和规划工作表迁移计划选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_migration_schedule_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_migration_schedule_tab.html"
 - title: 站点调查和规划工作表聚合状态选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_aggregate_status_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_aggregate_status_tab.html"
 - title: 站点调查和规划工作表 FAS 配置选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_fas_config_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_fas_config_tab.html"
 - title: 站点调查和规划工作表 SDS 命令行界面脚本选项卡
-  url: "/san-migration/reference_site_survey_and_planning_worksheet_sds_cli_scripts_tab.html"
+  url: "/sample-site/reference_site_survey_and_planning_worksheet_sds_cli_scripts_tab.html"
