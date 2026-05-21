@@ -1300,7 +1300,6 @@
   <block id="f54f8723cdd855de6b42f8c6088ea7cf" category="paragraph">Start-VM -Name &lt;VM_Name&gt;</block>
   <block id="3530aa78abbe00fb441a6a913266c4f5" category="summary">了解验证阶段，该阶段确认迁移按计划完成，并删除迁移窗口期间使用的临时配置。</block>
   <block id="c7b5ec48b58689a14b9ca8360ae61c36" category="doc">ONTAP 外部 LUN 导入 (FLI) 验证阶段</block>
-  <block id="2dc59e510103c83c15f9b3fff186d965" category="paragraph">验证阶段确认迁移按计划完成，并侧重于迁移后清理。这包括验证应用程序行为，确认对 ONTAP LUN 的正确主机访问和路径，收集用于审核和故障排除的迁移日志，以及删除仅用于迁移的临时连接和配置。</block>
   <block id="312705c3917e0ecf74999294476290b4" category="paragraph">作为清理的一部分，您需要删除不再需要的源端 initiator 记录和分区，并记录最终配置，以便运营团队有一个清晰的"竣工"状态。</block>
   <block id="f67442f7dd9efc703506d4e505684839" category="paragraph">对于 iSCSI FLI，验证阶段还应包括删除在集群间 LIF 上创建的软件 iSCSI 启动程序会话和启动程序。如果仅为外部 LUN 导入创建了集群间 LIF，则必须删除这些 LIF。</block>
   <block id="c8253ba169277559e143f0f27d32ba7a" category="section-title">ONTAP FLI 验证阶段任务</block>
@@ -1546,4 +1545,5 @@
   <block id="144e3bff2769f72c63f6e00004097fcc" category="sidebar">FLI 迁移后</block>
   <block id="259c870f8a8594516755af0729eb847a" category="sidebar">迁移后概述</block>
   <block id="5d793778d9d63a7b0602b47ee814bd26" category="sidebar">SAN 数据迁移中的新增功能</block>
+  <block id="d6fe85b2a7716d9377c34dd3d6ea37c4" category="paragraph">验证阶段确认迁移按计划完成，并侧重于迁移后清理。这包括验证应用程序行为，确认对 ONTAP LUN 的正确主机访问和路径，收集用于审核和故障排除的迁移日志，以及删除仅用于迁移的临时连接和配置。</block>
 </blocks>
