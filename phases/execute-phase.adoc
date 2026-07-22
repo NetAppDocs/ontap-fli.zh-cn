@@ -15,6 +15,7 @@ summary: 了解执行阶段，该阶段涵盖运行脱机或在线 FLI 迁移所
 
 
 
+[[ontap-fli-execute-phase-tasks]]
 == ONTAP FLI 执行阶段任务
 
 下面是每个组件的 ONTAP FLI 执行任务。

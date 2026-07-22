@@ -426,18 +426,11 @@
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="summary">法律声明提供对版权声明、商标、专利等的访问。</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律声明</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版权</block>
-  <block id="de6edae22bc37b97b38a15c7f8af62e2" category="paragraph"><block ref="de6edae22bc37b97b38a15c7f8af62e2" category="inline-link-rx"></block></block>
   <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商标</block>
   <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NetApp 、 NetApp 徽标和 NetApp 商标页面上列出的标记是 NetApp 、 Inc. 的商标。其他公司和产品名称可能是其各自所有者的商标。</block>
-  <block id="a93bc0a57623c2facaa010825c808507" category="paragraph"><block ref="a93bc0a57623c2facaa010825c808507" category="inline-link-rx"></block></block>
   <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">专利</block>
   <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">有关 NetApp 拥有的专利的最新列表，请访问：</block>
-  <block id="547ea2e305891e64d8e744949b0aca2c" category="paragraph"><block ref="547ea2e305891e64d8e744949b0aca2c" category="inline-link-rx"></block></block>
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隐私政策</block>
-  <block id="50921fca0d376fca62102a5e608994e2" category="paragraph"><block ref="50921fca0d376fca62102a5e608994e2" category="inline-link-rx"></block></block>
-  <block id="b4de17ead867a3cf0b9d11e57e562672" category="section-title">机器翻译</block>
-  <block id="dd3918c571093dff2b94f7cef5066d01" category="inline-link-macro">NetApp.com</block>
-  <block id="5db028f960e19ec42098e3252e4fb1e3" category="paragraph">有关本地化内容的重要信息，请参见 <block ref="7e89bb7928e951b6f80ad1dab5c58475" category="inline-link-macro-rx"></block></block>
   <block id="76d4d65ac11114e948cdba5790db04c7" category="inline-link-macro">ASA R2 系统</block>
   <block id="78f511731820f6cf51be2ac1a22bdfae" category="paragraph">详细了解<block ref="bf5d9e0b88ffc589ea0cce1a42d0e835" category="inline-link-macro-rx"></block> 。</block>
   <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">关于此任务</block>
@@ -1546,4 +1539,12 @@
   <block id="259c870f8a8594516755af0729eb847a" category="sidebar">迁移后概述</block>
   <block id="5d793778d9d63a7b0602b47ee814bd26" category="sidebar">SAN 数据迁移中的新增功能</block>
   <block id="d6fe85b2a7716d9377c34dd3d6ea37c4" category="paragraph">验证阶段确认迁移按计划完成，并侧重于迁移后清理。这包括验证应用程序行为，确认对 ONTAP LUN 的正确主机访问和路径，收集用于审核和故障排除的迁移日志，以及删除仅用于迁移的临时连接和配置。</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
 </blocks>

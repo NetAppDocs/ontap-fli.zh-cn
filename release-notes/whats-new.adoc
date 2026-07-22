@@ -18,6 +18,7 @@ summary: 了解 ONTAP 中可用于 SAN 数据迁移的新功能。
 
 
 
+[[ontap-9-19-1]]
 == ONTAP 9.19.1
 
 * 从 ONTAP 9.19.1 开始，ONTAP FLI 支持用于后端连接的 iSCSI 协议。
@@ -25,6 +26,7 @@ summary: 了解 ONTAP 中可用于 SAN 数据迁移的新功能。
 
 
 
+[[ontap-9-17-1]]
 == ONTAP 9.17.1
 
 * 从 ONTAP 9.17.1 开始，ASA R2 系统支持 FLI 迁移。

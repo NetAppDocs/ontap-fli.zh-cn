@@ -15,6 +15,7 @@ summary: 在 HP 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁�
 
 
 
+[[pre-migration-offline-fli]]
 == 预迁移 - 离线 FLI
 
 这些步骤对于在线和离线 FLI 都很常见。从主机取消置备源 LUN 之前，请确保完成以下步骤。
@@ -43,6 +44,7 @@ summary: 在 HP 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁�
 |===
 
 
+[[pre-migration-online-fli]]
 == 迁移前 - 在线 FLI
 
 以下是在线 FLI 的具体步骤，但在执行这些步骤之前，必须先执行 Pre-Migration Offline FLI 中的步骤。在向主机配置 NetApp LUN 后，必须执行以下步骤。

@@ -15,6 +15,7 @@ summary: 迁移后，Windows 主机需要采取补救措施，以确保新导入
 
 
 
+[[post-migration-offline-fli]]
 == 迁移后 - 离线 FLI
 
 对于脱机 FLI，删除 LUN 导入并确认主机启动器已连接后，使 LUN 联机。
@@ -37,6 +38,7 @@ summary: 迁移后，Windows 主机需要采取补救措施，以确保新导入
 |===
 
 
+[[post-migration-online-fli]]
 == 迁移后 - 在线 FLI
 
 删除 LUN 导入后，请检查 LUN 是否设置为禁用 -space-reserve 并启用 -space-allocation。如果没有，请相应地进行修改。
@@ -53,6 +55,7 @@ summary: 迁移后，Windows 主机需要采取补救措施，以确保新导入
 |===
 
 
+[[filesystem-devices]]
 === 文件系统设备
 
 .步骤
@@ -85,6 +88,7 @@ Start-Service -Name <ServiceName>
 
 
 
+[[physical-drives-no-filesystem]]
 === 物理驱动器（无文件系统）
 
 .步骤
@@ -99,6 +103,7 @@ Update-HostStorageCache
 
 
 
+[[wsfc]]
 === WSFC
 
 .步骤
@@ -132,6 +137,7 @@ Start-ClusterResource -Name <ResourceName>
 
 
 
+[[hyper-v]]
 === Hyper V
 
 .步骤

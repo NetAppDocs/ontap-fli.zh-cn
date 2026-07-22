@@ -15,6 +15,7 @@ summary: 探索适用于 ONTAP 的 SAN 数据迁移选项，包括外部 LUN 导
 
 
 
+[[choosing-the-right-migration-approach-high-level]]
 == 选择正确的迁移方法（高级别）
 
 实际的迁移策略可能使用一种主要方法，并用最适合的其他方法进行补充。对于迁移到 ONTAP 的 SAN/LUN 级别迁移，FLI 通常是一个强有力的选择；但是，某些方案可能通过设计上无中断的替代方案来更好地提供服务。
@@ -27,12 +28,14 @@ summary: 探索适用于 ONTAP 的 SAN 数据迁移选项，包括外部 LUN 导
 
 
 
+[[planning-migration-duration]]
 == 规划迁移持续时间
 
 仅对于初始规划，对于具有 8 个 LUN 总计约 2 TB 的主机，通常引用的基准假设为每个主机约 5 小时，相当于约 400 GB/小时。这有意是一个粗略的规划数字，不太可能与每个环境相匹配。获得准确估计的建议方法是运行不同大小的多个测试迁移，以衡量您自己的存储、网络和主机条件下的实际吞吐量。
 
 
 
+[[recommended-tools-data-collection-compatibility-automation-qualification]]
 == 推荐工具（数据收集、兼容性、自动化、鉴定）
 
 服务工具提供了一种标准化的方式来收集环境数据，验证可支持性，并减少规划和执行过程中的人为错误。

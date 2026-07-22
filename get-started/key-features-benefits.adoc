@@ -15,6 +15,7 @@ ONTAP 外部 LUN 导入 (FLI) 是一种内置的数据块迁移功能，可将�
 
 
 
+[[key-features]]
 == 主要特点
 
 * 在线和离线迁移以满足业务停机时间要求。
@@ -27,6 +28,7 @@ ONTAP 外部 LUN 导入 (FLI) 是一种内置的数据块迁移功能，可将�
 
 
 
+[[key-benefits]]
 == 主要优势
 
 * ONTAP FLI 包含在 ONTAP 中。无需单独的迁移应用装置即可执行基于 FLI 的 LUN 导入。

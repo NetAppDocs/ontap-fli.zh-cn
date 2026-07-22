@@ -15,6 +15,7 @@ summary: 迁移后，Solaris 主机需要采取补救措施，以确保新导入
 
 
 
+[[post-migration-offline-fli]]
 == 迁移后 - 离线 FLI
 
 对于离线 FLI，删除 LUN 导入并确认主机启动器已连接后，使 LUN 联机。
@@ -77,6 +78,7 @@ df -g (to ensure its unmounted)
 
 
 
+[[post-migration-online-fli]]
 == 迁移后 - 在线 FLI
 
 删除 LUN 导入后，请检查 LUN 是否设置为禁用 -space-reserve 并启用 -space-allocation。如果没有，请相应地进行修改。

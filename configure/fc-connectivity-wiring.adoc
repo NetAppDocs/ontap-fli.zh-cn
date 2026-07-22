@@ -15,6 +15,7 @@ summary:
 
 
 
+[[ontap-fli-recommended-fc-wiring-and-zoning-practices]]
 == ONTAP FLI 推荐的 FC 布线和分区做法
 
 * 使用双网络结构（A 和 B）实现冗余。

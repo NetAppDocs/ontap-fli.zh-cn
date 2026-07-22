@@ -55,6 +55,7 @@ lun import resume -vserver <SVM> -path <LUN_PATH>
 
 
 
+[[iscsi-fli-performance-counters]]
 == iSCSI FLI 性能计数器
 
 发现/确认可用对象（可选）:: `statistics catalog object show | grep -i iswi`
@@ -64,6 +65,7 @@ lun import resume -vserver <SVM> -path <LUN_PATH>
 
 
 
+[[ontap-fli-factors-that-impact-performance]]
 == 影响性能的 ONTAP FLI 因素
 
 完成导入的时间受多个变量的影响，包括：

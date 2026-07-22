@@ -15,6 +15,7 @@ ONTAP FLI 发现阶段是迁移过程的第一步。收集有关源环境、连�
 
 
 
+[[prepare-for-an-iscsi-migration-with-ontap-fli]]
 == 准备使用 ONTAP FLI 进行 iSCSI 迁移
 
 ONTAP FLI 发现阶段收集完成迁移所需的技术细节：
@@ -37,6 +38,7 @@ ONTAP FLI 发现阶段收集完成迁移所需的技术细节：
 
 
 
+[[ontap-fli-discovery-phase-tasks]]
 == ONTAP FLI 发现阶段任务
 
 每个组件都有一组任务来收集数据或验证连接。
@@ -99,6 +101,7 @@ NOTE: iSCSI FLI 需要字段限定；不要假设 FC 限定的阵列自动符合
 |===
 
 
+[[recommended-ontap-fli-discovery-deliverables]]
 == 推荐的 ONTAP FLI 发现交付件
 
 * 单个库存表映射：主机 → 源 LUN → 外部目标门户/IQN → ONTAP IC LIF/节点 → 目标 LUN，用于干净执行和回滚。

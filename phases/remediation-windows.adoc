@@ -15,6 +15,7 @@ summary: 在 Windows 主机上运行 ONTAP FLI 迁移之前，请完成这些预
 
 
 
+[[pre-migration-offline-fli]]
 == 预迁移 - 离线 FLI
 
 这些步骤适用于离线和在线 FLI。在从 Windows 主机取消映射源 LUN 之前，请完成以下主机端准备工作。
@@ -34,6 +35,7 @@ summary: 在 Windows 主机上运行 ONTAP FLI 迁移之前，请完成这些预
 |===
 
 
+[[filesystem-devices]]
 === 文件系统设备
 
 .步骤
@@ -53,6 +55,7 @@ Set-Disk -Number <DiskNumber> -IsOffline $true
 
 
 
+[[physical-drives-no-filesystem]]
 === 物理驱动器（无文件系统）
 
 .步骤
@@ -68,6 +71,7 @@ Stop-Service -Name <ServiceName>
 
 
 
+[[wsfc-windows-server-failover-clustering]]
 === WSFC (Windows Server 故障转移群集)
 
 .步骤
@@ -87,6 +91,7 @@ Stop-Cluster -Name <ClusterName>
 
 
 
+[[hyper-v]]
 === Hyper V
 
 .步骤
@@ -107,6 +112,7 @@ Get-Disk | Where-Object OperationalStatus -ne "Online"
 
 
 
+[[pre-migration-online-fli]]
 == 迁移前 - 在线 FLI
 
 以下是在线 FLI 的具体步骤，但这些步骤之前必须有预迁移 - 离线 FLI 的步骤。
@@ -135,6 +141,7 @@ Get-Disk | Where-Object OperationalStatus -ne "Online"
 |===
 
 
+[[filesystem-devices]]
 === 文件系统设备
 
 .步骤
@@ -161,6 +168,7 @@ Get-Volume | Format-Table DriveLetter，FileSystemLabel，Size，SizeRemaining
 
 
 
+[[physical-drives-no-filesystem]]
 === 物理驱动器（无文件系统）
 
 .步骤
@@ -176,6 +184,7 @@ Get-Volume | Format-Table DriveLetter，FileSystemLabel，Size，SizeRemaining
 
 
 
+[[wsfc]]
 === WSFC
 
 .步骤
@@ -205,6 +214,7 @@ Start-ClusterResource -Name <ResourceName>
 
 
 
+[[hyper-v]]
 === Hyper V
 
 .步骤

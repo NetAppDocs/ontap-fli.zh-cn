@@ -23,6 +23,7 @@ summary: 了解分析阶段，该阶段将主机和 SAN 堆栈配置与 NetApp I
 
 
 
+[[ontap-fli-analyze-phase-tasks]]
 == ONTAP FLI 分析阶段任务
 
 分析阶段以主机为中心，但也应验证完整的端到端支持链（主机到交换矩阵再到 ONTAP 然后返回）并确认 FLI 后端互操作性状况。
@@ -73,6 +74,7 @@ summary: 了解分析阶段，该阶段将主机和 SAN 堆栈配置与 NetApp I
 |===
 
 
+[[use-the-imt-during-the-ontap-fli-analyze-phase]]
 == 在 ONTAP FLI 分析阶段使用 IMT
 
 互操作性矩阵工具 (IMT) 是一个配置存储库，也是一种缩小到受支持的端到端结果配置的引导方式，其中 NetApp 产品与第三方组件互操作。IMT 可以包含受支持和认证的配置：
@@ -107,6 +109,7 @@ summary: 了解分析阶段，该阶段将主机和 SAN 堆栈配置与 NetApp I
 
 
 
+[[ontap-fli-host-changes-and-rollback-strategy]]
 == ONTAP FLI 主机更改和回滚策略
 
 分析阶段应明确决定更改的内容和时间，因为主机更改可能会带来风险，也会影响对当前存储的支持。如果主机堆栈在能够获得 ONTAP 支持之前需要升级，这一点很重要。
@@ -118,6 +121,7 @@ summary: 了解分析阶段，该阶段将主机和 SAN 堆栈配置与 NetApp I
 
 
 
+[[ontap-fli-gap-analysis]]
 == ONTAP FLI 间隙分析
 
 差距分析总结了当前环境与 NetApp 推荐的目标配置，并列出了实现支持的迁移后状态所需的升级或补救措施。

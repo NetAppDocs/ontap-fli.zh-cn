@@ -17,6 +17,7 @@ summary: 了解计划和准备阶段，将发现和分析结果转化为可执�
 
 
 
+[[ontap-fli-plan-and-prepare-phase-results]]
 == ONTAP FLI 计划和准备阶段结果
 
 * 使用主机差距分析完成补救计划，包括迁移前所做的更改，包括在切换窗口期间所做的更改，例如 MPIO 更改。
@@ -27,6 +28,7 @@ summary: 了解计划和准备阶段，将发现和分析结果转化为可执�
 
 
 
+[[ontap-fli-plan-and-prepare-phase-tasks]]
 == ONTAP FLI 计划和准备阶段任务
 
 以下是每个组件的 ONTAP FLI 计划和准备任务。

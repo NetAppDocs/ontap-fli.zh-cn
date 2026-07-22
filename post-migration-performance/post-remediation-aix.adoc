@@ -15,6 +15,7 @@ summary: 迁移后，AIX 主机需要采取补救措施，以确保新导入的 
 
 
 
+[[post-migration-offline-fli]]
 == 迁移后 - 离线 FLI
 
 对于脱机 FLI，删除 LUN 导入并确认主机启动器已连接后，使 LUN 联机。
@@ -87,6 +88,7 @@ df -g
 
 
 
+[[post-migration-online-fli]]
 == 迁移后 - 在线 FLI
 
 删除导入关系后，确认新 LUN 在启用 UNMAP 的情况下独立运行。删除 LUN 导入后，检查 LUN 是否设置了 `-space-reserve disabled`和 `-space-allocation enabled`。如果没有，请相应修改。

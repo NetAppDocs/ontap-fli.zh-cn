@@ -15,6 +15,7 @@ summary: 在 ESXi 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移
 
 
 
+[[pre-migration-offline-fli]]
 == 预迁移 - 离线 FLI
 
 这组步骤对于在线和离线 FLI 都很常见。在从主机取消置备源 LUN 之前，请确保已完成以下步骤。
@@ -70,6 +71,7 @@ summary: 在 ESXi 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移
 
 
 
+[[esx-example-commands-sync-block]]
 === ESX 命令示例：同步块
 
 将主机置于维护模式::
@@ -117,6 +119,7 @@ esxcli system maintenanceMode set --enable false
 
 
 
+[[pre-migration-online-fli]]
 == 迁移前 - 在线 FLI
 
 以下是在线 FLI 的具体步骤，但这些步骤之前必须有预迁移离线 FLI 中的步骤。

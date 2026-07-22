@@ -23,6 +23,7 @@ iSCSI 和 FC ONTAP FLI 支持离线导入（导入期间没有主机 I/O）和�
 
 
 
+[[key-terms]]
 == 关键术语
 
 外部阵列:: 任何不运行 ONTAP 的存储系统（包括 7 模式到 ONTAP 转换上下文中的 NetApp 7 模式）。
@@ -33,6 +34,7 @@ LUN 导入:: 将块从外部 LUN 传输到 ONTAP LUN 的过程。
 
 
 
+[[high-level-methodology]]
 == 高级方法
 
 发现阶段:: 收集环境的完整清单—主机、存储系统和 SAN/网络结构—以便了解存在的内容以及所有内容的连接方式。
@@ -44,6 +46,7 @@ LUN 导入:: 将块从外部 LUN 传输到 ONTAP LUN 的过程。
 
 
 
+[[intended-audience]]
 == 目标受众
 
 此信息面向计划或执行 SAN（块/LUN）数据迁移到 ONTAP 的客户、合作伙伴和 NetApp 现场团队，特别是使用外部 LUN 导入（FLI）和相关迁移选项的迁移。

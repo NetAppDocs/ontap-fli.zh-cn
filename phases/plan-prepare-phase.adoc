@@ -23,6 +23,7 @@ summary: 运行一个或多个测试迁移，以确认阵列、网络和结构�
 
 
 
+[[test-migration-example-using-hitachi-ams2100]]
 == 使用 Hitachi AMS2100 测试迁移示例
 
 以下是使用 Hitachi AMS2100 作为外部阵列的测试迁移示例。根据涉及的阵列，主机操作系统和其他变量，您的步骤可能会有所不同。

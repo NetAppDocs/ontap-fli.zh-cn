@@ -19,6 +19,7 @@ summary: 了解验证阶段，该阶段确认迁移按计划完成，并删除�
 
 
 
+[[ontap-fli-verify-phase-tasks]]
 == ONTAP FLI 验证阶段任务
 
 下面是每个组件的 ONTAP FLI 验证任务。
