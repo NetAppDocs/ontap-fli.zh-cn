@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: discover foreign luns, foreign lun import, fli, ontap, storage disk show, mark foreign lun, fc backend, iscsi backend, foreign disk, lun discovery, san migration 
 summary: 从主机取消配置外来 LUN，并将其映射到 ONTAP 启动器，以便 ONTAP 可以在其存储堆栈中发现 LUN。 
 ---
-= 发现 FLI 迁移的外部 LUN
+= 发现 ONTAP FLI 迁移的外部 LUN
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

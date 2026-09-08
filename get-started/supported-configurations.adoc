@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: supported configurations, foreign lun import, fli, ontap fli, aff, asa, fas, ontap select, cloud volumes ontap, cvo, iscsi fli, fc fli, interoperability, san migration, lun import, supported platforms 
 summary: 查看 ONTAP FLI 支持的平台和配置，包括 FC 和 iSCSI 后端选项以及迁移规划的关键限制。 
 ---
-= 了解 ONTAP Foreign LUN Import 支持的配置和平台
+= 支持的 ONTAP Foreign LUN Import 配置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

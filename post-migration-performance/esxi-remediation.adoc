@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: esxi remediation, vmfs, ats, caw, vaai, vmkfstools, datastore, online fli, foreign lun import, fli, vmware, ats-only 
 summary: 修复具有仅限 ATS 的 VMFS 标头的 VMware ESXi 数据存储区，这些标头在通过在线 FLI 导入关系呈现时可能会阻止挂载。 
 ---
-= 执行 ONTAP FLI ESXi VMFSS ATS/CAW 修复
+= 执行 ONTAP FLI ESXi VMFS ATS/CAW 修复
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

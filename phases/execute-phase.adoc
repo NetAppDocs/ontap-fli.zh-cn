@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: execute phase, foreign lun import, fli, offline fli, online fli, cutover, import jobs, san migration, zoning, host remediation, iscsi fli, fc fli 
 summary: 了解执行阶段，该阶段涵盖运行脱机或在线 FLI 迁移所需的端到端任务，并将主机访问权限转移到 ONTAP。 
 ---
-= ONTAP 外部 LUN 导入 (FLI) 执行阶段
+= 了解 ONTAP FLI 执行阶段
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

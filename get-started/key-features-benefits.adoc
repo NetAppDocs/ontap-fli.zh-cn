@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: fli, foreign lun import, ontap fli, block migration, san migration, online migration, offline migration, key features, benefits, multipathing, fibre channel, iscsi, lun import, data migration, load balancing 
 summary: 了解 ONTAP FLI 的主要功能和优势，包括在线和离线迁移选项以及针对 SAN 环境的块级 LUN 迁移。 
 ---
-= 了解 ONTAP Foreign LUN Import 的主要功能和优势
+= ONTAP 外部 LUN 导入的主要功能和优势
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

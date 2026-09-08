@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords:  
 summary:  
 ---
-= 为 ONTAP 外部 LUN 导入 (FLI) 迁移的启动器模式配置 FC 适配器
+= 在 ONTAP FLI 中为启动器模式配置 FC 适配器
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

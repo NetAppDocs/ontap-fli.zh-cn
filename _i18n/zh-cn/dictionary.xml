@@ -442,7 +442,6 @@
   <block id="16fcc6613999970f7ea424faf43da35f" category="doc">了解 ONTAP FLI 配置</block>
   <block id="a0e6eb2c92d86032a9e4a33a774c7c1d" category="paragraph">本节描述使用光纤通道 (FC) 和 iSCSI 后端连接的外部 LUN 导入 (FLI) 的配置和验证框架。它侧重于确保在 LUN 发现和导入期间从 ONTAP 到外部存储阵列的可靠、冗余访问，同时保持与主机访问路径的明确分离。内容介绍了推荐的 SAN 设计原则（双结构 FC、iSCSI 启动程序/iSCSI 目标端口使用和分区最佳实践）、ONTAP 上的适配器配置要求，以及在启动导入之前确认外部 LUN 可见且运行状况良好的操作检查。</block>
   <block id="325ac5e1843d74ce4701f7fc7f081463" category="paragraph">此外，它详细介绍了 iSCSI 后端 FLI 模型，该模型使用绑定到集群间 LIF（IC LIF）的 ONTAP 软件 iSCSI 启动程序，强调显式会话创建（无发现会话）、用于恢复能力的全网格连接以及网络可达性和会话运行状况的严格验证。在 FC 和 iSCSI 方案中，目标是建立一个确定的、可支持的后端传输，满足 FLI 先决条件，在所有路径上实现一致的外部 LUN 发现，并提供必要的检测（统计和可见性）来排除发现和导入执行期间的问题。</block>
-  <block id="82f20d975f0599b0ee78f0f6f5003f40" category="doc">为 ONTAP 外部 LUN 导入 (FLI) 迁移的启动器模式配置 FC 适配器</block>
   <block id="66e3a07f75973131e5ce1a8bec2ec730" category="paragraph">ONTAP FLI over FC 要求 ONTAP 端的 FC 适配器处于启动器模式。如果没有空闲的启动器端口，则可能需要将 FC 目标适配器端口转换为启动器模式。如果 FC 适配器具有活动的 FC LIF，则活动的 FC LIF 必须移动到同一结构内的不同适配器端口。</block>
   <block id="0cd4753f7f850f606ecd5c64d3c2ea1c" category="list-text">查看可用的 FC 适配器：</block>
   <block id="6ca857f7a44a21cfffda914cf9549710" category="paragraph">*输出示例*</block>
@@ -460,7 +459,6 @@
   <block id="618a7203749c0b5afe17baf3d286bca2" category="list-text">请勿将 ONTAP 启动器端口与主机进行分区。ONTAP 启动器端口仅用于连接到源阵列目标端口以进行导入和发现。</block>
   <block id="33043746d13aa030493a19883f6971f1" category="list-text">仅对参与导入的 ONTAP 节点进行分区，无需对整个集群进行分区。</block>
   <block id="e99278a7a50f88d78ed26c78cbf8748f" category="image-alt">适用于 ONTAP FLI 的 FC 分区示例</block>
-  <block id="fbaf476695b9123b8d8f9bb85a279332" category="doc">ONTAP 外部 LUN 导入建议的 FC 布线和分区实践</block>
   <block id="837bd897bf43519959d9b2554c205d65" category="paragraph">外部 LUN 导入 (FLI) 要求源 LUN 可由 ONTAP 访问，这是通过将源目标端口分区到 ONTAP 启动器端口来实现的。现有的源到主机区域通常不会在迁移期间进行修改，并且可以在迁移后删除或停用。</block>
   <block id="bbdc5f42209f2c5f86bba32aad4f9ffd" category="list-title">标准 FC FLI 场景使用 4 个不同的区域</block>
   <block id="db69f0645b8fa611af7b84f966e56147" category="list-text">区域 1：源存储到目标存储（Fabric A）</block>
@@ -506,7 +504,6 @@
   <block id="45a909869405fe8ef132d26fc306a055" category="paragraph">在此阶段，外部存储阵列 iSCSI 目标必须能够检测并确认来自 NetApp iSCSI 启动程序的活动登录和会话。在外部阵列上使用供应商推荐的命令来验证启动程序已连接且会话正常。</block>
   <block id="6e8e6a4392d50fc320af33541d5b911a" category="paragraph">*发现检查点*：建立会话后，ONTAP 应添加存储路径并发现存储堆栈中的外来 LUN，这是将磁盘标记为外来并继续导入工作流程的先决条件。</block>
   <block id="165bfafafc6e957d5e0754f65dda7b0f" category="summary">了解 ONTAP FLI 的主要功能和优势，包括在线和离线迁移选项以及针对 SAN 环境的块级 LUN 迁移。</block>
-  <block id="267dcc9397ed4992a5f6de3164460880" category="doc">了解 ONTAP Foreign LUN Import 的主要功能和优势</block>
   <block id="7f57df50c07d397c153ac86c88babe24" category="paragraph">ONTAP 外部 LUN 导入 (FLI) 是一种内置的数据块迁移功能，可将数据从外部（第三方）阵列 LUN 复制到本机 ONTAP LUN，并支持离线和联机迁移样式。FLI 旨在将 SAN LUN 从一系列第三方阵列迁移到 ONTAP，它提供了一致的迁移方法，有助于跨不同主机和阵列标准化规划、执行和验证。</block>
   <block id="be01a357ae2c9752875b5385c732b017" category="section-title">主要特点</block>
   <block id="6f85cdaea1ce05195fb644beb9b6e016" category="list-text">在线和离线迁移以满足业务停机时间要求。</block>
@@ -522,7 +519,6 @@
   <block id="816bfc18821848b644919f8e87c92ac3" category="list-text">支持复杂的过渡场景，包括 7 Mode 到 ONTAP 迁移，在过渡工作流程中可以解决对齐和格式考虑因素。</block>
   <block id="47b66897c4c28ee964d7f84128066371" category="list-text">强力支持的运营模式，虽然专业服务不是强制性的，但 NetApp 推荐专业服务或合格的合作伙伴进行范围界定、规划和培训，以应对除简单迁移之外的任何事情。</block>
   <block id="1026e7ead78dbcd9e3ebea59f6b73b20" category="summary">了解如何使用外部 LUN 导入将 LUN 从 NetApp 7-Mode 系统迁移到集群 ONTAP，可使用在线或离线工作流。</block>
-  <block id="970c2425c4630fb96603d1c4a70945b6" category="doc">了解从外部 LUN 导入 7-mode 到 ONTAP 的过渡</block>
   <block id="9c3b1a9e6ffe1c96c597072ceac52a17" category="paragraph">当源 LUN 托管在运行 ONTAP 7 Mode 的 NetApp 系统上并希望将该 LUN 迁移到集群 ONTAP 时，使用外部 LUN 导入在 7 Mode 和集群模式 ONTAP 之间进行数据迁移。这种方法对于传统方案特别有用，例如托管在 32 位聚合上的 LUN 或未对齐的 LUN，因为外部 LUN 导入也可用于其他用例。</block>
   <block id="c8c2d9e273bd68d115d0216b06360fab" category="paragraph">使用外来 LUN 导入的数据迁移可以使用在线或离线工作流程执行。在操作上，它遵循与标准 FLI 在线和离线迁移相同的顺序和规则，唯一的区别是源阵列是 NetApp 7 模式控制器，而不是第三方阵列。</block>
   <block id="2af84a3630c491455edea05ea97e9519" category="paragraph">换句话说，无论源是外部阵列还是 NetApp 7-Mode 阵列，核心 FLI 迁移工作流都是相同的；只有源平台发生变化。</block>
@@ -605,7 +601,6 @@
   <block id="64ea75caa71920ec87ff578169f0075a" category="list-text">SAN LUN 迁移（适用于 FLI 项目的 sanlunmigrate）</block>
   <block id="ff76beca36064e56282d13cd22862ba8" category="list-text">在提交生产迁移之前，使用鉴定方法验证客户环境中的外部阵列 LUN 行为；当传输或供应商行为不同时，这一点尤其重要。</block>
   <block id="233991137dfdbb7ef01b6ac53fd5eb26" category="summary">查看 ONTAP Foreign LUN Import 的先决条件，包括后端连接、LUN 发现和导入关系要求。</block>
-  <block id="043d06edeed4fa95f43af01f2f2f6113" category="doc">了解 ONTAP 外部 LUN 导入先决条件</block>
   <block id="6d1cae9dd026a35e9f3c2b33e8998dc6" category="paragraph">在启动 ONTAP Foreign LUN Import (FLI) 之前，必须具备几个先决条件，以确保成功迁移。这些先决条件涵盖了 FLI 流程正常运行所必需的兼容性、连接性和配置要求。</block>
   <block id="0621ec7ccdf71517b26fc85ecec39c14" category="list-text">后端连接必须可用于所选传输：</block>
   <block id="17f9cbbbf5f6b5f84d47d7ce5be8481b" category="list-text">FC FLI 要求每个控制器至少有一个可以在启动程序模式下运行的 FC 端口（对于冗余，首选两个端口，每个结构一个）。</block>
@@ -619,7 +614,6 @@
   <block id="cf282bc9d5e2cafd322cc0eab6aca317" category="list-text">在开始导入副本之前，必须通过导入关系将外部 LUN 和目标 ONTAP LUN 配对。</block>
   <block id="882b8625fb0676274db3decc8486f6d7" category="paragraph">在创建导入关系之前保持目标 ONTAP LUN 脱机；创建关系后，只有在执行联机 FLI 时才能使 LUN 联机，以便在继续复制时主机可以恢复 I/O。</block>
   <block id="6cc95584903beea076e0f01f0960ebbc" category="summary">查看 ONTAP FLI 支持的平台和配置，包括 FC 和 iSCSI 后端选项以及迁移规划的关键限制。</block>
-  <block id="f07bea32571fee7ebcbee5f0dd81797f" category="doc">了解 ONTAP Foreign LUN Import 支持的配置和平台</block>
   <block id="114e9c31f071edc22a1ebd2d95e7ac56" category="paragraph">ONTAP FLI 必须部署在受支持的配置中，以确保可预测的行为和完全可支持性。</block>
   <block id="a8a512b2fe98c374c8ce645e66e96c79" category="list-text">所有 FLI 迁移都是在 LUN（块）级别执行的；文件和协议级别的迁移不在 ONTAP FLI 范围之内。</block>
   <block id="0223ac1546a1a57bee09547782d1dec3" category="list-text">规划每个节点最多 8 个并发导入。实际的安全并发取决于观察到的主机延迟和导入延迟。</block>
@@ -897,7 +891,6 @@
   <block id="c8367d1847be4bf107411fc5988abc72" category="list-text">确保生产主机在切换期间不会同时呈现相同的源 LUN，以避免双重呈现。</block>
   <block id="fa622a2e838351131c3a57fedab0e13f" category="list-text">在生产导入之前，使用支持的鉴定工具和方法完成外部阵列鉴定。</block>
   <block id="aa2d3adeb52dbc07d150ac343762153a" category="summary">运行一个或多个测试迁移，以确认阵列、网络和结构、ONTAP 配置和主机修复步骤是正确的，并收集可外推用于生产计划的吞吐量示例。</block>
-  <block id="fbb0e56b9669a3a22d376f1ebf9d6992" category="doc">ONTAP 外部 LUN 导入 (FLI) 测试迁移和切换规划</block>
   <block id="38bf5a831e6677435f556c02f2937499" category="paragraph">良好的测试迁移验证：</block>
   <block id="ae71be2e4463a2e3e699b0e84381225d" category="list-text">后端就绪性：IC LIF 可达性、iSCSI 会话稳定性和外部 LUN 发现在路径之间是一致的。</block>
   <block id="04f477f16183084db45308ed2487b783" category="list-text">工作流正确性：在所选模式（在线/离线）下，导入关系创建/启动/显示/完成（和可选验证）行为符合预期。</block>
@@ -1033,7 +1026,6 @@
   <block id="ccaba3e2ef4cc11788f752640d2bef81" category="cell">WFSC (RDM)</block>
   <block id="946ab9c4ee53ff470f0b11f871246541" category="cell">需要 SCSI 3 PR，不支持在线导入。</block>
   <block id="a206290b23543eb1623c6a32c713d054" category="summary">在 AIX 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有单独的步骤。</block>
-  <block id="e79abe8dc9e8b433668d04b7bfc7e308" category="doc">ONTAP FLI AIX 主机修复</block>
   <block id="9bf80c042b1c991f231ef9057bf669b3" category="section-title">预迁移 - 离线 FLI</block>
   <block id="795e163087b8e0defa6616b657e6040e" category="paragraph">这些步骤对于在线和离线 FLI 都很常见。从主机取消置备源 LUN 之前，请确保完成以下步骤。</block>
   <block id="ac52cf637478f3656a1fdee5c02324fd" category="cell">Filesystem</block>
@@ -1087,7 +1079,6 @@
   <block id="203b2a548839432bd394e89fce1211c8" category="list-text">识别存储设备</block>
   <block id="a844f8111bdbd6730701b4f8e6d62b6a" category="paragraph">rmdev -Rdl</block>
   <block id="c7452a61306f588ae53b154827b3b307" category="summary">在 ESXi 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有单独的步骤。</block>
-  <block id="15a9d795e9382a6d1b283bad69bad426" category="doc">ONTAP FLI ESXi 主机修复</block>
   <block id="931e04aeb9d78a062c5688e8e920d368" category="paragraph">在 ESXi 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有单独的步骤。</block>
   <block id="52f516279748fadba607f90c463c0e27" category="paragraph">这组步骤对于在线和离线 FLI 都很常见。在从主机取消置备源 LUN 之前，请确保已完成以下步骤。</block>
   <block id="8371bd4c3681862cb8644e99ac43611d" category="cell">VM/VMDK</block>
@@ -1139,7 +1130,6 @@
   <block id="ba8a092c443bab89f95874823c908d97" category="list-text">如果检测到仅 ATS，则转换为 ATS+SCSI</block>
   <block id="cb7829ececd09abf3d020698dc6a9331" category="paragraph">vmkfstools --configATSOnly 0 /vmfs/volumes/&lt;DATASTORE_NAME&gt;</block>
   <block id="47dd17eb9fce4e0e549d8902cebdefba" category="summary">在 HP 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。</block>
-  <block id="4418ff2a20c1673786dacc22b9dce584" category="doc">ONTAP FLI HP 主机修复</block>
   <block id="55b9c00dc0136823ebac1b1dd2ffb97d" category="cell">文件系统（LVM 和非 LVM）</block>
   <block id="54e9c061b069a76d555e06e5000ac8ac" category="cell">主机群集 (SCSI3 PR)</block>
   <block id="1f1eac3ab16dcb2faf7df3c391cff901" category="cell">SANBOOT</block>
@@ -1171,7 +1161,6 @@
   <block id="cc6ab4f25151a1ddba63b381911753e0" category="cell">第 7 步：将 LVM 装载回相应的文件夹</block>
   <block id="99afe60f9496a7f99361d6daca7429b5" category="list-text">卸载文件系统并导出 VG。</block>
   <block id="acb2032201bde1f660b8bca007557066" category="summary">在 Linux 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。</block>
-  <block id="a25c0fff4daa01425a2d6b604681640d" category="doc">ONTAP FLI Linux 主机修复</block>
   <block id="e02beebba413932c38cadf7865307907" category="cell">带 LVM 的 Pacemaker（SCSI3 PR）</block>
   <block id="b6083c6594ea6d4aaac23291b9009c7c" category="cell">步骤 1：收集端到端块设备配置：多路径运行状况/路径、块设备上的 LVM 布局以及 GRUB/引导程序设置，以确认正确的引导设备和引导参数。</block>
   <block id="aa4999b0f6ce9bd1723385bc53f49175" category="cell">步骤 1：收集端到端 SAN 引导配置：多路径运行状况/路径、引导 LUN 上的 LVM 布局以及 GRUB/引导加载程序设置，以确认正确的引导设备和引导参数。</block>
@@ -1201,7 +1190,6 @@
   <block id="4f249d32aeb0051c8e6b1ea1a060c29a" category="cell">步骤 4：创建新的 PCS 资源组，并为可用的 LV 和文件系统添加相应的资源。注意：请注意，新激活的 LVM 对象具有完整的 LV 和文件系统结构。</block>
   <block id="abf8007138d4795282e54396893a18bc" category="cell">第 5 步：验证所有资源的 PCS 集群状态是否处于在线和可用状态。</block>
   <block id="8c23eeb8835daa43dff255b5446abf8a" category="summary">在 Solaris 主机上运行 ONTAP FLI 迁移之前，请完成这些迁移前步骤。离线和在线迁移有不同的步骤。</block>
-  <block id="7cf5a135d3c61528748b39ac49d1da1b" category="doc">ONTAP FLI Solaris 主机修复</block>
   <block id="30ef697c716abe0dade774df73bbb7ca" category="cell">文件系统 (ZFS/Zpool)</block>
   <block id="0f3546281d9c20384d2719d8e9dbde87" category="cell">带 Zpool 的 OSC (Oracle Sun Cluster) (SCSI3 PR)</block>
   <block id="7d9cc4dc9df15aedf812546a021ad481" category="cell">步骤 1：收集端到端块设备配置：多路径运行状况/路径、块设备上的 Zpool 布局和 OBP（ok prompt）设置，以确认正确的启动设备和启动参数。</block>
@@ -1232,7 +1220,6 @@
   <block id="7f971426a24b126ae6000d49121b87fb" category="cell">第 6 步：挂载池/ZFS。</block>
   <block id="768f7d1e5e0def042f46b8b9cfed56e1" category="paragraph">rm /dev/rdsk/disk_ID</block>
   <block id="dffc409d1a050676e2e87c15a8566960" category="summary">在 Windows 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。</block>
-  <block id="86b354c358c5be17575bc649daa91c98" category="doc">ONTAP FLI Windows 主机修复</block>
   <block id="5f79720081815a16d0df4ff8e1e544d9" category="paragraph">这些步骤适用于离线和在线 FLI。在从 Windows 主机取消映射源 LUN 之前，请完成以下主机端准备工作。</block>
   <block id="7f9b6e92ec67dd79703496a4157dabee" category="cell">文件系统设备</block>
   <block id="1b01aab3ec6c18422640b7087ea298e8" category="cell">物理驱动器（无文件系统）</block>
@@ -1316,7 +1303,6 @@
   <block id="2b2f46dbe2ce8c87285fdda18c51305f" category="list-text">停用源访问时，删除与原始主机映射相关的主机启动器组和主机记录。</block>
   <block id="4e55e59e6ef6d345dea21fe36f6bbf3d" category="list-text">确保迁移的源 LUN 不再以可能导致向主机双重呈现的方式呈现。这是至关重要的，必须在整个迁移过程中确保这一点。</block>
   <block id="d9b24f13d4f4f580f19003076ea09576" category="summary">通过确认导入完成并验证数据完整性和删除临时后端配置，在 FLI 后完成迁移后清理。</block>
-  <block id="9003b781c53de9809a2d1cdbe335d774" category="doc">执行 ONTAP FLI 迁移后清理</block>
   <block id="879351ce6e141d137489c190a43107b1" category="paragraph">在 LUN 导入完成并删除关系后，有几个重要的清理步骤来完成迁移，确保数据完整性，并删除为 FLI 工作流程设置的任何临时配置。这些步骤包括确认导入已完成、验证数据完整性、从 ONTAP 发现中取消设置外来 LUN、清理后端连接以及查看日志和文档。</block>
   <block id="895946ce63a22bbd6ce2194c79a8ecb5" category="paragraph">在您的 FLI 迁移之后，您应该执行以下步骤来完成迁移并确保清洁状态：</block>
   <block id="32cf9a5194dc65d4653fb235725ce88e" category="list-text">确认 LUN 导入已成功完成并验证了数据完整性</block>
@@ -1337,7 +1323,6 @@
   <block id="5e71e1e2b20576b16d315429f48a329e" category="paragraph">导入日志存储在集群事件日志文件中。</block>
   <block id="0beb825c181cbbffff7c11b4c4f7044d" category="list-text">收集 AutoSupport 以记录客户环境，并在完成后收集另一个 AutoSupport 以记录最终配置：</block>
   <block id="16a6c2983eece3a17cd6ca5aad69c0dc" category="summary">修复具有仅限 ATS 的 VMFS 标头的 VMware ESXi 数据存储区，这些标头在通过在线 FLI 导入关系呈现时可能会阻止挂载。</block>
-  <block id="ab75de2c738ed534e535a75644e35b4f" category="doc">执行 ONTAP FLI ESXi VMFSS ATS/CAW 修复</block>
   <block id="cd6b9e7275e97c0392430087f81f89f6" category="paragraph">在线 FLI 迁移期间，临时导入关系不支持 VMware ATS 或 CAW（VAAI Atomic Test and Set 或 SCSI Compare And Write）。如果您的数据存储是 VMFS5 并且是在支持 ATS 的存储上创建的，则 VMware 可能会将 VMFS 标头标记为"仅 ATS"。在这种状态下，当通过在线 FLI 关系呈现时，数据存储可能无法挂载。</block>
   <block id="b15219cbeeb5be3d417d15217d94f2b3" category="list-text">"仅 ATS" 设置存储在 VMFS 标头中，该标头驻留在数据存储库的第一个范围内。如果数据存储库跨越多个范围，则只有第一个范围需要修正。</block>
   <block id="bc0c16772dcb705326a11b72eec18a4f" category="list-text">如果数据存储区在多个 ESXi 主机之间共享，则从一个主机更新它通常就足够了；其他主机在重新扫描和重新装载后会获取更改。</block>
@@ -1547,4 +1532,47 @@
   <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
   <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
   <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="15a25365e7d9848b6af9364748681d4a" category="doc">在 ONTAP FLI 中为启动器模式配置 FC 适配器</block>
+  <block id="4dbb6aad45c8e3f8971fa73b8fb1cb65" category="doc">ONTAP FLI FC 连接和布线最佳实践</block>
+  <block id="f4c33d13d9f0daaebef59efa47d35887" category="doc">ONTAP FLI FC 分区模型和最佳实践</block>
+  <block id="e5433016407dc6d5f7f37c33415d8dd8" category="doc">为 ONTAP FLI 设置 iSCSI 后端连接</block>
+  <block id="076672f300ffdefd8a4b41ffe8bdb05c" category="doc">ONTAP 外部 LUN 导入的主要功能和优势</block>
+  <block id="e5a84d75421369af41a6022dabb96e58" category="doc">了解 Foreign LUN Import 7-Mode 到 ONTAP 的过渡</block>
+  <block id="edcf274d613b1fd3721fb03b9159a221" category="doc">ONTAP Foreign LUN Import 的前提条件</block>
+  <block id="035581abad561e88980523560196a593" category="doc">支持的 ONTAP Foreign LUN Import 配置</block>
+  <block id="afe9db30e9034e965c6e02e6756b98f0" category="doc">ONTAP FLI 的法律声明</block>
+  <block id="754301ce7ba113a08fa49d266a9b75d8" category="doc">发现 ONTAP FLI 迁移的外部 LUN</block>
+  <block id="32cbbba88160bd8d4144465f439f9bf4" category="doc">执行和监控 ONTAP FLI LUN 导入</block>
+  <block id="b59970b095c3d11135d476b0588c57e4" category="doc">验证并删除 ONTAP FLI LUN 导入关系</block>
+  <block id="58c1e8e3d9f8452e6351f2ad4a74c61d" category="doc">了解 ONTAP FLI 分析阶段</block>
+  <block id="e14e63c17be90ac4e49bccfc7dc66144" category="doc">了解 ONTAP FLI 发现阶段</block>
+  <block id="9c29e825b73fe7ed14d8b179b5ea42c5" category="doc">了解 ONTAP FLI 执行阶段</block>
+  <block id="0895a0dc679cfc5cfb3a7fddb491de9f" category="doc">了解 ONTAP FLI 计划和准备阶段</block>
+  <block id="1b73325f1fbbdff2756ed0a1d22c1a5f" category="doc">为 ONTAP FLI 切换计划运行测试迁移</block>
+  <block id="72d975a8123afa2e08e4966f7c286aad" category="doc">执行 ONTAP FLI AIX 迁移前主机修复</block>
+  <block id="4594f915b679d2a7f6b54e7ffbf5fa8e" category="doc">执行 ONTAP FLI ESXi 迁移前主机修复</block>
+  <block id="366d0776d5cabae665fa253345d8fc41" category="doc">执行 ONTAP FLI HP 迁移前主机修复</block>
+  <block id="ab64a4ccf46b4017f3173d801fa1e236" category="doc">执行 ONTAP FLI Linux 迁移前主机修复</block>
+  <block id="88bc2d4b97164c6f0f9e0f1e35618f8b" category="doc">执行 ONTAP FLI Solaris 迁移前主机修复</block>
+  <block id="3a2861cc21f8d5160e2aeed1e57f7b90" category="doc">执行 ONTAP FLI Windows 迁移前主机修复</block>
+  <block id="d55a75223e0c62b9a1ace1086fda9626" category="doc">了解 ONTAP FLI 验证阶段</block>
+  <block id="5d198376368ca3b7e2d5997013d1320a" category="doc">执行 ONTAP FLI 迁移后清理</block>
+  <block id="e4b7d30fdb059e9a69aec2daca4bc677" category="doc">执行 ONTAP FLI ESXi VMFS ATS/CAW 修复</block>
+  <block id="b2a64e601b7f02b898986f734ad6c822" category="doc">执行 ONTAP FLI HP-UX 迁移后主机修复</block>
+  <block id="0b8dd6ad77664d8da58884a1061648a0" category="doc">ONTAP FLI 样本站点调查和规划工作表</block>
+  <block id="70a983c31647e6aea4c72ad8aab15674" category="doc">ONTAP FLI 现场调查和规划工作表聚合状态选项卡</block>
+  <block id="364c4532aad1535f22e77e02caf983ff" category="doc">ONTAP FLI 现场调查和规划工作表联系人选项卡</block>
+  <block id="d09426d6159d4696c87f71747357eaa8" category="doc">ONTAP FLI Site Survey and Planning worksheet Destination Storage Devices 选项卡</block>
+  <block id="9e47cabb06fd76190c249ee829a7e3e5" category="doc">ONTAP FLI 现场勘测和规划工作表 FAS Config 选项卡</block>
+  <block id="ec0ae5846e441f7cf083045814c5ab04" category="doc">ONTAP FLI 现场勘测和规划工作表 HBA 和区域信息选项卡</block>
+  <block id="4cdf04a8afc3c95a7f320c22d3189595" category="doc">ONTAP FLI 站点调查和规划工作表 Hosts 选项卡</block>
+  <block id="bb0b512896c8a5dd1b918d0395eea538" category="doc">ONTAP FLI 现场勘测和规划工作表 LUN 详细信息选项卡</block>
+  <block id="1e32c1e149391d5f6e39b031f53c6bf5" category="doc">ONTAP FLI 现场调查和规划工作表迁移计划选项卡</block>
+  <block id="01cdccc5bb4a05fe9479946dda942c10" category="doc">ONTAP FLI 现场勘测和规划工作表 NetApp LUN 布局选项卡</block>
+  <block id="c9859974dbca81bc695c4e51d335d875" category="doc">ONTAP FLI 现场调查和规划工作表问卷选项卡</block>
+  <block id="14c70e596dba835b35dd092165b69ba5" category="doc">ONTAP FLI 现场调查和规划工作表 SDS CLI 脚本选项卡</block>
+  <block id="dc7c368be27e6780a1b29d7562c2124f" category="doc">ONTAP FLI 现场调查和规划工作表源 LUN 选项卡</block>
+  <block id="66a3fec0a9750426f0214cd67c946497" category="doc">ONTAP FLI Site Survey and Planning worksheet Source Storage Devices 选项卡</block>
+  <block id="c0ebf75273b086525a388999bf478927" category="doc">ONTAP FLI 现场调查和规划工作表存储组选项卡</block>
+  <block id="c9ab231f3a6a537a1fdc8be5ba0eaa5c" category="doc">ONTAP FLI 现场勘测和规划工作表 Switches 选项卡</block>
 </blocks>

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords:  
 summary:  
 ---
-= ONTAP 外部 LUN 导入建议的 FC 布线和分区实践
+= ONTAP FLI FC 分区模型和最佳实践
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

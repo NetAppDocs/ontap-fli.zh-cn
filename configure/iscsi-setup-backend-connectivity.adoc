@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords:  
 summary:  
 ---
-= ONTAP 外部 LUN 导入 (FLI) 推荐的 FC 布线和分区实践
+= 为 ONTAP FLI 设置 iSCSI 后端连接
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

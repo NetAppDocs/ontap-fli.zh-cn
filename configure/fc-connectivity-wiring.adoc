@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords:  
 summary:  
 ---
-= ONTAP 外部 LUN 导入 (FLI) 连接和布线
+= ONTAP FLI FC 连接和布线最佳实践
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

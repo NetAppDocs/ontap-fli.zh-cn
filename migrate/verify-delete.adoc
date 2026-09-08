@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: verify import, delete import relationship, foreign lun import, fli, lun import delete, lun import verify, import cleanup, san migration, offline verification, asa r2 
 summary: 通过在复制完成后删除导入关系来完成迁移，并可选择在删除前验证块级数据完整性。 
 ---
-= 验证并删除 FLI LUN 导入关系
+= 验证并删除 ONTAP FLI LUN 导入关系
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

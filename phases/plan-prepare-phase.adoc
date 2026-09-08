@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: plan and prepare phase, foreign lun import, fli, migration planning, test migration, cutover, intercluster lif, iscsi fli, gap analysis, san migration, fc fli, zoning, test migration 
 summary: 运行一个或多个测试迁移，以确认阵列、网络和结构、ONTAP 配置和主机修复步骤是正确的，并收集可外推用于生产计划的吞吐量示例。 
 ---
-= ONTAP 外部 LUN 导入 (FLI) 测试迁移和切换规划
+= 为 ONTAP FLI 切换计划运行测试迁移
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ontap, fli, foreign lun import, windows host, pre-migration, offline fli, online fli 
 summary: 在 Windows 主机上运行 ONTAP FLI 迁移之前，请完成这些预迁移步骤。离线和在线迁移有单独的步骤。 
 ---
-= ONTAP FLI Windows 主机修复
+= 执行 ONTAP FLI Windows 迁移前主机修复
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

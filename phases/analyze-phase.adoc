@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: analyze phase, foreign lun import, fli, gap analysis, interoperability matrix tool, imt, host remediation, hba, mpio, alua, san migration, iscsi fli, fc fli 
 summary: 了解分析阶段，该阶段将主机和 SAN 堆栈配置与 NetApp Interoperability Matrix 进行比较，以确定所需的更改。 
 ---
-= ONTAP 外部 LUN 导入 (FLI) 分析阶段
+= 了解 ONTAP FLI 分析阶段
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

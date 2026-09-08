@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: lun import start, execute import, monitor import, foreign lun import, fli, ontap, lun import show, import progress, pause import, resume import, san migration, online fli, offline fli, asa r2 
 summary: 启动 LUN 导入并监视进度。暂停和恢复复制流，以管理导入和活动主机工作负载之间的带宽争用。 
 ---
-= 执行和监控 FLI LUN 导入
+= 执行和监控 ONTAP FLI LUN 导入
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
