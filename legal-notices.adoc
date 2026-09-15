@@ -4,13 +4,14 @@ permalink: legal-notices.html
 keywords: copyrights, notice, trademarks, patents, privacy, open source 
 summary: 法律声明提供对版权声明、商标、专利等的访问。 
 ---
-= ONTAP FLI 的法律声明
+= 法律声明
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ./media/
 
 
-[role="lead"]
+[role="lead lead"]
 法律声明提供对版权声明、商标、专利等的访问。
 
 
@@ -44,3 +45,10 @@ link:https://www.netapp.com/pdf.html?item=/media/11887-patentspage.pdf["https://
 == 隐私政策
 
 link:https://www.netapp.com/company/legal/privacy-policy/["https://www.netapp.com/company/legal/privacy-policy/"^]
+
+
+
+[[machine-translation]]
+== 机器翻译
+
+有关本地化内容的重要信息，请访问 link:https://www.netapp.com/company/legal/machine-translation/["netapp.com"^]

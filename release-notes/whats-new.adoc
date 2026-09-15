@@ -2,19 +2,17 @@
 sidebar: sidebar 
 permalink: release-notes/whats-new.html 
 keywords: 'what"s new, release notes, san data migration' 
-summary: 了解 ONTAP 中可用于 SAN 数据迁移的新功能。 
+summary: '了解 ONTAP 中适用于外部 LUN 导入 (FLI) 的新功能。' 
 ---
-= ONTAP 中用于 SAN 数据迁移的新功能
-:hardbreaks:
+= ONTAP Foreign LUN Import (FLI) 中的新增功能
 :allow-uri-read: 
-:nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-了解 ONTAP 中可用于 SAN 数据迁移的新功能。
+了解 ONTAP 中适用于外部 LUN 导入 (FLI) 的新功能。
 
 
 
@@ -34,6 +32,3 @@ summary: 了解 ONTAP 中可用于 SAN 数据迁移的新功能。
 详细了解link:https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["ASA R2 系统"^] 。
 
 
-
-|===
-|===

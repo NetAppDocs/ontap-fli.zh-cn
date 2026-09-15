@@ -1,6 +1,6 @@
 ---
 settings:
-  name: ONTAP FLI
+  name: ONTAP Foreign LUN Import
   internal:
     pdf_enabled: true
   prod:
@@ -9,7 +9,7 @@ settings:
   langs: zh-cn,us-en,de-de,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-tw
 sidebar:
   entries:
-  - title: ONTAP FLI 文档
+  - title: ONTAP 外来 LUN 导入文档
     url: "/index.html"
   - section: release-notes
   - section: get-started

@@ -1,10 +1,10 @@
 ---
 indexpage:
   title: ONTAP 外部 LUN 导入文档
-  summary: ONTAP 外部 LUN 导入
   keywords: fli, ontap, array, fli-based, configuration, lun, import, san, migration,
     foreign
-  lead: ONTAP 外部 LUN 导入
+  lead: 外部 LUN 导入 (FLI) 是一种 ONTAP 功能，它通过将用户数据从外部阵列 LUN 复制到 ONTAP LUN 来实现块级别 (LUN)
+    数据迁移。ONTAP 通过充当 SCSI 启动程序从外部 LUN 读取数据并写入目标 ONTAP LUN 来执行迁移。
   tiles:
   - title: 发行说明
     links:
@@ -14,27 +14,15 @@ indexpage:
     links:
     - title: 了解 ONTAP 数据迁移计划
       url: "/get-started/learn-about-data-migration.html"
-    - title: 了解有关将 SAN 数据迁移到 ONTAP
-      url: "/get-started/learn-about-san-data-migration.html"
     - title: 了解 ONTAP 外部 LUN 导入
       url: "/get-started/learn-about-fli.html"
-  - title: FLI 阶段
-    links:
-    - title: ONTAP 外部 LUN 导入 (FLI) 发现阶段
-      url: "/phases/discovery-phase.html"
-    - title: ONTAP 外部 LUN 导入 (FLI) 分析阶段
-      url: "/phases/analyze-phase.html"
-    - title: ONTAP 外部 LUN 导入 (FLI) 计划和准备阶段
-      url: "/phases/plan-prepare-phase.html"
-    - title: ONTAP 外部 LUN 导入 (FLI) 执行阶段
-      url: "/phases/execute-phase.html"
-    - title: ONTAP 外部 LUN 导入 (FLI) 验证阶段
-      url: "/phases/verify-phase.html"
+    - title: 了解 ONTAP FLI 阶段
+      url: "/phases/phase-overview.html"
   - title: FLI 配置
     links:
-    - title: ONTAP 外部 LUN 导入 (FLI) 连接和布线
+    - title: ONTAP FLI 连接和接线
       url: "/configure/fc-connectivity-wiring.html"
-    - title: ONTAP 外部 LUN 导入 (FLI) 推荐的 FC 布线和分区实践
+    - title: ONTAP FLI 推荐的 FC 布线和分区做法
       url: "/configure/iscsi-setup-backend-connectivity.html"
   - title: FLI 迁移
     links:
@@ -54,7 +42,7 @@ indexpage:
       url: "/post-migration-performance/esxi-remediation.html"
     - title: FLI 性能
       url: "/post-migration-performance/performance.html"
-  - title: 示例站点调查和规划工作表
+  - title: 现场勘察和规划示例
     links:
-    - title: 概述
-      url: "/san-migration/reference_sample_site_survey_and_planning_worksheet.html"
+    - title: 现场勘察和规划工作表样本
+      url: "/sample-site/reference_sample_site_survey_and_planning_worksheet.html"

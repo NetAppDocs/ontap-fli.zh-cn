@@ -2,7 +2,7 @@
 section: post-migration-performance
 title: FLI 迁移后
 entries:
-- title: 迁移后概述
+- title: 了解迁移后
   url: "/post-migration-performance/post-migration-overview.html"
 - title: 执行迁移后清理
   url: "/post-migration-performance/clean-up.html"
@@ -20,5 +20,5 @@ entries:
   url: "/post-migration-performance/post-remediation-solaris.html"
 - title: 执行 ONTAP FLI Windows 迁移后主机修复
   url: "/post-migration-performance/post-remediation-windows.html"
-- title: FLI 性能
+- title: ONTAP FLI 性能控制
   url: "/post-migration-performance/performance.html"

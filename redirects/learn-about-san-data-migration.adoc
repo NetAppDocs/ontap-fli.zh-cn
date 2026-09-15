@@ -1,5 +1,5 @@
 ---
-permalink: san-migration/task_fli_online_cleanup.html 
+permalink: get-started/learn-about-san-data-migration.html 
 redirect: ontap-fli/get-started/learn-about-data-migration.html 
 ---
 = 

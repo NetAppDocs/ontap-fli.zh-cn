@@ -10,7 +10,7 @@ entries:
   url: "/phases/analyze-phase.html"
 - title: 计划与准备
   entries:
-  - title: 概述
+  - title: 了解有关规划和准备工作的信息
     url: "/phases/plan-overview.html"
   - title: 测试迁移
     url: "/phases/plan-prepare-phase.html"
